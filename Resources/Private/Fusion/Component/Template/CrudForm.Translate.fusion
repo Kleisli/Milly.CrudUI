@@ -1,0 +1,16 @@
+prototype(Milly.Crudforms:Template.Translate) < prototype(Neos.Fusion:Component) {
+
+
+    renderer = afx`
+        <div class="neos-content neos-fluid-container neos-indented">
+            <div class="neos-row-fluid">
+                <div class="neos-span6">
+                    <Milly.Crudforms:Component.ObjectValues object={props.object} properties={props.configuration.properties} />
+                </div>
+                <div class="neos-span6">
+                    <Milly.Crudforms:Component.EditForm object={props.object} properties={props.configuration.properties} translation="fr"/>
+                </div>
+            </div>
+        </div>
+    `
+}

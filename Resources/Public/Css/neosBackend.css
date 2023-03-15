@@ -1,0 +1,32 @@
+.neos-table td form {
+    display: inline;
+}
+
+.neos.neos-module .neos-footer {
+    margin: 40px 0 0;
+}
+
+.neos.neos-module .neos-content a:not(.neos-button) {
+    color: #00b5ff;
+}
+
+.neos.neos-module .neos-content a:not(.neos-button):hover {
+    color: #fff;
+}
+
+.neos.neos-module textarea {
+    line-height: 36px;
+}
+
+.neos .crud-breadcrumb {
+    padding-top: 16px;
+}
+
+legend.h2 {
+    font-size: 125%;
+}
+
+.neos .crud-breadcrumb .neos-divider {
+    padding: 0 5px;
+    color: #ccc;
+}

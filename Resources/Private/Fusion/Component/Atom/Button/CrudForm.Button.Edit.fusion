@@ -1,0 +1,16 @@
+prototype(Milly.Crudforms:Component.Button.Edit) < prototype(Neos.Fusion:Component) {
+
+    object = ''
+
+    renderer = afx`
+        <Neos.Fusion:Link.Action href.action="edit"
+                                 href.package={Object.getPackageByObject(props.object)}
+                                 href.controller={Milly.Mapping.getControllerNameByClass(Milly.Reflection.getControllerClassByModel(props.object))}
+                                 href.arguments={{object: props.object}}
+                                 class="neos-button neos-button-primary">
+            <i class="fas fa-pencil-alt"></i>
+            <Neos.Fusion:Fragment @if={props.showLabel}>
+                &nbsp;Bearbeiten
+            </Neos.Fusion:Fragment>
+        </Neos.Fusion:Link.Action>`
+}

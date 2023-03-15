@@ -1,0 +1,21 @@
+prototype(Milly.Crudforms:Component.Button.Delete) < prototype(Neos.Fusion:Component) {
+
+    object = ''
+
+    renderer = afx`
+        <Neos.Fusion.Form:Form form.target.action="delete"
+                               form.target.package={Object.getPackageByObject(props.object)}
+                               form.target.controller={Milly.Mapping.getControllerNameByClass(Milly.Reflection.getControllerClassByModel(props.object))}
+                               form.target.arguments={{object: props.object}}
+                               attributes.onsubmit="return confirm('Willst du wirklich löschen?');">
+
+            <Neos.Fusion.Form:Button attributes.class="neos-button neos-button-danger">
+                <i class="fas fa-trash"></i>
+                <Neos.Fusion:Fragment @if={props.showLabel}>
+                    &nbsp;Löschen
+                </Neos.Fusion:Fragment>
+            </Neos.Fusion.Form:Button>
+
+        </Neos.Fusion.Form:Form>
+    `
+}

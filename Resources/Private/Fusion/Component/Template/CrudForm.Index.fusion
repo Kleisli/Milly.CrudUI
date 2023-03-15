@@ -1,0 +1,28 @@
+prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
+
+    @context {
+        crudFormsModelClass = ${crudFormsModelClass}
+        configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, 'index')}
+        crudFormsView = 'index'
+    }
+
+    renderer = afx`
+        <legend>
+            {configuration.label.many ? configuration.label.many : configuration.label.one}
+        </legend>
+
+        <div class="neos-content neos-fluid-container neos-indented">
+            <div class="neos-row-fluid">
+                <div class="neos-span12">
+                    <Milly.Crudforms:Component.IndexTable filterValues={props.filterValues} objects={props.objects} />
+                    <div class="neos-pull-right">
+                        <Neos.Fusion:Link.Action href.action="new" class="neos-button neos-button-primary">
+                            <i class="fa fa-plus-circle"></i> {configuration.label.one} erfassen
+                        </Neos.Fusion:Link.Action>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `
+    renderer.@process.debugDump = Neos.Fusion:DebugDump
+}

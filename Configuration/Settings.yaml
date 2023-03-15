@@ -1,0 +1,8 @@
+Neos:
+  Neos:
+    fusion:
+      autoInclude:
+        Milly.CrudForms: true
+  Fusion:
+    defaultContext:
+      'Milly.CrudForms': Milly\CrudForms\Eel\Helper\ConfigurationHelper

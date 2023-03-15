@@ -1,0 +1,21 @@
+{
+    "description": "",
+    "type": "neos-package",
+    "name": "milly/crudforms",
+    "require": {
+        "neos/fusion-form": "*",
+        "milly/tools": "@dev",
+        "milly/sortable": "@dev",
+        "flowpack/listable": "^3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Milly\\CrudForms\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Milly.CrudForms"
+        }
+    }
+}

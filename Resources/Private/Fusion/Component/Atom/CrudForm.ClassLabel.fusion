@@ -1,0 +1,19 @@
+prototype(Milly.Crudforms:Component.ClassLabel) < prototype(Neos.Fusion:Component) {
+
+    showClassLabel = false
+
+    renderer = Neos.Fusion:Case {
+        getFromClass {
+            condition = ${props.className && props.showClassLabel}
+            renderer =  ${Milly.CrudForms.getConfigurationByClass(props.className, 'label.'+props.showClassLabel)}
+        }
+        getFromObject {
+            condition = ${props.object && props.showClassLabel}
+            renderer =  ${Milly.CrudForms.getConfigurationByModel(props.object, 'label.'+props.showClassLabel)}
+        }
+        default {
+            condition = ${true}
+            renderer = ''
+        }
+    }
+}

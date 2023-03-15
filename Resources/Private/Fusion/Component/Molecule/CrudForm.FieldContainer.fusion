@@ -1,0 +1,63 @@
+prototype(Milly.Crudforms:Component.FieldContainer)  < prototype(Neos.Fusion.Form:Component.Field) {
+
+
+    @propTypes {
+        attributes = ${PropTypes.dataStructure({})}
+        content = ${PropTypes.string}
+        label = ${PropTypes.string}
+    }
+
+    #
+    # label and afx content
+    #
+    label = null
+
+    #
+    # attributes for the container
+    #
+    attributes = Neos.Fusion:DataStructure
+
+    #
+    # used to populate the `field` context and among others things
+    # allow accessing the data bound to the form, submitted values
+    # and results
+    #
+    field = Neos.Fusion.Form:Definition.Field
+
+    #
+    # afx content to be used by the renderer of derived types
+    #
+    content = ''
+
+    #
+    # translations source and package for labels and errors
+    #
+    translation =  Neos.Fusion:DataStructure {
+        label = Neos.Fusion:DataStructure {
+            package = 'Neos.Neos'
+            source = 'Modules'
+        }
+        error = Neos.Fusion:DataStructure {
+            package = 'Neos.Flow'
+            source = 'ValidationErrors'
+        }
+    }
+
+    # prototype name responsible for error rendering
+    errorRenderer = 'Neos.Fusion.Form:ErrorRenderer'
+
+    renderer = Neos.Fusion:Case {
+        neos_backend {
+            @position = 'end'
+            condition = true
+            renderer = afx`
+                <Neos.Fusion.Form:Neos.BackendModule.FieldContainer label={props.label} attributes={props.attributes} translation={props.translation}>
+                    <Milly.Crudforms:Component.FieldAttributeAugmenter type={props.type}>
+                        {props.content}
+                    </Milly.Crudforms:Component.FieldAttributeAugmenter>
+                </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
+            `
+
+        }
+    }
+}

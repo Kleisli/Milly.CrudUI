@@ -1,0 +1,20 @@
+prototype(Milly.Crudforms:Component.Button.SortDown) < prototype(Neos.Fusion:Component) {
+
+    object = ''
+    @if.hasSorting = ${object.sorting}
+
+    renderer = afx`
+        <Neos.Fusion.Form:Form @if.notLast={!props.object.isLast}
+                               form.target.action="sortDown"
+                               form.target.package={Object.getPackageByObject(props.object)}
+                               form.target.controller={Milly.Mapping.getControllerNameByClass(Milly.Reflection.getControllerClassByModel(props.object))}
+                               form.target.arguments={{object: props.object}}>
+            <Neos.Fusion.Form:Button attributes.class="neos-button neos-button-primary">
+                <i class="fas fa-sort-down"></i>
+            </Neos.Fusion.Form:Button>
+        </Neos.Fusion.Form:Form>
+
+        <span @if.isLast={props.object.isLast} style="display: inline-block; width: 46px;">
+        </span>
+    `
+}

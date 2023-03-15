@@ -1,0 +1,3 @@
+include: resource://flowpack.Listable/Private/Fusion/Root.fusion
+
+include: **/*.fusion

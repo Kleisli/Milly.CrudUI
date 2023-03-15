@@ -1,0 +1,39 @@
+prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Component) {
+
+    header = ''
+    showColumnHeaders = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.index.showColumnHeaders')}
+    filterValues = ${[]}
+
+    renderer = afx`
+    <Neos.Fusion.Form:Form form.data.filter={props.filterValues} form.target.action="index" attributes.class={'filter'}>
+        <table @if.condition={props.objects} class="neos-table">
+            <tr @if={props.header}>
+                <th colspan="100%">
+                    {props.header}
+                </th>
+            </tr>
+            <tr @if={props.showColumnHeaders}>
+                <th></th>
+                <Neos.Fusion:Loop items={configuration.properties} itemKey="propertyName" itemName="propertyConfig">
+                    <Milly.Crudforms:Component.Header filterValues={props.filterValues} propertyName={propertyName} propertyConfig={propertyConfig}/>
+                </Neos.Fusion:Loop>
+                <th></th>
+            </tr>
+
+            <Flowpack.Listable:PaginatedCollection collection={props.objects} listRenderer={'Milly.Crudforms:Component.IndexTableRow'} />
+        </table>
+    </Neos.Fusion.Form:Form>
+        `
+    renderer.@process.prependJs = Neos.Fusion:Join {
+        value = ${value}
+        js = "<script>
+                selects = document.querySelectorAll('form.filter select, form.filter input');
+                for (let i=0; i<selects.length; i++){
+                    selects[i].addEventListener('change', function(){
+                    this.closest('form').submit();
+                    })
+                }
+            </script>"
+
+    }
+}

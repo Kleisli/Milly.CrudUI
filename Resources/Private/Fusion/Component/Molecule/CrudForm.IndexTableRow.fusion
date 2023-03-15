@@ -1,0 +1,16 @@
+prototype(Milly.Crudforms:Component.IndexTableRow) < prototype(Neos.Fusion:Component) {
+
+    collection = ''
+
+    renderer = afx`
+        <Neos.Fusion:Debug>{props.collection}</Neos.Fusion:Debug>
+        <Neos.Fusion:Loop items={props.collection} itemName="object">
+
+            <Neos.Fusion:Debug>{object}</Neos.Fusion:Debug>
+
+        </Neos.Fusion:Loop>
+    `
+
+
+
+}

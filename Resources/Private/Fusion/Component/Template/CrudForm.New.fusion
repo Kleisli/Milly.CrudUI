@@ -1,0 +1,27 @@
+prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
+
+    @context {
+        crudFormsModelClass = ${crudFormsModelClass}
+        configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, 'new')}
+        crudFormsView = 'new'
+    }
+
+    preset = Neos.Fusion:DataStructure
+
+    renderer = afx`
+        <legend>
+            {props.configuration.label.one} erstellen
+            <Neos.Fusion:Fragment @if={props.parent}>
+                für <Milly.Crudforms:Component.ObjectLabel object={props.parent} showClassLabel="one" />
+            </Neos.Fusion:Fragment>
+        </legend>
+
+        <div class="neos-content neos-fluid-container neos-indented">
+            <div class="neos-row-fluid">
+                <div class="neos-span6">
+                    <Milly.Crudforms:Component.NewForm properties={configuration.properties} preset={props.preset} />
+                </div>
+            </div>
+        </div>
+    `
+}

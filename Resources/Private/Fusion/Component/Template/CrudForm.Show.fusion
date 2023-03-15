@@ -1,0 +1,25 @@
+prototype(Milly.Crudforms:Template.Show) < prototype(Neos.Fusion:Component) {
+
+    @context {
+        crudFormsModelClass = ${crudFormsModelClass}
+        configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, 'show')}
+        crudFormsView = 'show'
+    }
+
+    renderer = afx`
+        <legend>
+            <Milly.Crudforms:Component.ObjectLabel object={props.object} showClassLabel={'one'} />
+        </legend>
+        <div class="neos-content neos-fluid-container neos-indented">
+            <div class="neos-row-fluid">
+                <div class="neos-span6">
+                    <Milly.Crudforms:Component.ObjectValues object={props.object} />
+                </div>
+
+                <div class="neos-span6">
+                    <Milly.Crudforms:Component.Relations object={props.object}  />
+                </div>
+            </div>
+        </div>
+    `
+}

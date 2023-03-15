@@ -1,0 +1,36 @@
+prototype(Milly.Crudforms:Component.FieldAttributeAugmenter) < prototype(Neos.Fusion:Component) {
+
+    type = 'default'
+
+    renderer = Neos.Fusion:Case {
+        neos_backend {
+            @position = 'end'
+            condition = true
+            renderer = Neos.Fusion:Match {
+                @subject = ${props.type}
+                textarea = Neos.Fusion:Augmenter {
+                    content = ${props.content}
+                    class = "neos-span12"
+                    rows = "2"
+                }
+                textarea = Neos.Fusion:Augmenter {
+                    content = ${props.content}
+                    class = "neos-span12"
+                    rows = "2"
+                }
+                number = Neos.Fusion:Augmenter {
+                    content = ${props.content}
+                    class = "neos-span3"
+                }
+                booleanCheckbox = Neos.Fusion:Augmenter {
+                    content = ${props.content}
+                    class = ""
+                }
+                @default = Neos.Fusion:Augmenter {
+                    content = ${props.content}
+                    class = "neos-span12"
+                }
+            }
+        }
+    }
+}
