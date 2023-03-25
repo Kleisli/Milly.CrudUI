@@ -1,0 +1,7 @@
+prototype(Milly.Crudforms:Component.PropertyLabel) < prototype(Neos.Fusion:Component) {
+
+    propertyConfig = null
+    propertyName = ''
+
+    renderer = ${props.propertyConfig.label ? props.propertyConfig.label : props.propertyName}
+}

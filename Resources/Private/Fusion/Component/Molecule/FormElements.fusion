@@ -1,0 +1,23 @@
+prototype(Milly.Crudforms:Component.Fields) < prototype(Neos.Fusion:Component) {
+
+    translation = ''
+
+    renderer = Neos.Fusion:Loop {
+        items = ${props.properties}
+        itemKey = "propertyName"
+        itemName = "propertyConfig"
+
+        itemRenderer = Milly.Crudforms:Component.FieldContainer {
+            type = ${propertyConfig.type}
+            field.name = ${'object['+propertyName+']'}
+            label = Milly.Crudforms:Component.PropertyLabel {
+                propertyName = ${propertyName}
+                propertyConfig = ${propertyConfig}
+            }
+
+            content = Milly.Crudforms:Component.FormElement {
+                @apply.propertyConfig = ${propertyConfig}
+            }
+        }
+    }
+}

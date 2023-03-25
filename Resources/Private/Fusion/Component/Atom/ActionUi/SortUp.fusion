@@ -8,8 +8,8 @@ prototype(Milly.Crudforms:Component.Button.SortUp) < prototype(Neos.Fusion:Compo
         </span>
         <Neos.Fusion.Form:Form @if.notFirst={!props.object.isFirst}
                                form.target.action="sortUp"
-                               form.target.package={Object.getPackageByObject(props.object)}
-                               form.target.controller={Milly.Mapping.getControllerNameByClass(Milly.Reflection.getControllerClassByModel(props.object))}
+                               form.target.package={Milly.Object.getPackageByObject(props.object)}
+                               form.target.controller={Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.object))}
                                form.target.arguments={{object: props.object}}>
 
             <Neos.Fusion.Form:Button attributes.class="neos-button neos-button-primary">

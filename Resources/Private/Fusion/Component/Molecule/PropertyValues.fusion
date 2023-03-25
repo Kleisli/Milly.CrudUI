@@ -1,0 +1,30 @@
+prototype(Milly.Crudforms:Component.ObjectValues) < prototype(Neos.Fusion:Component) {
+
+    @propTypes {
+        propertyValueContainerType = ${PropTypes.oneOf(['tablerow', 'tablecell', 'with_label'])}
+    }
+
+    propertyValueContainerType = 'with_label'
+    properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', crudFormsView)}
+
+    renderer = Neos.Fusion:Loop {
+        items = ${props.properties}
+        itemKey = "propertyName"
+        itemName = "propertyConfig"
+
+        itemRenderer = Milly.Crudforms:Component.PropertyValueContainer {
+            type = ${props.propertyValueContainerType}
+            label = Milly.Crudforms:Component.PropertyLabel {
+                propertyName = ${propertyName}
+                propertyConfig = ${propertyConfig}
+            }
+
+            propertyValue = Milly.Crudforms:Component.PropertyValue {
+                propertyConfig = ${propertyConfig}
+                propertyName = ${propertyName}
+                @apply.props = ${props}
+            }
+        }
+    }
+
+}

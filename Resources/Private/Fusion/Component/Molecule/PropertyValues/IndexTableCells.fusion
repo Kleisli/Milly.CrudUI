@@ -1,0 +1,6 @@
+prototype(Milly.Crudforms:Component.ObjectValues.IndexTableCells) < prototype(Milly.Crudforms:Component.ObjectValues) {
+
+    propertyValueContainerType = 'tablecell'
+    properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', 'index')}
+
+}

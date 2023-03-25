@@ -1,0 +1,13 @@
+prototype(Milly.Crudforms:Component.PropertyValue.Image) < prototype(Neos.Fusion:Component) {
+
+    resource = null
+
+    renderer = afx`
+        <Neos.Fusion:Link.Resource @if.hasResource={props.resource} href.resource={props.resource}>
+            <img @children="attributes.src" width="300px">
+                <Neos.Fusion:ResourceUri resource={props.resource}/>
+            </img>
+        </Neos.Fusion:Link.Resource>
+    `
+
+}

@@ -1,0 +1,24 @@
+prototype(Milly.Crudforms:Component.PropertyValue) < prototype(Neos.Fusion:Component) {
+
+    @propTypes {
+        propertyConfig = ${PropTypes.arrayOf(PropTypes.any)}
+        propertyName = ${PropTypes.string}
+        object = ${PropTypes.any}
+    }
+
+    renderer = Neos.Fusion:Match {
+        @subject = ${propertyConfig.type}
+
+        select = Milly.Crudforms:Component.PropertyValue.Select
+        booleanRadio = Milly.Crudforms:Component.PropertyValue.BooleanRadio
+        booleanCheckbox = ${Milly.Object.getProperty(object, propertyName) ? 'Ja' : 'Nein'}
+        dateTime = ${Date.format(Milly.Object.getProperty(object, propertyName), "d.m.Y H:i")}
+        date = ${Date.format(Milly.Object.getProperty(object, propertyName), "d.m.Y")}
+        image = Milly.Crudforms:Component.PropertyValue.Image {
+            resource = ${Milly.Object.getProperty(object, propertyName)}
+        }
+
+        @default = ${Milly.Object.getProperty(object, propertyName)}
+
+    }
+}

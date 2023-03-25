@@ -1,0 +1,20 @@
+prototype(Milly.Crudforms:Component.TableHeaderRow) < prototype(Neos.Fusion:Component) {
+
+
+    renderer = afx`
+        <tr>
+            <th></th>
+            <Neos.Fusion:Loop items={configuration.properties} itemKey="propertyName" itemName="propertyConfig">
+                <th>
+                    <Milly.Crudforms:Component.PropertyLabel propertyName={propertyName} propertyConfig={propertyConfig} />
+                    <Neos.Fusion:Fragment @if.hasFilterType={Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.filter.'+propertyName+'.type')}>
+                        <br/>
+                        <Milly.Crudforms:Component.PropertyFilter filterValues={props.filterValues} propertyName={propertyName} propertyConfig={propertyConfig}/>
+                    </Neos.Fusion:Fragment>
+                </th>
+            </Neos.Fusion:Loop>
+            <th></th>
+        </tr>
+    `
+
+}

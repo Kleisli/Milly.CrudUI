@@ -1,0 +1,43 @@
+prototype(Milly.Crudforms:Component.PropertyValueContainer) < prototype(Neos.Fusion:Component) {
+
+    @propTypes {
+        label = ${PropTypes.string}
+        type = ${PropTypes.oneOf(['tablerow', 'tablecell', 'with_label'])}
+        propertyValue = ${PropTypes.any}
+    }
+
+    renderer = Neos.Fusion:Case {
+
+        tablecell {
+            condition = ${props.type == 'tablecell'}
+            renderer = afx`
+                <td>
+                    {props.propertyValue}
+                </td>
+            `
+        }
+
+        tablerow {
+            condition = ${props.type == 'tablerow'}
+            renderer = afx`
+                <tr>
+                    <th>{props.label}</th>
+                    <td>
+                        {props.propertyValue}
+                    </td>
+                </tr>
+            `
+        }
+
+        with_label {
+            @position = 'end'
+            condition = true
+            renderer = afx`
+                <Neos.Fusion.Form:Neos.BackendModule.FieldContainer label={props.label} attributes={props.attributes} translation={props.translation}>
+                        {props.propertyValue}
+                </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
+            `
+
+        }
+    }
+}

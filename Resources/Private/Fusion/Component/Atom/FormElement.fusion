@@ -1,0 +1,19 @@
+prototype(Milly.Crudforms:Component.FormElement) < prototype(Neos.Fusion:Component) {
+
+    renderer = Neos.Fusion:Match {
+        @subject = ${propertyConfig.type}
+
+        textarea = Neos.Fusion.Form:Textarea
+        number = Neos.Fusion.Form:Textfield {
+            attributes.type="number"
+        }
+        select = Milly.Crudforms:Component.FormElement.Select
+        booleanRadio = Milly.Crudforms:Component.FormElement.BooleanRadio
+        booleanCheckbox = Milly.Crudforms:Component.FormElement.BooleanCheckbox
+        dateTime = Milly.Crudforms:Component.FormElement.DateTime
+        date = Milly.Crudforms:Component.FormElement.Date
+        image = Milly.Crudforms:Component.FormElement.Image
+
+        @default = Neos.Fusion.Form:Textfield
+    }
+}

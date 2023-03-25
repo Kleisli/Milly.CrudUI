@@ -1,10 +1,16 @@
 prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
 
+    @propTypes {
+        style = ${PropTypes.oneOf(['narrow', 'wide'])}
+    }
+
     @context {
         crudFormsModelClass = ${crudFormsModelClass}
         configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, 'index')}
         crudFormsView = 'index'
     }
+
+    style = 'narrow'
 
     renderer = afx`
         <legend>
@@ -13,11 +19,11 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
 
         <div class="neos-content neos-fluid-container neos-indented">
             <div class="neos-row-fluid">
-                <div class="neos-span12">
+                <div class={props.style=='narrow' ? 'neos-span6' : 'neos-span12'}>
                     <Milly.Crudforms:Component.IndexTable filterValues={props.filterValues} objects={props.objects} />
                     <div class="neos-pull-right">
                         <Neos.Fusion:Link.Action href.action="new" class="neos-button neos-button-primary">
-                            <i class="fa fa-plus-circle"></i> {configuration.label.one} erfassen
+                            <i class="fa fa-plus"></i> {configuration.label.one} erfassen
                         </Neos.Fusion:Link.Action>
                     </div>
                 </div>

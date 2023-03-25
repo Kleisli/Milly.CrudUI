@@ -5,4 +5,5 @@ Neos:
         Milly.CrudForms: true
   Fusion:
     defaultContext:
-      'Milly.CrudForms': Milly\CrudForms\Eel\Helper\ConfigurationHelper
+      'Milly.CrudForms': Milly\CrudForms\Eel\Helper\CrudFormsHelper
+      'Milly.Object': Milly\CrudForms\Eel\Helper\ObjectHelper

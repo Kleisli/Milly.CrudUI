@@ -34,6 +34,11 @@ trait BaseControllerTrait
     /**
      * @Flow\Inject
      */
+    protected \Milly\Tools\Service\ClassMappingService $classMappingService;
+
+    /**
+     * @Flow\Inject
+     */
     protected ConfigurationService $configurationService;
 
 
@@ -68,9 +73,9 @@ trait BaseControllerTrait
      * @throws \Neos\Flow\Exception
      */
     protected function getRepository(){
-        $repository = $this->objectManager->get($this->millyReflectionService->getRepositoryClassByModel($this->getModelClass()));
+        $repository = $this->objectManager->get($this->classMappingService->getRepositoryClassByModel($this->getModelClass()));
         if(!($repository instanceof RepositoryInterface)){
-            throw new Exception("Could not instantiate " .$this->millyReflectionService->getRepositoryClassByModel($this->getModelClass()). " as Repository for Model ".$this->getModelClass());
+            throw new Exception("Could not instantiate " .$this->classMappingService->getRepositoryClassByModel($this->getModelClass()). " as Repository for Model ".$this->getModelClass());
         }
         return $repository;
     }
@@ -108,7 +113,7 @@ trait BaseControllerTrait
         $parentClass = $this->millyReflectionService->getTypeOfProperty($this->getModelClass(), $config['parent']);
         $this->redirect(
             'show',
-            ClassMappingService::getControllerName($this->millyReflectionService->getControllerClassByModel($parentClass)),
+            ClassMappingService::getControllerName($this->classMappingService->getControllerClassByModel($parentClass)),
             ClassMappingService::getPackageName($parentClass),
             ['object' => ObjectAccess::getProperty($object, $config['parent'])]
         );
@@ -122,7 +127,7 @@ trait BaseControllerTrait
     public function showObject($object){
         $this->redirect(
             'show',
-            ClassMappingService::getControllerName($this->millyReflectionService->getControllerClassByModel($object::class)),
+            ClassMappingService::getControllerName($this->classMappingService->getControllerClassByModel($object::class)),
             ClassMappingService::getPackageName($object::class),
             ['object' => $object]
         );

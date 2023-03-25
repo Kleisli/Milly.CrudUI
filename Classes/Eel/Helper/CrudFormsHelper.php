@@ -15,7 +15,7 @@ use Neos\Flow\Persistence\RepositoryInterface;
 use Neos\Utility\Arrays;
 use PHPUnit\Framework\Error\Notice;
 
-class ConfigurationHelper implements ProtectedContextAwareInterface
+class CrudFormsHelper implements ProtectedContextAwareInterface
 {
     /**
      * @Flow\Inject

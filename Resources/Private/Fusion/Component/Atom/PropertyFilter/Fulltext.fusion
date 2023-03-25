@@ -1,0 +1,8 @@
+prototype(Milly.Crudforms:Component.PropertyFilter.Fulltext) < prototype(Neos.Fusion:Component) {
+
+    renderer = Neos.Fusion.Form:Textfield {
+        field.name = ${'filter['+propertyName+']'}
+        field.value = ${Profolio.App.Array.get(filterValues, propertyName)}
+        attributes.placeholder = "Suche..."
+    }
+}

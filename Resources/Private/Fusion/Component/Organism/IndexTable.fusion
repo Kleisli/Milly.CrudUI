@@ -12,15 +12,27 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                     {props.header}
                 </th>
             </tr>
-            <tr @if={props.showColumnHeaders}>
-                <th></th>
-                <Neos.Fusion:Loop items={configuration.properties} itemKey="propertyName" itemName="propertyConfig">
-                    <Milly.Crudforms:Component.Header filterValues={props.filterValues} propertyName={propertyName} propertyConfig={propertyConfig}/>
-                </Neos.Fusion:Loop>
-                <th></th>
-            </tr>
 
-            <Flowpack.Listable:PaginatedCollection collection={props.objects} listRenderer={'Milly.Crudforms:Component.IndexTableRow'} />
+            <Milly.Crudforms:Component.TableHeaderRow @if={props.showColumnHeaders} />
+
+            <Neos.Fusion:Loop items={props.objects} itemName="object">
+                <tr>
+                    <td>
+                        <Milly.Crudforms:Component.Link.Show object={object} showClassLabel={false}/>
+                    </td>
+
+                    <Milly.Crudforms:Component.ObjectValues.IndexTableCells object={object} />
+
+                    <td class="neos-action">
+                        <div class="neos-pull-right">
+
+                            <Milly.Crudforms:Component.Sorting object={object}/>
+                            <Milly.Crudforms:Component.Button.Edit object={object}/>
+                            <Milly.Crudforms:Component.Button.Delete object={object}/>
+                        </div>
+                    </td>
+                </tr>
+            </Neos.Fusion:Loop>
         </table>
     </Neos.Fusion.Form:Form>
         `
