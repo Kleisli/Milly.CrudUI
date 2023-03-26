@@ -82,7 +82,8 @@ Not matching:
 
 ### Views
 Views are implemented in Fusion and expected in the Fusion path ``Vendor.Package.MyModelController.action`` it is recommended,
-to create a fusion file for each action in ``Resurces\Private\Fusion\Integration\Controller\MyModel\``
+to create a fusion file for each action in ``Resurces\Private\Fusion\Integration\Controller\MyModel\``. 
+If you have no custom requirements, you can simply use the provided Template prototypes and pass the default arguments.
 
 #### Edit.fusion
 ```
@@ -108,7 +109,7 @@ Vendor.Package.MyModelController.new = Milly.Crudforms:Template.New {
 }
 ```
 with the preset parameter you can define properties for the entity to be created. When you are managing nested structures
-with models organized in categorier e.g. you can hand over the category in which the entity should be created.
+with models organized in categories e.g. you can pass the category in which the entity should be created.
 
 #### Show.fusion
 ```
@@ -124,6 +125,7 @@ For each Model Configuration Settings have to be defined that contains
 * label of each property
 * form element type of each property
 * view definitions (what properties should be shown in which views)
+* filters for the index view
 
 ```
 Milly:
@@ -164,7 +166,16 @@ Milly:
 
 documentation in progress...
 
+## Adding Property types
+### FormElement
+### PropertyValue
+
+## Customize Templates
+### FormElementAttributes
+### FormElementContainer
+### PropertyValueContainer
+
 ## Kudos
 This package is based on the idea and inspired by [Sandstorm.CrudForms](https://github.com/sandstorm/CrudForms)
 
-The development has significantly been funded by [Profolio](https://www.profolio.ch/) - a digital platform for career choice & career counseling
+The development of this package has significantly been funded by [Profolio](https://www.profolio.ch/) - a digital platform for career choice & career counseling
