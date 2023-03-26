@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.Button.New) < prototype(Neos.Fusion:Component) {
+prototype(Milly.Crudforms:Component.ActionUi.New) < prototype(Neos.Fusion:Component) {
 
     renderer = afx`
         <Neos.Fusion:Link.Action href.action="new"
@@ -8,7 +8,7 @@ prototype(Milly.Crudforms:Component.Button.New) < prototype(Neos.Fusion:Componen
                                  class="neos-button neos-button-primary">
             <i class="fas fa-plus"></i>
             <Neos.Fusion:Fragment @if={props.showLabel}>
-                &nbsp; <Milly.Crudforms:Component.ClassLabel className={props.modelClassName} showClassLabel="one" />
+                &nbsp; <Milly.Crudforms:Component.Label.ClassLabel className={props.modelClassName} showClassLabel="one" />
             </Neos.Fusion:Fragment>
         </Neos.Fusion:Link.Action>
     `

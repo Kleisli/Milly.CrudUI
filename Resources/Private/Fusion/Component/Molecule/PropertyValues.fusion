@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.ObjectValues) < prototype(Neos.Fusion:Component) {
+prototype(Milly.Crudforms:Component.PropertyValues) < prototype(Neos.Fusion:Component) {
 
     @propTypes {
         propertyValueContainerType = ${PropTypes.oneOf(['tablerow', 'tablecell', 'with_label'])}
@@ -14,7 +14,7 @@ prototype(Milly.Crudforms:Component.ObjectValues) < prototype(Neos.Fusion:Compon
 
         itemRenderer = Milly.Crudforms:Component.PropertyValueContainer {
             type = ${props.propertyValueContainerType}
-            label = Milly.Crudforms:Component.PropertyLabel {
+            label = Milly.Crudforms:Component.Label.PropertyLabel {
                 propertyName = ${propertyName}
                 propertyConfig = ${propertyConfig}
             }

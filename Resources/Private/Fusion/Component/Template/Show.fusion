@@ -8,14 +8,14 @@ prototype(Milly.Crudforms:Template.Show) < prototype(Neos.Fusion:Component) {
 
     renderer = afx`
         <legend>
-            <Milly.Crudforms:Component.ObjectLabel object={props.object} showClassLabel={'one'} />
+            <Milly.Crudforms:Component.Label.ObjectLabel object={props.object} showClassLabel={'one'} />
         </legend>
         <div class="neos-content neos-fluid-container neos-indented">
             <div class="neos-row-fluid">
                 <div class="neos-span6">
                     <Milly.Crudforms:Component.ShowTable object={props.object} />
                     <div class="neos-pull-right">
-                        <Milly.Crudforms:Component.Button.Edit object={props.object} showLabel={true}/>
+                        <Milly.Crudforms:Component.ActionUi.Edit object={props.object} showLabel={true}/>
                     </div>
 
                 </div>

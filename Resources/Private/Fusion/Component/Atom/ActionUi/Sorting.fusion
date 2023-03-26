@@ -4,7 +4,7 @@ prototype(Milly.Crudforms:Component.Sorting) < prototype(Neos.Fusion:Component) 
     @if.hasSorting = ${object.sorting}
 
     renderer = afx`
-        <Milly.Crudforms:Component.Button.SortUp object={props.object}/>
-        <Milly.Crudforms:Component.Button.SortDown object={props.object}/>
+        <Milly.Crudforms:Component.ActionUi.SortUp object={props.object}/>
+        <Milly.Crudforms:Component.ActionUi.SortDown object={props.object}/>
     `
 }

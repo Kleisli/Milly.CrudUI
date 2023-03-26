@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.ObjectValues.ShowTableRows) < prototype(Milly.Crudforms:Component.ObjectValues) {
+prototype(Milly.Crudforms:Component.PropertyValues.ShowTableRows) < prototype(Milly.Crudforms:Component.PropertyValues) {
 
     propertyValueContainerType = 'tablerow'
     properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', 'show')}

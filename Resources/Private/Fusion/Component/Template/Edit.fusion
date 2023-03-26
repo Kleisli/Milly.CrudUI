@@ -10,7 +10,7 @@ prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
 
     renderer = afx`
         <legend>
-            <Milly.Crudforms:Component.ObjectLabel object={props.object} showClassLabel={'one'} />
+            <Milly.Crudforms:Component.Label.ObjectLabel object={props.object} showClassLabel={'one'} />
         </legend>
 
         <div class="neos-content neos-fluid-container neos-indented">

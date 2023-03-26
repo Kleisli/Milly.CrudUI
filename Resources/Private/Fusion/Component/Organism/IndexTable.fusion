@@ -13,22 +13,22 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                 </th>
             </tr>
 
-            <Milly.Crudforms:Component.TableHeaderRow @if={props.showColumnHeaders} />
+            <Milly.Crudforms:Component.IndexTableHeaderRow @if={props.showColumnHeaders} />
 
             <Neos.Fusion:Loop items={props.objects} itemName="object">
                 <tr>
                     <td>
-                        <Milly.Crudforms:Component.Link.Show object={object} showClassLabel={false}/>
+                        <Milly.Crudforms:Component.ActionUi.Show object={object} showClassLabel={false}/>
                     </td>
 
-                    <Milly.Crudforms:Component.ObjectValues.IndexTableCells object={object} />
+                    <Milly.Crudforms:Component.PropertyValues.IndexTableCells object={object} />
 
                     <td class="neos-action">
                         <div class="neos-pull-right">
 
                             <Milly.Crudforms:Component.Sorting object={object}/>
-                            <Milly.Crudforms:Component.Button.Edit object={object}/>
-                            <Milly.Crudforms:Component.Button.Delete object={object}/>
+                            <Milly.Crudforms:Component.ActionUi.Edit object={object}/>
+                            <Milly.Crudforms:Component.ActionUi.Delete object={object}/>
                         </div>
                     </td>
                 </tr>

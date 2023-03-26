@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.Button.Delete) < prototype(Neos.Fusion:Component) {
+prototype(Milly.Crudforms:Component.ActionUi.Delete) < prototype(Neos.Fusion:Component) {
 
     object = ''
 

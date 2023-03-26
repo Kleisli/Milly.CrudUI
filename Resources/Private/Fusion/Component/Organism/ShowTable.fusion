@@ -4,7 +4,7 @@ prototype(Milly.Crudforms:Component.ShowTable) < prototype(Neos.Fusion:Component
 
     renderer = afx`
         <table class="neos-table show">
-            <Milly.Crudforms:Component.ObjectValues.ShowTableRows object={props.object} />
+            <Milly.Crudforms:Component.PropertyValues.ShowTableRows object={props.object} />
         </table>
     `
 }

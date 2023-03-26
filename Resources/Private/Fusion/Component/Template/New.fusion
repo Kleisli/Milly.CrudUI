@@ -12,7 +12,7 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
         <legend>
             {props.configuration.label.one} erstellen
             <Neos.Fusion:Fragment @if={props.parent}>
-                für <Milly.Crudforms:Component.ObjectLabel object={props.parent} showClassLabel="one" />
+                für <Milly.Crudforms:Component.Label.ObjectLabel object={props.parent} showClassLabel="one" />
             </Neos.Fusion:Fragment>
         </legend>
 

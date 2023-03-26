@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.Button.SortDown) < prototype(Neos.Fusion:Component) {
+prototype(Milly.Crudforms:Component.ActionUi.SortDown) < prototype(Neos.Fusion:Component) {
 
     object = ''
     @if.hasSorting = ${object.sorting}

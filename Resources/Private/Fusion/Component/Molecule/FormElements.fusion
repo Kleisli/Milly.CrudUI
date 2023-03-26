@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.Fields) < prototype(Neos.Fusion:Component) {
+prototype(Milly.Crudforms:Component.FormElements) < prototype(Neos.Fusion:Component) {
 
     translation = ''
 
@@ -10,7 +10,7 @@ prototype(Milly.Crudforms:Component.Fields) < prototype(Neos.Fusion:Component) {
         itemRenderer = Milly.Crudforms:Component.FieldContainer {
             type = ${propertyConfig.type}
             field.name = ${'object['+propertyName+']'}
-            label = Milly.Crudforms:Component.PropertyLabel {
+            label = Milly.Crudforms:Component.Label.PropertyLabel {
                 propertyName = ${propertyName}
                 propertyConfig = ${propertyConfig}
             }

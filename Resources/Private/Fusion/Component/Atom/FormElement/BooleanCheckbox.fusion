@@ -4,7 +4,7 @@ prototype(Milly.Crudforms:Component.FormElement.BooleanCheckbox) < prototype(Neo
         <label class="neos-checkbox" for={field.getName()}>
             <Neos.Fusion.Form:Checkbox field.value="1"
                                        attributes.id={field.getName()}/><span></span>
-            <Milly.Crudforms:Component.PropertyLabel propertyName={propertyName} propertyConfig={propertyConfig} />
+            <Milly.Crudforms:Component.Label.PropertyLabel propertyName={propertyName} propertyConfig={propertyConfig} />
         </label>
     `
 }
