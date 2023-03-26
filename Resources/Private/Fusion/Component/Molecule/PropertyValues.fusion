@@ -12,7 +12,7 @@ prototype(Milly.Crudforms:Component.PropertyValues) < prototype(Neos.Fusion:Comp
         itemKey = "propertyName"
         itemName = "propertyConfig"
 
-        itemRenderer = Milly.Crudforms:Component.PropertyValueContainer {
+        itemRenderer = Milly.Crudforms:Helper.PropertyValueContainer {
             type = ${props.propertyValueContainerType}
             label = Milly.Crudforms:Component.Label.PropertyLabel {
                 propertyName = ${propertyName}

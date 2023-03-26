@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.FieldContainer)  < prototype(Neos.Fusion.Form:Component.Field) {
+prototype(Milly.Crudforms:Helper.FormElementContainer)  < prototype(Neos.Fusion.Form:Component.Field) {
 
 
     @propTypes {
@@ -52,9 +52,9 @@ prototype(Milly.Crudforms:Component.FieldContainer)  < prototype(Neos.Fusion.For
             condition = true
             renderer = afx`
                 <Neos.Fusion.Form:Neos.BackendModule.FieldContainer label={props.label} attributes={props.attributes} translation={props.translation}>
-                    <Milly.Crudforms:Component.FieldAttributeAugmenter type={props.type}>
+                    <Milly.Crudforms:Helper.FieldAttributeAugmenter type={props.type}>
                         {props.content}
-                    </Milly.Crudforms:Component.FieldAttributeAugmenter>
+                    </Milly.Crudforms:Helper.FieldAttributeAugmenter>
                 </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
             `
 

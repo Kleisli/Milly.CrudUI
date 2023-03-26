@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.FieldAttributeAugmenter) < prototype(Neos.Fusion:Component) {
+prototype(Milly.Crudforms:Helper.FieldAttributeAugmenter) < prototype(Neos.Fusion:Component) {
 
     type = 'default'
 

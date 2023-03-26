@@ -7,7 +7,7 @@ prototype(Milly.Crudforms:Component.FormElements) < prototype(Neos.Fusion:Compon
         itemKey = "propertyName"
         itemName = "propertyConfig"
 
-        itemRenderer = Milly.Crudforms:Component.FieldContainer {
+        itemRenderer = Milly.Crudforms:Helper.FormElementContainer {
             type = ${propertyConfig.type}
             field.name = ${'object['+propertyName+']'}
             label = Milly.Crudforms:Component.Label.PropertyLabel {
