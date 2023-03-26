@@ -18,7 +18,8 @@ There is no special requirements for Models or Repositories.
 *Note: this will probably be replaced with ``Gedmo\Sortable``*
 
 If you want a Model to be manually sortable, there are two traits that should be used.
-The Model
+
+*SortableModelTrait*
 ```
 use \Milly\Sortable\Domain\Model\SortableModelTrait;
 
@@ -28,6 +29,7 @@ use \Milly\Sortable\Domain\Model\SortableModelTrait;
 */
 protected $repository;
 ```
+
 in case the Model should only be sorted within certain subsets, you can define the function ``getSortingCondition()``
 ```
 /**
@@ -39,13 +41,14 @@ public function getSortingCondition(QueryInterface $query): ?object
 return  $this->category ? $query->equals('category', $this->category) : null;
 }
 ```
-The repository
+
+*SortingRepositoryTrait*
 ```
 use Milly\Sortable\Domain\Repository\SortingRepositoryTrait;
 protected $defaultOrderings = ['sorting' => QueryInterface::ORDER_ASCENDING];
 ```
 ### Controller
-a minimal CrudController to be used as Neos backend module is
+a minimal CrudController to be used as Neos backend module:
 ```
 class MyModelController extends AbstractModuleController
 {
@@ -54,7 +57,7 @@ class MyModelController extends AbstractModuleController
 }
 ```
 this includes all the crud features. If you only want to use some of them, you can add the ``BaseControllerTrait`` plus 
-* ``BaseControllerTrait``
+
 * ``CreateControllerTrait``
 * ``DeleteControllerTrait``
 * ``ReadAllControllerTrait``
@@ -71,11 +74,12 @@ const ENTITY_CLASSNAME = MyModel::class;
 Matching: 
 * ``Vendor\Package\Domain\Model\MyModel`` and ``Vendor\Package\Controller\MyModelController``
 * ``Vendor\Package\Domain\Model\Boo\MyModel`` and ``Vendor\Package\Controller\Boo\MyModelController``
+
 Not matching:
 * ``Vendor\Package\Domain\Model\MyModel`` and ``Vendor\Package\Controller\BackendModule\MyModelController``
 * ``Vendor\Package\Domain\Model\MyModel`` and ``Vendor\Package\Controller\BackendController``
 * ``Vendor\Package\Domain\Model\MyModel`` and ``Vendor\Package\Controller\MyController``
-* 
+
 ### Views
 Views are implemented in Fusion and expected in the Fusion path ``Vendor.Package.MyModelController.action`` it is recommended,
 to create a fusion file for each action in ``Resurces\Private\Fusion\Integration\Controller\MyModel\``
@@ -157,6 +161,8 @@ Milly:
             things:
               label: Things
 ```
+
+documentation in progress...
 
 ## Kudos
 This package is based on the idea and inspired by [Sandstorm.CrudForms](https://github.com/sandstorm/CrudForms)
