@@ -3,5 +3,18 @@ prototype(Milly.Crudforms:Component.Label.PropertyLabel) < prototype(Neos.Fusion
     propertyConfig = null
     propertyName = ''
 
-    renderer = ${props.propertyConfig.label ? props.propertyConfig.label : props.propertyName}
+    renderer = Neos.Fusion:Case {
+        configuration {
+            condition = ${props.propertyConfig.label}
+            renderer = ${props.propertyConfig.label}
+        }
+        xliff {
+            condition = ${I18n.translate(Milly.Mapping.getXliffIdPrefixByModel(crudFormsModelClass)+props.propertyName)}
+            renderer = ${I18n.translate(Milly.Mapping.getXliffIdPrefixByModel(crudFormsModelClass)+props.propertyName)}
+        }
+        default {
+            condition = true
+            renderer = ${props.propertyName}
+        }
+    }
 }
