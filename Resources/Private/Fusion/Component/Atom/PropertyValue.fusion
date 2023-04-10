@@ -12,8 +12,8 @@ prototype(Milly.Crudforms:Component.PropertyValue) < prototype(Neos.Fusion:Compo
         select = Milly.Crudforms:Component.PropertyValue.Select
         booleanRadio = Milly.Crudforms:Component.PropertyValue.BooleanRadio
         booleanCheckbox = ${Milly.Object.getProperty(object, propertyName) ? 'Ja' : 'Nein'}
-        dateTime = ${Date.format(Milly.Object.getProperty(object, propertyName), "d.m.Y H:i")}
-        date = ${Date.format(Milly.Object.getProperty(object, propertyName), "d.m.Y")}
+        dateTime = ${Milly.Object.getProperty(object, propertyName) ? Date.format(Milly.Object.getProperty(object, propertyName), "d.m.Y H:i") : ''}
+        date = ${Milly.Object.getProperty(object, propertyName) ? Date.format(Milly.Object.getProperty(object, propertyName), "d.m.Y") : ''}
         image = Milly.Crudforms:Component.PropertyValue.Image {
             resource = ${Milly.Object.getProperty(object, propertyName)}
         }
