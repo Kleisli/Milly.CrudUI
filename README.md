@@ -2,15 +2,16 @@
 ***
 Easily build controllers and views to show and edit Neos.Flow domain models. 
 ***
-Named after [Milly Koss](https://en.wikipedia.org/wiki/Milly_Koss), an American pioneering computer programmer.
+
 > We needed to understand 
 > how we might reuse tested code and have the machine help in programming. As we
 > programmed, we examined the process and tried to think of ways to abstract these 
 > steps to incorporate them into higher-level language. This led to the development
 > of interpreters, assemblers, compilers, and generators—programs designed to operate 
 > on or produce other programs, that is, automatic programming. ([Source](https://en.wikipedia.org/wiki/Automatic_programming))
+> 
+[Milly Koss](https://en.wikipedia.org/wiki/Milly_Koss) is an American pioneering computer programmer. The Association for Women in Computing awarded her an Ada Lovelace Award in 2000.
 
-The Association for Women in Computing awarded her an Ada Lovelace Award in 2000.
 ## Usage
 ### Model & Repository
 There is no special requirements for Models or Repositories.
