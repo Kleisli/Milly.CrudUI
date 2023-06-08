@@ -5,7 +5,6 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
     filterValues = ${[]}
 
     renderer = afx`
-    <Neos.Fusion.Form:Form form.data.filter={props.filterValues} form.target.action="index" attributes.class={'filter'}>
         <table @if.condition={props.objects} class="neos-table">
             <tr @if={props.header}>
                 <th colspan="100%">
@@ -34,15 +33,14 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                 </tr>
             </Neos.Fusion:Loop>
         </table>
-    </Neos.Fusion.Form:Form>
         `
     renderer.@process.prependJs = Neos.Fusion:Join {
         value = ${value}
         js = "<script>
-                selects = document.querySelectorAll('form.filter select, form.filter input');
+                selects = document.querySelectorAll('select.filter, input.filter');
                 for (let i=0; i<selects.length; i++){
                     selects[i].addEventListener('change', function(){
-                    this.closest('form').submit();
+                        document.getElementById(this.getAttribute('form')).submit();
                     })
                 }
             </script>"

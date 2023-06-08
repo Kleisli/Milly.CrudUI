@@ -3,13 +3,12 @@ namespace Milly\CrudForms\Controller;
 
 trait ReadAllControllerTrait
 {
-
     /**
      * @param array $filter
-     * @return void
+     * @param int $paginationCurrentPage
      * @throws \Neos\Flow\Exception
      */
-    public function indexAction(array $filter = [])
+    public function indexAction(array $filter = [], int $paginationCurrentPage = 0) : void
     {
         $query = $this->getRepository()->createQuery();
         $configuration = $this->getCrudFormsConfiguration('index');
@@ -17,15 +16,8 @@ trait ReadAllControllerTrait
         if(count($filter)>0) {
             foreach ($filter as $property => $value) {
                 if ($value != '') {
-                    $filterConfiguration = $configuration['views']['index']['filter'][$property];
-                    switch ($filterConfiguration['type']) {
-                        case 'select':
-                            if($value == '-'){
-                                $conditions[] = $query->equals($property, null);
-                            }else {
-                                $conditions[] = $query->equals($property, $value);
-                            }
-                            break;
+                    $filterConfiguration = $configuration['views']['index']['filter'][$property] ?? null;
+                    switch ($filterConfiguration['type'] ?? null) {
                         case 'fulltext':
                             $textConditions = [];
                             foreach ($filterConfiguration['fields'] as $field) {
@@ -33,18 +25,37 @@ trait ReadAllControllerTrait
                             }
                             $conditions[] = $query->logicalOr($textConditions);
                             break;
+                        case 'select':
+                        default:
+                            if($value == '-'){
+                                $conditions[] = $query->equals($property, null);
+                            }else {
+                                $conditions[] = $query->equals($property, $value);
+                            }
                     }
                 }
             }
         }
+
+        $paginationPageSize = $configuration['views']['index']['options']['pagination']['pageSize'] ?? 10;
+
         if(count($conditions)>0){
-            $objects = $query->matching($query->logicalAnd($conditions))->execute();
-        }else{
-            $objects = $this->getRepository()->findAll();
+            $query = $query->matching($query->logicalAnd($conditions));
         }
 
+        $objectCount = $query->count();
+
+        $query->setLimit($paginationPageSize)->setOffset($paginationCurrentPage*$paginationPageSize);
+        $pagination = [
+            'currentPage' => $paginationCurrentPage,
+            'pageSize' => $paginationPageSize,
+            'lastPage' => intval(floor($objectCount / $paginationPageSize))
+        ];
+
         $this->view->assign('filterValues', $filter);
-        $this->view->assign('objects', $objects->toArray());
+        $this->view->assign('pagination', $pagination);
+        $this->view->assign('objectCount', $objectCount);
+        $this->view->assign('objects', $query->execute()->toArray());
         $this->view->assign('crudFormsModelClass', $this->getModelClass());
     }
 

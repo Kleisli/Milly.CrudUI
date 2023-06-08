@@ -7,15 +7,22 @@ prototype(Milly.Crudforms:Component.Relations) < prototype(Neos.Fusion:Component
 
         itemRenderer = afx`
             <Neos.Fusion:Fragment @if={Milly.Reflection.isToOneRelation(object, relationName)}>
-                <Milly.Crudforms:Component.ActionUi.Show object={Milly.Object.getProperty(object, relationName)} attributes.class="neos-button" />
+                <Milly.Crudforms:Component.ActionUi.Show object={Milly.Object.getProperty(object, relationName)}
+                                                         attributes.class="neos-button" />
             </Neos.Fusion:Fragment>
 
             <Neos.Fusion:Fragment @if={Milly.Reflection.isToManyRelation(props.object, relationName)}>
-                <Milly.Crudforms:Component.IndexTable @context.crudFormsModelClass={Milly.Reflection.getTypeOfRelation(object, relationName)} objects={Milly.Object.getProperty(object, relationName)} header={relationConfig.label}/>
+                <Milly.Crudforms:Component.IndexTable
+                    @context.crudFormsModelClass={Milly.Reflection.getTypeOfRelation(object, relationName)}
+                    objects={Milly.Object.getProperty(object, relationName)}
+                    header={relationConfig.label}/>
 
                 <p @if.condition={!Milly.Object.getProperty(object, relationName)}>No {relationConfig.label} created yet.</p>
-                <div class="neos-pull-right">
-                    <Milly.Crudforms:Component.ActionUi.New modelClassName={Milly.Reflection.getTypeOfRelation(object, relationName)} parent={object} showLabel={true}/>
+                <div class="neos-pull-right" style="margin-bottom:20px">
+                    <Milly.Crudforms:Component.ActionUi.New
+                        modelClassName={Milly.Reflection.getTypeOfRelation(object, relationName)}
+                        parent={object}
+                        showLabel={true}/>
                 </div>
             </Neos.Fusion:Fragment>
         `

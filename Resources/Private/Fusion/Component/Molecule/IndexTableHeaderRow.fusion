@@ -3,13 +3,17 @@ prototype(Milly.Crudforms:Component.IndexTableHeaderRow) < prototype(Neos.Fusion
 
     renderer = afx`
         <tr>
-            <th></th>
+            <th>
+                <Neos.Fusion.Form:Form form.data.filter={props.filterValues} form.target.action="index" attributes.class={'filter'} attributes.id={String.md5(crudFormsModelClass)+'-filter'}/>
+            </th>
             <Neos.Fusion:Loop items={configuration.properties} itemKey="propertyName" itemName="propertyConfig">
                 <th>
                     <Milly.Crudforms:Component.Label.PropertyLabel propertyName={propertyName} propertyConfig={propertyConfig} />
                     <Neos.Fusion:Fragment @if.hasFilterType={Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.filter.'+propertyName+'.type')}>
                         <br/>
-                        <Milly.Crudforms:Component.PropertyFilter filterValues={props.filterValues} propertyName={propertyName} propertyConfig={propertyConfig}/>
+                        <Neos.Fusion.Form:Form form.data.filter={props.filterValues} form.target.action="index">
+                            <Milly.Crudforms:Component.PropertyFilter filterValues={props.filterValues} propertyName={propertyName} propertyConfig={propertyConfig}/>
+                        </Neos.Fusion.Form:Form>
                     </Neos.Fusion:Fragment>
                 </th>
             </Neos.Fusion:Loop>
