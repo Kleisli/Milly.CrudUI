@@ -19,7 +19,7 @@ prototype(Milly.Crudforms:Component.FormElement) < prototype(Neos.Fusion:Compone
         dateInterval = Milly.Crudforms:Component.FormElement.DateInterval
 
         @default = Neos.Fusion.Form:Textfield {
-            attributes.disabled = ${props.propertyConfig.readonly}
+            attributes.disabled = ${props.propertyConfig.readonly ? true : false}
         }
     }
 }
