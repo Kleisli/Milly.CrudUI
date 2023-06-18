@@ -1,5 +1,7 @@
 prototype(Milly.Crudforms:Component.FormElements) < prototype(Neos.Fusion:Component) {
 
+    object = null
+    properties = ${[]}
     translation = ''
 
     renderer = Neos.Fusion:Loop {
@@ -16,7 +18,8 @@ prototype(Milly.Crudforms:Component.FormElements) < prototype(Neos.Fusion:Compon
             }
 
             content = Milly.Crudforms:Component.FormElement {
-                @apply.propertyConfig = ${propertyConfig}
+                propertyConfig = ${propertyConfig}
+                object = ${props.object}
             }
         }
     }

@@ -14,6 +14,7 @@ prototype(Milly.Crudforms:Component.Relations) < prototype(Neos.Fusion:Component
             <Neos.Fusion:Fragment @if={Milly.Reflection.isToManyRelation(props.object, relationName)}>
                 <Milly.Crudforms:Component.IndexTable
                     @context.crudFormsModelClass={Milly.Reflection.getTypeOfRelation(object, relationName)}
+                    view="relation"
                     objects={Milly.Object.getProperty(object, relationName)}
                     header={relationConfig.label}/>
 

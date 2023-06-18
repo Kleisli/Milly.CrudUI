@@ -7,3 +7,4 @@ Neos:
     defaultContext:
       'Milly.CrudForms': Milly\CrudForms\Eel\Helper\CrudFormsHelper
       'Milly.Object': Milly\CrudForms\Eel\Helper\ObjectHelper
+      'DateInterval': Milly\CrudForms\Eel\Helper\DateIntervalHelper

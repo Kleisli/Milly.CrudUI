@@ -19,13 +19,11 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
         <legend style="display: flex; justify-content: space-between;">
             {configuration.label.many ? configuration.label.many : configuration.label.one} ({objectCount})
             <Milly.Crudforms:Component.Pagination @if={!props.disablePagination}
-                currentPage={pagination.currentPage}
-                pageSize={pagination.pageSize}
-                lastPage={pagination.lastPage} />
-
+                                                  currentPage={pagination.currentPage}
+                                                  pageSize={pagination.pageSize}
+                                                  lastPage={pagination.lastPage}
+                                                  filterValues={props.filterValues} />
         </legend>
-
-
 
         <div class="neos-content neos-fluid-container neos-indented">
             <div class="neos-row-fluid">
@@ -33,7 +31,7 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
 
                     <Milly.Crudforms:Component.IndexTable filterValues={props.filterValues} objects={props.objects} />
                     <div class="neos-pull-right">
-                        <Neos.Fusion:Link.Action href.action="new" class="neos-button neos-button-primary">
+                        <Neos.Fusion:Link.Action @if={!isCreateDisabled} href.action="new" class="neos-button neos-button-primary">
                             <i class="fa fa-plus"></i> {configuration.label.one} erfassen
                         </Neos.Fusion:Link.Action>
                     </div>

@@ -57,6 +57,10 @@ trait ReadAllControllerTrait
         $this->view->assign('objectCount', $objectCount);
         $this->view->assign('objects', $query->execute()->toArray());
         $this->view->assign('crudFormsModelClass', $this->getModelClass());
+
+        $this->view->assign('isCreateDisabled', !method_exists($this, 'newAction'));
+        $this->view->assign('isUpdateDisabled', !method_exists($this, 'editAction'));
+        $this->view->assign('isDeleteDisabled', !method_exists($this, 'deleteAction'));
     }
 
 }

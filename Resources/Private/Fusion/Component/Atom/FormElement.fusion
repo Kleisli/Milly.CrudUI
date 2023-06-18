@@ -1,7 +1,10 @@
 prototype(Milly.Crudforms:Component.FormElement) < prototype(Neos.Fusion:Component) {
 
+    propertyConfig = ${[]}
+    object = null
+
     renderer = Neos.Fusion:Match {
-        @subject = ${propertyConfig.type}
+        @subject = ${props.propertyConfig.type}
 
         textarea = Neos.Fusion.Form:Textarea
         number = Neos.Fusion.Form:Textfield {
@@ -13,7 +16,10 @@ prototype(Milly.Crudforms:Component.FormElement) < prototype(Neos.Fusion:Compone
         dateTime = Milly.Crudforms:Component.FormElement.DateTime
         date = Milly.Crudforms:Component.FormElement.Date
         image = Milly.Crudforms:Component.FormElement.Image
+        dateInterval = Milly.Crudforms:Component.FormElement.DateInterval
 
-        @default = Neos.Fusion.Form:Textfield
+        @default = Neos.Fusion.Form:Textfield {
+            attributes.disabled = ${props.propertyConfig.readonly}
+        }
     }
 }
