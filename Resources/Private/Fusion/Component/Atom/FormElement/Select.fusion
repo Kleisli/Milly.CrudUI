@@ -1,8 +1,10 @@
 prototype(Milly.Crudforms:Component.FormElement.Select) < prototype(Neos.Fusion:Component) {
 
+    @apply.props = ${props}
+
     renderer = afx`
         <Neos.Fusion.Form:Select>
-            <Neos.Fusion:Loop items={Milly.CrudForms.getFieldOptions(propertyConfig.options)}>
+            <Neos.Fusion:Loop items={Milly.CrudForms.getFieldOptions(props.propertyConfig.options, props.object)}>
                 <Neos.Fusion.Form:Select.Option option.value={itemKey}>
                     {item}
                 </Neos.Fusion.Form:Select.Option>

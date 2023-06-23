@@ -2,6 +2,8 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
 
     @propTypes {
         style = ${PropTypes.oneOf(['narrow', 'wide'])}
+        pagination = ${PropTypes.arrayOf(PropTypes.getAny())}
+        objects = ${PropTypes.arrayOf(PropTypes.getAny())}
     }
 
     @context {
@@ -10,12 +12,13 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
         crudFormsView = 'index'
     }
 
-    style = 'narrow'
+    style = 'wide'
+    disablePagination = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.index.options.pagination.disable')}
 
     renderer = afx`
-
         <legend style="display: flex; justify-content: space-between;">
             {configuration.label.many ? configuration.label.many : configuration.label.one} ({objectCount})
+
         </legend>
 
         <div class="neos-content neos-fluid-container neos-indented">

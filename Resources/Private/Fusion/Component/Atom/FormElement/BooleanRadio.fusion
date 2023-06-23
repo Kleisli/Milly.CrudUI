@@ -1,7 +1,9 @@
 prototype(Milly.Crudforms:Component.FormElement.BooleanRadio) < prototype(Neos.Fusion:Component) {
 
+    @apply.props = ${props}
+
     renderer = afx`
-        <Neos.Fusion:Loop items={Milly.CrudForms.getFieldOptions(propertyConfig.options)}>
+        <Neos.Fusion:Loop items={Milly.CrudForms.getFieldOptions(props.propertyConfig.options)}>
             <label class="neos-radio" for={field.getName() + '-' + itemKey}>
                 <Neos.Fusion.Form:Radio field.value={itemKey}
                                         attributes.checked={(field.getCurrentValueStringified() ==  String.toString(itemKey)) || (field.getCurrentValueStringified() == '' && itemKey == 0)}

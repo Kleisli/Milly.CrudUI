@@ -1,0 +1,11 @@
+prototype(Milly.Crudforms:Component.FormElement.DateInterval) < prototype(Neos.Fusion:Component) {
+
+    @apply.props = ${props}
+
+    renderer = afx`
+        <input type="number" size="3" name={field.getName() + '[Y]'} value={field.getCurrentValue() && DateInterval.format(field.getCurrentValue(), "%y") > 0 ? DateInterval.format(field.getCurrentValue(), "%y") : '0'} style="width: auto"/> Jahre,&nbsp;
+        <input type="number" size="3" name={field.getName() + '[M]'} value={field.getCurrentValue() && DateInterval.format(field.getCurrentValue(), "%m") > 0 ? DateInterval.format(field.getCurrentValue(), "%m") : '0'} style="width: auto" /> Monate,&nbsp;
+        <input type="number" size="3" name={field.getName() + '[D]'} value={field.getCurrentValue() && DateInterval.format(field.getCurrentValue(), "%d") > 0 ? DateInterval.format(field.getCurrentValue(), "%d") : '0'} style="width: auto" /> Tage
+    `
+
+}

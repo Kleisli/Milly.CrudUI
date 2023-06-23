@@ -11,6 +11,7 @@ prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Componen
                                      class="neos-button"
                                      href.action="index"
                                      href.arguments={Array.concat({paginationCurrentPage: 0}, {filter: filterValues}, {orderBy: orderBy}, {orderDirection: orderDirection})}>
+
                 <i class="fas fa-fast-backward"></i>
             </Neos.Fusion:Link.Action>
             <Neos.Fusion:Link.Action disabled={props.currentPage == 0 || props.lastPage == 0}

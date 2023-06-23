@@ -3,7 +3,7 @@ prototype(Milly.Crudforms:Component.EditForm) < prototype(Neos.Fusion:Component)
     renderer = afx`
         <Neos.Fusion.Form:Form form.target.action="update" form.data.object={props.object} attributes.name="object" attributes.id="edit">
             <div class="neos-control-group">
-                <Milly.Crudforms:Component.FormElements properties={configuration.properties} />
+                <Milly.Crudforms:Component.FormElements object={props.object} properties={configuration.properties} />
             </div>
         </Neos.Fusion.Form:Form>`
 }

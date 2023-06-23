@@ -1,7 +1,12 @@
 prototype(Milly.Crudforms:Component.FormElement.DateTime) < prototype(Neos.Fusion:Component) {
 
+    @apply.props = ${props}
+
     renderer = afx`
-        <input type="datetime-local" name={field.getName() + '[date]'} value={Date.format(field.getCurrentValue(), 'Y-m-d\TH:i')} />
+        <input type="datetime-local"
+               name={field.getName() + '[date]'}
+               value={field.getCurrentValue() ? Date.format(field.getCurrentValue(), 'Y-m-d\TH:i'): ''}
+               disabled={props.propertyConfig.readonly} />
         <input type="hidden" name={field.getName() + '[dateFormat]'}  value="Y-m-d\\TH:i" />
     `
 }

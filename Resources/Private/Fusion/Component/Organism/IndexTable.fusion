@@ -1,11 +1,13 @@
 prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Component) {
 
     header = ''
-    showColumnHeaders = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.index.showColumnHeaders')}
+    view = 'index'
     filterValues = ${[]}
     readonly = false
 
+
     renderer = afx`
+<<<<<<< HEAD
         <table class="neos-table">
             <thead>
                 <tr @if={props.header}>
@@ -17,7 +19,6 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                 <Milly.Crudforms:Component.IndexTableHeaderRow
                     @context.configuration={Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, props.view)}
                     @if={Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+props.view+'.showColumnHeaders', props.view)} />
-
             </thead>
             <tbody>
                 <Neos.Fusion:Loop items={props.objects} itemName="object">
@@ -52,12 +53,10 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                 </tr>
             </tfoot>
         </table>
-    </Neos.Fusion.Form:Form>
         `
     renderer.@process.prependJs = Neos.Fusion:Join {
         value = ${value}
         js = "<script>
-
                 filterFormElements = document.querySelectorAll('select.filter, input.filter');
                 for (let i=0; i<filterFormElements.length; i++){
                     filterFormElements[i].style.display === 'none';

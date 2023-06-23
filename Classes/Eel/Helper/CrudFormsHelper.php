@@ -1,6 +1,7 @@
 <?php
 namespace Milly\CrudForms\Eel\Helper;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Milly\CrudForms\Service\ClassMappingService;
 use Milly\CrudForms\Service\ConfigurationService;
 use Milly\Flow\Persistence\Repository;
@@ -13,24 +14,22 @@ use Neos\Flow\Persistence\PersistenceManagerInterface;
 use Neos\Flow\Persistence\QueryResultInterface;
 use Neos\Flow\Persistence\RepositoryInterface;
 use Neos\Utility\Arrays;
+use Neos\Utility\ObjectAccess;
 use PHPUnit\Framework\Error\Notice;
 
 class CrudFormsHelper implements ProtectedContextAwareInterface
 {
-    /**
-     * @Flow\Inject
-     */
+    #[Flow\Inject]
     protected ConfigurationService $configurationService;
 
-    /**
-     * @Flow\Inject
-     */
+    #[Flow\Inject]
     protected ObjectManagerInterface $objectManager;
 
-    /**
-     * @Flow\Inject
-     */
+    #[Flow\Inject]
     protected PersistenceManagerInterface $persistenceManager;
+
+    #[Flow\Inject]
+    protected EntityManagerInterface $entityManager;
 
     /**
      * @param object $model
@@ -71,7 +70,7 @@ class CrudFormsHelper implements ProtectedContextAwareInterface
      * @return array
      * @throws \Neos\Flow\Exception
      */
-    public function getFieldOptions(array $optionsConfig): array
+    public function getFieldOptions(array $optionsConfig, object $object = null): array
     {
         $options = [];
         if(isset($optionsConfig['dataSource'])){
@@ -84,8 +83,15 @@ class CrudFormsHelper implements ProtectedContextAwareInterface
             return $options;
         }
         if(isset($optionsConfig['repository'])){
-            $repository = $this->objectManager->get($optionsConfig['repository']);
-            $items = $repository->findAll();
+            if(strpos($optionsConfig['repository'], '->') && $object != null) {
+                list($repository, $method) = explode('->', $optionsConfig['repository']);
+                $repository = $this->objectManager->get($repository);
+                $items = $repository->$method($object);
+            }else{
+                $repository = $this->objectManager->get($optionsConfig['repository']);
+                $items = $repository->findAll();
+            }
+
             foreach ($items as $item){
                 $value = $this->persistenceManager->getIdentifierByObject($item);
                 $label = $value;
