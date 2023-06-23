@@ -23,6 +23,12 @@ prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
                     <Milly.Crudforms:Component.Relations object={props.object} />
                 </div>
             </div>
+            <div class="neos-footer">
+                <Neos.Fusion.Form:Button attributes.class="neos-button neos-button-primary" attributes.form="edit">
+                    <i class="fas fa-save"></i>
+                    &nbsp;Save
+                </Neos.Fusion.Form:Button>
+            </div>
         </div>
     `
 }

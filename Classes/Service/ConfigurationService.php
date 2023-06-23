@@ -46,7 +46,6 @@ class ConfigurationService
             implode('.', ['Milly.CrudForms', ClassMappingService::getPackageName($className), ClassMappingService::getModelName($className)])
         );
 
-
         if(isset($configuration['views'][$view]['properties'])){
             $viewProperties = [];
             foreach ($configuration['views'][$view]['properties'] as $viewPropertyName){

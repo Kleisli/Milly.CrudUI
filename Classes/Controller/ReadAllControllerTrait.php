@@ -1,17 +1,17 @@
 <?php
 namespace Milly\CrudForms\Controller;
 
+use Neos\Flow\Persistence\QueryInterface;
+
 trait ReadAllControllerTrait
 {
 
-    /**
-     * @param array $filter
-     * @return void
-     * @throws \Neos\Flow\Exception
-     */
-    public function indexAction(array $filter = [])
+    public function indexAction(array $filter = [], int $paginationCurrentPage = 0, string $orderBy = '', string $orderDirection = QueryInterface::ORDER_ASCENDING) : void
     {
         $query = $this->getRepository()->createQuery();
+        if($orderBy != ''){
+            $query->setOrderings([$orderBy => $orderDirection]);
+        }
         $configuration = $this->getCrudFormsConfiguration('index');
         $conditions = [];
         if(count($filter)>0) {
@@ -45,6 +45,10 @@ trait ReadAllControllerTrait
 
         $this->view->assign('filterValues', $filter);
         $this->view->assign('objects', $objects->toArray());
+        $this->view->assign('pagination', $pagination);
+        $this->view->assign('objectCount', $objectCount);
+        $this->view->assign('orderBy', $orderBy);
+        $this->view->assign('orderDirection', $orderDirection);
         $this->view->assign('crudFormsModelClass', $this->getModelClass());
     }
 

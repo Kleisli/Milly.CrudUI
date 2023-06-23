@@ -6,6 +6,9 @@ prototype(Milly.Crudforms:Template.Show) < prototype(Neos.Fusion:Component) {
         crudFormsView = 'show'
     }
 
+    additionalActions = ''
+    additionalContent = ''
+
     renderer = afx`
         <legend>
             <Milly.Crudforms:Component.Label.ObjectLabel object={props.object} showClassLabel={'one'} />
@@ -14,15 +17,16 @@ prototype(Milly.Crudforms:Template.Show) < prototype(Neos.Fusion:Component) {
             <div class="neos-row-fluid">
                 <div class="neos-span6">
                     <Milly.Crudforms:Component.ShowTable object={props.object} />
-                    <div class="neos-pull-right">
-                        <Milly.Crudforms:Component.ActionUi.Edit object={props.object} showLabel={true}/>
-                    </div>
-
                 </div>
 
                 <div class="neos-span6">
                     <Milly.Crudforms:Component.Relations object={props.object}  />
+                    {props.additionalContent}
                 </div>
+            </div>
+            <div class="neos-footer">
+                <Milly.Crudforms:Component.ActionUi.Edit @if={!configuration.ui.readonly} object={props.object} showLabel={true}/>
+                {props.additionalActions}
             </div>
         </div>
     `

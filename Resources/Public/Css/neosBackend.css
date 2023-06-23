@@ -3,7 +3,7 @@
 }
 
 .neos.neos-module .neos-footer {
-    margin: 40px 0 0;
+    display: flex;
 }
 
 .neos.neos-module .neos-content a:not(.neos-button) {
@@ -30,3 +30,9 @@ legend.h2 {
     padding: 0 5px;
     color: #ccc;
 }
+
+.neos .pagination select {
+    /*margin-top: -3px;*/
+}
+
+

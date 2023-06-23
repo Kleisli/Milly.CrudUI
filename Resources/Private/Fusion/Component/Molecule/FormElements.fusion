@@ -19,5 +19,6 @@ prototype(Milly.Crudforms:Component.FormElements) < prototype(Neos.Fusion:Compon
                 @apply.propertyConfig = ${propertyConfig}
             }
         }
+        itemRenderer.@if.notReadonly = ${!propertyConfig.ui.readonly}
     }
 }

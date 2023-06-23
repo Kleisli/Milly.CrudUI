@@ -22,6 +22,12 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
                     <Milly.Crudforms:Component.NewForm properties={configuration.properties} preset={props.preset} />
                 </div>
             </div>
+            <div class="neos-footer">
+                <Neos.Fusion.Form:Button attributes.class="neos-button neos-button-primary" attributes.form="new">
+                    <i class="fas fa-save"></i>
+                    &nbsp;Save
+                </Neos.Fusion.Form:Button>
+            </div>
         </div>
     `
 }

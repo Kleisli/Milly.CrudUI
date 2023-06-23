@@ -1,0 +1,47 @@
+prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Component) {
+
+    currentPage = 0
+    pageSize = 10
+    lastPage = 0
+    filterValues = ${filterValues}
+
+    renderer = afx`
+        <div class="pagination neos-pull-right" style="display: inline-block">
+            <Neos.Fusion:Link.Action disabled={props.currentPage == 0 || props.lastPage == 0}
+                                     class="neos-button"
+                                     href.action="index"
+                                     href.arguments={Array.concat({paginationCurrentPage: 0}, {filter: filterValues}, {orderBy: orderBy}, {orderDirection: orderDirection})}>
+                <i class="fas fa-fast-backward"></i>
+            </Neos.Fusion:Link.Action>
+            <Neos.Fusion:Link.Action disabled={props.currentPage == 0 || props.lastPage == 0}
+                                     class="neos-button"
+                                     href.action="index"
+                                     href.arguments={Array.concat({paginationCurrentPage: props.currentPage - 1}, {filter: filterValues}, {orderBy: orderBy}, {orderDirection: orderDirection})}>
+                <i class="fas fa-backward"></i>
+            </Neos.Fusion:Link.Action>
+            <form method="POST" class="page-selector" style="display: inline-block">
+                <Neos.Fusion:UriBuilder action="index" @path="attributes.action" />
+                <input type="hidden" name="__csrfToken" value={Security.csrfToken()}/>
+                <select name="moduleArguments[paginationCurrentPage]" onchange="this.form.submit();" style="width:auto;"  disabled={props.lastPage == 0}>
+                    <Neos.Fusion:Loop items={Array.range(0, props.lastPage)}>
+                        <option value={item} selected={props.currentPage == item}>{item+1}</option>
+                    </Neos.Fusion:Loop>
+                </select>
+            </form>
+            <Neos.Fusion:Link.Action disabled={props.currentPage == props.lastPage || props.lastPage == 0}
+                                     class="neos-button"
+                                     href.action="index"
+                                     href.arguments={Array.concat({paginationCurrentPage: props.currentPage + 1}, {filter: filterValues}, {orderBy: orderBy}, {orderDirection: orderDirection})}>
+                <i class="fas fa-forward"></i>
+            </Neos.Fusion:Link.Action>
+            <Neos.Fusion:Link.Action disabled={props.currentPage == props.lastPage || props.lastPage == 0}
+                                     class="neos-button"
+                                     href.action="index"
+                                     href.arguments={Array.concat({paginationCurrentPage: props.lastPage}, {filter: filterValues}, {orderBy: orderBy}, {orderDirection: orderDirection})}>
+                <i class="fas fa-fast-forward"></i>
+            </Neos.Fusion:Link.Action>
+
+        </div>
+        {props.nulltest}
+    `
+}

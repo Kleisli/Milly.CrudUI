@@ -13,20 +13,21 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
     style = 'narrow'
 
     renderer = afx`
-        <legend>
-            {configuration.label.many ? configuration.label.many : configuration.label.one}
+
+        <legend style="display: flex; justify-content: space-between;">
+            {configuration.label.many ? configuration.label.many : configuration.label.one} ({objectCount})
         </legend>
 
         <div class="neos-content neos-fluid-container neos-indented">
             <div class="neos-row-fluid">
                 <div class={props.style=='narrow' ? 'neos-span6' : 'neos-span12'}>
-                    <Milly.Crudforms:Component.IndexTable filterValues={props.filterValues} objects={props.objects} />
-                    <div class="neos-pull-right">
-                        <Neos.Fusion:Link.Action href.action="new" class="neos-button neos-button-primary">
-                            <i class="fa fa-plus"></i> {configuration.label.one} erfassen
-                        </Neos.Fusion:Link.Action>
-                    </div>
+                    <Milly.Crudforms:Component.IndexTable @apply.props={props} />
                 </div>
+            </div>
+            <div class="neos-footer">
+                <Neos.Fusion:Link.Action @if={!configuration.ui.readonly} href.action="new" class="neos-button neos-button-primary">
+                    <i class="fa fa-plus"></i> {configuration.label.one} erfassen
+                </Neos.Fusion:Link.Action>
             </div>
         </div>
     `

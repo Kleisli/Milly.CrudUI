@@ -11,11 +11,22 @@ prototype(Milly.Crudforms:Component.Relations) < prototype(Neos.Fusion:Component
             </Neos.Fusion:Fragment>
 
             <Neos.Fusion:Fragment @if={Milly.Reflection.isToManyRelation(props.object, relationName)}>
-                <Milly.Crudforms:Component.IndexTable @context.crudFormsModelClass={Milly.Reflection.getTypeOfRelation(object, relationName)} objects={Milly.Object.getProperty(object, relationName)} header={relationConfig.label}/>
+
+                <Milly.Crudforms:Component.IndexTable
+                    @context.crudFormsModelClass={Milly.Reflection.getTypeOfRelation(object, relationName)}
+                    view="relation"
+                    objects={Milly.Object.getProperty(object, relationName)}
+                    header={relationConfig.label}
+                    disablePagination={!relationConfig.ui.pagination.enable}
+                    readonly={relationConfig.ui.readonly}/>
 
                 <p @if.condition={!Milly.Object.getProperty(object, relationName)}>No {relationConfig.label} created yet.</p>
-                <div class="neos-pull-right">
-                    <Milly.Crudforms:Component.ActionUi.New modelClassName={Milly.Reflection.getTypeOfRelation(object, relationName)} parent={object} showLabel={true}/>
+                <div @if={!relationConfig.ui.readonly} class="neos-pull-right" style="margin-bottom:20px">
+                    <Milly.Crudforms:Component.ActionUi.New
+
+                        modelClassName={Milly.Reflection.getTypeOfRelation(object, relationName)}
+                        parent={object}
+                        showLabel={true}/>
                 </div>
             </Neos.Fusion:Fragment>
         `

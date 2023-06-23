@@ -3,48 +3,82 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
     header = ''
     showColumnHeaders = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.index.showColumnHeaders')}
     filterValues = ${[]}
+    readonly = false
 
     renderer = afx`
-    <Neos.Fusion.Form:Form form.data.filter={props.filterValues} form.target.action="index" attributes.class={'filter'}>
-        <table @if.condition={props.objects} class="neos-table">
-            <tr @if={props.header}>
-                <th colspan="100%">
-                    {props.header}
-                </th>
-            </tr>
-
-            <Milly.Crudforms:Component.IndexTableHeaderRow @if={props.showColumnHeaders} />
-
-            <Neos.Fusion:Loop items={props.objects} itemName="object">
-                <tr>
-                    <td>
-                        <Milly.Crudforms:Component.ActionUi.Show object={object} showClassLabel={false}/>
-                    </td>
-
-                    <Milly.Crudforms:Component.PropertyValues.IndexTableCells object={object} />
-
-                    <td class="neos-action">
-                        <div class="neos-pull-right">
-
-                            <Milly.Crudforms:Component.Sorting object={object}/>
-                            <Milly.Crudforms:Component.ActionUi.Edit object={object}/>
-                            <Milly.Crudforms:Component.ActionUi.Delete object={object}/>
-                        </div>
-                    </td>
+        <table class="neos-table">
+            <thead>
+                <tr @if={props.header}>
+                    <th colspan="100%">
+                        {props.header}
+                    </th>
                 </tr>
-            </Neos.Fusion:Loop>
+
+                <Milly.Crudforms:Component.IndexTableHeaderRow
+                    @context.configuration={Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, props.view)}
+                    @if={Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+props.view+'.showColumnHeaders', props.view)} />
+
+            </thead>
+            <tbody>
+                <Neos.Fusion:Loop items={props.objects} itemName="object">
+                    <tr>
+                        <td>
+                            <Milly.Crudforms:Component.ActionUi.Show object={object} showClassLabel={false}/>
+                        </td>
+
+                        <Milly.Crudforms:Component.PropertyValues.IndexTableCells
+                            properties={Milly.CrudForms.getConfigurationByModel(object, 'properties', props.view)}
+                            object={object}
+                        />
+
+                        <td class="neos-action">
+                            <div class="neos-pull-right" @if={!props.readonly}>
+                                <Milly.Crudforms:Component.Sorting object={object}/>
+                                <Milly.Crudforms:Component.ActionUi.Edit object={object}/>
+                                <Milly.Crudforms:Component.ActionUi.Delete object={object}/>
+                            </div>
+                        </td>
+                    </tr>
+                </Neos.Fusion:Loop>
+            </tbody>
+            <tfoot @if={!props.disablePagination}>
+                <tr>
+                    <th colspan="100%" class="neos-action">
+                        <Milly.Crudforms:Component.Pagination currentPage={pagination.currentPage}
+                                                              pageSize={pagination.pageSize}
+                                                              lastPage={pagination.lastPage}
+                                                              filterValues={props.filterValues} />
+                    </th>
+                </tr>
+            </tfoot>
         </table>
     </Neos.Fusion.Form:Form>
         `
     renderer.@process.prependJs = Neos.Fusion:Join {
         value = ${value}
         js = "<script>
-                selects = document.querySelectorAll('form.filter select, form.filter input');
-                for (let i=0; i<selects.length; i++){
-                    selects[i].addEventListener('change', function(){
-                    this.closest('form').submit();
+
+                filterFormElements = document.querySelectorAll('select.filter, input.filter');
+                for (let i=0; i<filterFormElements.length; i++){
+                    filterFormElements[i].style.display === 'none';
+                    filterFormElements[i].addEventListener('change', function(){
+                        document.getElementById(this.getAttribute('form')).submit();
                     })
                 }
+
+                filterButton = document.getElementById('toggle-filter');
+                filterButton.addEventListener('click', function(){
+                    filterFormElements = document.querySelectorAll('select.filter, input.filter');
+                    for (let i=0; i<filterFormElements.length; i++){
+                        if (filterFormElements[i].style.display == 'none') {
+                            filterFormElements[i].style.display = 'block';
+                            filterButton.classList.add('neos-active');
+                        } else {
+                            filterFormElements[i].style.display = 'none';
+                            filterButton.classList.remove('neos-active');
+                        }
+                    }
+                })
             </script>"
 
     }

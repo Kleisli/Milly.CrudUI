@@ -14,4 +14,10 @@ prototype(Milly.Crudforms:Component.PropertyFilter) < prototype(Neos.Fusion:Comp
 
     }
 
+    renderer.@process.addForm = Neos.Fusion:Augmenter {
+        form = ${String.md5(crudFormsModelClass)+'-filter'}
+        class = 'filter'
+        style = 'display:none'
+        style.@if.filterIsNotSet = ${!filterValues}
+    }
 }
