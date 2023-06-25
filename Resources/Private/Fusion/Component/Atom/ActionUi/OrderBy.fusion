@@ -1,0 +1,41 @@
+prototype(Milly.Crudforms:Component.ActionUi.OrderBy) < prototype(Neos.Fusion:Component) {
+
+    propertyName = ''
+
+    renderer = Neos.Fusion:Link.Action {
+        class = "white-link"
+        href.action = "index"
+        href.package = ${Milly.Mapping.getPackageNameByClass(crudFormsModelClass)}
+        href.controller = ${Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(crudFormsModelClass))}
+        href.arguments = ${Array.concat({filter: filterValues}, {orderBy: props.propertyName}, {orderDirection: (orderBy == props.propertyName&&orderDirection=='ASC'?'DESC':'ASC')})}
+        @if.hasOrderBy = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.orderBy') && Carbon.Array.hasValue(Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.orderBy'), props.propertyName)}
+
+        content = Neos.Fusion:Join {
+            label = Neos.Fusion:Case {
+                property {
+                    condition = ${props.propertyName != 'label'}
+                    renderer = Milly.Crudforms:Component.Label.PropertyLabel {
+                        propertyName = ${props.propertyName}
+                        propertyConfig = ${propertyConfig}
+                    }
+                }
+                default {
+                    condition = true
+                    renderer = Milly.Crudforms:Component.Label.ClassLabel {
+                        className = ${crudFormsModelClass}
+                        showClassLabel = 'one'
+                    }
+                }
+            }
+
+            iconActive = Neos.Fusion:Value {
+                @if.isActive = ${orderBy == props.propertyName}
+                value = afx`&nbsp;<i class={"fas fa-caret-"+(orderDirection=='ASC'?'down':'up')}></i>`
+            }
+            iconInactive = Neos.Fusion:Value {
+                @if.isActive = ${orderBy != props.propertyName}
+                value = afx`&nbsp;<i class={"fas fa-sort"}></i>`
+            }
+        }
+    }
+}

@@ -3,9 +3,10 @@ prototype(Milly.Crudforms:Component.IndexTableHeaderRow) < prototype(Neos.Fusion
     renderer = afx`
         <tr>
             <th>
+                <Milly.Crudforms:Component.ActionUi.OrderBy propertyName='label' />
+
                 <Neos.Fusion.Form:Form form.data.filter={props.filterValues} form.target.action="index" attributes.class={'filter'} attributes.id={String.md5(crudFormsModelClass)+'-filter'}/>
                 <Neos.Fusion:Fragment @if.hasFilterType={Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.filter.label.type')}>
-                    <br/>
                     <Neos.Fusion.Form:Form form.data.filter={props.filterValues} form.target.action="index">
                         <Milly.Crudforms:Component.PropertyFilter filterValues={props.filterValues} propertyName='label' />
                     </Neos.Fusion.Form:Form>
@@ -15,20 +16,9 @@ prototype(Milly.Crudforms:Component.IndexTableHeaderRow) < prototype(Neos.Fusion
                 <th style="vertical-align: top;">
                     <Milly.Crudforms:Component.Label.PropertyLabel propertyName={propertyName} propertyConfig={propertyConfig}
                                                                    @if.notHasOrderBy={!Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.orderBy') || !Carbon.Array.hasValue(Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.orderBy'), propertyName)}/>
-                    <Neos.Fusion:Link.Action href.action="index"
-                                             href.package={Milly.Mapping.getPackageNameByClass(crudFormsModelClass)}
-                                             href.controller={Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(crudFormsModelClass))}
-                                             href.arguments={Array.concat({filter: filterValues}, {orderBy: propertyName}, {orderDirection: (orderDirection=='ASC'?'DESC':'ASC')})}
-                                             @if.hasOrderBy={Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.orderBy') && Carbon.Array.hasValue(Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.orderBy'), propertyName)}>
 
-                        <Milly.Crudforms:Component.Label.PropertyLabel propertyName={propertyName} propertyConfig={propertyConfig} />
-                        <Neos.Fusion:Fragment @if={orderBy == propertyName}>
-                            &nbsp;<i class={"fas fa-caret-"+(orderDirection=='ASC'?'down':'up')}></i>
-                        </Neos.Fusion:Fragment>
-                        <Neos.Fusion:Fragment @if={orderBy != propertyName}>
-                            &nbsp;<i class={"fas fa-sort"}></i>
-                        </Neos.Fusion:Fragment>
-                    </Neos.Fusion:Link.Action>
+                    <Milly.Crudforms:Component.ActionUi.OrderBy propertyName={propertyName}  />
+
                     <Neos.Fusion:Fragment @if.hasFilterType={Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.filter.'+propertyName+'.type')}>
                         <br/>
                         <Neos.Fusion.Form:Form form.data.filter={props.filterValues} form.target.action="index">

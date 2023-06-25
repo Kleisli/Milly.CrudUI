@@ -14,6 +14,11 @@
     color: #fff;
 }
 
+.neos.neos-module .neos-content a.white-link {
+    color: #fff;
+}
+
+
 .neos.neos-module textarea {
     line-height: 36px;
 }

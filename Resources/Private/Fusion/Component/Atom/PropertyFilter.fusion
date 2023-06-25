@@ -4,11 +4,14 @@ prototype(Milly.Crudforms:Component.PropertyFilter) < prototype(Neos.Fusion:Comp
     propertyConfig = Neos.Fusion:DataStructure
 
     renderer =  Neos.Fusion:Match {
+        @subject = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.filter.'+props.propertyName+'.type')}
 
-        @subject = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.filter.'+propertyName+'.type')}
-
-        select = Milly.Crudforms:Component.PropertyFilter.Select
-        fulltext = Milly.Crudforms:Component.PropertyFilter.Fulltext
+        select = Milly.Crudforms:Component.PropertyFilter.Select {
+            @apply.props = ${props}
+        }
+        fulltext = Milly.Crudforms:Component.PropertyFilter.Fulltext {
+            @apply.props = ${props}
+        }
 
         @default = ''
 
