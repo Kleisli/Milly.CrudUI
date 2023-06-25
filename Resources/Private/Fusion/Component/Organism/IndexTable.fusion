@@ -7,7 +7,6 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
 
 
     renderer = afx`
-<<<<<<< HEAD
         <table class="neos-table">
             <thead>
                 <tr @if={props.header}>
