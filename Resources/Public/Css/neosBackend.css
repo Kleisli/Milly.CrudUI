@@ -2,6 +2,19 @@
     display: inline;
 }
 
+.neos-table ul {
+    margin: 0.5rem 1rem;
+}
+
+.neos-table ul li {
+    line-height: initial;
+    list-style: initial;
+}
+
+.neos-table.show th {
+    width: 33%;
+}
+
 .neos.neos-module .neos-footer {
     display: flex;
 }

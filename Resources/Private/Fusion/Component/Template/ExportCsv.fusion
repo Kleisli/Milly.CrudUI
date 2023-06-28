@@ -1,0 +1,19 @@
+prototype(Milly.Crudforms:Template.ExportCsv) < prototype(Neos.Fusion:Component) {
+
+    renderer = Neos.Fusion:Join {
+        header = Milly.Crudforms:Component.CsvHeaderRow {
+            @context.configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, 'export')}
+        }
+
+        values = Neos.Fusion:Loop {
+            items = ${objects}
+            itemName="object"
+            itemRenderer = Milly.Crudforms:Component.PropertyValues.CsvRow {
+                properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', 'export')}
+                object = ${object}
+            }
+        }
+
+        @process.debugDump = Neos.Fusion:DebugDump
+    }
+}

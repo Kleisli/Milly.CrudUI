@@ -1,0 +1,14 @@
+prototype(Milly.Crudforms:Component.CsvHeaderRow) < prototype(Neos.Fusion:Component) {
+
+    renderer = Neos.Fusion:Loop {
+        items = ${configuration.properties}
+        itemKey = "propertyName"
+        itemName = "propertyConfig"
+        itemRenderer = Milly.Crudforms:Component.Label.PropertyLabel {
+            propertyName = ${propertyName}
+            propertyConfig = ${propertyConfig}
+        }
+        @glue = ';'
+        @process.linebreak = ${value + String.chr(10)}
+    }
+}

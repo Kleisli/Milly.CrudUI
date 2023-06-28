@@ -11,6 +11,7 @@ prototype(Milly.Crudforms:Component.FormElement) < prototype(Neos.Fusion:Compone
             attributes.type="number"
         }
         select = Milly.Crudforms:Component.FormElement.Select
+        multiselect = Milly.Crudforms:Component.FormElement.MultiSelect
         booleanRadio = Milly.Crudforms:Component.FormElement.BooleanRadio
         booleanCheckbox = Milly.Crudforms:Component.FormElement.BooleanCheckbox
         dateTime = Milly.Crudforms:Component.FormElement.DateTime

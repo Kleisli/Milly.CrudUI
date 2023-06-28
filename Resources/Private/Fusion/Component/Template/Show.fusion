@@ -6,28 +6,61 @@ prototype(Milly.Crudforms:Template.Show) < prototype(Neos.Fusion:Component) {
         crudFormsView = 'show'
     }
 
-    additionalActions = ''
-    additionalContent = ''
+    header = Neos.Fusion:Join {
+        title = Neos.Fusion:Tag {
+            tagName = 'legend'
+            content = Milly.Crudforms:Component.Label.ObjectLabel {
+                object = ${object}
+                showClassLabel = 'one'
+            }
+        }
+    }
 
-    renderer = afx`
-        <legend>
-            <Milly.Crudforms:Component.Label.ObjectLabel object={props.object} showClassLabel={'one'} />
-        </legend>
-        <div class="neos-content neos-fluid-container neos-indented">
-            <div class="neos-row-fluid">
-                <div class="neos-span6">
-                    <Milly.Crudforms:Component.ShowTable object={props.object} />
-                </div>
+    main = Neos.Fusion:DataStructure {
+        first = Neos.Fusion:Join {
+            showTable = Milly.Crudforms:Component.ShowTable {
+                object = ${object}
+            }
+        }
+        second = Neos.Fusion:Join {
+            relations = Milly.Crudforms:Component.Relations {
+                object = ${object}
+            }
+        }
+    }
 
-                <div class="neos-span6">
-                    <Milly.Crudforms:Component.Relations object={props.object}  />
-                    {props.additionalContent}
-                </div>
-            </div>
-            <div class="neos-footer">
-                <Milly.Crudforms:Component.ActionUi.Edit @if={!configuration.ui.readonly} object={props.object} showLabel={true}/>
-                {props.additionalActions}
-            </div>
-        </div>
-    `
+    footer = Neos.Fusion:Join {
+        editButton = Milly.Crudforms:Component.ActionUi.Edit {
+            @if.notReadonly = ${!configuration.ui.readonly}
+            object = ${object}
+            showLabel = true
+        }
+    }
+
+    renderer = Neos.Fusion:Tag {
+        attributes.class = "neos-content neos-fluid-container neos-indented"
+        content = Neos.Fusion:Join {
+            header = Neos.Fusion:Tag {
+                content = ${props.header}
+            }
+            main = Neos.Fusion:Tag {
+                attributes.class = "neos-row-fluid"
+                content = Neos.Fusion:Join {
+                    first = Neos.Fusion:Tag {
+                        attributes.class = "neos-span6"
+                        content = ${props.main.first}
+                    }
+                    second = Neos.Fusion:Tag {
+                        attributes.class = "neos-span6"
+                        content = ${props.main.second}
+                    }
+                }
+            }
+            footer = Neos.Fusion:Tag {
+                attributes.class = "neos-footer"
+                content = ${props.footer}
+            }
+        }
+        @process.debugDump = Neos.Fusion:DebugDump
+    }
 }

@@ -2,7 +2,7 @@ prototype(Milly.Crudforms:Helper.PropertyValueContainer) < prototype(Neos.Fusion
 
     @propTypes {
         label = ${PropTypes.string}
-        type = ${PropTypes.oneOf(['tablerow', 'tablecell', 'with_label'])}
+        type = ${PropTypes.oneOf(['tablerow', 'tablecell', 'with_label', 'plain'])}
         propertyValue = ${PropTypes.any}
     }
 
@@ -30,14 +30,20 @@ prototype(Milly.Crudforms:Helper.PropertyValueContainer) < prototype(Neos.Fusion
         }
 
         with_label {
-            @position = 'end'
-            condition = true
+            @position = 'before plain'
+            condition = ${props.type == 'with_label'}
             renderer = afx`
                 <Neos.Fusion.Form:Neos.BackendModule.FieldContainer label={props.label} attributes={props.attributes} translation={props.translation}>
                         {props.propertyValue}
                 </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
             `
 
+        }
+
+        plain {
+            @position = 'end'
+            condition = true
+            renderer = ${props.propertyValue}
         }
     }
 }

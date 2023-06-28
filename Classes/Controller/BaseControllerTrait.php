@@ -7,6 +7,7 @@ use Milly\Tools\Service\ReflectionService;
 use Neos\Flow\Configuration\ConfigurationManager;
 use Neos\Flow\Exception;
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
+use Neos\Flow\Persistence\PersistenceManagerInterface;
 use Neos\Flow\Persistence\RepositoryInterface;
 use Neos\FluidAdaptor\View\TemplateView;
 use Neos\Fusion\View\FusionView;

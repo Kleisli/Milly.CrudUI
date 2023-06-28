@@ -8,26 +8,64 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
 
     preset = Neos.Fusion:DataStructure
 
-    renderer = afx`
-        <legend>
-            {configuration.label.one} erstellen&nbsp;
-            <Neos.Fusion:Fragment @if={props.parent}>
-                für <Milly.Crudforms:Component.Label.ObjectLabel object={props.parent} showClassLabel="one" />
-            </Neos.Fusion:Fragment>
-        </legend>
+    header = Neos.Fusion:Join {
+        title = Neos.Fusion:Tag {
+            tagName = 'legend'
+            content = Neos.Fusion:Join {
+                label = ${configuration.label.one}
+                create = ' erstellen&nbsp;'
+                parent = Milly.Crudforms:Component.Label.ObjectLabel {
+                    @if.hasParent = ${parent}
+                    @process.wrap = ${'für ' + value}
+                    object = ${props.object}
+                    showClassLabel = 'one'
+                }
+            }
+        }
+    }
 
-        <div class="neos-content neos-fluid-container neos-indented">
-            <div class="neos-row-fluid">
-                <div class="neos-span6">
-                    <Milly.Crudforms:Component.NewForm properties={configuration.properties} preset={props.preset} />
-                </div>
-            </div>
-            <div class="neos-footer">
-                <Neos.Fusion.Form:Button attributes.class="neos-button neos-button-primary" attributes.form="new">
-                    <i class="fas fa-save"></i>
-                    &nbsp;Save
-                </Neos.Fusion.Form:Button>
-            </div>
-        </div>
-    `
+    main = Neos.Fusion:DataStructure {
+        first = Neos.Fusion:Join {
+            newForm = Milly.Crudforms:Component.NewForm {
+                properties = ${configuration.properties}
+                preset = ${props.preset}
+            }
+        }
+        second = Neos.Fusion:Join
+    }
+
+    footer = Neos.Fusion:Join {
+        saveButton = Neos.Fusion.Form:Button {
+            attributes.class = "neos-button neos-button-primary"
+            attributes.form = "new"
+            content = '<i class="fas fa-save"></i>&nbsp;Save'
+        }
+    }
+
+    renderer = Neos.Fusion:Tag {
+        attributes.class = "neos-content neos-fluid-container neos-indented"
+        content = Neos.Fusion:Join {
+            header = Neos.Fusion:Tag {
+                content = ${props.header}
+            }
+            main = Neos.Fusion:Tag {
+                attributes.class = "neos-row-fluid"
+                content = Neos.Fusion:Join {
+                    first = Neos.Fusion:Tag {
+                        attributes.class = "neos-span6"
+                        content = ${props.main.first}
+                    }
+                    second = Neos.Fusion:Tag {
+                        attributes.class = "neos-span6"
+                        content = ${props.main.second}
+
+                    }
+                }
+            }
+            footer = Neos.Fusion:Tag {
+                attributes.class = "neos-footer"
+                content = ${props.footer}
+            }
+        }
+    }
 }

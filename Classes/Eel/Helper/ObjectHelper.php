@@ -40,7 +40,7 @@ class ObjectHelper implements ProtectedContextAwareInterface
         if($object == null){
             return null;
         }
-        return ObjectAccess::getProperty($object, $property);
+        return ObjectAccess::getPropertyPath($object, $property);
     }
 
     /**

@@ -68,11 +68,12 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                 filterButton.addEventListener('click', function(){
                     filterFormElements = document.querySelectorAll('select.filter, input.filter');
                     for (let i=0; i<filterFormElements.length; i++){
-                        if (filterFormElements[i].style.display == 'none') {
-                            filterFormElements[i].style.display = 'block';
+                        elementStyle = filterFormElements[i].style;
+                        if (elementStyle.display == 'none') {
+                            elementStyle.display = 'block';
                             filterButton.classList.add('neos-active');
                         } else {
-                            filterFormElements[i].style.display = 'none';
+                            elementStyle.display = 'none';
                             filterButton.classList.remove('neos-active');
                         }
                     }

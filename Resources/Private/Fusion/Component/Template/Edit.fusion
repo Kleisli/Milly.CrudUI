@@ -6,29 +6,61 @@ prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
         crudFormsView = 'edit'
     }
 
+    header = Neos.Fusion:Join {
+        title = Neos.Fusion:Tag {
+            tagName = 'legend'
+            content = Milly.Crudforms:Component.Label.ObjectLabel {
+                object = ${object}
+                showClassLabel = 'one'
+            }
+        }
+    }
 
+    main = Neos.Fusion:DataStructure {
+        first = Neos.Fusion:Join {
+            editForm = Milly.Crudforms:Component.EditForm {
+                object = ${object}
+            }
+        }
+        second = Neos.Fusion:Join {
+            relations = Milly.Crudforms:Component.Relations {
+                object = ${object}
+            }
+        }
+    }
 
-    renderer = afx`
-        <legend>
-            <Milly.Crudforms:Component.Label.ObjectLabel object={props.object} showClassLabel={'one'} />
-        </legend>
+    footer = Neos.Fusion:Join {
+        saveButton = Neos.Fusion.Form:Button {
+            attributes.class = "neos-button neos-button-primary"
+            attributes.form = "edit"
+            content = '<i class="fas fa-save"></i>&nbsp;Save'
+        }
+    }
 
-        <div class="neos-content neos-fluid-container neos-indented">
-            <div class="neos-row-fluid">
-                <div class="neos-span6">
-                    <Milly.Crudforms:Component.EditForm object={props.object} />
-                </div>
+    renderer = Neos.Fusion:Tag {
+        attributes.class = "neos-content neos-fluid-container neos-indented"
+        content = Neos.Fusion:Join {
+            header = Neos.Fusion:Tag {
+                content = ${props.header}
+            }
+            main = Neos.Fusion:Tag {
+                attributes.class = "neos-row-fluid"
+                content = Neos.Fusion:Join {
+                    first = Neos.Fusion:Tag {
+                        attributes.class = "neos-span6"
+                        content = ${props.main.first}
+                    }
+                    second = Neos.Fusion:Tag {
+                        attributes.class = "neos-span6"
+                        content = ${props.main.second}
 
-                <div class="neos-span6">
-                    <Milly.Crudforms:Component.Relations object={props.object} />
-                </div>
-            </div>
-            <div class="neos-footer">
-                <Neos.Fusion.Form:Button attributes.class="neos-button neos-button-primary" attributes.form="edit">
-                    <i class="fas fa-save"></i>
-                    &nbsp;Save
-                </Neos.Fusion.Form:Button>
-            </div>
-        </div>
-    `
+                    }
+                }
+            }
+            footer = Neos.Fusion:Tag {
+                attributes.class = "neos-footer"
+                content = ${props.footer}
+            }
+        }
+    }
 }

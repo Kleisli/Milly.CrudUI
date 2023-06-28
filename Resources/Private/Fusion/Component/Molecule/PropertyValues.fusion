@@ -1,7 +1,7 @@
 prototype(Milly.Crudforms:Component.PropertyValues) < prototype(Neos.Fusion:Component) {
 
     @propTypes {
-        propertyValueContainerType = ${PropTypes.oneOf(['tablerow', 'tablecell', 'with_label'])}
+        propertyValueContainerType = ${PropTypes.oneOf(['tablerow', 'tablecell', 'with_label', 'plain'])}
     }
 
     propertyValueContainerType = 'with_label'

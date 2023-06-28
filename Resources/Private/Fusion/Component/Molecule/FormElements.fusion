@@ -11,7 +11,8 @@ prototype(Milly.Crudforms:Component.FormElements) < prototype(Neos.Fusion:Compon
 
         itemRenderer = Milly.Crudforms:Helper.FormElementContainer {
             type = ${propertyConfig.type}
-            field.name = ${'object['+propertyName+']'}
+            field.name = ${'object['+ (propertyConfig.propertyPath ? String.replace(propertyConfig.propertyPath, '.', '][') : propertyName) +']'}
+            field.multiple = ${propertyConfig.type == 'multiselect'}
             label = Milly.Crudforms:Component.Label.PropertyLabel {
                 propertyName = ${propertyName}
                 propertyConfig = ${propertyConfig}

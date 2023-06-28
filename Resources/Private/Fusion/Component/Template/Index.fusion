@@ -13,26 +13,64 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
     }
 
     style = 'wide'
-    disablePagination = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.index.options.pagination.disable')}
 
-    renderer = afx`
-        <legend style="display: flex; justify-content: space-between;">
-            {configuration.label.many ? configuration.label.many : configuration.label.one} ({objectCount})
+    header = Neos.Fusion:Join {
+        title = Neos.Fusion:Tag {
+            tagName = 'legend'
+            attributes.style = "display: flex; justify-content: space-between;"
+            content = ${configuration.label.many ? configuration.label.many : configuration.label.one + ' (' + objectCount + ')'}
+        }
+    }
 
-        </legend>
+    main = Neos.Fusion:Join {
+        indexTable = Milly.Crudforms:Component.IndexTable {
+            objects = ${objects}
+            disablePagination = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.index.options.pagination.disable')}
+        }
+    }
 
-        <div class="neos-content neos-fluid-container neos-indented">
-            <div class="neos-row-fluid">
-                <div class={props.style=='narrow' ? 'neos-span6' : 'neos-span12'}>
-                    <Milly.Crudforms:Component.IndexTable @apply.props={props} />
-                </div>
-            </div>
-            <div class="neos-footer">
-                <Neos.Fusion:Link.Action @if={!configuration.ui.readonly} href.action="new" class="neos-button neos-button-primary">
-                    <i class="fa fa-plus"></i> {configuration.label.one} erfassen
-                </Neos.Fusion:Link.Action>
-            </div>
-        </div>
-    `
-    renderer.@process.debugDump = Neos.Fusion:DebugDump
+    footer = Neos.Fusion:Join {
+        newButton = Milly.Crudforms:Component.ActionUi.New {
+            @if.notReadonly = ${!configuration.ui.readonly}
+            object = ${object}
+            showLabel = true
+            modelClassName = ${crudFormsModelClass}
+        }
+        export = Neos.Fusion:Link.Action {
+            class = "neos-button"
+            href.action = "index"
+            href.format = 'csv'
+            href.arguments {
+                paginationPageSize = 0
+                paginationCurrentPage = 0
+                filter = ${filterValues}
+                orderBy = ${orderBy}
+                orderDirection = ${orderDirection}
+            }
+            content = '<i class="fas fa-download"></i>&nbsp;&nbsp;CSV'
+        }
+    }
+
+    renderer = Neos.Fusion:Tag {
+        attributes.class = "neos-content neos-fluid-container neos-indented"
+        content = Neos.Fusion:Join {
+            header = Neos.Fusion:Tag {
+                content = ${props.header}
+            }
+            main = Neos.Fusion:Tag {
+                attributes.class = "neos-row-fluid"
+                content = Neos.Fusion:Join {
+                    first = Neos.Fusion:Tag {
+                        attributes.class = ${props.style=='narrow' ? 'neos-span6' : 'neos-span12'}
+                        content = ${props.main}
+                    }
+                }
+            }
+            footer = Neos.Fusion:Tag {
+                attributes.class = "neos-footer"
+                content = ${props.footer}
+            }
+        }
+        @process.debugDump = Neos.Fusion:DebugDump
+    }
 }

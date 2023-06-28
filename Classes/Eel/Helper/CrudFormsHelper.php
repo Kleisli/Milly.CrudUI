@@ -83,7 +83,7 @@ class CrudFormsHelper implements ProtectedContextAwareInterface
             return $options;
         }
         if(isset($optionsConfig['repository'])){
-            if(strpos($optionsConfig['repository'], '->') && $object != null) {
+            if(strpos($optionsConfig['repository'], '->')) {
                 list($repository, $method) = explode('->', $optionsConfig['repository']);
                 $repository = $this->objectManager->get($repository);
                 $items = $repository->$method($object);

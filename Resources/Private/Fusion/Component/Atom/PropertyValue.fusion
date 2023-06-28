@@ -6,7 +6,7 @@ prototype(Milly.Crudforms:Component.PropertyValue) < prototype(Neos.Fusion:Compo
         object = ${PropTypes.any}
     }
 
-    propertyValue = ${Milly.Object.getProperty(object, propertyName)}
+    propertyValue = ${Milly.Object.getProperty(object, propertyConfig.propertyPath ? propertyConfig.propertyPath : propertyName)}
 
     renderer = Neos.Fusion:Match {
 
@@ -14,6 +14,7 @@ prototype(Milly.Crudforms:Component.PropertyValue) < prototype(Neos.Fusion:Compo
 
         select = Milly.Crudforms:Component.PropertyValue.Select
         object = Milly.Crudforms:Component.PropertyValue.Select
+        multiselect = Milly.Crudforms:Component.PropertyValue.MultiSelect
         booleanRadio = Milly.Crudforms:Component.PropertyValue.BooleanRadio
         booleanCheckbox = ${props.propertyValue ? 'Ja' : 'Nein'}
         dateTime = ${props.propertyValue ? Date.format(props.propertyValue, "d.m.Y H:i") : ''}
