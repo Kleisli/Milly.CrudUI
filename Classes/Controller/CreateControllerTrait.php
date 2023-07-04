@@ -18,7 +18,7 @@ trait CreateControllerTrait
         $config = $this->getCrudFormsConfiguration();
         if(isset($config['parent'])){
             $parentClass = $this->millyReflectionService->getTypeOfProperty($this->getModelClass(), $config['parent']);
-            $this->arguments->addNewArgument('parent', $parentClass);
+            $this->arguments->addNewArgument('parent', $parentClass, false);
             $this->arguments['parent']->setValidator($this->validatorResolver->getBaseValidatorConjunction($parentClass, array('Default', 'Controller')));
             $this->mvcPropertyMappingConfigurationService->initializePropertyMappingConfigurationFromRequest($this->request, $this->arguments);
         }

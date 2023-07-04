@@ -1,6 +1,7 @@
 prototype(Milly.Crudforms:Component.NewForm) < prototype(Neos.Fusion:Component) {
 
     preset = Neos.Fusion:DataStructure
+    parent = null
 
     renderer = afx`
         <Neos.Fusion.Form:Form form.target.action="create" attributes.id="new">

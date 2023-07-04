@@ -17,7 +17,7 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
                 parent = Milly.Crudforms:Component.Label.ObjectLabel {
                     @if.hasParent = ${parent}
                     @process.wrap = ${'für ' + value}
-                    object = ${props.object}
+                    object = ${parent}
                     showClassLabel = 'one'
                 }
             }
@@ -25,12 +25,6 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
     }
 
     main = Neos.Fusion:DataStructure {
-        first = Neos.Fusion:Join {
-            newForm = Milly.Crudforms:Component.NewForm {
-                properties = ${configuration.properties}
-                preset = ${props.preset}
-            }
-        }
         second = Neos.Fusion:Join
     }
 
@@ -53,7 +47,12 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
                 content = Neos.Fusion:Join {
                     first = Neos.Fusion:Tag {
                         attributes.class = "neos-span6"
-                        content = ${props.main.first}
+                        content = Neos.Fusion:Join {
+                            newForm = Milly.Crudforms:Component.NewForm {
+                                properties = ${configuration.properties}
+                                preset = ${props.preset}
+                            }
+                        }
                     }
                     second = Neos.Fusion:Tag {
                         attributes.class = "neos-span6"
@@ -68,4 +67,6 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
             }
         }
     }
+    @process.debugDump = Neos.Fusion:DebugDump
 }
+
