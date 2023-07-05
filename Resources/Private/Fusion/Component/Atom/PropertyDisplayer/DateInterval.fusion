@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.PropertyValue.DateInterval) < prototype(Neos.Fusion:Component) {
+prototype(Milly.Crudforms:Component.PropertyDisplayer.DateInterval) < prototype(Neos.Fusion:Component) {
     @apply.props = ${props}
 
     renderer = Neos.Fusion:Case {

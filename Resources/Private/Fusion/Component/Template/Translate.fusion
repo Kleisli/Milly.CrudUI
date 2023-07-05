@@ -5,7 +5,7 @@ prototype(Milly.Crudforms:Template.Translate) < prototype(Neos.Fusion:Component)
         <div class="neos-content neos-fluid-container neos-indented">
             <div class="neos-row-fluid">
                 <div class="neos-span6">
-                    <Milly.Crudforms:Component.PropertyValues object={props.object} properties={props.configuration.properties} />
+                    <Milly.Crudforms:Component.PropertyDisplayers object={props.object} properties={props.configuration.properties} />
                 </div>
                 <div class="neos-span6">
                     <Milly.Crudforms:Component.EditForm object={props.object} properties={props.configuration.properties} translation="fr"/>

@@ -10,7 +10,7 @@ prototype(Milly.Crudforms:Component.NewForm) < prototype(Neos.Fusion:Component) 
                     <Neos.Fusion.Form:Hidden field.name={"object["+itemKey+"]"} attributes.value={item}/>
                 </Neos.Fusion:Loop>
                 <Neos.Fusion.Form:Hidden @if.hasParent={props.parent} field.name="object[parent]" attributes.value={props.parent}/>
-                <Milly.Crudforms:Component.FormElements properties={configuration.properties} />
+                <Milly.Crudforms:Component.PropertyEditors properties={configuration.properties} />
             </div>
         </Neos.Fusion.Form:Form>`
 }

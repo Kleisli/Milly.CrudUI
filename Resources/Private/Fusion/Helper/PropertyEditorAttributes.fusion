@@ -12,21 +12,25 @@ prototype(Milly.Crudforms:Helper.FieldAttributeAugmenter) < prototype(Neos.Fusio
                 textarea = Neos.Fusion:Augmenter {
                     content = ${props.content}
                     class = "neos-span12"
+                    id = ${field.name}
                     rows = "2"
                 }
 
                 number = Neos.Fusion:Augmenter {
                     content = ${props.content}
+                    id = ${field.name}
                     class = "neos-span3"
                 }
 
                 booleanCheckbox = Neos.Fusion:Augmenter {
                     content = ${props.content}
+                    id = ${field.name}
                     class = ""
                 }
 
                 @default = Neos.Fusion:Augmenter {
                     content = ${props.content}
+                    id = ${field.name}
                     class = "neos-span12"
                 }
             }

@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.PropertyValue.MultiSelect) < prototype(Neos.Fusion:Component) {
+prototype(Milly.Crudforms:Component.PropertyDisplayer.MultiSelect) < prototype(Neos.Fusion:Component) {
 
     object = ${object}
     propertyName = ${propertyName}

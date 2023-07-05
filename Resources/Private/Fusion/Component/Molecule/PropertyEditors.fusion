@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.FormElements) < prototype(Neos.Fusion:Component) {
+prototype(Milly.Crudforms:Component.PropertyEditors) < prototype(Neos.Fusion:Component) {
 
     object = null
     properties = ${[]}
@@ -9,16 +9,16 @@ prototype(Milly.Crudforms:Component.FormElements) < prototype(Neos.Fusion:Compon
         itemKey = "propertyName"
         itemName = "propertyConfig"
 
-        itemRenderer = Milly.Crudforms:Helper.FormElementContainer {
+        itemRenderer = Milly.Crudforms:Helper.PropertyEditorContainer {
             type = ${propertyConfig.type}
             field.name = ${'object['+ (propertyConfig.propertyPath ? String.replace(propertyConfig.propertyPath, '.', '][') : propertyName) +']'}
-            field.multiple = ${propertyConfig.type == 'multiselect'}
+            field.multiple = ${propertyConfig.type == 'multiSelect'}
             label = Milly.Crudforms:Component.Label.PropertyLabel {
                 propertyName = ${propertyName}
                 propertyConfig = ${propertyConfig}
             }
 
-            content = Milly.Crudforms:Component.FormElement {
+            content = Milly.Crudforms:Component.PropertyEditor {
                 propertyConfig = ${propertyConfig}
                 object = ${props.object}
             }

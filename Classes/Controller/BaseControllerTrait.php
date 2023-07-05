@@ -2,6 +2,7 @@
 namespace Milly\CrudForms\Controller;
 
 use Milly\CrudForms\Service\ConfigurationService;
+use Milly\CrudForms\Service\ObjectService;
 use Milly\Tools\Service\ClassMappingService;
 use Milly\Tools\Service\ReflectionService;
 use Neos\Flow\Configuration\ConfigurationManager;
@@ -27,20 +28,17 @@ trait BaseControllerTrait
      */
     protected $objectManager;
 
-    /**
-     * @Flow\Inject
-     */
+    #[Flow\Inject]
     protected ReflectionService $millyReflectionService;
 
-    /**
-     * @Flow\Inject
-     */
+    #[Flow\Inject]
     protected \Milly\Tools\Service\ClassMappingService $classMappingService;
 
-    /**
-     * @Flow\Inject
-     */
+    #[Flow\Inject]
     protected ConfigurationService $configurationService;
+
+    #[Flow\Inject]
+    protected ObjectService $objectService;
 
 
     /**

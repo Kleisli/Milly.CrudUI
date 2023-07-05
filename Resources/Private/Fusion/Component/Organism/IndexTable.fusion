@@ -26,7 +26,7 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                             <Milly.Crudforms:Component.ActionUi.Show object={object} showClassLabel={false}/>
                         </td>
 
-                        <Milly.Crudforms:Component.PropertyValues.IndexTableCells
+                        <Milly.Crudforms:Component.PropertyDisplayers.IndexTableCells
                             properties={Milly.CrudForms.getConfigurationByModel(object, 'properties', props.view)}
                             object={object}
                         />

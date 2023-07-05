@@ -1,0 +1,36 @@
+prototype(Milly.Crudforms:Component.PropertyEditor) < prototype(Neos.Fusion:Component) {
+
+    propertyConfig = ${[]}
+    object = null
+
+    renderer = Neos.Fusion:Case {
+        customDisplayer {
+            condition = ${propertyConfig.ui.editor}
+            type = ${propertyConfig.ui.editor}
+            element.@apply.props = ${props}
+        }
+        default {
+            condition = true
+            renderer = Neos.Fusion:Match {
+                @subject = ${props.propertyConfig.type}
+
+                textarea = Neos.Fusion.Form:Textarea
+                number = Neos.Fusion.Form:Textfield {
+                    attributes.type = "number"
+                }
+                select = Milly.Crudforms:Component.PropertyEditor.Select
+                multiSelect = Milly.Crudforms:Component.PropertyEditor.MultiSelect
+                booleanRadio = Milly.Crudforms:Component.PropertyEditor.BooleanRadio
+                booleanCheckbox = Milly.Crudforms:Component.PropertyEditor.BooleanCheckbox
+                dateTime = Milly.Crudforms:Component.PropertyEditor.DateTime
+                date = Milly.Crudforms:Component.PropertyEditor.Date
+                image = Milly.Crudforms:Component.PropertyEditor.Image
+                dateInterval = Milly.Crudforms:Component.PropertyEditor.DateInterval
+
+                @default = Neos.Fusion.Form:Textfield {
+                    attributes.disabled = ${props.propertyConfig.readonly ? true : false}
+                }
+            }
+        }
+    }
+}

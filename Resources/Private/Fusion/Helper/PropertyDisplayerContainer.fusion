@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Helper.PropertyValueContainer) < prototype(Neos.Fusion:Component) {
+prototype(Milly.Crudforms:Helper.PropertyDisplayerContainer) < prototype(Neos.Fusion:Component) {
 
     @propTypes {
         label = ${PropTypes.string}

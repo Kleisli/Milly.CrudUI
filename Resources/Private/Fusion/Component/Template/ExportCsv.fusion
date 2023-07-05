@@ -8,7 +8,7 @@ prototype(Milly.Crudforms:Template.ExportCsv) < prototype(Neos.Fusion:Component)
         values = Neos.Fusion:Loop {
             items = ${objects}
             itemName="object"
-            itemRenderer = Milly.Crudforms:Component.PropertyValues.CsvRow {
+            itemRenderer = Milly.Crudforms:Component.PropertyDisplayers.CsvRow {
                 properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', 'export')}
                 object = ${object}
             }

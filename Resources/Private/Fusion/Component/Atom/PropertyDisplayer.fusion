@@ -1,0 +1,42 @@
+prototype(Milly.Crudforms:Component.PropertyDisplayer) < prototype(Neos.Fusion:Component) {
+
+    @propTypes {
+        propertyConfig = ${PropTypes.arrayOf(PropTypes.any)}
+        propertyName = ${PropTypes.string}
+        object = ${PropTypes.any}
+    }
+
+    propertyValue = ${Milly.Object.getProperty(object, propertyConfig.propertyPath ? propertyConfig.propertyPath : propertyConfig._propertyName)}
+
+    renderer = Neos.Fusion:Case {
+        customDisplayer {
+            condition = ${propertyConfig.ui.displayer}
+            type = ${propertyConfig.ui.displayer}
+            element.@apply.props = ${props}
+        }
+        default {
+            condition = true
+            renderer = Neos.Fusion:Match {
+
+                @subject = ${propertyConfig.type}
+
+                select = Milly.Crudforms:Component.PropertyDisplayer.Select
+                multiSelect = Milly.Crudforms:Component.PropertyDisplayer.MultiSelect
+                booleanRadio = Milly.Crudforms:Component.PropertyDisplayer.BooleanRadio
+                booleanCheckbox = ${props.propertyValue ? 'Ja' : 'Nein'}
+                dateTime = ${props.propertyValue ? Date.format(props.propertyValue, "d.m.Y H:i") : ''}
+                date = ${props.propertyValue ? Date.format(props.propertyValue, "d.m.Y") : ''}
+                dateInterval = Milly.Crudforms:Component.PropertyDisplayer.DateInterval
+                image = Milly.Crudforms:Component.PropertyDisplayer.Image {
+                    resource = ${props.propertyValue}
+                }
+                string = ${props.propertyValue ? props.propertyValue : ''}
+                datetime = ${props.propertyValue ? props.propertyValue : ''}
+                textarea = ${String.nl2br(props.propertyValue ? props.propertyValue : '')}
+
+                @default = ${props.propertyValue ? props.propertyValue : ''}
+
+            }
+        }
+    }
+}

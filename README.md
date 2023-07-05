@@ -168,13 +168,13 @@ Milly:
 documentation in progress...
 
 ## Adding Property types
-### FormElement
-### PropertyValue
+### PropertyEditor
+### PropertyDisplayer
 
 ## Customize Templates
-### FormElementAttributes
-### FormElementContainer
-### PropertyValueContainer
+### PropertyEditorAttributes
+### PropertyEditorContainer
+### PropertyDisplayerContainer
 
 ## Kudos
 This package is based on the idea and inspired by [Sandstorm.CrudForms](https://github.com/sandstorm/CrudForms)

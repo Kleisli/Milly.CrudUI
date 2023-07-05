@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.PropertyValues.CsvRow) < prototype(Milly.Crudforms:Component.PropertyValues) {
+prototype(Milly.Crudforms:Component.PropertyDisplayers.CsvRow) < prototype(Milly.Crudforms:Component.PropertyDisplayers) {
 
     propertyValueContainerType = 'plain'
     properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', 'csv')}

@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.FormElement.Date) < prototype(Neos.Fusion:Component) {
+prototype(Milly.Crudforms:Component.PropertyEditor.Date) < prototype(Neos.Fusion:Component) {
 
     @apply.props = ${props}
 

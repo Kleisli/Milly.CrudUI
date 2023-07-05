@@ -24,9 +24,7 @@ use Sandstorm\CrudForms\Exception\MissingModelTypeException;
  */
 class ConfigurationService
 {
-    /**
-     * @Flow\Inject
-     */
+    #[Flow\Inject]
     protected ConfigurationManager $configurationManager;
 
 
@@ -52,10 +50,11 @@ class ConfigurationService
                 $viewProperties[$viewPropertyName] = $configuration['properties'][$viewPropertyName];
             }
             $configuration['properties'] = $viewProperties;
-        }else{
-            if($view == 'index'){
-                $configuration['properties'] = [];
-            }
+        }
+
+        foreach ($configuration['properties'] as $propertyName => $propertyConfiguration){
+            $propertyConfiguration['_propertyName'] = $propertyName;
+            $configuration['properties'][$propertyName] = $propertyConfiguration;
         }
 
         return $path != null ? Arrays::getValueByPath($configuration, $path) : $configuration;

@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.PropertyValues) < prototype(Neos.Fusion:Component) {
+prototype(Milly.Crudforms:Component.PropertyDisplayers) < prototype(Neos.Fusion:Component) {
 
     @propTypes {
         propertyValueContainerType = ${PropTypes.oneOf(['tablerow', 'tablecell', 'with_label', 'plain'])}
@@ -12,14 +12,14 @@ prototype(Milly.Crudforms:Component.PropertyValues) < prototype(Neos.Fusion:Comp
         itemKey = "propertyName"
         itemName = "propertyConfig"
 
-        itemRenderer = Milly.Crudforms:Helper.PropertyValueContainer {
+        itemRenderer = Milly.Crudforms:Helper.PropertyDisplayerContainer {
             type = ${props.propertyValueContainerType}
             label = Milly.Crudforms:Component.Label.PropertyLabel {
                 propertyName = ${propertyName}
                 propertyConfig = ${propertyConfig}
             }
 
-            propertyValue = Milly.Crudforms:Component.PropertyValue {
+            propertyValue = Milly.Crudforms:Component.PropertyDisplayer {
                 propertyConfig = ${propertyConfig}
                 propertyName = ${propertyName}
                 @apply.props = ${props}
