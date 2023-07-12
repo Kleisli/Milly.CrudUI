@@ -8,6 +8,6 @@ prototype(Milly.Crudforms:Component.PropertyEditor.Date) < prototype(Neos.Fusion
             name={field.getName() + '[date]'}
             value={field.getCurrentValue() ? Date.format(field.getCurrentValue(), 'Y-m-d') : ''}
             disabled={props.propertyConfig.readonly} />
-        <input type="hidden" name={field.getName() + '[dateFormat]'}  value="Y-m-d" />
+        <input type="hidden" name={field.getName() + '[dateFormat]'}  value="Y-m-d" disabled={props.propertyConfig.readonly} />
     `
 }
