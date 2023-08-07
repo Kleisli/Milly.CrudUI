@@ -24,7 +24,6 @@ prototype(Milly.Crudforms:Helper.FieldAttributeAugmenter) < prototype(Neos.Fusio
 
                 booleanCheckbox = Neos.Fusion:Augmenter {
                     content = ${props.content}
-                    id = ${field.name}
                     class = ""
                 }
 
