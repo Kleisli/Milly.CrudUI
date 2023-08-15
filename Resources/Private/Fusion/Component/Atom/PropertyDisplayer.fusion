@@ -34,7 +34,7 @@ prototype(Milly.Crudforms:Component.PropertyDisplayer) < prototype(Neos.Fusion:C
                 datetime = ${props.propertyValue ? props.propertyValue : ''}
                 textarea = ${String.nl2br(props.propertyValue ? props.propertyValue : '')}
 
-                @default = ${props.propertyValue ? props.propertyValue : ''}
+                @default = ${props.propertyValue != null ? props.propertyValue : ''}
 
             }
         }

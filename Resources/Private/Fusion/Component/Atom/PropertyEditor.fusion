@@ -15,9 +15,7 @@ prototype(Milly.Crudforms:Component.PropertyEditor) < prototype(Neos.Fusion:Comp
                 @subject = ${props.propertyConfig.type}
 
                 textarea = Neos.Fusion.Form:Textarea
-                number = Neos.Fusion.Form:Textfield {
-                    attributes.type = "number"
-                }
+                number = Milly.Crudforms:Component.PropertyEditor.Number
                 select = Milly.Crudforms:Component.PropertyEditor.Select
                 multiSelect = Milly.Crudforms:Component.PropertyEditor.MultiSelect
                 booleanRadio = Milly.Crudforms:Component.PropertyEditor.BooleanRadio
