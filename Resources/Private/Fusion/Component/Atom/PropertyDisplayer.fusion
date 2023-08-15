@@ -30,8 +30,7 @@ prototype(Milly.Crudforms:Component.PropertyDisplayer) < prototype(Neos.Fusion:C
                 image = Milly.Crudforms:Component.PropertyDisplayer.Image {
                     resource = ${props.propertyValue}
                 }
-                string = ${props.propertyValue ? props.propertyValue : ''}
-                datetime = ${props.propertyValue ? props.propertyValue : ''}
+                email = Milly.Crudforms:Component.PropertyDisplayer.Email
                 textarea = ${String.nl2br(props.propertyValue ? props.propertyValue : '')}
 
                 @default = ${props.propertyValue != null ? props.propertyValue : ''}
