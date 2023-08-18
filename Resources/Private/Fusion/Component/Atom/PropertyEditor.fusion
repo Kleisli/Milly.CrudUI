@@ -27,6 +27,7 @@ prototype(Milly.Crudforms:Component.PropertyEditor) < prototype(Neos.Fusion:Comp
                 date = Milly.Crudforms:Component.PropertyEditor.Date
                 image = Milly.Crudforms:Component.PropertyEditor.Image
                 dateInterval = Milly.Crudforms:Component.PropertyEditor.DateInterval
+                jsonList = Milly.Crudforms:Component.PropertyEditor.JsonList
 
                 @default = Neos.Fusion.Form:Textfield {
                     attributes.disabled = ${props.propertyConfig.readonly ? true : false}

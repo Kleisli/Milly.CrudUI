@@ -1,0 +1,20 @@
+prototype(Milly.Crudforms:Component.PropertyDisplayer.JsonList) < prototype(Neos.Fusion:Component) {
+
+    array = ${Milly.Object.getProperty(object, propertyName)}
+
+    renderer = afx`
+        <ul>
+            <Neos.Fusion:Loop items={props.array}>
+                <Neos.Fusion:Fragment @if={!Type.isArray(item)}>
+                    <li>{itemKey}: {item}</li>
+                </Neos.Fusion:Fragment>
+                <Neos.Fusion:Fragment @if={Type.isArray(item)}>
+                    <li>{itemKey}:
+                        <Milly.Crudforms:Component.PropertyDisplayer.JsonList array={item} />
+                    </li>
+                </Neos.Fusion:Fragment>
+            </Neos.Fusion:Loop>
+        </ul>
+    `
+
+}

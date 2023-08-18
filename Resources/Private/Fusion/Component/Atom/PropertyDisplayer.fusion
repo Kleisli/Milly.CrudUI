@@ -31,6 +31,7 @@ prototype(Milly.Crudforms:Component.PropertyDisplayer) < prototype(Neos.Fusion:C
                     resource = ${props.propertyValue}
                 }
                 email = Milly.Crudforms:Component.PropertyDisplayer.Email
+                jsonList = Milly.Crudforms:Component.PropertyDisplayer.JsonList
                 textarea = ${String.nl2br(props.propertyValue ? props.propertyValue : '')}
 
                 @default = ${props.propertyValue != null ? props.propertyValue : ''}

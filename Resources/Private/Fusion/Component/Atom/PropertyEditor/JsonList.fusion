@@ -1,0 +1,9 @@
+prototype(Milly.Crudforms:Component.PropertyEditor.JsonList) < prototype(Neos.Fusion:Component) {
+
+    renderer = afx`
+        <textarea name={field.getName()}>
+            {Json.stringify(Milly.Object.getProperty(object, propertyName))}
+        </textarea>
+    `
+
+}
