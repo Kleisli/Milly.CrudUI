@@ -58,7 +58,7 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
         js = "<script>
                 filterFormElements = document.querySelectorAll('select.filter, input.filter');
                 for (let i=0; i<filterFormElements.length; i++){
-                    filterFormElements[i].style.display === 'none';
+                    filterFormElements[i].style.display === 'block';
                     filterFormElements[i].addEventListener('change', function(){
                         document.getElementById(this.getAttribute('form')).submit();
                     })

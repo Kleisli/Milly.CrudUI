@@ -29,12 +29,11 @@ trait ReadAllControllerTrait
                         default:
                             if($value == '-'){
                                 $conditions[] = $query->equals($property, null);
-                            }else {
-                                if($this->millyReflectionService->isToOneRelation(self::ENTITY_CLASSNAME, $property)){
-                                    $conditions[] = $query->equals($property, $value);
-                                }
-                                if($this->millyReflectionService->isToManyRelation(self::ENTITY_CLASSNAME, $property)){
+                            } else {
+                                if ($this->millyReflectionService->isToManyRelation(self::ENTITY_CLASSNAME, $property)) {
                                     $conditions[] = $query->contains($property, $value);
+                                } else {
+                                    $conditions[] = $query->equals($property, $value);
                                 }
                             }
                     }
