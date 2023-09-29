@@ -1,9 +1,18 @@
 prototype(Milly.Crudforms:Component.PropertyDisplayer.Email) < prototype(Neos.Fusion:Component) {
 
-    renderer = afx`
-        <a href={"mailto:"+Milly.Object.getProperty(object, propertyName)}>
-            {Milly.Object.getProperty(object, propertyName)}
-        </a>
-    `
+    renderer = Neos.Fusion:Case {
+        html {
+            condition = ${request.format == 'html'}
+            renderer = afx`
+                <a href={"mailto:"+Milly.Object.getProperty(object, propertyName)}>
+                    {Milly.Object.getProperty(object, propertyName)}
+                </a>
+            `
+        }
 
+        default {
+            condition = ${true}
+            renderer = ${Milly.Object.getProperty(object, propertyName)}
+        }
+    }
 }

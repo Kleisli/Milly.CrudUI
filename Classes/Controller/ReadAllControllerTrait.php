@@ -61,6 +61,10 @@ trait ReadAllControllerTrait
             'lastPage' => ($paginationPageSize == 0) ? $paginationCurrentPage : intval(floor($objectCount / $paginationPageSize))
         ];
 
+        if($this->request->getFormat() != 'html'){
+            header('Content-Disposition: filename="'.$configuration['label']['many'].'_'.date("Y-m-d_H-i").'"');
+        }
+
         $this->view->assign('filterValues', $filter);
         $this->view->assign('pagination', $pagination);
         $this->view->assign('paginationPageSize', $paginationPageSize);
