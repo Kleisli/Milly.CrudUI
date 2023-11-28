@@ -9,6 +9,9 @@ prototype(Milly.Crudforms:Component.PropertyFilter) < prototype(Neos.Fusion:Comp
         select = Milly.Crudforms:Component.PropertyFilter.Select {
             @apply.props = ${props}
         }
+        boolean = Milly.Crudforms:Component.PropertyFilter.Boolean {
+            @apply.props = ${props}
+        }
         fulltext = Milly.Crudforms:Component.PropertyFilter.Fulltext {
             @apply.props = ${props}
         }
