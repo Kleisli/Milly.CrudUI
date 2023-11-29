@@ -4,10 +4,10 @@ prototype(Milly.Crudforms:Component.PropertyFilter.Boolean) < prototype(Neos.Fus
             <Neos.Fusion.Form:Select.Option option.value='' attributes.selected={Profolio.App.Array.get(filterValues, propertyName) == ''}>
                 Alle
             </Neos.Fusion.Form:Select.Option>
-            <Neos.Fusion.Form:Select.Option option.value={1} attributes.selected={Profolio.App.Array.get(filterValues, propertyName)}>
+            <Neos.Fusion.Form:Select.Option option.value={1} attributes.selected={Profolio.App.Array.get(filterValues, propertyName) == '1'}>
                 Ja
             </Neos.Fusion.Form:Select.Option>
-            <Neos.Fusion.Form:Select.Option option.value={0} attributes.selected={!Profolio.App.Array.get(filterValues, propertyName)}>
+            <Neos.Fusion.Form:Select.Option option.value={0} attributes.selected={Profolio.App.Array.get(filterValues, propertyName) == '0'}>
                 Nein
             </Neos.Fusion.Form:Select.Option>
             <Neos.Fusion.Form:Select.Option option.value='-' attributes.selected={Profolio.App.Array.get(filterValues, propertyName) == '-'}>
