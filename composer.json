@@ -5,8 +5,7 @@
     "require": {
         "neos/fusion-form": "*",
         "milly/tools": "@dev",
-        "milly/sortable": "@dev",
-        "flowpack/listable": "^3.5"
+        "milly/sortable": "@dev"
     },
     "autoload": {
         "psr-4": {
