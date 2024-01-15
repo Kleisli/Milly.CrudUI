@@ -12,6 +12,9 @@ prototype(Milly.Crudforms:Component.PropertyFilter) < prototype(Neos.Fusion:Comp
         boolean = Milly.Crudforms:Component.PropertyFilter.Boolean {
             @apply.props = ${props}
         }
+        isSet = Milly.Crudforms:Component.PropertyFilter.IsSet {
+            @apply.props = ${props}
+        }
         fulltext = Milly.Crudforms:Component.PropertyFilter.Fulltext {
             @apply.props = ${props}
         }

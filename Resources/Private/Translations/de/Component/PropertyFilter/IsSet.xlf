@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file datatype="plaintext" product-name="Milly.CrudForms" original="Component/PropertyFilter/IsSet" source-language="de">
+        <body>
+            <trans-unit id="all">
+                <source>Alle</source>
+            </trans-unit>
+            <trans-unit id="set">
+                <source>Mit</source>
+            </trans-unit>
+            <trans-unit id="notSet">
+                <source>Ohne</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

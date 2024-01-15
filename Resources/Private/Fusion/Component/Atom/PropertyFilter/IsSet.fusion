@@ -1,0 +1,24 @@
+prototype(Milly.Crudforms:Component.PropertyFilter.IsSet) < prototype(Neos.Fusion:Component) {
+
+    options = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.filter.'+props.propertyName+'.typeOptions')}
+
+    defaultLabels = Neos.Fusion:DataStructure {
+        all = ${I18n.translate('Milly.CrudForms:Component.PropertyFilter.IsSet:all')}
+        set = ${I18n.translate('Milly.CrudForms:Component.PropertyFilter.IsSet:set')}
+        notSet = ${I18n.translate('Milly.CrudForms:Component.PropertyFilter.IsSet:notSet')}
+    }
+
+    renderer = afx`
+        <Neos.Fusion.Form:Select field.name={'filter['+propertyName+']'}>
+            <Neos.Fusion.Form:Select.Option option.value='' attributes.selected={Profolio.App.Array.get(filterValues, propertyName) == ''}>
+                {props.options.labels.all ? props.options.labels.all : props.defaultLabels.all}
+            </Neos.Fusion.Form:Select.Option>
+            <Neos.Fusion.Form:Select.Option option.value={1} attributes.selected={Profolio.App.Array.get(filterValues, propertyName) == '1'}>
+                {props.options.labels.set ? props.options.labels.set : props.defaultLabels.set}
+            </Neos.Fusion.Form:Select.Option>
+            <Neos.Fusion.Form:Select.Option option.value={0} attributes.selected={Profolio.App.Array.get(filterValues, propertyName) == '0'}>
+                {props.options.labels.notSet ? props.options.labels.notSet : props.defaultLabels.notSet}
+            </Neos.Fusion.Form:Select.Option>
+        </Neos.Fusion.Form:Select>
+    `
+}

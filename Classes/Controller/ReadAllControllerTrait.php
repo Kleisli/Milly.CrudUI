@@ -25,6 +25,15 @@ trait ReadAllControllerTrait
                             }
                             $conditions[] = $query->logicalOr($textConditions);
                             break;
+                        case 'isSet':
+                            switch ($value) {
+                                case '0':
+                                    $conditions[] = $query->equals($property, null);
+                                    break;
+                                case '1':
+                                    $conditions[] = $query->logicalNot($query->equals($property, null));
+                            }
+                            break;
                         case 'select':
                         default:
                             if($value == '-'){
