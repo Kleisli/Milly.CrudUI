@@ -7,6 +7,6 @@ prototype(Milly.Crudforms:Component.PropertyEditor.Number) < prototype(Neos.Fusi
             type="number"
             name={field.getName()}
             value={field.getCurrentValue() != null ? field.getCurrentValue() : ''}
-            disabled={props.propertyConfig.readonly} />
+            disabled={props.propertyConfig.ui.readonly || props.propertyConfig.readonly} />
     `
 }

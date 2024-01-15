@@ -4,6 +4,10 @@ prototype(Milly.Crudforms:Component.PropertyEditor) < prototype(Neos.Fusion:Comp
     object = null
 
     renderer = Neos.Fusion:Case {
+        readonly {
+            condition = ${props.propertyConfig.ui.readonly}
+            renderer = Milly.Crudforms:Component.PropertyDisplayer
+        }
         customDisplayer {
             condition = ${propertyConfig.ui.editor}
             type = ${propertyConfig.ui.editor}
