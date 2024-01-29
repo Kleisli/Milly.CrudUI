@@ -30,6 +30,9 @@ prototype(Milly.Crudforms:Component.PropertyDisplayer) < prototype(Neos.Fusion:C
                 image = Milly.Crudforms:Component.PropertyDisplayer.Image {
                     resource = ${props.propertyValue}
                 }
+                audio = Milly.Crudforms:Component.PropertyDisplayer.Audio {
+                  resource = ${props.propertyValue}
+                }
                 email = Milly.Crudforms:Component.PropertyDisplayer.Email
                 jsonList = Milly.Crudforms:Component.PropertyDisplayer.JsonList
                 textarea = ${String.nl2br(props.propertyValue ? props.propertyValue : '')}

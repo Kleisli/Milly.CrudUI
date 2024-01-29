@@ -1,0 +1,14 @@
+prototype(Milly.Crudforms:Component.PropertyEditor.Audio) < prototype(Neos.Fusion:Component) {
+
+    @apply.props = ${props}
+
+    renderer = afx`
+        <Neos.Fusion:Fragment @if.isSet={object != null && Milly.Object.getProperty(object, propertyName)}>
+            <Milly.Crudforms:Component.PropertyDisplayer.Audio resource={Milly.Object.getProperty(object, propertyName)} /><br/>
+            <label for={"remove"+field.getName()}>
+                <input type="checkbox" name={field.getName()} value="" id={"remove"+field.getName()}/> Remove
+            </label>
+        </Neos.Fusion:Fragment>
+        <Neos.Fusion.Form:Upload />
+    `
+}

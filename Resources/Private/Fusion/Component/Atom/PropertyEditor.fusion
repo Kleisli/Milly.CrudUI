@@ -30,6 +30,7 @@ prototype(Milly.Crudforms:Component.PropertyEditor) < prototype(Neos.Fusion:Comp
                 dateTime = Milly.Crudforms:Component.PropertyEditor.DateTime
                 date = Milly.Crudforms:Component.PropertyEditor.Date
                 image = Milly.Crudforms:Component.PropertyEditor.Image
+                audio = Milly.Crudforms:Component.PropertyEditor.Audio
                 dateInterval = Milly.Crudforms:Component.PropertyEditor.DateInterval
                 jsonList = Milly.Crudforms:Component.PropertyEditor.JsonList
 
