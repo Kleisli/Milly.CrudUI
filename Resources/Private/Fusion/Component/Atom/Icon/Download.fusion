@@ -1,0 +1,3 @@
+prototype(Milly.CrudForms:Atom.Icon.Download) < prototype(Milly.CrudForms:Atom.Icon){
+    name = 'fa:download'
+}

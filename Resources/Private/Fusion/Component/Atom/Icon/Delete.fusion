@@ -1,0 +1,3 @@
+prototype(Milly.CrudForms:Atom.Icon.Delete) < prototype(Milly.CrudForms:Atom.Icon){
+    name = 'wpf:delete'
+}

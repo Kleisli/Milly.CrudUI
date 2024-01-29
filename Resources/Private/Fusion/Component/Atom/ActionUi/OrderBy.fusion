@@ -31,11 +31,22 @@ prototype(Milly.Crudforms:Component.ActionUi.OrderBy) < prototype(Neos.Fusion:Co
 
             iconActive = Neos.Fusion:Value {
                 @if.isActive = ${orderBy == props.orderBy}
-                value = afx`&nbsp;<i class={"fas fa-caret-"+(orderDirection=='ASC'?'down':'up')}></i>`
+
+                value = Neos.Fusion:Join {
+                    text = '&nbsp;'
+                    icon = Neos.Fusion:Match {
+                        @subject = ${orderDirection}
+                        @default = Milly.CrudForms:Atom.Icon.Sorting.SortUp
+                        ASC = Milly.Crudforms:Component.ActionUi.SortDown
+                    }
+                }
             }
             iconInactive = Neos.Fusion:Value {
                 @if.isActive = ${orderBy != props.orderBy}
-                value = afx`&nbsp;<i class={"fas fa-sort"}></i>`
+                value = Neos.Fusion:Join {
+                  text = '&nbsp;'
+                  icon = Milly.CrudForms:Atom.Icon.Sorting.Sort
+                }
             }
         }
     }

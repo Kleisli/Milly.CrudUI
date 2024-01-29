@@ -20,13 +20,13 @@ prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Componen
                                      href.action="index"
                                      href.arguments={Array.concat({paginationPageSize: paginationPageSize}, {paginationCurrentPage: 0}, {filter: filterValues}, {orderBy: orderBy}, {orderDirection: orderDirection})}>
 
-                <i class="fas fa-fast-backward"></i>
+                <Milly.CrudForms:Atom.Icon.Pagination.FastBackward />
             </Neos.Fusion:Link.Action>
             <Neos.Fusion:Link.Action disabled={props.currentPage == 0 || props.lastPage == 0}
                                      class="neos-button"
                                      href.action="index"
                                      href.arguments={Array.concat({paginationPageSize: paginationPageSize}, {paginationCurrentPage: props.currentPage - 1}, {filter: filterValues}, {orderBy: orderBy}, {orderDirection: orderDirection})}>
-                <i class="fas fa-backward"></i>
+              <Milly.CrudForms:Atom.Icon.Pagination.Backward />
             </Neos.Fusion:Link.Action>
             <div class="page-selector" style="display: inline-block">
                 <select class="filter" name="moduleArguments[paginationCurrentPage]" form={String.md5(crudFormsModelClass)+'-filter'} style="width:auto;"  disabled={props.lastPage == 0}>
@@ -39,13 +39,13 @@ prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Componen
                                      class="neos-button"
                                      href.action="index"
                                      href.arguments={Array.concat({paginationPageSize: paginationPageSize}, {paginationCurrentPage: props.currentPage + 1}, {filter: filterValues}, {orderBy: orderBy}, {orderDirection: orderDirection})}>
-                <i class="fas fa-forward"></i>
+                <Milly.CrudForms:Atom.Icon.Pagination.Forward />
             </Neos.Fusion:Link.Action>
             <Neos.Fusion:Link.Action disabled={props.currentPage == props.lastPage || props.lastPage == 0}
                                      class="neos-button"
                                      href.action="index"
                                      href.arguments={Array.concat({paginationPageSize: paginationPageSize}, {paginationCurrentPage: props.lastPage}, {filter: filterValues}, {orderBy: orderBy}, {orderDirection: orderDirection})}>
-                <i class="fas fa-fast-forward"></i>
+                <Milly.CrudForms:Atom.Icon.Pagination.FastForward />
             </Neos.Fusion:Link.Action>
         </div>
         {props.nulltest}

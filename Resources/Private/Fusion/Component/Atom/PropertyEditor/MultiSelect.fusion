@@ -16,14 +16,14 @@ prototype(Milly.Crudforms:Component.PropertyEditor.MultiSelect) < prototype(Neos
                                 <Neos.Fusion.Form:Checkbox field.name={"removeElements["+propertyName+"][]"}
                                                            field.value={Object.identifier(item)}
                                                            attributes.id={propertyName+Object.identifier(item)}/><span></span>
-                                <i class="fas fa-minus" title="Disconnect"></i> Disconnect
+                              <Milly.CrudForms:Atom.Icon.Relation.Disconnect /> Disconnect
                             </label>
                         </td>
                     </tr>
                 </Neos.Fusion:Loop>
             </table>
             <div>
-                <label><i class="fas fa-plus" title="Connect"></i> Connect</label>
+                <label><Milly.CrudForms:Atom.Icon.Relation.Connect /> Connect</label>
                 <Neos.Fusion.Form:Select field.name={"addElements["+propertyName+"][]"} attributes.style="width: 100%">
                     <Neos.Fusion.Form:Select.Option></Neos.Fusion.Form:Select.Option>
                     <Neos.Fusion:Loop items={Milly.CrudForms.getFieldOptions(props.propertyConfig.options, props.object)}>

@@ -1,0 +1,4 @@
+prototype(Milly.CrudForms:Atom.Icon) < prototype(NeosLoves.Iconify:Icon) {
+  width = '1rem'
+  inline = true
+}

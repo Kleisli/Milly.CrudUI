@@ -1,0 +1,3 @@
+prototype(Milly.CrudForms:Atom.Icon.New) < prototype(Milly.CrudForms:Atom.Icon){
+    name = 'fe:plus'
+}

@@ -1,0 +1,3 @@
+prototype(Milly.CrudForms:Atom.Icon.Save) < prototype(Milly.CrudForms:Atom.Icon){
+    name = 'la:save'
+}

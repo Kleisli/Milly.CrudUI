@@ -30,7 +30,7 @@ prototype(Milly.Crudforms:Component.IndexTableHeaderRow) < prototype(Neos.Fusion
             <th class="neos-action" style="vertical-align: top;">
                 <Neos.Fusion:Fragment @if={false}>
                     <span class={"neos-button neos-pull-right"+(filterValues?" neos-active":"")} id="toggle-filter">
-                        <i class={"fas fa-filter"}></i>
+                        <Milly.CrudForms:Atom.Icon.Filter />
                     </span>
                 </Neos.Fusion:Fragment>
             </th>

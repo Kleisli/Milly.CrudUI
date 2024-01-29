@@ -47,7 +47,10 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
                 orderBy = ${orderBy}
                 orderDirection = ${orderDirection}
             }
-            content = '<i class="fas fa-download"></i>&nbsp;&nbsp;CSV'
+            content = Neos.Fusion:Join {
+              icon = Milly.CrudForms:Atom.Icon.Download
+              text = '&nbsp;&nbsp;CSV'
+            }
         }
     }
 

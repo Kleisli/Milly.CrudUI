@@ -11,7 +11,7 @@ prototype(Milly.Crudforms:Component.ActionUi.Delete) < prototype(Neos.Fusion:Com
                                attributes.onsubmit="return confirm('Willst du wirklich löschen?');">
 
             <Neos.Fusion.Form:Button attributes.class="neos-button neos-button-danger">
-                <i class="fas fa-trash"></i>
+                <Milly.CrudForms:Atom.Icon.Delete />
                 <Neos.Fusion:Fragment @if={props.showLabel}>
                     &nbsp;Löschen
                 </Neos.Fusion:Fragment>

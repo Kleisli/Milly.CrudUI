@@ -5,6 +5,7 @@
     "require": {
         "neos/fusion-form": "*",
         "milly/tools": "@dev",
+        "neosloves/iconify": "@dev",
         "milly/sortable": "@dev"
     },
     "autoload": {

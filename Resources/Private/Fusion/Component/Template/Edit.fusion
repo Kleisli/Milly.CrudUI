@@ -33,7 +33,10 @@ prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
         saveButton = Neos.Fusion.Form:Button {
             attributes.class = "neos-button neos-button-primary"
             attributes.form = "edit"
-            content = '<i class="fas fa-save"></i>&nbsp;Save'
+            content = Neos.Fusion:Join {
+                icon = Milly.CrudForms:Atom.Icon.Save
+                text = '&nbsp;Save'
+            }
         }
     }
 

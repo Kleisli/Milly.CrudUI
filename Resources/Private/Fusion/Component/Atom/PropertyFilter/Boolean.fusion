@@ -1,3 +1,4 @@
+
 prototype(Milly.Crudforms:Component.PropertyFilter.Boolean) < prototype(Neos.Fusion:Component) {
     renderer = afx`
         <Neos.Fusion.Form:Select field.name={'filter['+propertyName+']'}>
