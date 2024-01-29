@@ -37,7 +37,7 @@ prototype(Milly.Crudforms:Component.ActionUi.OrderBy) < prototype(Neos.Fusion:Co
                     icon = Neos.Fusion:Match {
                         @subject = ${orderDirection}
                         @default = Milly.CrudForms:Atom.Icon.Sorting.SortUp
-                        ASC = Milly.Crudforms:Component.ActionUi.SortDown
+                        ASC = Milly.CrudForms:Atom.Icon.Sorting.SortDown
                     }
                 }
             }

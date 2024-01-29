@@ -1,3 +1,3 @@
 prototype(Milly.CrudForms:Atom.Icon.Sorting.SortDown) < prototype(Milly.CrudForms:Atom.Icon){
-  name = 'fa:sort-down'
+  name = 'fa-solid:sort-down'
 }
