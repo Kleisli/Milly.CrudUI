@@ -4,6 +4,7 @@ prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
         crudFormsModelClass = ${crudFormsModelClass}
         configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, 'edit')}
         crudFormsView = 'edit'
+        millyCssClassSet = ${this.millyCssClassSet ? this.millyCssClassSet : 'neos'}
     }
 
     header = Neos.Fusion:Join {
@@ -31,7 +32,9 @@ prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
 
     footer = Neos.Fusion:Join {
         saveButton = Neos.Fusion.Form:Button {
-            attributes.class = "neos-button neos-button-primary"
+            attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+                classPath = 'template.edit.saveButton.class'
+            }
             attributes.form = "edit"
             content = Neos.Fusion:Join {
                 icon = Milly.CrudForms:Atom.Icon.Save
@@ -41,27 +44,39 @@ prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
     }
 
     renderer = Neos.Fusion:Tag {
-        attributes.class = "neos-content neos-fluid-container neos-indented"
+        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+            classPath = 'layout.container.class'
+        }
         content = Neos.Fusion:Join {
             header = Neos.Fusion:Tag {
+                attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+                    classPath = 'layout.container.header.class'
+                }
                 content = ${props.header}
             }
             main = Neos.Fusion:Tag {
-                attributes.class = "neos-row-fluid"
+                attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+                    classPath = 'layout.container.main.class'
+                }
                 content = Neos.Fusion:Join {
                     first = Neos.Fusion:Tag {
-                        attributes.class = "neos-span6"
+                        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+                            classPath = 'layout.container.main.content.first.class'
+                        }
                         content = ${props.main.first}
                     }
                     second = Neos.Fusion:Tag {
-                        attributes.class = "neos-span6"
+                        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+                            classPath = 'layout.container.main.content.second.class'
+                        }
                         content = ${props.main.second}
-
                     }
                 }
             }
             footer = Neos.Fusion:Tag {
-                attributes.class = "neos-footer"
+                attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+                    classPath = 'layout.container.footer.class'
+                }
                 content = ${props.footer}
             }
         }

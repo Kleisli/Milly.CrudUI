@@ -33,5 +33,4 @@ prototype(Milly.Crudforms:Component.Relations) < prototype(Neos.Fusion:Component
 
     @process.debugDump = Neos.Fusion:DebugDump
 
-
 }

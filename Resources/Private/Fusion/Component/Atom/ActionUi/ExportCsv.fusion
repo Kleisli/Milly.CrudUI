@@ -1,0 +1,21 @@
+prototype(Milly.Crudforms:Component.ActionUi.ExportCsv) < prototype(Neos.Fusion:Component) {
+
+    renderer = Neos.Fusion:Link.Action {
+        href.action = "index"
+        href.format = 'csv'
+        href.arguments {
+            paginationPageSize = 0
+            paginationCurrentPage = 0
+            filter = ${filterValues}
+            orderBy = ${orderBy}
+            orderDirection = ${orderDirection}
+        }
+        class = Milly.Crudforms:Helper.CssClassRenderer {
+            classPath = 'atom.actionUi.exportCsv.link.class'
+        }
+        content = Neos.Fusion:Join {
+            icon = Milly.CrudForms:Atom.Icon.Download
+            text = '&nbsp;&nbsp;CSV'
+        }
+    }
+}

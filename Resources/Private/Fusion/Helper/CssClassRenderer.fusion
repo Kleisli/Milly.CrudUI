@@ -1,0 +1,14 @@
+prototype(Milly.Crudforms:Helper.CssClassRenderer) < prototype(Neos.Fusion:Component) {
+
+    classPath = ''
+
+    renderer = ${Configuration.setting('Milly.CrudForms.cssClassSets.' + millyCssClassSet + '.' + props.classPath)}
+
+    @cache {
+        mode = 'cached'
+        entryIdentifier {
+            path = ${'Milly.CrudForms.cssClassSets.' + millyCssClassSet + '.' + props.classPath}
+        }
+    }
+
+}

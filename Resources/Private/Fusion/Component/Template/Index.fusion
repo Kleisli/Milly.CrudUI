@@ -10,6 +10,7 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
         crudFormsModelClass = ${crudFormsModelClass}
         configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, 'index')}
         crudFormsView = 'index'
+        millyCssClassSet = ${this.millyCssClassSet ? this.millyCssClassSet : 'neos'}
     }
 
     style = 'wide'
@@ -36,41 +37,48 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
             showLabel = true
             modelClassName = ${crudFormsModelClass}
         }
-        export = Neos.Fusion:Link.Action {
-            class = "neos-button"
-            href.action = "index"
-            href.format = 'csv'
-            href.arguments {
-                paginationPageSize = 0
-                paginationCurrentPage = 0
-                filter = ${filterValues}
-                orderBy = ${orderBy}
-                orderDirection = ${orderDirection}
-            }
-            content = Neos.Fusion:Join {
-              icon = Milly.CrudForms:Atom.Icon.Download
-              text = '&nbsp;&nbsp;CSV'
-            }
-        }
+        export = Milly.Crudforms:Component.ActionUi.ExportCsv
     }
 
     renderer = Neos.Fusion:Tag {
-        attributes.class = "neos-content neos-fluid-container neos-indented"
+        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+            classPath = 'layout.container.class'
+        }
         content = Neos.Fusion:Join {
             header = Neos.Fusion:Tag {
+                attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+                    classPath = 'layout.container.header.class'
+                }
                 content = ${props.header}
             }
             main = Neos.Fusion:Tag {
-                attributes.class = "neos-row-fluid"
+                attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+                    classPath = 'layout.container.main.class'
+                }
                 content = Neos.Fusion:Join {
                     first = Neos.Fusion:Tag {
-                        attributes.class = ${props.style=='narrow' ? 'neos-span6' : 'neos-span12'}
+                        attributes.class = Neos.Fusion:Case {
+                            narrow {
+                                condition = ${props.style=='narrow'}
+                                renderer = Milly.Crudforms:Helper.CssClassRenderer {
+                                    classPath = 'template.index.main.content.first.narrowClass'
+                                }
+                            }
+                            wide {
+                                condition = ${props.style=='wide'}
+                                renderer = Milly.Crudforms:Helper.CssClassRenderer {
+                                    classPath = 'template.index.main.content.first.wideClass'
+                                }
+                            }
+                        }
                         content = ${props.main}
                     }
                 }
             }
             footer = Neos.Fusion:Tag {
-                attributes.class = "neos-footer"
+                attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+                    classPath = 'layout.container.footer.class'
+                }
                 content = ${props.footer}
             }
         }

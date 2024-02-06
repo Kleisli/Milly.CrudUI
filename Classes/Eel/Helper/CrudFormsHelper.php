@@ -8,6 +8,7 @@ use Milly\Flow\Persistence\Repository;
 use Neos\ContentRepository\Domain\Model\NodeInterface;
 use Neos\Eel\ProtectedContextAwareInterface;
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Configuration\ConfigurationManager;
 use Neos\Flow\Error\Exception;
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
@@ -30,6 +31,9 @@ class CrudFormsHelper implements ProtectedContextAwareInterface
 
     #[Flow\Inject]
     protected EntityManagerInterface $entityManager;
+
+    #[Flow\Inject]
+    protected ConfigurationManager $configurationManager;
 
     /**
      * @param object $model
@@ -139,6 +143,13 @@ class CrudFormsHelper implements ProtectedContextAwareInterface
             $objectValue = $this->persistenceManager->getIdentifierByObject($objectValue);
         }
         return $options[$objectValue] ?? null;
+    }
+
+    public function renderCssClassFromSet(string $classPath, string $millyCssClassSet): string
+    {
+        return $this->configurationManager->getConfiguration(
+            ConfigurationManager::CONFIGURATION_TYPE_SETTINGS,
+            'Milly.CrudForms.cssClassSets.' . $millyCssClassSet . '.' . $classPath);
     }
 
     /**

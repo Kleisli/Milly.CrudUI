@@ -1,0 +1,48 @@
+Milly:
+  CrudForms:
+    cssClassSets:
+      neos:
+        atom:
+          actionUi:
+            new:
+              link:
+                class: "neos-button neos-button-primary"
+            exportCsv:
+              link:
+                class: 'neos-button'
+        template:
+          index:
+            main:
+              content:
+                first:
+                  narrowClass: 'neos-span6'
+                  wideClass: 'neos-span12'
+            table:
+              class: "neos-table"
+          edit:
+            form:
+              class: "neos-control-group"
+            saveButton:
+              class: "neos-button neos-button-primary"
+          new:
+            form:
+              class: "neos-control-group"
+            createButton:
+              class: "neos-button neos-button-primary"
+          show:
+            table:
+              class: "neos-table show"
+        layout:
+          container:
+            class: "neos-content neos-fluid-container neos-indented"
+            header:
+              class: ""
+            main:
+              class: "neos-row-fluid"
+              content:
+                first:
+                  class: 'neos-span6'
+                second:
+                  class: 'neos-span6'
+            footer:
+              class: "neos-footer"

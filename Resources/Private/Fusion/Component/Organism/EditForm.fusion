@@ -1,9 +1,18 @@
 prototype(Milly.Crudforms:Component.EditForm) < prototype(Neos.Fusion:Component) {
 
-    renderer = afx`
-        <Neos.Fusion.Form:Form form.target.action="update" form.data.object={props.object} attributes.name="object" attributes.id="edit">
-            <div class="neos-control-group">
-                <Milly.Crudforms:Component.PropertyEditors object={props.object} properties={configuration.properties} />
-            </div>
-        </Neos.Fusion.Form:Form>`
+    renderer = Neos.Fusion.Form:Form {
+        form.target.action = "update"
+        form.data.object = ${props.object}
+        attributes.name = "object"
+        attributes.id = "edit"
+        content = Neos.Fusion:Tag {
+            attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+                classPath = 'template.edit.form.class'
+            }
+            content = Milly.Crudforms:Component.PropertyEditors {
+                object = ${props.object}
+                properties = ${configuration.properties}
+            }
+        }
+    }
 }

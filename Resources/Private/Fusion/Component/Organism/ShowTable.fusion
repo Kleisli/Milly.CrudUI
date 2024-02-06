@@ -2,9 +2,13 @@ prototype(Milly.Crudforms:Component.ShowTable) < prototype(Neos.Fusion:Component
 
     object = null
 
-    renderer = afx`
-        <table class="neos-table show">
-            <Milly.Crudforms:Component.PropertyDisplayers.ShowTableRows object={props.object} />
-        </table>
-    `
+    renderer = Neos.Fusion:Tag {
+        tagName = "table"
+        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+            classPath = 'template.show.table.class'
+        }
+        content = Milly.Crudforms:Component.PropertyDisplayers.ShowTableRows {
+            object = ${props.object}
+        }
+    }
 }

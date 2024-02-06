@@ -3,14 +3,30 @@ prototype(Milly.Crudforms:Component.NewForm) < prototype(Neos.Fusion:Component) 
     preset = Neos.Fusion:DataStructure
     parent = null
 
-    renderer = afx`
-        <Neos.Fusion.Form:Form form.target.action="create" attributes.id="new">
-            <div class="neos-control-group">
-                <Neos.Fusion:Loop items={props.preset}>
-                    <Neos.Fusion.Form:Hidden field.name={"object["+itemKey+"]"} attributes.value={item}/>
-                </Neos.Fusion:Loop>
-                <Neos.Fusion.Form:Hidden @if.hasParent={props.parent} field.name="object[parent]" attributes.value={props.parent}/>
-                <Milly.Crudforms:Component.PropertyEditors properties={configuration.properties} />
-            </div>
-        </Neos.Fusion.Form:Form>`
+    renderer = Neos.Fusion.Form:Form {
+        form.target.action = "create"
+        attributes.id = "new"
+        content = Neos.Fusion:Tag {
+            attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+                classPath = 'template.new.form.class'
+            }
+            content = Neos.Fusion:Join {
+                presetFields = Neos.Fusion:Loop {
+                    items = ${props.preset}
+                    itemRenderer = Neos.Fusion.Form:Hidden {
+                        field.name = ${"object["+itemKey+"]"}
+                        attributes.value = ${item}
+                    }
+                }
+                parentField = Neos.Fusion.Form:Hidden {
+                    @if.hasParent = ${props.parent}
+                    field.name = "object[parent]"
+                    attributes.value = ${props.parent}
+                }
+                editors = Milly.Crudforms:Component.PropertyEditors {
+                    properties = ${configuration.properties}
+                }
+            }
+        }
+    }
 }

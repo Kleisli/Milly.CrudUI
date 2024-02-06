@@ -5,54 +5,91 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
     filterValues = ${[]}
     readonly = false
 
+    renderer = Neos.Fusion:Tag {
+        tagName = "table"
+        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+            classPath = 'template.index.table.class'
+        }
+        content = Neos.Fusion:Join {
+            thead = Neos.Fusion:Tag {
+                tagName = "thead"
+                content = Neos.Fusion:Join {
+                    headerText = afx`
+                        <tr @if={props.header}>
+                          <th colspan="100%">
+                            {props.header}
+                          </th>
+                        </tr>
+                    `
+                    indexTableHeaderRow = Milly.Crudforms:Component.IndexTableHeaderRow {
+                        @context.configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, props.view)}
+                        @if.showColumnHeaders = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+props.view+'.showColumnHeaders', props.view)}
+                    }
+                }
+            }
+            tbody = Neos.Fusion:Tag {
+                tagName = "tbody"
+                content = Neos.Fusion:Loop {
+                    items = ${props.objects}
+                    itemName = "object"
+                    itemRenderer = Neos.Fusion:Tag {
+                        tagName = 'tr'
+                        content = Neos.Fusion:Join {
+                            actionUiShow = Milly.Crudforms:Component.ActionUi.Show {
+                                object = ${object}
+                                showClassLabel = false
+                                @process.wrap = ${'<td>' + value + '</td>'}
+                            }
+                            indexTableCells = Milly.Crudforms:Component.PropertyDisplayers.IndexTableCells {
+                                properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', props.view)}
+                                object = ${object}
+                            }
+                            actionUiActions = Neos.Fusion:Join {
+                                @if.notReadOnly = ${!props.readonly}
+                                sorting = Milly.Crudforms:Component.Sorting {
+                                    object = ${object}
+                                }
+                                edit = Milly.Crudforms:Component.ActionUi.Edit {
+                                    object = ${object}
+                                }
+                                delete = Milly.Crudforms:Component.ActionUi.Delete {
+                                    object = ${object}
+                                }
+                                @process.wrap = Neos.Fusion:Tag {
+                                    tagName = 'td'
+                                    attributes.class = "neos-action"
+                                    content = Neos.Fusion:Tag {
+                                        attributes.class = "neos-pull-right"
+                                        content = ${value}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            tfoot = Neos.Fusion:Tag {
+                @ifNotDisabled = ${!props.disablePagination}
+                tagName = "tfoot"
+                content = Milly.Crudforms:Component.Pagination {
+                    currentPage = ${pagination.currentPage}
+                    pageSize = ${pagination.pageSize}
+                    lastPage = ${pagination.lastPage}
+                    filterValues = ${props.filterValues}
+                    @process.wrap = Neos.Fusion:Tag {
+                        tagName = 'tr'
+                        content = Neos.Fusion:Tag {
+                            tagName = 'th'
+                            attributes.class = "neos-action"
+                            attributes.colspan = "100%"
+                            content = ${value}
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-    renderer = afx`
-        <table class="neos-table">
-            <thead>
-                <tr @if={props.header}>
-                    <th colspan="100%">
-                        {props.header}
-                    </th>
-                </tr>
-
-                <Milly.Crudforms:Component.IndexTableHeaderRow
-                    @context.configuration={Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, props.view)}
-                    @if={Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+props.view+'.showColumnHeaders', props.view)} />
-            </thead>
-            <tbody>
-                <Neos.Fusion:Loop items={props.objects} itemName="object">
-                    <tr>
-                        <td>
-                            <Milly.Crudforms:Component.ActionUi.Show object={object} showClassLabel={false}/>
-                        </td>
-
-                        <Milly.Crudforms:Component.PropertyDisplayers.IndexTableCells
-                            properties={Milly.CrudForms.getConfigurationByModel(object, 'properties', props.view)}
-                            object={object}
-                        />
-
-                        <td class="neos-action">
-                            <div class="neos-pull-right" @if={!props.readonly}>
-                                <Milly.Crudforms:Component.Sorting object={object}/>
-                                <Milly.Crudforms:Component.ActionUi.Edit object={object}/>
-                                <Milly.Crudforms:Component.ActionUi.Delete object={object}/>
-                            </div>
-                        </td>
-                    </tr>
-                </Neos.Fusion:Loop>
-            </tbody>
-            <tfoot @if={!props.disablePagination}>
-                <tr>
-                    <th colspan="100%" class="neos-action">
-                        <Milly.Crudforms:Component.Pagination currentPage={pagination.currentPage}
-                                                              pageSize={pagination.pageSize}
-                                                              lastPage={pagination.lastPage}
-                                                              filterValues={props.filterValues} />
-                    </th>
-                </tr>
-            </tfoot>
-        </table>
-        `
     renderer.@process.prependJs = Neos.Fusion:Join {
         value = ${value}
         js = "<script>
