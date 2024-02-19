@@ -1,0 +1,5 @@
+prototype(Milly.Crudforms:Webpage.Show) < prototype(Milly.CrudForms:Document.Html) {
+    body.content = Milly.Crudforms:Template.Show {
+        object = ${object}
+    }
+}

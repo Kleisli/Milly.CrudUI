@@ -1,15 +1,35 @@
 Milly:
   CrudForms:
-    cssClassSets:
+    themes:
       neos:
         atom:
           actionUi:
             new:
               link:
                 class: "neos-button neos-button-primary"
+            edit:
+              link:
+                class: "neos-button neos-button-primary"
             exportCsv:
               link:
                 class: 'neos-button'
+            sorting:
+              button:
+                class: "neos-button neos-button-primary"
+            delete:
+              button:
+                class: "neos-button neos-button-danger"
+        propertyEditor:
+          textfield:
+            class: "neos-span12"
+          textarea:
+            class: "neos-span12"
+          number:
+            class: 'neos-span3'
+        molecule:
+          pagination:
+            link:
+              class: 'neos-button'
         template:
           index:
             main:

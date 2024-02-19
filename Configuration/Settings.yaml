@@ -1,3 +1,7 @@
+Milly:
+  CrudForms:
+    defaultTheme: 'neos'
+
 Neos:
   Neos:
     fusion:

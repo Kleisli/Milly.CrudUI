@@ -145,11 +145,11 @@ class CrudFormsHelper implements ProtectedContextAwareInterface
         return $options[$objectValue] ?? null;
     }
 
-    public function renderCssClassFromSet(string $classPath, string $millyCssClassSet): string
+    public function renderCssClassFromSet(string $classPath, string $theme): string
     {
         return $this->configurationManager->getConfiguration(
             ConfigurationManager::CONFIGURATION_TYPE_SETTINGS,
-            'Milly.CrudForms.cssClassSets.' . $millyCssClassSet . '.' . $classPath);
+            'Milly.CrudForms.themes.' . $theme . '.' . $classPath);
     }
 
     /**

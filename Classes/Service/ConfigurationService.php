@@ -41,7 +41,7 @@ class ConfigurationService
 
         $configuration = $this->configurationManager->getConfiguration(
             ConfigurationManager::CONFIGURATION_TYPE_SETTINGS,
-            implode('.', ['Milly.CrudForms', ClassMappingService::getPackageName($className), ClassMappingService::getModelName($className)])
+            implode('.', ['Milly.CrudForms', str_replace("Domain.Model.", "", str_replace("\\", ".", $className))])
         );
 
         if(isset($configuration['views'][$view]['properties'])){

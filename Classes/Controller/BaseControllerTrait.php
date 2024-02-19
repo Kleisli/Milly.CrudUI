@@ -5,22 +5,18 @@ use Milly\CrudForms\Service\ConfigurationService;
 use Milly\CrudForms\Service\ObjectService;
 use Milly\Tools\Service\ClassMappingService;
 use Milly\Tools\Service\ReflectionService;
-use Neos\Flow\Configuration\ConfigurationManager;
 use Neos\Flow\Exception;
+use Neos\Flow\Mvc\View\ViewInterface;
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
-use Neos\Flow\Persistence\PersistenceManagerInterface;
 use Neos\Flow\Persistence\RepositoryInterface;
-use Neos\FluidAdaptor\View\TemplateView;
-use Neos\Fusion\View\FusionView;
 use Neos\Utility\ObjectAccess;
-use Sandstorm\CrudForms\Exception\MissingModelTypeException;
-use Sandstorm\CrudForms\View\ExtendedTemplateView;
 use Neos\Flow\Annotations as Flow;
 
 trait BaseControllerTrait
 {
 
-    //const ENTITY_CLASSNAME;
+    //const ENTITY_CLASSNAME = MyClass::class;
+    //protected string $theme = 'tailwind';
 
     /**
      * @Flow\Inject
@@ -32,7 +28,7 @@ trait BaseControllerTrait
     protected ReflectionService $millyReflectionService;
 
     #[Flow\Inject]
-    protected \Milly\Tools\Service\ClassMappingService $classMappingService;
+    protected ClassMappingService $classMappingService;
 
     #[Flow\Inject]
     protected ConfigurationService $configurationService;
@@ -40,6 +36,22 @@ trait BaseControllerTrait
     #[Flow\Inject]
     protected ObjectService $objectService;
 
+
+    protected function initializeAction()
+    {
+
+    }
+    /**
+     * Initialize the view
+     *
+     * @param  ViewInterface $view
+     * @return void
+     */
+    public function initializeView(ViewInterface $view)
+    {
+        $view->assign('millyCrudTheme', $this->theme ?? null);
+        parent::initializeView($view);
+    }
 
     /**
      * @return void
@@ -110,10 +122,11 @@ trait BaseControllerTrait
     public function redirectToParent($object){
         $config = $this->getCrudFormsConfiguration();
         $parentClass = $this->millyReflectionService->getTypeOfProperty($this->getModelClass(), $config['parent']);
+        $controllerClass = $this->classMappingService->getControllerClassByModel($parentClass);
         $this->redirect(
             'show',
             ClassMappingService::getControllerName($this->classMappingService->getControllerClassByModel($parentClass)),
-            ClassMappingService::getPackageName($parentClass),
+            ClassMappingService::getPackageName($controllerClass),
             ['object' => ObjectAccess::getProperty($object, $config['parent'])]
         );
     }
@@ -124,10 +137,11 @@ trait BaseControllerTrait
      * @throws \Neos\Flow\Mvc\Exception\StopActionException
      */
     public function showObject($object){
+        $controllerClass = $this->classMappingService->getControllerClassByModel($object);
         $this->redirect(
             'show',
             ClassMappingService::getControllerName($this->classMappingService->getControllerClassByModel($object::class)),
-            ClassMappingService::getPackageName($object::class),
+            ClassMappingService::getPackageName($controllerClass),
             ['object' => $object]
         );
     }

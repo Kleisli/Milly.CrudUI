@@ -10,7 +10,7 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
         crudFormsModelClass = ${crudFormsModelClass}
         configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, 'index')}
         crudFormsView = 'index'
-        millyCssClassSet = ${this.millyCssClassSet ? this.millyCssClassSet : 'neos'}
+        millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudForms.defaultTheme'))}
     }
 
     style = 'wide'
@@ -24,6 +24,9 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
     }
 
     main = Neos.Fusion:Join {
+        filterForm = afx`
+            <Neos.Fusion.Form:Form form.target.action="index" attributes.class={'filter'} attributes.id={String.md5(crudFormsModelClass)+'-filter'}/>
+        `
         indexTable = Milly.Crudforms:Component.IndexTable {
             objects = ${objects}
             disablePagination = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.index.options.pagination.disable')}

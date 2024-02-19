@@ -4,7 +4,7 @@ prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
         crudFormsModelClass = ${crudFormsModelClass}
         configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, 'edit')}
         crudFormsView = 'edit'
-        millyCssClassSet = ${this.millyCssClassSet ? this.millyCssClassSet : 'neos'}
+        millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudForms.defaultTheme'))}
     }
 
     header = Neos.Fusion:Join {

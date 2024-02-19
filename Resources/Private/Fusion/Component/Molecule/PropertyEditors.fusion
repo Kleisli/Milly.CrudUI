@@ -11,7 +11,18 @@ prototype(Milly.Crudforms:Component.PropertyEditors) < prototype(Neos.Fusion:Com
 
         itemRenderer = Milly.Crudforms:Helper.PropertyEditorContainer {
             type = ${propertyConfig.type}
-            field.name = ${'object['+ (propertyConfig.propertyPath ? String.replace(propertyConfig.propertyPath, '.', '][') : propertyName) +']'}
+            field.name = Neos.Fusion:Case {
+                custom {
+                    condition = ${propertyConfig.fieldName}
+                    renderer = ${propertyConfig.fieldName}
+                }
+                default {
+                    condition = true
+                    renderer = ${'object['+ (propertyConfig.propertyPath ? String.replace(propertyConfig.propertyPath, '.', '][') : propertyName) +']'}
+                }
+            }
+            field.value = ${Milly.Object.getProperty(object, propertyConfig.propertyPath ? propertyConfig.propertyPath : propertyConfig._propertyName)}
+
             field.multiple = ${propertyConfig.type == 'multiSelect'}
             label = Milly.Crudforms:Component.Label.PropertyLabel {
                 propertyName = ${propertyName}

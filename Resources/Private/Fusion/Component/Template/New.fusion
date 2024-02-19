@@ -4,11 +4,10 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
         crudFormsModelClass = ${crudFormsModelClass}
         configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, 'new')}
         crudFormsView = 'new'
-        millyCssClassSet = ${this.millyCssClassSet ? this.millyCssClassSet : 'neos'}
+        millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudForms.defaultTheme'))}
     }
 
     preset = Neos.Fusion:DataStructure
-
     header = Neos.Fusion:Join {
         title = Neos.Fusion:Tag {
             tagName = 'legend'
@@ -65,6 +64,8 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
                         content = Neos.Fusion:Join {
                             newForm = Milly.Crudforms:Component.NewForm {
                                 properties = ${configuration.properties}
+                                parent = ${Milly.Object.identifier(parent)}
+                                parent.@if.hasParent = ${parent}
                                 preset = ${props.preset}
                             }
                         }

@@ -18,11 +18,13 @@ prototype(Milly.Crudforms:Component.PropertyEditor) < prototype(Neos.Fusion:Comp
             renderer = Neos.Fusion:Match {
                 @subject = ${props.propertyConfig.type}
 
-                textarea = Neos.Fusion.Form:Textarea
-                number = Milly.Crudforms:Component.PropertyEditor.Number
-                email = Neos.Fusion.Form:Textfield {
-                    attributes.type = "email"
+                textarea = Neos.Fusion.Form:Textarea {
+                    attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+                        classPath = 'propertyEditor.textarea.class'
+                    }
                 }
+                number = Milly.Crudforms:Component.PropertyEditor.Number
+                email = Milly.Crudforms:Component.PropertyEditor.Email
                 select = Milly.Crudforms:Component.PropertyEditor.Select
                 multiSelect = Milly.Crudforms:Component.PropertyEditor.MultiSelect
                 booleanRadio = Milly.Crudforms:Component.PropertyEditor.BooleanRadio
@@ -35,7 +37,12 @@ prototype(Milly.Crudforms:Component.PropertyEditor) < prototype(Neos.Fusion:Comp
                 jsonList = Milly.Crudforms:Component.PropertyEditor.JsonList
 
                 @default = Neos.Fusion.Form:Textfield {
-                    attributes.disabled = ${props.propertyConfig.readonly ? true : false}
+                    attributes {
+                        disabled = ${props.propertyConfig.readonly ? true : false}
+                        class = Milly.Crudforms:Helper.CssClassRenderer {
+                            classPath = 'propertyEditor.textfield.class'
+                        }
+                    }
                 }
             }
         }

@@ -5,49 +5,112 @@ prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Componen
     lastPage = 0
     filterValues = ${filterValues}
 
-    renderer = afx`
-        <div class="pagination neos-pull-right" style="display: inline-block;">
-            <div class="page-selector" style="display: inline-block; margin-right: 1rem;">
-                <select class="filter" name="moduleArguments[paginationPageSize]" form={String.md5(crudFormsModelClass)+'-filter'} style="width:auto;">
-                    <Neos.Fusion:Loop items={[10, 20, 50, 100]}>
+    renderer = Neos.Fusion:Join {
+        paginationPageSizeSelector = Neos.Fusion:Tag {
+            attributes.class="page-selector"
+            attributes.style="display: inline-block; margin-right: 1rem;"
+
+            content = Neos.Fusion:Tag {
+                tagName = 'select'
+                attributes {
+                    class = 'filter'
+                    style = "width:auto;"
+                    form = ${String.md5(crudFormsModelClass)+'-filter'}
+                    name = 'paginationPageSize'
+                    name.@process.addArgumentNamespace = ${request.argumentNamespace + '[' + value + ']'}
+                    name.@process.addArgumentNamespace.@if.isSet = ${request.argumentNamespace != ''}
+                }
+                content = Neos.Fusion:Loop {
+                    items = ${[2, 10, 20, 50, 100]}
+                    itemRenderer = afx`
                         <option value={item} selected={paginationPageSize == item}>{item} pro Seite</option>
-                    </Neos.Fusion:Loop>
-                </select>
-            </div>
+                    `
+                }
+            }
+        }
+        fastBackward = Neos.Fusion:Link.Action {
+            disabled = ${props.currentPage == 0 || props.lastPage == 0}
+            class = Milly.Crudforms:Helper.CssClassRenderer {
+                classPath = 'molecule.pagination.link.class'
+            }
+            href.action = "index"
+            href.arguments {
+                paginationPageSize = ${paginationPageSize}
+                paginationCurrentPage = 0
+                filter = ${filterValues}
+                orderBy = ${orderBy}
+                orderDirection = ${orderDirection}
+            }
+            content = Milly.CrudForms:Atom.Icon.Pagination.FastBackward
+        }
+        backward = Neos.Fusion:Link.Action {
+            disabled = ${props.currentPage == 0 || props.lastPage == 0}
+            class = Milly.Crudforms:Helper.CssClassRenderer {
+                classPath = 'molecule.pagination.link.class'
+            }
+            href.action = "index"
+            href.arguments {
+                paginationPageSize = ${paginationPageSize}
+                paginationCurrentPage = ${props.currentPage - 1}
+                filter = ${filterValues}
+                orderBy = ${orderBy}
+                orderDirection = ${orderDirection}
+            }
+            content = Milly.CrudForms:Atom.Icon.Pagination.Backward
+        }
+        paginationCurrentPageSelector = Neos.Fusion:Tag {
+            attributes.class="page-selector"
+            attributes.style="display: inline-block;"
 
-            <Neos.Fusion:Link.Action disabled={props.currentPage == 0 || props.lastPage == 0}
-                                     class="neos-button"
-                                     href.action="index"
-                                     href.arguments={Array.concat({paginationPageSize: paginationPageSize}, {paginationCurrentPage: 0}, {filter: filterValues}, {orderBy: orderBy}, {orderDirection: orderDirection})}>
-
-                <Milly.CrudForms:Atom.Icon.Pagination.FastBackward />
-            </Neos.Fusion:Link.Action>
-            <Neos.Fusion:Link.Action disabled={props.currentPage == 0 || props.lastPage == 0}
-                                     class="neos-button"
-                                     href.action="index"
-                                     href.arguments={Array.concat({paginationPageSize: paginationPageSize}, {paginationCurrentPage: props.currentPage - 1}, {filter: filterValues}, {orderBy: orderBy}, {orderDirection: orderDirection})}>
-              <Milly.CrudForms:Atom.Icon.Pagination.Backward />
-            </Neos.Fusion:Link.Action>
-            <div class="page-selector" style="display: inline-block">
-                <select class="filter" name="moduleArguments[paginationCurrentPage]" form={String.md5(crudFormsModelClass)+'-filter'} style="width:auto;"  disabled={props.lastPage == 0}>
-                    <Neos.Fusion:Loop items={Array.range(0, props.lastPage)}>
+            content = Neos.Fusion:Tag {
+                tagName = 'select'
+                attributes {
+                    class = 'filter'
+                    style = "width:auto;"
+                    form = ${String.md5(crudFormsModelClass)+'-filter'}
+                    disabled = ${props.lastPage == 0}
+                    name = 'paginationCurrentPage'
+                    name.@process.addArgumentNamespace = ${request.argumentNamespace + '[' + value + ']'}
+                    name.@process.addArgumentNamespace.@if.isSet = ${request.argumentNamespace != ''}
+                }
+                content = Neos.Fusion:Loop {
+                    items = ${Array.range(0, props.lastPage)}
+                    itemRenderer = afx`
                         <option value={item} selected={props.currentPage == item}>{item+1}</option>
-                    </Neos.Fusion:Loop>
-                </select>
-            </div>
-            <Neos.Fusion:Link.Action disabled={props.currentPage == props.lastPage || props.lastPage == 0}
-                                     class="neos-button"
-                                     href.action="index"
-                                     href.arguments={Array.concat({paginationPageSize: paginationPageSize}, {paginationCurrentPage: props.currentPage + 1}, {filter: filterValues}, {orderBy: orderBy}, {orderDirection: orderDirection})}>
-                <Milly.CrudForms:Atom.Icon.Pagination.Forward />
-            </Neos.Fusion:Link.Action>
-            <Neos.Fusion:Link.Action disabled={props.currentPage == props.lastPage || props.lastPage == 0}
-                                     class="neos-button"
-                                     href.action="index"
-                                     href.arguments={Array.concat({paginationPageSize: paginationPageSize}, {paginationCurrentPage: props.lastPage}, {filter: filterValues}, {orderBy: orderBy}, {orderDirection: orderDirection})}>
-                <Milly.CrudForms:Atom.Icon.Pagination.FastForward />
-            </Neos.Fusion:Link.Action>
-        </div>
-        {props.nulltest}
-    `
+                    `
+                }
+            }
+        }
+        forward = Neos.Fusion:Link.Action {
+            disabled = ${props.currentPage == props.lastPage || props.lastPage == 0}
+            class = Milly.Crudforms:Helper.CssClassRenderer {
+                classPath = 'molecule.pagination.link.class'
+            }
+            href.action = "index"
+            href.arguments {
+                paginationPageSize = ${paginationPageSize}
+                paginationCurrentPage = ${props.currentPage + 1}
+                filter = ${filterValues}
+                orderBy = ${orderBy}
+                orderDirection = ${orderDirection}
+            }
+            content = Milly.CrudForms:Atom.Icon.Pagination.Forward
+        }
+        fastForward = Neos.Fusion:Link.Action {
+            disabled = ${props.currentPage == props.lastPage || props.lastPage == 0}
+            class = Milly.Crudforms:Helper.CssClassRenderer {
+                classPath = 'molecule.pagination.link.class'
+            }
+            href.action = "index"
+            href.arguments {
+                paginationPageSize = ${paginationPageSize}
+                paginationCurrentPage = ${props.lastPage}
+                filter = ${filterValues}
+                orderBy = ${orderBy}
+                orderDirection = ${orderDirection}
+            }
+            content = Milly.CrudForms:Atom.Icon.Pagination.FastForward
+        }
+    }
+    renderer.@process.wrap = ${'<div class="pagination neos-pull-right" style="display: inline-block;">' + value + '</div>'}
 }

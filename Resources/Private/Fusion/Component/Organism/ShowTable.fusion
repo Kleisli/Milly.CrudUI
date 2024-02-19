@@ -7,8 +7,10 @@ prototype(Milly.Crudforms:Component.ShowTable) < prototype(Neos.Fusion:Component
         attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
             classPath = 'template.show.table.class'
         }
-        content = Milly.Crudforms:Component.PropertyDisplayers.ShowTableRows {
+        content = Milly.Crudforms:Component.PropertyDisplayers {
             object = ${props.object}
+            propertyValueContainerType = 'tablerow'
+            properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', 'show')}
         }
     }
 }

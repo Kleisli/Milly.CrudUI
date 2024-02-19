@@ -4,6 +4,7 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
     view = 'index'
     filterValues = ${[]}
     readonly = false
+    disablePagination = true
 
     renderer = Neos.Fusion:Tag {
         tagName = "table"
@@ -40,7 +41,8 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                                 showClassLabel = false
                                 @process.wrap = ${'<td>' + value + '</td>'}
                             }
-                            indexTableCells = Milly.Crudforms:Component.PropertyDisplayers.IndexTableCells {
+                            indexTableCells = Milly.Crudforms:Component.PropertyDisplayers {
+                                propertyValueContainerType = 'tablecell'
                                 properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', props.view)}
                                 object = ${object}
                             }
@@ -69,7 +71,7 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                 }
             }
             tfoot = Neos.Fusion:Tag {
-                @ifNotDisabled = ${!props.disablePagination}
+                @if.notDisabled = ${!props.disablePagination}
                 tagName = "tfoot"
                 content = Milly.Crudforms:Component.Pagination {
                     currentPage = ${pagination.currentPage}

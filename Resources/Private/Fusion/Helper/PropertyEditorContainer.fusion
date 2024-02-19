@@ -52,9 +52,7 @@ prototype(Milly.Crudforms:Helper.PropertyEditorContainer)  < prototype(Neos.Fusi
             condition = true
             renderer = afx`
                 <Neos.Fusion.Form:Neos.BackendModule.FieldContainer label={props.label} attributes={props.attributes} translation={props.translation}>
-                    <Milly.Crudforms:Helper.FieldAttributeAugmenter type={props.type} field={props.field}>
-                        {props.content}
-                    </Milly.Crudforms:Helper.FieldAttributeAugmenter>
+                    {props.content}
                 </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
             `
 

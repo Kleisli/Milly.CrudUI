@@ -2,11 +2,16 @@ prototype(Milly.Crudforms:Component.PropertyEditor.Number) < prototype(Neos.Fusi
 
     @apply.props = ${props}
 
-    renderer = afx`
-        <input
+    renderer = Neos.Fusion:Tag {
+        tagName = 'input'
+        attributes {
             type="number"
-            name={field.getName()}
-            value={field.getCurrentValue() != null ? field.getCurrentValue() : ''}
-            disabled={props.propertyConfig.ui.readonly || props.propertyConfig.readonly} />
-    `
+            name = ${field.getName()}
+            value = ${field.getCurrentValue() != null ? field.getCurrentValue() : ''}
+            disabled = ${props.propertyConfig.ui.readonly || props.propertyConfig.readonly}
+            class = Milly.Crudforms:Helper.CssClassRenderer {
+                classPath = 'propertyEditor.number.class'
+            }
+        }
+    }
 }

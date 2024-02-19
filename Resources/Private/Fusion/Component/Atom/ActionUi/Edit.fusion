@@ -3,15 +3,18 @@ prototype(Milly.Crudforms:Component.ActionUi.Edit) < prototype(Neos.Fusion:Compo
     object = ''
     @if.condition = ${!isUpdateDisabled}
 
-    renderer = afx`
-        <Neos.Fusion:Link.Action href.action="edit"
-                                 href.package={Milly.Object.getPackageByObject(props.object)}
-                                 href.controller={Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.object))}
-                                 href.arguments={{object: props.object}}
-                                 class="neos-button neos-button-primary">
-            <Milly.CrudForms:Atom.Icon.Edit />
-            <Neos.Fusion:Fragment @if={props.showLabel}>
-                &nbsp;Bearbeiten
-            </Neos.Fusion:Fragment>
-        </Neos.Fusion:Link.Action>`
+    renderer = Neos.Fusion:Link.Action {
+        href.action = "edit"
+        href.package = ${Milly.Mapping.getPackageNameByModel(props.object)}
+        href.controller = ${Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.object))}
+        href.arguments = ${{object: props.object}}
+        class = Milly.Crudforms:Helper.CssClassRenderer {
+            classPath = 'atom.actionUi.edit.link.class'
+        }
+        content = Neos.Fusion:Join {
+            icon = Milly.CrudForms:Atom.Icon.Edit
+            label = "Bearbeiten"
+            label.@if.show = ${props.showLabel}
+        }
+    }
 }

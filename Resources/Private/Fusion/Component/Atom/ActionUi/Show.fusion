@@ -4,13 +4,22 @@ prototype(Milly.Crudforms:Component.ActionUi.Show) < prototype(Neos.Fusion:Compo
     showClassLabel = "one"
     attributes = Neos.Fusion:DataStructure
 
-    renderer = afx`
-        <Neos.Fusion:Link.Action @if={props.object}
-                                 @apply.attributes={props.attributes}
-                                 href.action="show"
-                                 href.package={Milly.Object.getPackageByObject(props.object)}
-                                 href.controller={Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.object))}
-                                 href.arguments={{object: props.object}}>
-            <Milly.Crudforms:Component.Label.ObjectLabel object={props.object} showClassLabel={props.showClassLabel} />
-        </Neos.Fusion:Link.Action>`
+    renderer = Neos.Fusion:Link.Action {
+        @if.hasObject = ${props.object}
+        @apply.attributes = ${props.attributes}
+        href.action = "show"
+        href.package = ${Milly.Mapping.getPackageNameByModel(props.object)}
+        href.controller = ${Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.object))}
+        href.arguments = ${{object: props.object}}
+        class = Milly.Crudforms:Helper.CssClassRenderer {
+            classPath = 'atom.actionUi.show.link.class'
+        }
+        content = Neos.Fusion:Join {
+            // icon = Milly.CrudForms:Atom.Icon.Show
+            label = Milly.Crudforms:Component.Label.ObjectLabel {
+                object = ${props.object}
+                showClassLabel = ${props.showClassLabel}
+            }
+        }
+    }
 }

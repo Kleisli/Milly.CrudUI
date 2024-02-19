@@ -1,6 +1,0 @@
-prototype(Milly.Crudforms:Component.PropertyDisplayers.ShowTableRows) < prototype(Milly.Crudforms:Component.PropertyDisplayers) {
-
-    propertyValueContainerType = 'tablerow'
-    properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', 'show')}
-
-}

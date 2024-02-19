@@ -1,0 +1,3 @@
+prototype(Milly.Crudforms:Webpage.New) < prototype(Milly.CrudForms:Document.Html) {
+    body.content = Milly.Crudforms:Template.New
+}

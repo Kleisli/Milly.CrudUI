@@ -19,8 +19,8 @@ prototype(Milly.Crudforms:Component.NewForm) < prototype(Neos.Fusion:Component) 
                     }
                 }
                 parentField = Neos.Fusion.Form:Hidden {
-                    @if.hasParent = ${props.parent}
-                    field.name = "object[parent]"
+                    @if.hasParent = ${configuration.parent && props.parent}
+                    field.name = ${"object["+ configuration.parent +"]"}
                     attributes.value = ${props.parent}
                 }
                 editors = Milly.Crudforms:Component.PropertyEditors {

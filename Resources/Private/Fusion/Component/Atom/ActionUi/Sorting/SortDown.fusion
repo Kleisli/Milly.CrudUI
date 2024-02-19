@@ -3,18 +3,23 @@ prototype(Milly.Crudforms:Component.ActionUi.SortDown) < prototype(Neos.Fusion:C
     object = ''
     @if.hasSorting = ${object.sorting}
 
-    renderer = afx`
-        <Neos.Fusion.Form:Form @if.notLast={!props.object.isLast}
-                               form.target.action="sortDown"
-                               form.target.package={Milly.Object.getPackageByObject(props.object)}
-                               form.target.controller={Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.object))}
-                               form.target.arguments={{object: props.object}}>
-            <Neos.Fusion.Form:Button attributes.class="neos-button neos-button-primary">
-                <Milly.CrudForms:Atom.Icon.Sorting.SortDown />
-            </Neos.Fusion.Form:Button>
-        </Neos.Fusion.Form:Form>
+    renderer = Neos.Fusion.Form:Form {
+        @if.notLast = ${!props.object.isLast}
+        form.target {
+            action = "sortDown"
+            package = ${Milly.Mapping.getPackageNameByModel(props.object)}
+            controller = ${Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.object))}
+            arguments = ${{object: props.object}}
+        }
+        attributes.style = "margin-left: 40px"
+        attributes.style.@if.isFirst = ${props.object.isFirst}
 
-        <span @if.isLast={props.object.isLast} style="display: inline-block; width: 46px;">
-        </span>
-    `
+        content = Neos.Fusion.Form:Button {
+            attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+                classPath = 'atom.actionUi.sorting.button.class'
+            }
+            content = Milly.CrudForms:Atom.Icon.Sorting.SortDown
+        }
+    }
+
 }

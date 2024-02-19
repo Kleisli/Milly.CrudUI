@@ -6,7 +6,7 @@ prototype(Milly.Crudforms:Component.ActionUi.OrderBy) < prototype(Neos.Fusion:Co
     renderer = Neos.Fusion:Link.Action {
         class = "white-link"
         href.action = "index"
-        href.package = ${Milly.Mapping.getPackageNameByClass(crudFormsModelClass)}
+        href.package = ${Milly.Mapping.getPackageNameByModel(crudFormsModelClass)}
         href.controller = ${Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(crudFormsModelClass))}
         href.arguments = ${Array.concat({filter: filterValues}, {orderBy: props.orderBy}, {paginationPageSize: pagination.pageSize}, {orderDirection: (orderBy == props.orderBy && orderDirection=='ASC' ? 'DESC' : 'ASC')})}
         @if.hasOrderBy = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.orderBy') && Carbon.Array.hasValue(Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.orderBy'), props.propertyName)}

@@ -1,0 +1,113 @@
+.neos-row-fluid {
+  display: flex;
+}
+
+.neos-span6 {
+  width: 50%;
+  padding: 2rem;
+}
+
+.neos-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.neos .neos-table th {
+  font-weight: bold;
+}
+
+.neos-table th,
+.neos-table td {
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid black;
+}
+
+.neos-button, .neos button {
+  display: inline-block;
+  padding: 0 16px;
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  width: auto;
+  height: 40px;
+  line-height: 40px;
+  background-color: #00b5ff;
+  background-image: none;
+  border: none;
+  border-radius: 0;
+  text-shadow: none;
+  box-shadow: none;
+  box-sizing: border-box;
+  transition: all 0 ease 0;
+  text-decoration: none;
+}
+
+/** backend.css **/
+
+.neos-table td form {
+    display: inline;
+}
+
+.neos-table ul {
+    margin: 0.5rem 1rem;
+}
+
+.neos-table ul li {
+    line-height: initial;
+    list-style: initial;
+}
+
+.neos-table.show th {
+    width: 33%;
+}
+
+.neos.neos-module .neos-footer {
+    display: flex;
+}
+
+.neos.neos-module .neos-content a:not(.neos-button) {
+    color: #00b5ff;
+}
+
+.neos.neos-module .neos-content a:not(.neos-button):hover {
+    color: #fff;
+}
+
+.neos.neos-module .neos-content a.white-link {
+    color: #fff;
+}
+
+
+.neos.neos-module textarea {
+    line-height: 36px;
+}
+
+.neos .crud-breadcrumb {
+    padding-top: 16px;
+}
+
+legend.h2 {
+    font-size: 125%;
+}
+
+.neos .crud-breadcrumb .neos-divider {
+    padding: 0 5px;
+    color: #ccc;
+}
+
+.neos .pagination select {
+    /*margin-top: -3px;*/
+}
+
+svg {
+  display: inline-block !important;
+}
+

@@ -3,20 +3,22 @@ prototype(Milly.Crudforms:Component.ActionUi.Delete) < prototype(Neos.Fusion:Com
     object = ''
     @if.condition = ${!isDeleteDisabled}
 
-    renderer = afx`
-        <Neos.Fusion.Form:Form form.target.action="delete"
-                               form.target.package={Milly.Object.getPackageByObject(props.object)}
-                               form.target.controller={Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.object))}
-                               form.target.arguments={{object: props.object}}
-                               attributes.onsubmit="return confirm('Willst du wirklich löschen?');">
+    renderer = Neos.Fusion.Form:Form {
+        form.target.action = "delete"
+        form.target.package = ${Milly.Mapping.getPackageNameByModel(props.object)}
+        form.target.controller = ${Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.object))}
+        form.target.arguments = ${{object: props.object}}
+        attributes.onsubmit = "return confirm('Willst du wirklich löschen?');"
 
-            <Neos.Fusion.Form:Button attributes.class="neos-button neos-button-danger">
-                <Milly.CrudForms:Atom.Icon.Delete />
-                <Neos.Fusion:Fragment @if={props.showLabel}>
-                    &nbsp;Löschen
-                </Neos.Fusion:Fragment>
-            </Neos.Fusion.Form:Button>
-
-        </Neos.Fusion.Form:Form>
-    `
+        content = Neos.Fusion.Form:Button {
+            attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+                classPath = 'atom.actionUi.delete.button.class'
+            }
+            content = Neos.Fusion:Join {
+                icon = Milly.CrudForms:Atom.Icon.Delete
+                label = "Löschen"
+                label.@if.shwLabel = ${props.showLabel}
+            }
+        }
+    }
 }

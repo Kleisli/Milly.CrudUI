@@ -2,7 +2,7 @@ prototype(Milly.Crudforms:Component.ActionUi.New) < prototype(Neos.Fusion:Compon
 
     renderer = Neos.Fusion:Link.Action {
         href.action = "new"
-        href.package = ${Milly.Mapping.getPackageNameByClass(props.modelClassName)}
+        href.package = ${Milly.Mapping.getPackageNameByModel(props.modelClassName)}
         href.controller = ${Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.modelClassName))}
         href.arguments = ${{parent: props.parent}}
         class = Milly.Crudforms:Helper.CssClassRenderer {

@@ -1,8 +1,0 @@
-prototype(Milly.Crudforms:Component.PropertyDisplayers.CsvRow) < prototype(Milly.Crudforms:Component.PropertyDisplayers) {
-
-    propertyValueContainerType = 'plain'
-    properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', 'csv')}
-    renderer.@glue = ';'
-    renderer.@process.linebreak = ${value + String.chr(10)}
-
-}

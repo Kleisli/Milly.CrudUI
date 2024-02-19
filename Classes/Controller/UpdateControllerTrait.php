@@ -1,6 +1,5 @@
 <?php
 namespace Milly\CrudForms\Controller;
-
 trait UpdateControllerTrait
 {
 

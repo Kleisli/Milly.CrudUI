@@ -2,12 +2,12 @@ prototype(Milly.Crudforms:Helper.CssClassRenderer) < prototype(Neos.Fusion:Compo
 
     classPath = ''
 
-    renderer = ${Configuration.setting('Milly.CrudForms.cssClassSets.' + millyCssClassSet + '.' + props.classPath)}
+    renderer = ${Configuration.setting('Milly.CrudForms.themes.' + millyCrudTheme + '.' + props.classPath)}
 
     @cache {
         mode = 'cached'
         entryIdentifier {
-            path = ${'Milly.CrudForms.cssClassSets.' + millyCssClassSet + '.' + props.classPath}
+            path = ${'Milly.CrudForms.themes.' + millyCrudTheme + '.' + props.classPath}
         }
     }
 
