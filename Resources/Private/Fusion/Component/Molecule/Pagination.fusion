@@ -111,6 +111,7 @@ prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Componen
             }
             content = Milly.CrudForms:Atom.Icon.Pagination.FastForward
         }
+        @if.isNeeded = ${props.lastPage > 0}
     }
     renderer.@process.wrap = ${'<div class="pagination neos-pull-right" style="display: inline-block;">' + value + '</div>'}
 }
