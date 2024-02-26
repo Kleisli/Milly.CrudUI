@@ -36,6 +36,12 @@ prototype(Milly.Crudforms:Template.Show) < prototype(Neos.Fusion:Component) {
             object = ${object}
             showLabel = true
         }
+
+        translateButton = Milly.Crudforms:Component.ActionUi.Translate {
+            @if.notReadonly = ${!configuration.ui.readonly && Traduki.Entity.isTranslatable(object)}
+            object = ${object}
+            showLabel = true
+        }
     }
 
     renderer = Neos.Fusion:Tag {

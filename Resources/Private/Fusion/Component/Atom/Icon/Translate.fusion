@@ -1,0 +1,3 @@
+prototype(Milly.CrudForms:Atom.Icon.Translate) < prototype(Milly.CrudForms:Atom.Icon){
+    name = 'heroicons-outline:translate'
+}

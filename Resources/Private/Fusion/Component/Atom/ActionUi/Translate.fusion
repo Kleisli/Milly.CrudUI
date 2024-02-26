@@ -1,0 +1,21 @@
+prototype(Milly.Crudforms:Component.ActionUi.Translate) < prototype(Neos.Fusion:Component) {
+
+    object = ''
+    locale = null
+    @if.condition = ${!isUpdateDisabled}
+
+    renderer = Neos.Fusion:Link.Action {
+        href.action = "translate"
+        href.package = ${Milly.Mapping.getPackageNameByModel(props.object)}
+        href.controller = ${Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.object))}
+        href.arguments = ${{object: props.object, locale: props.locale}}
+        class = Milly.Crudforms:Helper.CssClassRenderer {
+            classPath = 'atom.actionUi.edit.link.class'
+        }
+        content = Neos.Fusion:Join {
+            icon = Milly.CrudForms:Atom.Icon.Translate
+            label = ${props.locale ? props.locale : "Übersetzen"}
+            label.@if.show = ${props.showLabel}
+        }
+    }
+}
