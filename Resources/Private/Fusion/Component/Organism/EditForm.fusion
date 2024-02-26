@@ -1,7 +1,10 @@
 prototype(Milly.Crudforms:Component.EditForm) < prototype(Neos.Fusion:Component) {
 
+    targetAction = 'update'
+    additionalFormContent = Neos.Fusion:DataStructure
+
     renderer = Neos.Fusion.Form:Form {
-        form.target.action = "update"
+        form.target.action = ${props.targetAction}
         form.data.object = ${props.object}
         attributes.name = "object"
         attributes.id = "edit"
@@ -9,9 +12,15 @@ prototype(Milly.Crudforms:Component.EditForm) < prototype(Neos.Fusion:Component)
             attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
                 classPath = 'template.edit.form.class'
             }
-            content = Milly.Crudforms:Component.PropertyEditors {
-                object = ${props.object}
-                properties = ${configuration.properties}
+            content = Neos.Fusion:Join {
+                additionalFormContent = Neos.Fusion:Loop {
+                    items = ${props.additionalFormContent}
+                    itemRenderer = ${item}
+                }
+                editors = Milly.Crudforms:Component.PropertyEditors {
+                    object = ${props.object}
+                    properties = ${configuration.properties}
+                }
             }
         }
     }
