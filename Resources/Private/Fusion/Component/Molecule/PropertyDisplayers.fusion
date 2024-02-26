@@ -4,8 +4,11 @@ prototype(Milly.Crudforms:Component.PropertyDisplayers) < prototype(Neos.Fusion:
         propertyValueContainerType = ${PropTypes.oneOf(['tablerow', 'tablecell', 'with_label', 'plain'])}
     }
 
+    object = ${object}
+
     propertyValueContainerType = 'with_label'
-    properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', crudFormsView)}
+    properties = ${Milly.CrudForms.getConfigurationByModel(this.object, 'properties', crudFormsView)}
+
 
     renderer = Neos.Fusion:Loop {
         items = ${props.properties}
