@@ -9,8 +9,9 @@ prototype(Milly.Crudforms:Component.ActionUi.New) < prototype(Neos.Fusion:Compon
         href.package = ${Milly.Mapping.getPackageNameByModel(props.modelClassName)}
         href.controller = ${Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.modelClassName))}
         href.arguments = ${{parent: props.parent}}
-        class = Milly.Crudforms:Helper.CssClassRenderer {
-            classPath = 'atom.actionUi.new.link.class'
+        class = Milly.Crudforms:Helper.ThemeRenderer {
+            path = 'atom.actionUi.new.link.class'
+            fallbackPath = 'atom.actionUi.default.link.class'
         }
         content = Neos.Fusion:Join {
             icon = Milly.CrudForms:Atom.Icon.New

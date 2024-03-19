@@ -9,8 +9,8 @@ prototype(Milly.Crudforms:Component.NewForm) < prototype(Neos.Fusion:Component) 
         form.target.action = "create"
         attributes.id = "new"
         content = Neos.Fusion:Tag {
-            attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-                classPath = 'template.new.form.class'
+            attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                path = 'template.new.form.class'
             }
             content = Neos.Fusion:Join {
                 presetFields = Neos.Fusion:Loop {

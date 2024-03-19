@@ -1,0 +1,17 @@
+prototype(Milly.Crudforms:Helper.ThemeRenderer) < prototype(Neos.Fusion:Component) {
+
+    path = ''
+    fallbackPath = ''
+
+    renderer = ${Configuration.setting('Milly.CrudForms.themes.' + millyCrudTheme + '.' + props.path) != null ?
+                    Configuration.setting('Milly.CrudForms.themes.' + millyCrudTheme + '.' + props.path)
+                    : Configuration.setting('Milly.CrudForms.themes.' + millyCrudTheme + '.' + props.fallbackPath)}
+
+    @cache {
+        mode = 'cached'
+        entryIdentifier {
+            path = ${'Milly.CrudForms.themes.' + millyCrudTheme + '.' + props.path}
+        }
+    }
+
+}

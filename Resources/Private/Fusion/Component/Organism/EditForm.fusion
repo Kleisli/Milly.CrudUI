@@ -11,8 +11,8 @@ prototype(Milly.Crudforms:Component.EditForm) < prototype(Neos.Fusion:Component)
         attributes.name = "object"
         attributes.id = "edit"
         content = Neos.Fusion:Tag {
-            attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-                classPath = 'template.edit.form.class'
+            attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                path = 'template.edit.form.class'
             }
             content = Neos.Fusion:Join {
                 additionalFormContent = Neos.Fusion:Loop {

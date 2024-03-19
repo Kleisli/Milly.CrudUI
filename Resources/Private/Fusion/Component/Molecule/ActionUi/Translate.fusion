@@ -9,8 +9,9 @@ prototype(Milly.Crudforms:Component.ActionUi.Translate) < prototype(Neos.Fusion:
         href.package = ${Milly.Mapping.getPackageNameByModel(props.object)}
         href.controller = ${Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.object))}
         href.arguments = ${{object: props.object, locale: props.locale}}
-        class = Milly.Crudforms:Helper.CssClassRenderer {
-            classPath = 'atom.actionUi.edit.link.class'
+        class = Milly.Crudforms:Helper.ThemeRenderer {
+            path = 'atom.actionUi.edit.link.class'
+            fallbackPath = 'atom.actionUi.default.link.class'
         }
         content = Neos.Fusion:Join {
             icon = Milly.CrudForms:Atom.Icon.Translate

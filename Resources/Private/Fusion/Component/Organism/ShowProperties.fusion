@@ -4,8 +4,8 @@ prototype(Milly.Crudforms:Component.ShowProperties) < prototype(Neos.Fusion:Comp
 
     renderer = Neos.Fusion:Tag {
         tagName = "table"
-        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-            classPath = 'template.show.table.class'
+        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+            path = 'template.show.table.class'
         }
         content = Milly.Crudforms:Component.PropertyDisplayers {
             object = ${props.object}

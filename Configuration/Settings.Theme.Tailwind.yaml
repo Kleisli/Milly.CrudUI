@@ -1,0 +1,73 @@
+Milly:
+  CrudForms:
+    themes:
+      tailwind:
+        layout:
+          container:
+            class: ""
+            header:
+              class: "w-full bg-slate-200 p-8 h-24"
+            main:
+              class: "flex gap-16 mt-16 mb-24 mx-8 md:mx-16 lg:mx-auto lg:max-w-screen-xl"
+              content:
+                first:
+                  class: 'basis-1/2'
+                second:
+                  class: 'basis-1/2'
+            footer:
+              class: "fixed left-0 bottom-0 w-full bg-slate-200 p-8 h-24"
+
+        atom:
+          actionUi:
+            default:
+              link:
+                class: "text-white leading-none bg-orange-600 hover:bg-orange-700 font-medium px-4 py-3 me-2 inline-block h-10"
+              button:
+                class: "text-white leading-none bg-orange-600 hover:bg-orange-700 font-medium px-4 py-3 me-2 inline-block h-10"
+            new:
+              link:
+                class: ~
+            show:
+              link:
+                class: ""
+            edit:
+              link:
+                class: ~
+            exportCsv:
+              link:
+                class: ~
+            sorting:
+              button:
+                class: ~
+            delete:
+              button:
+                class: ~
+        propertyEditor:
+          textfield:
+            class: "w-full"
+          textarea:
+            class: "w-full"
+          number:
+            class: 'w-full'
+        molecule:
+          pagination:
+            link:
+              class: "text-white leading-none bg-orange-600 hover:bg-orange-700 font-medium px-4 py-3 inline-block h-10"
+        template:
+          index:
+            main:
+              content:
+                first:
+                  narrowClass: 'basis-1/2'
+                  wideClass: 'basis-full'
+            table:
+              class: "neos-table"
+          edit:
+            form:
+              class: "neos-control-group"
+          new:
+            form:
+              class: "neos-control-group"
+          show:
+            table:
+              class: "neos-table show"

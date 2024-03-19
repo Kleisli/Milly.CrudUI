@@ -2,8 +2,9 @@ prototype(Milly.Crudforms:Component.ActionUi.UpdateButton) < prototype(Neos.Fusi
     @if.condition = ${!isUpdateDisabled}
 
     renderer = Neos.Fusion.Form:Button {
-        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-            classPath = 'atom.actionUi.updateButton.class'
+        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+            path = 'atom.actionUi.update.button.class'
+            fallbackPath = 'atom.actionUi.default.button.class'
         }
         attributes.form = "edit"
         content = Neos.Fusion:Join {

@@ -10,8 +10,9 @@ prototype(Milly.Crudforms:Component.ActionUi.ExportCsv) < prototype(Neos.Fusion:
             orderBy = ${orderBy}
             orderDirection = ${orderDirection}
         }
-        class = Milly.Crudforms:Helper.CssClassRenderer {
-            classPath = 'atom.actionUi.exportCsv.link.class'
+        class = Milly.Crudforms:Helper.ThemeRenderer {
+            path = 'atom.actionUi.exportCsv.link.class'
+            fallbackPath = 'atom.actionUi.default.link.class'
         }
         content = Neos.Fusion:Join {
             icon = Milly.CrudForms:Atom.Icon.Download

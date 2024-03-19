@@ -1,8 +1,9 @@
 prototype(Milly.Crudforms:Component.ActionUi.CreateButton) < prototype(Neos.Fusion:Component) {
 
     renderer = Neos.Fusion.Form:Button {
-        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-            classPath = 'atom.actionUi.createButton.class'
+        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+            path = 'atom.actionUi.create.button.class'
+            fallbackPath = 'atom.actionUi.default.button.class'
         }
         attributes.form = "new"
         content = Neos.Fusion:Join {

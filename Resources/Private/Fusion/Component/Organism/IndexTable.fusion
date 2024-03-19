@@ -9,8 +9,8 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
 
     renderer = Neos.Fusion:Tag {
         tagName = "table"
-        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-            classPath = 'template.index.table.class'
+        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+            path = 'template.index.table.class'
         }
         content = Neos.Fusion:Join {
             thead = Neos.Fusion:Tag {

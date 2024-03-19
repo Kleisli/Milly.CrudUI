@@ -31,8 +31,8 @@ prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Componen
         }
         fastBackward = Neos.Fusion:Link.Action {
             disabled = ${props.currentPage == 0 || props.lastPage == 0}
-            class = Milly.Crudforms:Helper.CssClassRenderer {
-                classPath = 'molecule.pagination.link.class'
+            class = Milly.Crudforms:Helper.ThemeRenderer {
+                path = 'molecule.pagination.link.class'
             }
             href.action = "index"
             href.arguments {
@@ -46,8 +46,8 @@ prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Componen
         }
         backward = Neos.Fusion:Link.Action {
             disabled = ${props.currentPage == 0 || props.lastPage == 0}
-            class = Milly.Crudforms:Helper.CssClassRenderer {
-                classPath = 'molecule.pagination.link.class'
+            class = Milly.Crudforms:Helper.ThemeRenderer {
+                path = 'molecule.pagination.link.class'
             }
             href.action = "index"
             href.arguments {
@@ -84,8 +84,8 @@ prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Componen
         }
         forward = Neos.Fusion:Link.Action {
             disabled = ${props.currentPage == props.lastPage || props.lastPage == 0}
-            class = Milly.Crudforms:Helper.CssClassRenderer {
-                classPath = 'molecule.pagination.link.class'
+            class = Milly.Crudforms:Helper.ThemeRenderer {
+                path = 'molecule.pagination.link.class'
             }
             href.action = "index"
             href.arguments {
@@ -99,8 +99,8 @@ prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Componen
         }
         fastForward = Neos.Fusion:Link.Action {
             disabled = ${props.currentPage == props.lastPage || props.lastPage == 0}
-            class = Milly.Crudforms:Helper.CssClassRenderer {
-                classPath = 'molecule.pagination.link.class'
+            class = Milly.Crudforms:Helper.ThemeRenderer {
+                path = 'molecule.pagination.link.class'
             }
             href.action = "index"
             href.arguments {

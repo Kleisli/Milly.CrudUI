@@ -11,8 +11,9 @@ prototype(Milly.Crudforms:Component.ActionUi.Delete) < prototype(Neos.Fusion:Com
         attributes.onsubmit = "return confirm('Willst du wirklich löschen?');"
 
         content = Neos.Fusion.Form:Button {
-            attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-                classPath = 'atom.actionUi.delete.button.class'
+            attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                path = 'atom.actionUi.delete.button.class'
+                fallbackPath = 'atom.actionUi.default.button.class'
             }
             content = Neos.Fusion:Join {
                 icon = Milly.CrudForms:Atom.Icon.Delete

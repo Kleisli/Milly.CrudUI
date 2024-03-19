@@ -43,38 +43,38 @@ prototype(Milly.Crudforms:Template.Show) < prototype(Neos.Fusion:Component) {
     }
 
     renderer = Neos.Fusion:Tag {
-        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-            classPath = 'layout.container.class'
+        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+            path = 'layout.container.class'
         }
         content = Neos.Fusion:Join {
             header = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-                    classPath = 'layout.container.header.class'
+                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                    path = 'layout.container.header.class'
                 }
                 content = ${props.header}
             }
             main = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-                    classPath = 'layout.container.main.class'
+                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                    path = 'layout.container.main.class'
                 }
                 content = Neos.Fusion:Join {
                     first = Neos.Fusion:Tag {
-                        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-                            classPath = 'layout.container.main.content.first.class'
+                        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                            path = 'layout.container.main.content.first.class'
                         }
                         content = ${props.main.first}
                     }
                     second = Neos.Fusion:Tag {
-                        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-                            classPath = 'layout.container.main.content.second.class'
+                        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                            path = 'layout.container.main.content.second.class'
                         }
                         content = ${props.main.second}
                     }
                 }
             }
             footer = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-                    classPath = 'layout.container.footer.class'
+                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                    path = 'layout.container.footer.class'
                 }
                 content = ${props.footer}
             }

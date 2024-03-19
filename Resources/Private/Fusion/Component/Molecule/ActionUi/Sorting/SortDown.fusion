@@ -14,8 +14,9 @@ prototype(Milly.Crudforms:Component.ActionUi.SortDown) < prototype(Neos.Fusion:C
         attributes.style.@if.isFirst = ${props.object.isFirst}
 
         content = Neos.Fusion.Form:Button {
-            attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-                classPath = 'atom.actionUi.sorting.button.class'
+            attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                path = 'atom.actionUi.sorting.button.class'
+                fallbackPath = 'atom.actionUi.default.button.class'
             }
             content = Milly.CrudForms:Atom.Icon.Sorting.SortDown
         }

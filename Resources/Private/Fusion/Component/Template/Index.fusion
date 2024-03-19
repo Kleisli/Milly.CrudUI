@@ -48,33 +48,33 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
     }
 
     renderer = Neos.Fusion:Tag {
-        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-            classPath = 'layout.container.class'
+        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+            path = 'layout.container.class'
         }
         content = Neos.Fusion:Join {
             header = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-                    classPath = 'layout.container.header.class'
+                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                    path = 'layout.container.header.class'
                 }
                 content = ${props.header}
             }
             main = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-                    classPath = 'layout.container.main.class'
+                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                    path = 'layout.container.main.class'
                 }
                 content = Neos.Fusion:Join {
                     first = Neos.Fusion:Tag {
                         attributes.class = Neos.Fusion:Case {
                             narrow {
                                 condition = ${props.style=='narrow'}
-                                renderer = Milly.Crudforms:Helper.CssClassRenderer {
-                                    classPath = 'template.index.main.content.first.narrowClass'
+                                renderer = Milly.Crudforms:Helper.ThemeRenderer {
+                                    path = 'template.index.main.content.first.narrowClass'
                                 }
                             }
                             wide {
                                 condition = ${props.style=='wide'}
-                                renderer = Milly.Crudforms:Helper.CssClassRenderer {
-                                    classPath = 'template.index.main.content.first.wideClass'
+                                renderer = Milly.Crudforms:Helper.ThemeRenderer {
+                                    path = 'template.index.main.content.first.wideClass'
                                 }
                             }
                         }
@@ -83,8 +83,8 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
                 }
             }
             footer = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-                    classPath = 'layout.container.footer.class'
+                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                    path = 'layout.container.footer.class'
                 }
                 content = ${props.footer}
             }

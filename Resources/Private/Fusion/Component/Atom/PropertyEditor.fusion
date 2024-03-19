@@ -22,8 +22,8 @@ prototype(Milly.Crudforms:Component.PropertyEditor) < prototype(Neos.Fusion:Comp
                 @subject = ${props.propertyConfig.type}
 
                 textarea = Neos.Fusion.Form:Textarea {
-                    attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-                        classPath = 'propertyEditor.textarea.class'
+                    attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                        path = 'propertyEditor.textarea.class'
                     }
                 }
                 number = Milly.Crudforms:Component.PropertyEditor.Number
@@ -42,8 +42,8 @@ prototype(Milly.Crudforms:Component.PropertyEditor) < prototype(Neos.Fusion:Comp
                 @default = Neos.Fusion.Form:Textfield {
                     attributes {
                         disabled = ${props.propertyConfig.readonly ? true : false}
-                        class = Milly.Crudforms:Helper.CssClassRenderer {
-                            classPath = 'propertyEditor.textfield.class'
+                        class = Milly.Crudforms:Helper.ThemeRenderer {
+                            path = 'propertyEditor.textfield.class'
                         }
                     }
                 }
