@@ -1,9 +1,6 @@
 prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
 
     @context {
-        crudFormsModelClass = ${crudFormsModelClass}
-        configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, 'edit')}
-        crudFormsView = 'edit'
         millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudForms.defaultTheme'))}
     }
 
@@ -21,11 +18,13 @@ prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
         first = Neos.Fusion:Join {
             editForm = Milly.Crudforms:Component.EditForm {
                 object = ${object}
+                properties = ${Milly.CrudForms.getConfigurationByClass(Type.className(object), 'properties', 'edit')}
             }
         }
         second = Neos.Fusion:Join {
             relations = Milly.Crudforms:Component.Relations {
                 object = ${object}
+                relations = ${Milly.CrudForms.getConfigurationByClass(Type.className(object), 'relations', 'edit')}
             }
         }
     }

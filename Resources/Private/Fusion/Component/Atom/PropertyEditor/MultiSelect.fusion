@@ -1,7 +1,7 @@
 prototype(Milly.Crudforms:Component.PropertyEditor.MultiSelect) < prototype(Neos.Fusion:Component) {
 
     @apply.props = ${props}
-    items = ${Milly.Object.getProperty(object, propertyName)}
+    items = ${Milly.Object.getProperty(this.object, this.propertyName)}
 
     renderer = afx`
         <div style="margin-bottom: 1rem; padding: 1rem; border: 1px #3f3f3f solid;">

@@ -1,7 +1,7 @@
 prototype(Milly.Crudforms:Component.Sorting) < prototype(Neos.Fusion:Component) {
 
-    object = ''
-    @if.hasSorting = ${object.sorting}
+    object = null
+    @if.hasSorting = ${this.object != null && this.object.sorting}
 
     renderer = Neos.Fusion:Join {
         up = Milly.Crudforms:Component.ActionUi.SortUp {

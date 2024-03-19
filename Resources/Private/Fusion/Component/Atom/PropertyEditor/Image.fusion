@@ -3,8 +3,8 @@ prototype(Milly.Crudforms:Component.PropertyEditor.Image) < prototype(Neos.Fusio
     @apply.props = ${props}
 
     renderer = afx`
-        <Neos.Fusion:Fragment @if.isSet={object != null && Milly.Object.getProperty(object, propertyName)}>
-            <Milly.Crudforms:Component.PropertyDisplayer.Image resource={Milly.Object.getProperty(object, propertyName)} /><br/>
+        <Neos.Fusion:Fragment @if.isSet={props.object != null && Milly.Object.getProperty(props.object, props.propertyName)}>
+            <Milly.Crudforms:Component.PropertyDisplayer.Image propertyValue={Milly.Object.getProperty(props.object, props.propertyName)} /><br/>
             <label for={"remove"+field.getName()}>
                 <input type="checkbox" name={field.getName()} value="" id={"remove"+field.getName()}/> Remove
             </label>

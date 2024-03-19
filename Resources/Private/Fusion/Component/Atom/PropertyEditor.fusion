@@ -1,16 +1,19 @@
 prototype(Milly.Crudforms:Component.PropertyEditor) < prototype(Neos.Fusion:Component) {
 
+    propertyName = ''
     propertyConfig = ${[]}
     object = null
 
     renderer = Neos.Fusion:Case {
         readonly {
             condition = ${props.propertyConfig.ui.readonly}
-            renderer = Milly.Crudforms:Component.PropertyDisplayer
+            renderer = Milly.Crudforms:Component.PropertyDisplayer {
+                @apply.props = ${props}
+            }
         }
         customDisplayer {
-            condition = ${propertyConfig.ui.editor}
-            type = ${propertyConfig.ui.editor}
+            condition = ${props.propertyConfig.ui.editor}
+            type = ${props.propertyConfig.ui.editor}
             element.@apply.props = ${props}
         }
         default {

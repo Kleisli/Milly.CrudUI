@@ -1,9 +1,6 @@
 prototype(Milly.Crudforms:Template.Show) < prototype(Neos.Fusion:Component) {
 
     @context {
-        crudFormsModelClass = ${crudFormsModelClass}
-        configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, 'show')}
-        crudFormsView = 'show'
         millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudForms.defaultTheme'))}
     }
 
@@ -26,19 +23,20 @@ prototype(Milly.Crudforms:Template.Show) < prototype(Neos.Fusion:Component) {
         second = Neos.Fusion:Join {
             relations = Milly.Crudforms:Component.Relations {
                 object = ${object}
+                relations = ${Milly.CrudForms.getConfigurationByClass(Type.className(object), 'relations', 'show')}
             }
         }
     }
 
     footer = Neos.Fusion:Join {
         editButton = Milly.Crudforms:Component.ActionUi.Edit {
-            @if.notReadonly = ${!configuration.ui.readonly}
+            @if.notReadonly = ${!Milly.CrudForms.getConfigurationByClass(Type.className(object), 'ui.readonly')}
             object = ${object}
             showLabel = true
         }
 
         translateButton = Milly.Crudforms:Component.ActionUi.Translate {
-            @if.notReadonly = ${!configuration.ui.readonly && Traduki.Entity.isTranslatable(object)}
+            @if.notReadonly = ${!Milly.CrudForms.getConfigurationByClass(Type.className(object), 'ui.readonly') && Traduki.Entity.isTranslatable(object)}
             object = ${object}
             showLabel = true
         }

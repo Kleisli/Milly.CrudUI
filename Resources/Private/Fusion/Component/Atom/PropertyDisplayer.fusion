@@ -27,9 +27,7 @@ prototype(Milly.Crudforms:Component.PropertyDisplayer) < prototype(Neos.Fusion:C
                 dateTime = ${props.propertyValue ? Date.format(props.propertyValue, "d.m.Y H:i") : ''}
                 date = ${props.propertyValue ? Date.format(props.propertyValue, "d.m.Y") : ''}
                 dateInterval = Milly.Crudforms:Component.PropertyDisplayer.DateInterval
-                image = Milly.Crudforms:Component.PropertyDisplayer.Image {
-                    resource = ${props.propertyValue}
-                }
+                image = Milly.Crudforms:Component.PropertyDisplayer.Image
                 audio = Milly.Crudforms:Component.PropertyDisplayer.Audio {
                   resource = ${props.propertyValue}
                 }

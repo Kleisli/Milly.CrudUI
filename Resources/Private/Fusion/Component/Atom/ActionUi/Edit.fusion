@@ -1,6 +1,6 @@
 prototype(Milly.Crudforms:Component.ActionUi.Edit) < prototype(Neos.Fusion:Component) {
 
-    object = ''
+    object = null
     @if.condition = ${!isUpdateDisabled}
 
     renderer = Neos.Fusion:Link.Action {

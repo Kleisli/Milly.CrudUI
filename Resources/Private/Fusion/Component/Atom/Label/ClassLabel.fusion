@@ -1,6 +1,7 @@
 prototype(Milly.Crudforms:Component.Label.ClassLabel) < prototype(Neos.Fusion:Component) {
 
     showClassLabel = false
+    className = ''
 
     renderer = Neos.Fusion:Case {
         getFromClass {

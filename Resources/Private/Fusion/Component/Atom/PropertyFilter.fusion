@@ -2,9 +2,11 @@ prototype(Milly.Crudforms:Component.PropertyFilter) < prototype(Neos.Fusion:Comp
 
     propertyName = ''
     propertyConfig = Neos.Fusion:DataStructure
+    modelClassName = ''
+    crudFormsView = 'index'
 
     renderer =  Neos.Fusion:Match {
-        @subject = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.filter.'+props.propertyName+'.type')}
+        @subject = ${Milly.CrudForms.getConfigurationByClass(props.modelClassName, 'views.'+props.crudFormsView+'.filter.'+props.propertyName+'.type')}
 
         select = Milly.Crudforms:Component.PropertyFilter.Select {
             @apply.props = ${props}
@@ -24,7 +26,7 @@ prototype(Milly.Crudforms:Component.PropertyFilter) < prototype(Neos.Fusion:Comp
     }
 
     renderer.@process.addForm = Neos.Fusion:Augmenter {
-        form = ${String.md5(crudFormsModelClass)+'-filter'}
+        form = ${String.md5(props.modelClassName)+'-filter'}
         class = 'filter'
         style = 'display:block; width:auto; max-width:220px;'
         style.@if.filterIsNotSet = ${!filterValues}

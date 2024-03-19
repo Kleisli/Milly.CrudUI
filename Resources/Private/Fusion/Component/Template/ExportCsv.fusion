@@ -2,7 +2,8 @@ prototype(Milly.Crudforms:Template.ExportCsv) < prototype(Neos.Fusion:Component)
 
     renderer = Neos.Fusion:Join {
         header = Milly.Crudforms:Component.CsvHeaderRow {
-            @context.configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, 'export')}
+            modelClassName = ${crudFormsModelClass}
+            properties = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'properties', 'export')}
         }
 
         values = Neos.Fusion:Loop {
@@ -10,8 +11,8 @@ prototype(Milly.Crudforms:Template.ExportCsv) < prototype(Neos.Fusion:Component)
             itemName="object"
             itemRenderer = Milly.Crudforms:Component.PropertyDisplayers {
                 object = ${object}
+                crudFormsView = 'export'
                 propertyValueContainerType = 'plain'
-                properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', 'export')}
                 renderer.@glue = ';'
                 renderer.@process.linebreak = ${value + String.chr(10)}
             }

@@ -1,6 +1,6 @@
 prototype(Milly.Crudforms:Component.Label.ObjectLabel) < prototype(Neos.Fusion:Component) {
 
-    object = ''
+    object = null
     showClassLabel = false
     label = ${this.object.label ? this.object.label : this.object.title ? this.object.title : this.object.name ? this.object.name : ''}
 

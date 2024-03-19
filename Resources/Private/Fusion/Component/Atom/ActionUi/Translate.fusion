@@ -1,6 +1,6 @@
 prototype(Milly.Crudforms:Component.ActionUi.Translate) < prototype(Neos.Fusion:Component) {
 
-    object = ''
+    object = null
     locale = null
     @if.condition = ${!isUpdateDisabled}
 

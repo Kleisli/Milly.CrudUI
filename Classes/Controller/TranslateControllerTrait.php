@@ -27,8 +27,6 @@ trait TranslateControllerTrait
         $this->view->assign('object', $object);
 
         $this->view->assign('locale', $locale);
-        $this->view->assign('configuration', $this->getCrudFormsConfiguration('translate'));
-        $this->view->assign('crudFormsModelClass', $this->getModelClass());
     }
 
     protected function initializeUpdateTranslationAction()

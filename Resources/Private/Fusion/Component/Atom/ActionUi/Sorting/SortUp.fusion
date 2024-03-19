@@ -1,7 +1,6 @@
 prototype(Milly.Crudforms:Component.ActionUi.SortUp) < prototype(Neos.Fusion:Component) {
 
-    object = ''
-    @if.hasSorting = ${object.sorting}
+    object = null
 
     renderer = Neos.Fusion.Form:Form {
         @if.notFirst = ${!props.object.isFirst}

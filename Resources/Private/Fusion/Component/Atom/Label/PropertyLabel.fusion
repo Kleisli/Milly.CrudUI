@@ -1,16 +1,17 @@
 prototype(Milly.Crudforms:Component.Label.PropertyLabel) < prototype(Neos.Fusion:Component) {
 
+    modelClassName = ''
     propertyConfig = null
     propertyName = ''
 
     renderer = Neos.Fusion:Case {
-        configuration {
+        readFromConfiguration {
             condition = ${props.propertyConfig.label}
             renderer = ${props.propertyConfig.label}
         }
-        xliff {
-            condition = ${I18n.translate(Milly.Mapping.getXliffIdPrefixByModel(crudFormsModelClass)+props.propertyName)}
-            renderer = ${I18n.translate(Milly.Mapping.getXliffIdPrefixByModel(crudFormsModelClass)+props.propertyName)}
+        readFromXliff {
+            condition = ${I18n.translate(Milly.Mapping.getXliffIdPrefixByModel(props.modelClassName)+props.propertyName)}
+            renderer = ${I18n.translate(Milly.Mapping.getXliffIdPrefixByModel(props.modelClassName)+props.propertyName)}
         }
         default {
             condition = true

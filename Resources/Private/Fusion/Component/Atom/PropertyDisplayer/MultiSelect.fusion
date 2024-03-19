@@ -1,9 +1,6 @@
 prototype(Milly.Crudforms:Component.PropertyDisplayer.MultiSelect) < prototype(Neos.Fusion:Component) {
 
-    object = ${object}
-    propertyName = ${propertyName}
-    propertyValue = ${props.propertyValue}
-
+    @apply.props = ${props}
 
     renderer = Neos.Fusion:Case {
         html {
@@ -12,9 +9,9 @@ prototype(Milly.Crudforms:Component.PropertyDisplayer.MultiSelect) < prototype(N
                 <ul>
                     <Neos.Fusion:Loop items={props.propertyValue}>
                         <li>
-                            <Milly.Crudforms:Component.ActionUi.Show @if={propertyConfig.options.link} object={item} showClassLabel={false}/>
-                            <Neos.Fusion:Fragment @if={!propertyConfig.options.link}>
-                                {Milly.CrudForms.getFieldOptionsObjectLabel(propertyConfig.options, item)}
+                            <Milly.Crudforms:Component.ActionUi.Show @if={props.propertyConfig.options.link} object={item} showClassLabel={false}/>
+                            <Neos.Fusion:Fragment @if={!props.propertyConfig.options.link}>
+                                {Milly.CrudForms.getFieldOptionsObjectLabel(props.propertyConfig.options, item)}
                             </Neos.Fusion:Fragment>
                         </li>
                     </Neos.Fusion:Loop>
@@ -26,7 +23,7 @@ prototype(Milly.Crudforms:Component.PropertyDisplayer.MultiSelect) < prototype(N
             condition = ${true}
             renderer = Neos.Fusion:Loop {
                 items = ${Milly.Object.getProperty(props.object, props.propertyName)}
-                itemRenderer = ${Milly.CrudForms.getFieldOptionsObjectLabel(propertyConfig.options, item)}
+                itemRenderer = ${Milly.CrudForms.getFieldOptionsObjectLabel(props.propertyConfig.options, item)}
                 @glue = ','
             }
         }

@@ -1,6 +1,6 @@
 prototype(Milly.Crudforms:Component.PropertyFilter.IsSet) < prototype(Neos.Fusion:Component) {
 
-    options = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+crudFormsView+'.filter.'+props.propertyName+'.typeOptions')}
+    options = ${Milly.CrudForms.getConfigurationByClass(this.modelClassName, 'views.'+this.crudFormsView+'.filter.'+this.propertyName+'.typeOptions')}
 
     defaultLabels = Neos.Fusion:DataStructure {
         all = ${I18n.translate('Milly.CrudForms:Component.PropertyFilter.IsSet:all')}

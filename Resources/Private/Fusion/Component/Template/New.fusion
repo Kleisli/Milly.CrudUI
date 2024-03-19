@@ -1,9 +1,6 @@
 prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
 
     @context {
-        crudFormsModelClass = ${crudFormsModelClass}
-        configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, 'new')}
-        crudFormsView = 'new'
         millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudForms.defaultTheme'))}
     }
 
@@ -12,7 +9,10 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
         title = Neos.Fusion:Tag {
             tagName = 'legend'
             content = Neos.Fusion:Join {
-                label = ${configuration.label.one}
+                label = Milly.Crudforms:Component.Label.ClassLabel {
+                    className = ${crudFormsModelClass}
+                    showClassLabel = 'one'
+                }
                 create = ' erstellen&nbsp;'
                 parent = Milly.Crudforms:Component.Label.ObjectLabel {
                     @if.hasParent = ${parent}
@@ -63,9 +63,11 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
                         }
                         content = Neos.Fusion:Join {
                             newForm = Milly.Crudforms:Component.NewForm {
-                                properties = ${configuration.properties}
-                                parent = ${Milly.Object.identifier(parent)}
-                                parent.@if.hasParent = ${parent}
+                                properties = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'properties', 'new')}
+                                parent.@if.hasParent = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'parent')}
+                                parent = ${Type.isObject(parent) ? Milly.Object.identifier(parent) : parent}
+                                parentProperty = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'parent')}
+
                                 preset = ${props.preset}
                             }
                         }

@@ -7,9 +7,6 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
     }
 
     @context {
-        crudFormsModelClass = ${crudFormsModelClass}
-        configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, 'index')}
-        crudFormsView = 'index'
         millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudForms.defaultTheme'))}
     }
 
@@ -19,7 +16,13 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
         title = Neos.Fusion:Tag {
             tagName = 'legend'
             attributes.style = "display: flex; justify-content: space-between;"
-            content = ${configuration.label.many ? configuration.label.many : configuration.label.one + ' (' + objectCount + ')'}
+            content = Neos.Fusion:Join {
+                label = Milly.Crudforms:Component.Label.ClassLabel {
+                    className = ${crudFormsModelClass}
+                    showClassLabel = 'many'
+                }
+                count = ${' (' + objectCount + ')'}
+            }
         }
     }
 
@@ -29,13 +32,14 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
         `
         indexTable = Milly.Crudforms:Component.IndexTable {
             objects = ${objects}
+            modelClassName = ${crudFormsModelClass}
             disablePagination = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.index.options.pagination.disable')}
         }
     }
 
     footer = Neos.Fusion:Join {
         newButton = Milly.Crudforms:Component.ActionUi.New {
-            @if.notReadonly = ${!configuration.ui.readonly}
+            @if.notReadonly = ${!Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'ui.readonly', 'index')}
             object = ${object}
             showLabel = true
             modelClassName = ${crudFormsModelClass}

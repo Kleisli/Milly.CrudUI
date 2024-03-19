@@ -11,8 +11,6 @@ trait UpdateControllerTrait
     public function editAction()
     {
         $this->view->assign('object', $this->arguments['object']->getValue());
-        $this->view->assign('configuration', $this->getCrudFormsConfiguration('edit'));
-        $this->view->assign('crudFormsModelClass', $this->getModelClass());
     }
 
     protected function initializeUpdateAction()

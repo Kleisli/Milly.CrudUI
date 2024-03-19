@@ -1,6 +1,8 @@
 prototype(Milly.Crudforms:Component.PropertyDisplayer.JsonList) < prototype(Neos.Fusion:Component) {
 
-    array = ${Milly.Object.getProperty(object, propertyName)}
+    @apply.props = ${props}
+
+    array = ${Milly.Object.getProperty(this.object, this.propertyName)}
 
     renderer = Neos.Fusion:Case {
         html {

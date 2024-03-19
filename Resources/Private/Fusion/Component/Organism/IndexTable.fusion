@@ -1,10 +1,11 @@
 prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Component) {
 
     header = ''
-    view = 'index'
+    crudFormsView = 'index'
     filterValues = ${[]}
     readonly = false
     disablePagination = true
+    modelClassName = ''
 
     renderer = Neos.Fusion:Tag {
         tagName = "table"
@@ -23,8 +24,9 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                         </tr>
                     `
                     indexTableHeaderRow = Milly.Crudforms:Component.IndexTableHeaderRow {
-                        @context.configuration = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, null, props.view)}
-                        @if.showColumnHeaders = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.'+props.view+'.showColumnHeaders', props.view)}
+                        modelClassName = ${props.modelClassName}
+                        crudFormsView = ${props.crudFormsView}
+                        @if.showColumnHeaders = ${Milly.CrudForms.getConfigurationByClass(props.modelClassName, 'views.'+props.crudFormsView+'.showColumnHeaders')}
                     }
                 }
             }
@@ -43,8 +45,8 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                             }
                             indexTableCells = Milly.Crudforms:Component.PropertyDisplayers {
                                 propertyValueContainerType = 'tablecell'
-                                properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', props.view)}
                                 object = ${object}
+                                crudFormsView = ${props.crudFormsView}
                             }
                             actionUiActions = Neos.Fusion:Join {
                                 @if.notReadOnly = ${!props.readonly}
@@ -74,6 +76,7 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                 @if.notDisabled = ${!props.disablePagination}
                 tagName = "tfoot"
                 content = Milly.Crudforms:Component.Pagination {
+                    modelClassName = ${props.modelClassName}
                     currentPage = ${pagination.currentPage}
                     pageSize = ${pagination.pageSize}
                     lastPage = ${pagination.lastPage}

@@ -1,7 +1,9 @@
 prototype(Milly.Crudforms:Component.Relations) < prototype(Neos.Fusion:Component) {
 
+    relations = ${[]}
+
     renderer = Neos.Fusion:Loop {
-        items = ${configuration.relations}
+        items = ${props.relations}
         itemKey = "relationName"
         itemName = "relationConfig"
 
@@ -13,9 +15,9 @@ prototype(Milly.Crudforms:Component.Relations) < prototype(Neos.Fusion:Component
 
             <Neos.Fusion:Fragment @if={Milly.Reflection.isToManyRelation(props.object, relationName)}>
                 <Milly.Crudforms:Component.IndexTable
-                    @context.crudFormsModelClass={Milly.Reflection.getTypeOfRelation(object, relationName)}
-                    view="relation"
-                    objects={Milly.Object.getProperty(object, relationName)}
+                    modelClassName={Milly.Reflection.getTypeOfRelation(object, relationName)}
+                    crudFormsView="relation"
+                    objects={Milly.Object.getProperty(object, relationConfig.propertyPath ? relationConfig.propertyPath : relationName)}
                     header={relationConfig.label}
                     disablePagination={!relationConfig.ui.pagination.enable}
                     readonly={relationConfig.ui.readonly}/>

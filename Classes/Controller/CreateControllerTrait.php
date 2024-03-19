@@ -31,8 +31,6 @@ trait CreateControllerTrait
         if(isset($this->arguments['parent'])) {
             $this->view->assign('parent', $this->arguments['parent']->getValue());
         }
-        $this->view->assign('configuration', $this->getCrudFormsConfiguration('new'));
-
         $this->view->assign('crudFormsModelClass', $this->getModelClass());
 
     }

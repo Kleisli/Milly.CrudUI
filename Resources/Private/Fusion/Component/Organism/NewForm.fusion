@@ -1,7 +1,9 @@
 prototype(Milly.Crudforms:Component.NewForm) < prototype(Neos.Fusion:Component) {
 
+    properties = ${[]}
     preset = Neos.Fusion:DataStructure
     parent = null
+    parentProperty = null
 
     renderer = Neos.Fusion.Form:Form {
         form.target.action = "create"
@@ -19,12 +21,12 @@ prototype(Milly.Crudforms:Component.NewForm) < prototype(Neos.Fusion:Component) 
                     }
                 }
                 parentField = Neos.Fusion.Form:Hidden {
-                    @if.hasParent = ${configuration.parent && props.parent}
-                    field.name = ${"object["+ configuration.parent +"]"}
+                    @if.hasParent = ${props.parent}
+                    field.name = ${"object["+ props.parentProperty +"]"}
                     attributes.value = ${props.parent}
                 }
                 editors = Milly.Crudforms:Component.PropertyEditors {
-                    properties = ${configuration.properties}
+                    properties = ${props.properties}
                 }
             }
         }

@@ -1,11 +1,11 @@
 prototype(Milly.Crudforms:Component.PropertyDisplayer.Audio) < prototype(Neos.Fusion:Component) {
 
-    resource = null
+    @apply.props = ${props}
 
     renderer = afx`
-      <audio controls @if.hasResource={props.resource}>
+      <audio controls @if.hasResource={props.propertyValue}>
         <source @children="attributes.src" type="audio/mpeg">
-            <Neos.Fusion:ResourceUri resource={props.resource}/>
+            <Neos.Fusion:ResourceUri resource={props.propertyValue}/>
         </source>
         Your browser does not support the audio element.
       </audio>
