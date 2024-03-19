@@ -1,0 +1,14 @@
+prototype(Milly.Crudforms:Component.ActionUi.UpdateButton) < prototype(Neos.Fusion:Component) {
+    @if.condition = ${!isUpdateDisabled}
+
+    renderer = Neos.Fusion.Form:Button {
+        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+            classPath = 'atom.actionUi.updateButton.class'
+        }
+        attributes.form = "edit"
+        content = Neos.Fusion:Join {
+            icon = Milly.CrudForms:Atom.Icon.Save
+            text = '&nbsp;Save'
+        }
+    }
+}

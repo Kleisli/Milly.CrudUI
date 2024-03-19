@@ -42,7 +42,7 @@ prototype(Milly.Crudforms:Template.Translate) < prototype(Neos.Fusion:Component)
             }
         }
         second = Neos.Fusion:Join {
-            default = Milly.Crudforms:Component.ShowTable {
+            default = Milly.Crudforms:Component.ShowProperties {
                 object = ${Traduki.Entity.reloadInDefaultLocale(object)}
             }
         }

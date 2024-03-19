@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.ShowTable) < prototype(Neos.Fusion:Component) {
+prototype(Milly.Crudforms:Component.ShowProperties) < prototype(Neos.Fusion:Component) {
 
     object = null
 

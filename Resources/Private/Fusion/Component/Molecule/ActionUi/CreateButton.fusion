@@ -1,0 +1,13 @@
+prototype(Milly.Crudforms:Component.ActionUi.CreateButton) < prototype(Neos.Fusion:Component) {
+
+    renderer = Neos.Fusion.Form:Button {
+        attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
+            classPath = 'atom.actionUi.createButton.class'
+        }
+        attributes.form = "new"
+        content = Neos.Fusion:Join {
+            icon = Milly.CrudForms:Atom.Icon.Save
+            text = '&nbsp;Save'
+        }
+    }
+}

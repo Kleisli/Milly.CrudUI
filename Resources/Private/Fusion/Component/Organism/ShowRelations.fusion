@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.Relations) < prototype(Neos.Fusion:Component) {
+prototype(Milly.Crudforms:Component.ShowRelations) < prototype(Neos.Fusion:Component) {
 
     relations = ${[]}
 

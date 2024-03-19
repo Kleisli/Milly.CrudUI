@@ -29,16 +29,7 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
     }
 
     footer = Neos.Fusion:Join {
-        saveButton = Neos.Fusion.Form:Button {
-            attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-                classPath = 'template.new.createButton.class'
-            }
-            attributes.form = "new"
-            content = Neos.Fusion:Join {
-              icon = Milly.CrudForms:Atom.Icon.Save
-              text = '&nbsp;Save'
-            }
-        }
+        createButton = Milly.Crudforms:Component.ActionUi.CreateButton
     }
 
     renderer = Neos.Fusion:Tag {

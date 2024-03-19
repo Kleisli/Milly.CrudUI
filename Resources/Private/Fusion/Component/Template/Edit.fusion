@@ -22,7 +22,7 @@ prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
             }
         }
         second = Neos.Fusion:Join {
-            relations = Milly.Crudforms:Component.Relations {
+            relations = Milly.Crudforms:Component.ShowRelations {
                 object = ${object}
                 relations = ${Milly.CrudForms.getConfigurationByClass(Type.className(object), 'relations', 'edit')}
             }
@@ -30,16 +30,7 @@ prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
     }
 
     footer = Neos.Fusion:Join {
-        saveButton = Neos.Fusion.Form:Button {
-            attributes.class = Milly.Crudforms:Helper.CssClassRenderer {
-                classPath = 'template.edit.saveButton.class'
-            }
-            attributes.form = "edit"
-            content = Neos.Fusion:Join {
-                icon = Milly.CrudForms:Atom.Icon.Save
-                text = '&nbsp;Save'
-            }
-        }
+        updateButton = Milly.Crudforms:Component.ActionUi.UpdateButton
     }
 
     renderer = Neos.Fusion:Tag {
