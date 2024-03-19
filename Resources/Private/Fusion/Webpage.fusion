@@ -3,7 +3,7 @@
 # The "public API", like "head.titleTag.content", "body", or "body.javascripts" is exactly the same as
 # in Neos.Neos:Page.
 
-prototype(Milly.CrudForms:Document.Html) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudForms:Webpage) < prototype(Neos.Fusion:Component) {
     # add the DocType as processor; because it will break AFX.
     @process.addDocType = ${'<!DOCTYPE html>' + value}
 

@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Webpage.Edit) < prototype(Milly.CrudForms:Document.Html) {
+prototype(Milly.Crudforms:Webpage.Edit) < prototype(Milly.CrudForms:Webpage) {
     body.content = Milly.Crudforms:Template.Edit {
         object = ${object}
     }
