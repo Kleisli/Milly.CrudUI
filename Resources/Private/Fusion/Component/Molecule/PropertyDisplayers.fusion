@@ -1,13 +1,13 @@
 prototype(Milly.Crudforms:Component.PropertyDisplayers) < prototype(Neos.Fusion:Component) {
 
     @propTypes {
-        propertyValueContainerType = ${PropTypes.oneOf(['tablerow', 'tablecell', 'with_label', 'plain'])}
+        propertyDisplayerContainerType = ${PropTypes.getString()}
     }
 
     object = null
     crudFormsView = ''
 
-    propertyValueContainerType = 'with_label'
+    propertyDisplayerContainerType = 'Milly.Crudforms:Molecule.PropertyDisplayerContainer.PrependLabel'
     properties = ${Milly.CrudForms.getConfigurationByModel(this.object, 'properties', this.crudFormsView)}
 
 
@@ -16,18 +16,20 @@ prototype(Milly.Crudforms:Component.PropertyDisplayers) < prototype(Neos.Fusion:
         itemKey = "propertyName"
         itemName = "propertyConfig"
 
-        itemRenderer = Milly.Crudforms:Helper.PropertyDisplayerContainer {
-            type = ${props.propertyValueContainerType}
-            label = Milly.Crudforms:Component.Label.PropertyLabel {
-                modelClassName = ${Type.className(props.object)}
-                propertyName = ${propertyName}
-                propertyConfig = ${propertyConfig}
-            }
+        itemRenderer = Neos.Fusion:Renderer {
+            type = ${props.propertyDisplayerContainerType}
+            element {
+                propertyLabel = Milly.Crudforms:Component.Label.PropertyLabel {
+                    modelClassName = ${Type.className(props.object)}
+                    propertyName = ${propertyName}
+                    propertyConfig = ${propertyConfig}
+                }
 
-            propertyValue = Milly.Crudforms:Component.PropertyDisplayer {
-                propertyConfig = ${propertyConfig}
-                propertyName = ${propertyName}
-                object = ${props.object}
+                propertyDisplayer = Milly.Crudforms:Component.PropertyDisplayer {
+                    propertyConfig = ${propertyConfig}
+                    propertyName = ${propertyName}
+                    object = ${props.object}
+                }
             }
         }
     }

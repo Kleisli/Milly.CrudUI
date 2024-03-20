@@ -56,6 +56,8 @@ Milly:
           number:
             class: 'neos-span3'
         molecule:
+          propertyEditorContainer:
+            type: 'Neos.Fusion.Form:Neos.BackendModule.FieldContainer'
           pagination:
             link:
               class: 'neos-button'

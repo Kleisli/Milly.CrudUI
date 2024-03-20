@@ -44,7 +44,7 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                                 @process.wrap = ${'<td>' + value + '</td>'}
                             }
                             indexTableCells = Milly.Crudforms:Component.PropertyDisplayers {
-                                propertyValueContainerType = 'tablecell'
+                                propertyDisplayerContainerType = 'Milly.Crudforms:Molecule.PropertyDisplayerContainer.TableCell'
                                 object = ${object}
                                 crudFormsView = ${props.crudFormsView}
                             }

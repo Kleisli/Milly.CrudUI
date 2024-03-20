@@ -8,9 +8,9 @@ prototype(Milly.Crudforms:Component.ShowProperties) < prototype(Neos.Fusion:Comp
             path = 'template.show.table.class'
         }
         content = Milly.Crudforms:Component.PropertyDisplayers {
+            propertyDisplayerContainerType = 'Milly.Crudforms:Molecule.PropertyDisplayerContainer.TableRow'
             object = ${props.object}
             crudFormsView = 'show'
-            propertyValueContainerType = 'tablerow'
         }
     }
 }

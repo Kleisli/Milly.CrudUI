@@ -1,0 +1,11 @@
+prototype(Milly.Crudforms:Molecule.PropertyDisplayerContainer.PrependLabel) < prototype(Milly.Crudforms:Moledules.AbstractPropertyDisplayerContainer) {
+
+    renderer = afx`
+        <div>
+            <label>{props.propertyLabel}</label>
+            <div>
+                {props.propertyDisplayer}
+            </div>
+        </div>
+    `
+}

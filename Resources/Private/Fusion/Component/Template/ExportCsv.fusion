@@ -10,9 +10,9 @@ prototype(Milly.Crudforms:Template.ExportCsv) < prototype(Neos.Fusion:Component)
             items = ${objects}
             itemName="object"
             itemRenderer = Milly.Crudforms:Component.PropertyDisplayers {
+                propertyDisplayerContainerType = 'Milly.Crudforms:Molecule.PropertyDisplayerContainer.PlainValue'
                 object = ${object}
                 crudFormsView = 'export'
-                propertyValueContainerType = 'plain'
                 renderer.@glue = ';'
                 renderer.@process.linebreak = ${value + String.chr(10)}
             }

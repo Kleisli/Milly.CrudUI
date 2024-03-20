@@ -1,0 +1,14 @@
+prototype(Milly.Crudforms:Molecule.PropertyDisplayerContainer.TableRow) < prototype(Milly.Crudforms:Moledules.AbstractPropertyDisplayerContainer) {
+
+    propertyLabel = ''
+    propertyDisplayer = ''
+
+    renderer = afx`
+        <tr>
+            <th>{props.propertyLabel}</th>
+            <td>
+                {props.propertyDisplayer}
+            </td>
+        </tr>
+    `
+}

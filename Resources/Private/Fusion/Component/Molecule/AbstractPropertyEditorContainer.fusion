@@ -1,0 +1,13 @@
+prototype(Milly.Crudforms:Moledules.AbstractPropertyEditorContainer) < prototype(Neos.Fusion.Form:Component.Field) {
+
+    # used to populate the `field` context and among others things
+    # allow accessing the data bound to the form, submitted values
+    # and results
+    field = Neos.Fusion.Form:Definition.Field
+
+    # prototype name responsible for error rendering
+    errorRenderer = 'Neos.Fusion.Form:ErrorRenderer'
+
+    propertyLabel = null
+    propertyEditor = ''
+}

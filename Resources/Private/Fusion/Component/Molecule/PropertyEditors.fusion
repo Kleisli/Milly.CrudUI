@@ -9,32 +9,37 @@ prototype(Milly.Crudforms:Component.PropertyEditors) < prototype(Neos.Fusion:Com
         itemKey = "propertyName"
         itemName = "propertyConfig"
 
-        itemRenderer = Milly.Crudforms:Helper.PropertyEditorContainer {
-            type = ${propertyConfig.type}
-            field.name = Neos.Fusion:Case {
-                custom {
-                    condition = ${propertyConfig.fieldName}
-                    renderer = ${propertyConfig.fieldName}
+        itemRenderer = Neos.Fusion:Renderer {
+            type = 'Milly.Crudforms:Moledules.PropertyEditorContainer.PrependLabel'
+            element {
+                field {
+                    name = Neos.Fusion:Case {
+                        custom {
+                            condition = ${propertyConfig.fieldName}
+                            renderer = ${propertyConfig.fieldName}
+                        }
+                        default {
+                            condition = true
+                            renderer = ${'object[' + (propertyConfig.propertyPath ? String.replace(propertyConfig.propertyPath, '.', '][') : propertyName) + ']'}
+                        }
+                    }
+                    value = ${Milly.Object.getProperty(props.object, propertyConfig.propertyPath ? propertyConfig.propertyPath : propertyConfig._propertyName)}
+                    multiple = ${propertyConfig.type == 'multiSelect'}
                 }
-                default {
-                    condition = true
-                    renderer = ${'object['+ (propertyConfig.propertyPath ? String.replace(propertyConfig.propertyPath, '.', '][') : propertyName) +']'}
+
+                propertyLabel = Milly.Crudforms:Component.Label.PropertyLabel {
+                    modelClassName = ${Type.className(props.object)}
+                    propertyName = ${propertyName}
+                    propertyConfig = ${propertyConfig}
+                }
+
+                propertyEditor = Milly.Crudforms:Component.PropertyEditor {
+                    propertyName = ${propertyName}
+                    propertyConfig = ${propertyConfig}
+                    object = ${props.object}
                 }
             }
-            field.value = ${Milly.Object.getProperty(props.object, propertyConfig.propertyPath ? propertyConfig.propertyPath : propertyConfig._propertyName)}
 
-            field.multiple = ${propertyConfig.type == 'multiSelect'}
-            label = Milly.Crudforms:Component.Label.PropertyLabel {
-                modelClassName = ${Type.className(props.object)}
-                propertyName = ${propertyName}
-                propertyConfig = ${propertyConfig}
-            }
-
-            content = Milly.Crudforms:Component.PropertyEditor {
-                propertyName = ${propertyName}
-                propertyConfig = ${propertyConfig}
-                object = ${props.object}
-            }
         }
         itemRenderer.@if.notReadonly = ${!propertyConfig.ui.readonly}
     }

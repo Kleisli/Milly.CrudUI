@@ -1,0 +1,5 @@
+prototype(Milly.Crudforms:Moledules.AbstractPropertyDisplayerContainer)  < prototype(Neos.Fusion:Component) {
+
+    propertyLabel = ''
+    propertyDisplayer = ''
+}

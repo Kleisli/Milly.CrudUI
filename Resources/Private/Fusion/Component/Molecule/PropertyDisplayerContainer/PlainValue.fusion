@@ -1,0 +1,4 @@
+prototype(Milly.Crudforms:Molecule.PropertyDisplayerContainer.PlainValue) < prototype(Milly.Crudforms:Moledules.AbstractPropertyDisplayerContainer) {
+
+    renderer = ${props.propertyDisplayer}
+}
