@@ -1,12 +1,6 @@
 prototype(Milly.Crudforms:Component.PropertyDisplayer.BooleanRadio) < prototype(Neos.Fusion:Component) {
 
     @apply.props = ${props}
-
-    renderer = afx`
-        <Milly.Crudforms:Component.ActionUi.Show @if={props.propertyConfig.options.link} object={Milly.Object.getProperty(props.object, props.propertyName)} showClassLabel={false}/>
-        <Neos.Fusion:Fragment @if={!props.propertyConfig.options.link}>
-            {Milly.CrudForms.getFieldOptionsObjectLabel(props.propertyConfig.options, Milly.Object.getProperty(props.object, props.propertyName))}
-        </Neos.Fusion:Fragment>
-    `
+    renderer = ${Milly.CrudForms.getFieldOptionsObjectLabel(props.propertyConfig.options, Milly.Object.getProperty(props.object, props.propertyName))}
 
 }
