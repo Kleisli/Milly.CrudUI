@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file original="Model/MyModel" product-name="MyVendor.MyPackage" source-language="en" datatype="plaintext">
+		<body>
+            <group id="label" restype="x-gettext-plurals">
+                <trans-unit id="label[0]" xml:space="preserve">
+                    <source>My model</source>
+                </trans-unit>
+                <trans-unit id="label[1]" xml:space="preserve">
+                    <source>My models</source>
+                </trans-unit>
+            </group>
+            <trans-unit id="textProperty" xml:space="preserve">
+				<source>Text property</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
