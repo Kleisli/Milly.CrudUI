@@ -29,15 +29,16 @@ class ConfigurationService
 
 
     /**
-     * @param string $className a Controller, Model or Repository class name
+     * @param object|string $model An object (class instance) or a string (class name) of a domain model
      * @param string|null $path
      * @param string|null $view
      * @return mixed
      * @throws \Neos\Flow\Exception
      */
-    public function getCrudFormsConfiguration(string $className, string $path = null, string $view = null){
+    public function getCrudFormsConfiguration(object|string $model, string $path = null, string $view = null){
 
-        $className = ReflectionService::cleanClassName($className);
+        $modelClassName = is_object($model) ? $model::class : $model;
+        $className = ClassMappingService::cleanClassName($modelClassName);
 
         $configuration = $this->configurationManager->getConfiguration(
             ConfigurationManager::CONFIGURATION_TYPE_SETTINGS,

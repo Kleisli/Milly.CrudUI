@@ -19,7 +19,7 @@ prototype(Milly.Crudforms:Template.Translate) < prototype(Neos.Fusion:Component)
     main = Neos.Fusion:DataStructure {
         first = Neos.Fusion:Join {
             availableLOcales = Neos.Fusion:Loop {
-                items = ${Milly.CrudForms.getConfigurationByClass(Type.className(object), 'views.translate.availableLocales', 'translate')}
+                items = ${Milly.CrudForms.getConfigurationByModel(object, 'views.translate.availableLocales', 'translate')}
                 itemRenderer = Milly.Crudforms:Component.ActionUi.Translate {
                     locale = ${item}
                     object = ${object}
@@ -27,7 +27,7 @@ prototype(Milly.Crudforms:Template.Translate) < prototype(Neos.Fusion:Component)
                 }
             }
             editForm = Milly.Crudforms:Component.EditForm {
-                properties = ${Milly.CrudForms.getConfigurationByClass(Type.className(object), 'properties', 'translate')}
+                properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', 'translate')}
                 targetAction = "updateTranslation"
                 additionalFormContent.locale = Neos.Fusion.Form:Hidden {
                     field {

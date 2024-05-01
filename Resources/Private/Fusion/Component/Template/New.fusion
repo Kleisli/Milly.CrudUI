@@ -54,10 +54,10 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
                         }
                         content = Neos.Fusion:Join {
                             newForm = Milly.Crudforms:Component.NewForm {
-                                properties = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'properties', 'new')}
-                                parent.@if.hasParent = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'parent')}
+                                properties = ${Milly.CrudForms.getConfigurationByModel(crudFormsModelClass, 'properties', 'new')}
+                                parent.@if.hasParent = ${Milly.CrudForms.getConfigurationByModel(crudFormsModelClass, 'parent')}
                                 parent = ${Type.isObject(parent) ? Milly.Object.identifier(parent) : parent}
-                                parentProperty = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'parent')}
+                                parentProperty = ${Milly.CrudForms.getConfigurationByModel(crudFormsModelClass, 'parent')}
 
                                 preset = ${props.preset}
                             }

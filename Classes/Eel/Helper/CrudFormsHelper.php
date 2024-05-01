@@ -36,35 +36,18 @@ class CrudFormsHelper implements ProtectedContextAwareInterface
     protected ConfigurationManager $configurationManager;
 
     /**
-     * @param object $model
+     * @param object|string $model
      * @param string|null $path
      * @param string|null $view
      * @return mixed
      * @throws Exception
      * @throws \Neos\Flow\Exception
      */
-    public function getConfigurationByModel(object $model, string $path = null, string $view = null)
+    public function getConfigurationByModel(object|string $model, string $path = null, string $view = null): mixed
     {
-        $configuration = $this->configurationService->getCrudFormsConfiguration($model::class, $path, $view);
+        $configuration = $this->configurationService->getCrudFormsConfiguration($model, $path, $view);
         if($path == null && $configuration == null){
             throw new Exception("No crud configuration found for class ".$model::class);
-        }
-        return $configuration;
-    }
-
-    /**
-     * @param string $modelClass a Model class name
-     * @param string|null $path
-     * @param string|null $view
-     * @return mixed
-     * @throws Exception
-     * @throws \Neos\Flow\Exception
-     */
-    public function getConfigurationByClass(string $modelClass, string $path = null, string $view = null)
-    {
-        $configuration = $this->configurationService->getCrudFormsConfiguration($modelClass, $path, $view);
-        if($path == null && $configuration == null){
-            throw new Exception("No crud configuration found for class ".$modelClass);
         }
         return $configuration;
     }

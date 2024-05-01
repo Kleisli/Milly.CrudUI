@@ -3,7 +3,7 @@ prototype(Milly.Crudforms:Template.ExportCsv) < prototype(Neos.Fusion:Component)
     renderer = Neos.Fusion:Join {
         header = Milly.Crudforms:Component.CsvHeaderRow {
             modelClassName = ${crudFormsModelClass}
-            properties = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'properties', 'export')}
+            properties = ${Milly.CrudForms.getConfigurationByModel(crudFormsModelClass, 'properties', 'export')}
         }
 
         values = Neos.Fusion:Loop {

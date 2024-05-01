@@ -6,8 +6,8 @@ prototype(Milly.Crudforms:Component.ActionUi.Translate) < prototype(Neos.Fusion:
 
     renderer = Neos.Fusion:Link.Action {
         href.action = "translate"
-        href.package = ${Milly.Mapping.getPackageNameByModel(props.object)}
-        href.controller = ${Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.object))}
+        href.package = ${Milly.Mapping.getControllerPackageNameByModel(props.object)}
+        href.controller = ${Milly.Mapping.getControllerNameByModel(props.object)}
         href.arguments = ${{object: props.object, locale: props.locale}}
         class = Milly.Crudforms:Helper.ThemeRenderer {
             path = 'atom.actionUi.edit.link.class'

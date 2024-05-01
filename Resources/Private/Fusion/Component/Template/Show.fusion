@@ -23,20 +23,20 @@ prototype(Milly.Crudforms:Template.Show) < prototype(Neos.Fusion:Component) {
         second = Neos.Fusion:Join {
             relations = Milly.Crudforms:Component.ShowRelations {
                 object = ${object}
-                relations = ${Milly.CrudForms.getConfigurationByClass(Type.className(object), 'relations', 'show')}
+                relations = ${Milly.CrudForms.getConfigurationByModel(object, 'relations', 'show')}
             }
         }
     }
 
     footer = Neos.Fusion:Join {
         editButton = Milly.Crudforms:Component.ActionUi.Edit {
-            @if.notReadonly = ${!Milly.CrudForms.getConfigurationByClass(Type.className(object), 'ui.readonly')}
+            @if.notReadonly = ${!Milly.CrudForms.getConfigurationByModel(object, 'ui.readonly')}
             object = ${object}
             showLabel = true
         }
 
         translateButton = Milly.Crudforms:Component.ActionUi.Translate {
-            @if.notReadonly = ${!Milly.CrudForms.getConfigurationByClass(Type.className(object), 'ui.readonly') && Traduki.Entity.isTranslatable(object)}
+            @if.notReadonly = ${!Milly.CrudForms.getConfigurationByModel(object, 'ui.readonly') && Traduki.Entity.isTranslatable(object)}
             object = ${object}
             showLabel = true
         }

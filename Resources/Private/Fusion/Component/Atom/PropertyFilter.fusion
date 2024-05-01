@@ -6,7 +6,7 @@ prototype(Milly.Crudforms:Component.PropertyFilter) < prototype(Neos.Fusion:Comp
     crudFormsView = 'index'
 
     renderer =  Neos.Fusion:Match {
-        @subject = ${Milly.CrudForms.getConfigurationByClass(props.modelClassName, 'views.'+props.crudFormsView+'.filter.'+props.propertyName+'.type')}
+        @subject = ${Milly.CrudForms.getConfigurationByModel(props.modelClassName, 'views.'+props.crudFormsView+'.filter.'+props.propertyName+'.type')}
 
         select = Milly.Crudforms:Component.PropertyFilter.Select {
             @apply.props = ${props}

@@ -33,13 +33,13 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
         indexTable = Milly.Crudforms:Component.IndexTable {
             objects = ${objects}
             modelClassName = ${crudFormsModelClass}
-            disablePagination = ${Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'views.index.options.pagination.disable')}
+            disablePagination = ${Milly.CrudForms.getConfigurationByModel(crudFormsModelClass, 'views.index.options.pagination.disable')}
         }
     }
 
     footer = Neos.Fusion:Join {
         newButton = Milly.Crudforms:Component.ActionUi.New {
-            @if.notReadonly = ${!Milly.CrudForms.getConfigurationByClass(crudFormsModelClass, 'ui.readonly', 'index')}
+            @if.notReadonly = ${!Milly.CrudForms.getConfigurationByModel(crudFormsModelClass, 'ui.readonly', 'index')}
             object = ${object}
             showLabel = true
             modelClassName = ${crudFormsModelClass}

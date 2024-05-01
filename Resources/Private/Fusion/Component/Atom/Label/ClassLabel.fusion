@@ -6,7 +6,7 @@ prototype(Milly.Crudforms:Component.Label.ClassLabel) < prototype(Neos.Fusion:Co
     renderer = Neos.Fusion:Case {
         getFromClass {
             condition = ${props.className && props.showClassLabel}
-            renderer =  ${Milly.CrudForms.getConfigurationByClass(props.className, 'label.'+props.showClassLabel)}
+            renderer =  ${Milly.CrudForms.getConfigurationByModel(props.className, 'label.'+props.showClassLabel)}
         }
         getFromObject {
             condition = ${props.object && props.showClassLabel}

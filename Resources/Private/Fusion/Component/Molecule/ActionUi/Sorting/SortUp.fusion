@@ -6,8 +6,8 @@ prototype(Milly.Crudforms:Component.ActionUi.SortUp) < prototype(Neos.Fusion:Com
         @if.notFirst = ${!props.object.isFirst}
         form.target {
             action = "sortUp"
-            package = ${Milly.Mapping.getPackageNameByModel(props.object)}
-            controller = ${Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.object))}
+            package = ${Milly.Mapping.getControllerPackageNameByModel(props.object)}
+            controller = ${Milly.Mapping.getControllerNameByModel(props.object)}
             arguments = ${{object: props.object}}
         }
         attributes.style = "margin-right: 40px"

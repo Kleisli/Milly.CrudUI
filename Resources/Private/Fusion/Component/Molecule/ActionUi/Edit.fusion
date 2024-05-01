@@ -5,8 +5,8 @@ prototype(Milly.Crudforms:Component.ActionUi.Edit) < prototype(Neos.Fusion:Compo
 
     renderer = Neos.Fusion:Link.Action {
         href.action = "edit"
-        href.package = ${Milly.Mapping.getPackageNameByModel(props.object)}
-        href.controller = ${Milly.Mapping.getControllerNameByClass(Milly.Mapping.getControllerClassByModel(props.object))}
+        href.package = ${Milly.Mapping.getControllerPackageNameByModel(props.object)}
+        href.controller = ${Milly.Mapping.getControllerNameByModel(props.object)}
         href.arguments = ${{object: props.object}}
         class = Milly.Crudforms:Helper.ThemeRenderer {
             path = 'atom.actionUi.edit.link.class'

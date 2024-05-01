@@ -26,7 +26,7 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                     indexTableHeaderRow = Milly.Crudforms:Component.IndexTableHeaderRow {
                         modelClassName = ${props.modelClassName}
                         crudFormsView = ${props.crudFormsView}
-                        @if.showColumnHeaders = ${Milly.CrudForms.getConfigurationByClass(props.modelClassName, 'views.'+props.crudFormsView+'.showColumnHeaders')}
+                        @if.showColumnHeaders = ${Milly.CrudForms.getConfigurationByModel(props.modelClassName, 'views.'+props.crudFormsView+'.showColumnHeaders')}
                     }
                 }
             }

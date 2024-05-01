@@ -18,13 +18,13 @@ prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
         first = Neos.Fusion:Join {
             editForm = Milly.Crudforms:Component.EditForm {
                 object = ${object}
-                properties = ${Milly.CrudForms.getConfigurationByClass(Type.className(object), 'properties', 'edit')}
+                properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', 'edit')}
             }
         }
         second = Neos.Fusion:Join {
             relations = Milly.Crudforms:Component.ShowRelations {
                 object = ${object}
-                relations = ${Milly.CrudForms.getConfigurationByClass(Type.className(object), 'relations', 'edit')}
+                relations = ${Milly.CrudForms.getConfigurationByModel(object, 'relations', 'edit')}
             }
         }
     }
