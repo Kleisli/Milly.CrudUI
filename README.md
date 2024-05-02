@@ -15,60 +15,29 @@ Easily build controllers and views to show and edit Neos.Flow domain models.
 ## Domain Models and Repositories
 There is no special requirements for Models or Repositories.
 
-see [Documentation/Domain.md](Documentation/Domain.md) for 
-- Sorting
+### Customization
+- [Sorting](Documentation/Domain.md#sorting)
 
 ## Controller
-a minimal CrudController to be used as Neos backend module:
+a minimal CrudController to be used as Neos backend module looks like that
 ```
 class MyModelController extends AbstractModuleController
 {
-    protected $defaultViewObjectName = \Neos\Fusion\View\FusionView::class;
     use CrudControllerTrait;
 }
 ```
-this includes all the crud features. If you only want to use some of them, you can add the ``BaseControllerTrait`` plus 
 
-* ``CreateControllerTrait``
-* ``DeleteControllerTrait``
-* ``ReadAllControllerTrait``
-* ``ReadOneControllerTrait``
-* ``UpdateControllerTrait``
-* ``SortingControllerTrait``
-
-see [Documentation/Controller.md]() for
-- Mismatching Model Namespace
+### Customization
+- [What to do with a mismatching Model Namespace?](Documentation/Controller.md#mismatching-model-namespace)
+- [Select the crudforms to add](Documentation/Controller.md#select-the-crudforms-to-add)
 
 
 ## Views
-### Fusion
-Views are implemented in Fusion and expected in the Fusion path ``Vendor.Package.MyModelController.action`` it is recommended,
-to create a fusion file for each action in ``Resurces\Private\Fusion\Integration\Controller\MyModel\``. 
-If you have no custom requirements, you can use the provided Template prototypes.
+Milly.CrudUI loads default fusion templates out of the box. But of course you can add your own. 
 
-#### Index.fusion
-```
-MyVendor.MyPackage.MyModelController.index = Milly.CrudUI:Template.Index
-```
+### Customization
+- [Add custom fusion templates](Documentation/Views.md)
 
-#### New.fusion
-```
-MyVendor.MyPackage.MyModelController.new = Milly.CrudUI:Template.New {
-    # optional presets
-    preset.property = "value"
-}
-```
-with the preset parameter you can define properties for the entity to be created. 
-
-#### Show.fusion
-```
-MyVendor.MyPackage.MyModelController.show = Milly.CrudUI:Template.Show
-```
-
-#### Edit.fusion
-```
-MyVendor.MyPackage.MyModelController.edit = Milly.CrudUI:Template.Edit
-```
 
 ## Configuration
 Configuration Settings have to be defined for each model
@@ -91,7 +60,7 @@ Milly:
             The parent model must have a configured `relation` to the child model. 
 
 
-### Views
+### Views-Configuration
 The views configuration is optional. When no views configuration exists for a given view, all properties are displayed and the default settings are applied.
 ```
 views:
@@ -113,12 +82,14 @@ The configuration of view `relation` specifies what properties of a model are di
 
 For the `index` and the `relation` view it can be configured whether the column headers that display the property labels should be shown or not. The default value is `false`. 
 
-see [Documentation/Configuration.md](Documentation/Configuration.md#views) to
+#### Customization
 - configure filter options in the `index` view
 - configure the pagination for the `index` view
 - apply different styles with theming
 
-### Properties
+see [Documentation/Configuration.md](Documentation/Configuration.md#views)
+
+### Properties-Configuration
 To make Milly.CrudUi aware of a property of your model, add it as a key to `properties`.
 If you don't add any property configuration
 - the default `type` `string` will be applied
@@ -208,7 +179,7 @@ see [Documentation/Configuration.md](Documentation/Configuration.md#properties) 
 - Add custom property editors and displayers
 
 
-### Relations
+### Relations-Configuration
 Technically, a property can also be a relation (see types `select` or m`multiSelect`) and relations are also properties of the class.
 
 The differences in this context are:
@@ -220,10 +191,6 @@ as `properties` the objects are displayed as list of their labels
 ```
 relations: []
 ```
-
-
-
-
 
 
 ## Kudos

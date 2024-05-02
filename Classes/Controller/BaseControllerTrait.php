@@ -3,9 +3,12 @@ namespace Milly\CrudUI\Controller;
 
 use Milly\CrudUI\Service\ConfigurationService;
 use Milly\CrudUI\Service\ObjectService;
+use Milly\CrudUI\View\FallbackFusionView;
 use Milly\Tools\Service\ClassMappingService;
 use Milly\Tools\Service\ReflectionService;
 use Neos\Flow\Exception;
+use Neos\Flow\Mvc\ActionRequest;
+use Neos\Flow\Mvc\ActionResponse;
 use Neos\Flow\Mvc\View\ViewInterface;
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 use Neos\Flow\Persistence\RepositoryInterface;
@@ -36,19 +39,18 @@ trait BaseControllerTrait
     #[Flow\Inject]
     protected ObjectService $objectService;
 
-
-    protected function initializeAction()
+    protected function initializeController(ActionRequest $request, ActionResponse $response)
     {
-
+        $this->defaultViewObjectName = FallbackFusionView::class;
+        parent::initializeController($request, $response);
     }
-    /**
-     * Initialize the view
-     *
-     * @param  ViewInterface $view
-     * @return void
-     */
-    public function initializeView(ViewInterface $view)
+
+    public function initializeView(ViewInterface $view): void
     {
+        $view->setOption('fusionPathPatterns', ['resource://@package/Private/Views', 'resource://Milly.CrudUI/Private/Views']);
+        if($view instanceof FallbackFusionView) {
+            $view->setOption('fallbackFusionPath', 'Milly/CrudUI/Default/' . $view->getControllerActionName());
+        }
         $view->assign('millyCrudTheme', $this->theme ?? null);
         parent::initializeView($view);
     }
@@ -75,7 +77,8 @@ trait BaseControllerTrait
      * @return array
      * @throws \Neos\Flow\Exception
      */
-    protected function getCrudUIConfiguration($view = ''){
+    protected function getCrudUIConfiguration(string $view = ''): array
+    {
         return $this->configurationService->getCrudUIConfiguration($this->getModelClass(), null, $view);
     }
 
@@ -83,7 +86,8 @@ trait BaseControllerTrait
      * @return RepositoryInterface
      * @throws \Neos\Flow\Exception
      */
-    protected function getRepository(){
+    protected function getRepository(): RepositoryInterface
+    {
         $repository = $this->objectManager->get($this->classMappingService->getRepositoryClassByModel($this->getModelClass()));
         if(!($repository instanceof RepositoryInterface)){
             throw new Exception("Could not instantiate " .$this->classMappingService->getRepositoryClassByModel($this->getModelClass()). " as Repository for Model ".$this->getModelClass());
@@ -95,7 +99,8 @@ trait BaseControllerTrait
      * @return string
      * @throws \Neos\Flow\Exception
      */
-    protected function getModelClass(){
+    protected function getModelClass(): string
+    {
         if(defined('static::ENTITY_CLASSNAME')){
             return static::ENTITY_CLASSNAME;
         }else{
