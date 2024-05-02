@@ -2,21 +2,13 @@
 namespace Milly\CrudForms\Eel\Helper;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Milly\CrudForms\Service\ClassMappingService;
 use Milly\CrudForms\Service\ConfigurationService;
-use Milly\Flow\Persistence\Repository;
-use Neos\ContentRepository\Domain\Model\NodeInterface;
 use Neos\Eel\ProtectedContextAwareInterface;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Configuration\ConfigurationManager;
 use Neos\Flow\Error\Exception;
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
-use Neos\Flow\Persistence\QueryResultInterface;
-use Neos\Flow\Persistence\RepositoryInterface;
-use Neos\Utility\Arrays;
-use Neos\Utility\ObjectAccess;
-use PHPUnit\Framework\Error\Notice;
 
 class CrudFormsHelper implements ProtectedContextAwareInterface
 {

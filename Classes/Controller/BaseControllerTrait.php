@@ -96,7 +96,11 @@ trait BaseControllerTrait
      * @throws \Neos\Flow\Exception
      */
     protected function getModelClass(){
-        return defined('static::ENTITY_CLASSNAME') ? static::ENTITY_CLASSNAME : ClassMappingService::getModelClass(get_class($this));
+        if(defined('static::ENTITY_CLASSNAME')){
+            return static::ENTITY_CLASSNAME;
+        }else{
+            return $this->classMappingService->convertClass(get_class($this), ClassMappingService::TYPE_MODEL);
+        }
     }
 
     /**
@@ -125,8 +129,8 @@ trait BaseControllerTrait
         $controllerClass = $this->classMappingService->getControllerClassByModel($parentClass);
         $this->redirect(
             'show',
-            ClassMappingService::getControllerName($this->classMappingService->getControllerClassByModel($parentClass)),
-            ClassMappingService::getPackageName($controllerClass),
+            $this->classMappingService->getControllerNameByModel($parentClass),
+            $this->classMappingService->getPackageName($controllerClass),
             ['object' => ObjectAccess::getProperty($object, $config['parent'])]
         );
     }
@@ -140,8 +144,8 @@ trait BaseControllerTrait
         $controllerClass = $this->classMappingService->getControllerClassByModel($object);
         $this->redirect(
             'show',
-            ClassMappingService::getControllerName($this->classMappingService->getControllerClassByModel($object::class)),
-            ClassMappingService::getPackageName($controllerClass),
+            $this->classMappingService->getControllerNameByModel($object),
+            $this->classMappingService->getPackageName($controllerClass),
             ['object' => $object]
         );
     }

@@ -1,7 +1,7 @@
 {
     "description": "",
     "type": "neos-package",
-    "name": "milly/crudforms",
+    "name": "kleisli/milly-crudforms",
     "require": {
         "neos/fusion-form": "*",
         "milly/tools": "@dev",

@@ -51,24 +51,6 @@ class ObjectHelper implements ProtectedContextAwareInterface
     }
 
     /**
-     * @param $object
-     * @return string
-     */
-    public function getControllerByObject($object){
-        $className =  str_replace('Neos\\Flow\\Persistence\\Doctrine\\Proxies\\__CG__\\', '', $object::class);
-        return explode('\\Domain\\Model\\', $className)[1];
-    }
-
-    /**
-     * @param $object
-     * @return string
-     */
-    public function getPackageByObject($object){
-        $className =  str_replace('Neos\\Flow\\Persistence\\Doctrine\\Proxies\\__CG__\\', '', $object::class);
-        return str_replace('\\', '.', explode('\\Domain\\Model\\', $className)[0]);
-    }
-
-    /**
      * All methods are considered safe
      *
      * @param string $methodName

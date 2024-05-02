@@ -27,6 +27,9 @@ class ConfigurationService
     #[Flow\Inject]
     protected ConfigurationManager $configurationManager;
 
+    #[Flow\Inject]
+    protected ClassMappingService $classMappingService;
+
 
     /**
      * @param object|string $model An object (class instance) or a string (class name) of a domain model
@@ -38,7 +41,7 @@ class ConfigurationService
     public function getCrudFormsConfiguration(object|string $model, string $path = null, string $view = null){
 
         $modelClassName = is_object($model) ? $model::class : $model;
-        $className = ClassMappingService::cleanClassName($modelClassName);
+        $className = $this->classMappingService->cleanClassName($modelClassName);
 
         $configuration = $this->configurationManager->getConfiguration(
             ConfigurationManager::CONFIGURATION_TYPE_SETTINGS,
