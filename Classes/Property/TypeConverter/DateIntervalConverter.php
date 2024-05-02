@@ -1,5 +1,5 @@
 <?php
-namespace Milly\CrudForms\Property\TypeConverter;
+namespace Milly\CrudUI\Property\TypeConverter;
 
 /*
  * This file is part of the Neos.Flow package.

@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.ActionUi.ExportCsv) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.ActionUi.ExportCsv) < prototype(Neos.Fusion:Component) {
 
     renderer = Neos.Fusion:Link.Action {
         href.action = "index"
@@ -10,12 +10,12 @@ prototype(Milly.Crudforms:Component.ActionUi.ExportCsv) < prototype(Neos.Fusion:
             orderBy = ${orderBy}
             orderDirection = ${orderDirection}
         }
-        class = Milly.Crudforms:Helper.ThemeRenderer {
+        class = Milly.CrudUI:Helper.ThemeRenderer {
             path = 'atom.actionUi.exportCsv.link.class'
             fallbackPath = 'atom.actionUi.default.link.class'
         }
         content = Neos.Fusion:Join {
-            icon = Milly.CrudForms:Atom.Icon.Download
+            icon = Milly.CrudUI:Atom.Icon.Download
             text = '&nbsp;&nbsp;CSV'
         }
     }

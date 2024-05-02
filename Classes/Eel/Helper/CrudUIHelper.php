@@ -1,8 +1,8 @@
 <?php
-namespace Milly\CrudForms\Eel\Helper;
+namespace Milly\CrudUI\Eel\Helper;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Milly\CrudForms\Service\ConfigurationService;
+use Milly\CrudUI\Service\ConfigurationService;
 use Neos\Eel\ProtectedContextAwareInterface;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Configuration\ConfigurationManager;
@@ -10,7 +10,7 @@ use Neos\Flow\Error\Exception;
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
 
-class CrudFormsHelper implements ProtectedContextAwareInterface
+class CrudUIHelper implements ProtectedContextAwareInterface
 {
     #[Flow\Inject]
     protected ConfigurationService $configurationService;
@@ -37,7 +37,7 @@ class CrudFormsHelper implements ProtectedContextAwareInterface
      */
     public function getConfigurationByModel(object|string $model, string $path = null, string $view = null): mixed
     {
-        $configuration = $this->configurationService->getCrudFormsConfiguration($model, $path, $view);
+        $configuration = $this->configurationService->getCrudUIConfiguration($model, $path, $view);
         if($path == null && $configuration == null){
             throw new Exception("No crud configuration found for class ".$model::class);
         }
@@ -124,7 +124,7 @@ class CrudFormsHelper implements ProtectedContextAwareInterface
     {
         return $this->configurationManager->getConfiguration(
             ConfigurationManager::CONFIGURATION_TYPE_SETTINGS,
-            'Milly.CrudForms.themes.' . $theme . '.' . $classPath);
+            'Milly.CrudUI.themes.' . $theme . '.' . $classPath);
     }
 
     /**

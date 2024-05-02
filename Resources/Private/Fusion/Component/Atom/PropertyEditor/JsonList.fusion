@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.PropertyEditor.JsonList) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.PropertyEditor.JsonList) < prototype(Neos.Fusion:Component) {
 
     @apply.props = ${props}
 

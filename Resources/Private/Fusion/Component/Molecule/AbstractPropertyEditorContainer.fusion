@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Moledules.AbstractPropertyEditorContainer) < prototype(Neos.Fusion.Form:Component.Field) {
+prototype(Milly.CrudUI:Moledules.AbstractPropertyEditorContainer) < prototype(Neos.Fusion.Form:Component.Field) {
 
     # used to populate the `field` context and among others things
     # allow accessing the data bound to the form, submitted values

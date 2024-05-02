@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.PropertyDisplayer.JsonList) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.PropertyDisplayer.JsonList) < prototype(Neos.Fusion:Component) {
 
     @apply.props = ${props}
 
@@ -15,7 +15,7 @@ prototype(Milly.Crudforms:Component.PropertyDisplayer.JsonList) < prototype(Neos
                         </Neos.Fusion:Fragment>
                         <Neos.Fusion:Fragment @if={Type.isArray(item)}>
                             <li>{itemKey}:
-                                <Milly.Crudforms:Component.PropertyDisplayer.JsonList array={item} />
+                                <Milly.CrudUI:Component.PropertyDisplayer.JsonList array={item} />
                             </li>
                         </Neos.Fusion:Fragment>
                     </Neos.Fusion:Loop>

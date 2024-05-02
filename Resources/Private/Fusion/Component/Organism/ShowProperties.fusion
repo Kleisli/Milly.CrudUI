@@ -1,16 +1,16 @@
-prototype(Milly.Crudforms:Component.ShowProperties) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.ShowProperties) < prototype(Neos.Fusion:Component) {
 
     object = null
 
     renderer = Neos.Fusion:Tag {
         tagName = "table"
-        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
             path = 'template.show.table.class'
         }
-        content = Milly.Crudforms:Component.PropertyDisplayers {
-            propertyDisplayerContainerType = 'Milly.Crudforms:Molecule.PropertyDisplayerContainer.TableRow'
+        content = Milly.CrudUI:Component.PropertyDisplayers {
+            propertyDisplayerContainerType = 'Milly.CrudUI:Molecule.PropertyDisplayerContainer.TableRow'
             object = ${props.object}
-            crudFormsView = 'show'
+            CrudUIView = 'show'
         }
     }
 }

@@ -1,21 +1,21 @@
 {
     "description": "",
     "type": "neos-package",
-    "name": "kleisli/milly-crudforms",
+    "name": "kleisli/milly-crudui",
     "require": {
         "neos/fusion-form": "*",
-        "milly/tools": "@dev",
+        "kleisli/milly-tools": "@dev",
         "neosloves/iconify": "@dev",
-        "milly/sortable": "@dev"
+        "kleisli/milly-sortable": "@dev"
     },
     "autoload": {
         "psr-4": {
-            "Milly\\CrudForms\\": "Classes/"
+            "Milly\\CrudUI\\": "Classes/"
         }
     },
     "extra": {
         "neos": {
-            "package-key": "Milly.CrudForms"
+            "package-key": "Milly.CrudUI"
         }
     }
 }

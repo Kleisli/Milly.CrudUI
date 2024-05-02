@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Molecule.PropertyDisplayerContainer.TableCell) < prototype(Milly.Crudforms:Moledules.AbstractPropertyDisplayerContainer) {
+prototype(Milly.CrudUI:Molecule.PropertyDisplayerContainer.TableCell) < prototype(Milly.CrudUI:Moledules.AbstractPropertyDisplayerContainer) {
 
     renderer = afx`
         <td>

@@ -1,11 +1,11 @@
-prototype(Milly.Crudforms:Component.PropertyFilter.IsSet) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.PropertyFilter.IsSet) < prototype(Neos.Fusion:Component) {
 
-    options = ${Milly.CrudForms.getConfigurationByModel(this.modelClassName, 'views.'+this.crudFormsView+'.filter.'+this.propertyName+'.typeOptions')}
+    options = ${Milly.CrudUI.getConfigurationByModel(this.modelClassName, 'views.'+this.CrudUIView+'.filter.'+this.propertyName+'.typeOptions')}
 
     defaultLabels = Neos.Fusion:DataStructure {
-        all = ${I18n.translate('Milly.CrudForms:Component.PropertyFilter.IsSet:all')}
-        set = ${I18n.translate('Milly.CrudForms:Component.PropertyFilter.IsSet:set')}
-        notSet = ${I18n.translate('Milly.CrudForms:Component.PropertyFilter.IsSet:notSet')}
+        all = ${I18n.translate('Milly.CrudUI:Component.PropertyFilter.IsSet:all')}
+        set = ${I18n.translate('Milly.CrudUI:Component.PropertyFilter.IsSet:set')}
+        notSet = ${I18n.translate('Milly.CrudUI:Component.PropertyFilter.IsSet:notSet')}
     }
 
     renderer = afx`

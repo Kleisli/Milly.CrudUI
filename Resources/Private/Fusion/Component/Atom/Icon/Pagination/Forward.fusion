@@ -1,3 +1,3 @@
-prototype(Milly.CrudForms:Atom.Icon.Pagination.Forward) < prototype(Milly.CrudForms:Atom.Icon){
+prototype(Milly.CrudUI:Atom.Icon.Pagination.Forward) < prototype(Milly.CrudUI:Atom.Icon){
   name = 'fa-solid:forward'
 }

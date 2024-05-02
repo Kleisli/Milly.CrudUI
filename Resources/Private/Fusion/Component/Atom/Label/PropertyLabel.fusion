@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.Label.PropertyLabel) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.Label.PropertyLabel) < prototype(Neos.Fusion:Component) {
 
     modelClassName = ''
     propertyConfig = null

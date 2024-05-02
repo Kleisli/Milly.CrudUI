@@ -1,5 +1,5 @@
 <?php
-namespace Milly\CrudForms\Controller;
+namespace Milly\CrudUI\Controller;
 
 use Gedmo\Translatable\TranslatableListener;
 use Neos\Flow\Annotations as Flow;

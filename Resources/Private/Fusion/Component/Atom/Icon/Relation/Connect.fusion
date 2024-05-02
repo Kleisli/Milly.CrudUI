@@ -1,4 +1,4 @@
-prototype(Milly.CrudForms:Atom.Icon.Relation.Connect) < prototype(Milly.CrudForms:Atom.Icon){
+prototype(Milly.CrudUI:Atom.Icon.Relation.Connect) < prototype(Milly.CrudUI:Atom.Icon){
     name = 'fa:plus'
     title = "Connect"
 }

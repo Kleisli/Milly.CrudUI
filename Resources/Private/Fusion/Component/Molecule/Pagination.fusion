@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.Pagination) < prototype(Neos.Fusion:Component) {
 
     currentPage = 0
     pageSize = 10
@@ -31,7 +31,7 @@ prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Componen
         }
         fastBackward = Neos.Fusion:Link.Action {
             disabled = ${props.currentPage == 0 || props.lastPage == 0}
-            class = Milly.Crudforms:Helper.ThemeRenderer {
+            class = Milly.CrudUI:Helper.ThemeRenderer {
                 path = 'molecule.pagination.link.class'
             }
             href.action = "index"
@@ -42,11 +42,11 @@ prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Componen
                 orderBy = ${orderBy}
                 orderDirection = ${orderDirection}
             }
-            content = Milly.CrudForms:Atom.Icon.Pagination.FastBackward
+            content = Milly.CrudUI:Atom.Icon.Pagination.FastBackward
         }
         backward = Neos.Fusion:Link.Action {
             disabled = ${props.currentPage == 0 || props.lastPage == 0}
-            class = Milly.Crudforms:Helper.ThemeRenderer {
+            class = Milly.CrudUI:Helper.ThemeRenderer {
                 path = 'molecule.pagination.link.class'
             }
             href.action = "index"
@@ -57,7 +57,7 @@ prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Componen
                 orderBy = ${orderBy}
                 orderDirection = ${orderDirection}
             }
-            content = Milly.CrudForms:Atom.Icon.Pagination.Backward
+            content = Milly.CrudUI:Atom.Icon.Pagination.Backward
         }
         paginationCurrentPageSelector = Neos.Fusion:Tag {
             attributes.class="page-selector"
@@ -84,7 +84,7 @@ prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Componen
         }
         forward = Neos.Fusion:Link.Action {
             disabled = ${props.currentPage == props.lastPage || props.lastPage == 0}
-            class = Milly.Crudforms:Helper.ThemeRenderer {
+            class = Milly.CrudUI:Helper.ThemeRenderer {
                 path = 'molecule.pagination.link.class'
             }
             href.action = "index"
@@ -95,11 +95,11 @@ prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Componen
                 orderBy = ${orderBy}
                 orderDirection = ${orderDirection}
             }
-            content = Milly.CrudForms:Atom.Icon.Pagination.Forward
+            content = Milly.CrudUI:Atom.Icon.Pagination.Forward
         }
         fastForward = Neos.Fusion:Link.Action {
             disabled = ${props.currentPage == props.lastPage || props.lastPage == 0}
-            class = Milly.Crudforms:Helper.ThemeRenderer {
+            class = Milly.CrudUI:Helper.ThemeRenderer {
                 path = 'molecule.pagination.link.class'
             }
             href.action = "index"
@@ -110,7 +110,7 @@ prototype(Milly.Crudforms:Component.Pagination) < prototype(Neos.Fusion:Componen
                 orderBy = ${orderBy}
                 orderDirection = ${orderDirection}
             }
-            content = Milly.CrudForms:Atom.Icon.Pagination.FastForward
+            content = Milly.CrudUI:Atom.Icon.Pagination.FastForward
         }
         @if.isNeeded = ${props.lastPage > 0}
     }

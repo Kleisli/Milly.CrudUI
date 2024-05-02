@@ -3,11 +3,11 @@
 # The "public API", like "head.titleTag.content", "body", or "body.javascripts" is exactly the same as
 # in Neos.Neos:Page.
 
-prototype(Milly.CrudForms:Webpage) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Webpage) < prototype(Neos.Fusion:Component) {
     # add the DocType as processor; because it will break AFX.
     @process.addDocType = ${'<!DOCTYPE html>' + value}
 
-    headerComment = ${Configuration.setting('Milly.CrudForms.headerComment')}
+    headerComment = ${Configuration.setting('Milly.CrudUI.headerComment')}
 
     head = Neos.Fusion:Join {
         titleTag = Neos.Fusion:Tag {
@@ -20,7 +20,7 @@ prototype(Milly.CrudForms:Webpage) < prototype(Neos.Fusion:Component) {
             attributes {
               rel = 'stylesheet'
               href = Neos.Fusion:ResourceUri {
-                path = 'resource://Milly.CrudForms/Public/Css/frontend.css'
+                path = 'resource://Milly.CrudUI/Public/Css/frontend.css'
               }
             }
           }

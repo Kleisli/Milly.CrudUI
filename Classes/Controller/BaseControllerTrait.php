@@ -1,8 +1,8 @@
 <?php
-namespace Milly\CrudForms\Controller;
+namespace Milly\CrudUI\Controller;
 
-use Milly\CrudForms\Service\ConfigurationService;
-use Milly\CrudForms\Service\ObjectService;
+use Milly\CrudUI\Service\ConfigurationService;
+use Milly\CrudUI\Service\ObjectService;
 use Milly\Tools\Service\ClassMappingService;
 use Milly\Tools\Service\ReflectionService;
 use Neos\Flow\Exception;
@@ -75,8 +75,8 @@ trait BaseControllerTrait
      * @return array
      * @throws \Neos\Flow\Exception
      */
-    protected function getCrudFormsConfiguration($view = ''){
-        return $this->configurationService->getCrudFormsConfiguration($this->getModelClass(), null, $view);
+    protected function getCrudUIConfiguration($view = ''){
+        return $this->configurationService->getCrudUIConfiguration($this->getModelClass(), null, $view);
     }
 
     /**
@@ -110,7 +110,7 @@ trait BaseControllerTrait
      */
     public function redirectAfterAction($object){
 
-        $config = $this->getCrudFormsConfiguration();
+        $config = $this->getCrudUIConfiguration();
         if(isset($config['parent'])){
             $this->redirectToParent($object);
         }
@@ -124,7 +124,7 @@ trait BaseControllerTrait
      * @throws \Neos\Flow\Mvc\Exception\StopActionException
      */
     public function redirectToParent($object){
-        $config = $this->getCrudFormsConfiguration();
+        $config = $this->getCrudUIConfiguration();
         $parentClass = $this->millyReflectionService->getTypeOfProperty($this->getModelClass(), $config['parent']);
         $controllerClass = $this->classMappingService->getControllerClassByModel($parentClass);
         $this->redirect(

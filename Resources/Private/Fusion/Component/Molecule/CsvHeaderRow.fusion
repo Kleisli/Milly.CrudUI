@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.CsvHeaderRow) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.CsvHeaderRow) < prototype(Neos.Fusion:Component) {
 
     properties = ${[]}
     modelClassName = ''
@@ -7,7 +7,7 @@ prototype(Milly.Crudforms:Component.CsvHeaderRow) < prototype(Neos.Fusion:Compon
         items = ${props.properties}
         itemKey = "propertyName"
         itemName = "propertyConfig"
-        itemRenderer = Milly.Crudforms:Component.Label.PropertyLabel {
+        itemRenderer = Milly.CrudUI:Component.Label.PropertyLabel {
             modelClassName = ${props.modelClassName}
             propertyName = ${propertyName}
             propertyConfig = ${propertyConfig}

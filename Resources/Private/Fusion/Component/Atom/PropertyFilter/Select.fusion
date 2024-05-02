@@ -1,10 +1,10 @@
-prototype(Milly.Crudforms:Component.PropertyFilter.Select) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.PropertyFilter.Select) < prototype(Neos.Fusion:Component) {
     renderer = afx`
         <Neos.Fusion.Form:Select field.name={'filter['+propertyName+']'}>
             <Neos.Fusion.Form:Select.Option option.value='' attributes.selected={Profolio.App.Array.get(filterValues, propertyName) == ''}>
                 Alle
             </Neos.Fusion.Form:Select.Option>
-            <Neos.Fusion:Loop items={Milly.CrudForms.getFieldOptions(propertyConfig.options)}>
+            <Neos.Fusion:Loop items={Milly.CrudUI.getFieldOptions(propertyConfig.options)}>
                 <Neos.Fusion.Form:Select.Option option.value={itemKey} attributes.selected={Profolio.App.Array.get(filterValues, propertyName) == itemKey}>
                     {item}
                 </Neos.Fusion.Form:Select.Option>

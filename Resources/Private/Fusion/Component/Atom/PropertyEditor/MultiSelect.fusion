@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.PropertyEditor.MultiSelect) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.PropertyEditor.MultiSelect) < prototype(Neos.Fusion:Component) {
 
     @apply.props = ${props}
     items = ${Milly.Object.getProperty(this.object, this.propertyName)}
@@ -9,24 +9,24 @@ prototype(Milly.Crudforms:Component.PropertyEditor.MultiSelect) < prototype(Neos
                 <Neos.Fusion:Loop items={props.items}>
                     <tr style="border: 1px #3f3f3f solid;">
                         <th style="padding: 7px 14px;">
-                            {Milly.CrudForms.getFieldOptionsObjectLabel(propertyConfig.options, item)}
+                            {Milly.CrudUI.getFieldOptionsObjectLabel(propertyConfig.options, item)}
                         </th>
                         <td style="width:10rem; padding: 7px 14px;">
                             <label class="neos-checkbox" for={propertyName+Object.identifier(item)} style="margin: 0">
                                 <Neos.Fusion.Form:Checkbox field.name={"removeElements["+propertyName+"][]"}
                                                            field.value={Object.identifier(item)}
                                                            attributes.id={propertyName+Object.identifier(item)}/><span></span>
-                              <Milly.CrudForms:Atom.Icon.Relation.Disconnect /> Disconnect
+                              <Milly.CrudUI:Atom.Icon.Relation.Disconnect /> Disconnect
                             </label>
                         </td>
                     </tr>
                 </Neos.Fusion:Loop>
             </table>
             <div>
-                <label><Milly.CrudForms:Atom.Icon.Relation.Connect /> Connect</label>
+                <label><Milly.CrudUI:Atom.Icon.Relation.Connect /> Connect</label>
                 <Neos.Fusion.Form:Select field.name={"addElements["+propertyName+"][]"} attributes.style="width: 100%">
                     <Neos.Fusion.Form:Select.Option></Neos.Fusion.Form:Select.Option>
-                    <Neos.Fusion:Loop items={Milly.CrudForms.getFieldOptions(props.propertyConfig.options, props.object)}>
+                    <Neos.Fusion:Loop items={Milly.CrudUI.getFieldOptions(props.propertyConfig.options, props.object)}>
                         <Neos.Fusion.Form:Select.Option option.value={itemKey}>
                             {item}
                         </Neos.Fusion.Form:Select.Option>

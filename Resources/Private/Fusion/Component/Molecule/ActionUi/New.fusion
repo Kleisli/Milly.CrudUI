@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.ActionUi.New) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.ActionUi.New) < prototype(Neos.Fusion:Component) {
 
     modelClassName = ''
     parent = null
@@ -9,13 +9,13 @@ prototype(Milly.Crudforms:Component.ActionUi.New) < prototype(Neos.Fusion:Compon
         href.package = ${Milly.Mapping.getControllerPackageNameByModel(props.modelClassName)}
         href.controller = ${Milly.Mapping.getControllerNameByModel(props.modelClassName)}
         href.arguments = ${{parent: props.parent}}
-        class = Milly.Crudforms:Helper.ThemeRenderer {
+        class = Milly.CrudUI:Helper.ThemeRenderer {
             path = 'atom.actionUi.new.link.class'
             fallbackPath = 'atom.actionUi.default.link.class'
         }
         content = Neos.Fusion:Join {
-            icon = Milly.CrudForms:Atom.Icon.New
-            label = Milly.Crudforms:Component.Label.ClassLabel {
+            icon = Milly.CrudUI:Atom.Icon.New
+            label = Milly.CrudUI:Component.Label.ClassLabel {
                 @if.show = ${props.showLabel}
                 className=${props.modelClassName}
                 showClassLabel="one"

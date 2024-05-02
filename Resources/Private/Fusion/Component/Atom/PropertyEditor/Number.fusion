@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.PropertyEditor.Number) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.PropertyEditor.Number) < prototype(Neos.Fusion:Component) {
 
     @apply.props = ${props}
 
@@ -9,7 +9,7 @@ prototype(Milly.Crudforms:Component.PropertyEditor.Number) < prototype(Neos.Fusi
             name = ${field.getName()}
             value = ${field.getCurrentValue() != null ? field.getCurrentValue() : ''}
             disabled = ${props.propertyConfig.ui.readonly || props.propertyConfig.readonly}
-            class = Milly.Crudforms:Helper.ThemeRenderer {
+            class = Milly.CrudUI:Helper.ThemeRenderer {
                 path = 'propertyEditor.number.class'
             }
         }

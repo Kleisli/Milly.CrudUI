@@ -1,7 +1,7 @@
-prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.IndexTable) < prototype(Neos.Fusion:Component) {
 
     header = ''
-    crudFormsView = 'index'
+    CrudUIView = 'index'
     filterValues = ${[]}
     readonly = false
     disablePagination = true
@@ -9,7 +9,7 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
 
     renderer = Neos.Fusion:Tag {
         tagName = "table"
-        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
             path = 'template.index.table.class'
         }
         content = Neos.Fusion:Join {
@@ -23,10 +23,10 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                           </th>
                         </tr>
                     `
-                    indexTableHeaderRow = Milly.Crudforms:Component.IndexTableHeaderRow {
+                    indexTableHeaderRow = Milly.CrudUI:Component.IndexTableHeaderRow {
                         modelClassName = ${props.modelClassName}
-                        crudFormsView = ${props.crudFormsView}
-                        @if.showColumnHeaders = ${Milly.CrudForms.getConfigurationByModel(props.modelClassName, 'views.'+props.crudFormsView+'.showColumnHeaders')}
+                        CrudUIView = ${props.CrudUIView}
+                        @if.showColumnHeaders = ${Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.showColumnHeaders')}
                     }
                 }
             }
@@ -38,25 +38,25 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
                     itemRenderer = Neos.Fusion:Tag {
                         tagName = 'tr'
                         content = Neos.Fusion:Join {
-                            actionUiShow = Milly.Crudforms:Component.ActionUi.Show {
+                            actionUiShow = Milly.CrudUI:Component.ActionUi.Show {
                                 object = ${object}
                                 showClassLabel = false
                                 @process.wrap = ${'<td>' + value + '</td>'}
                             }
-                            indexTableCells = Milly.Crudforms:Component.PropertyDisplayers {
-                                propertyDisplayerContainerType = 'Milly.Crudforms:Molecule.PropertyDisplayerContainer.TableCell'
+                            indexTableCells = Milly.CrudUI:Component.PropertyDisplayers {
+                                propertyDisplayerContainerType = 'Milly.CrudUI:Molecule.PropertyDisplayerContainer.TableCell'
                                 object = ${object}
-                                crudFormsView = ${props.crudFormsView}
+                                CrudUIView = ${props.CrudUIView}
                             }
                             actionUiActions = Neos.Fusion:Join {
                                 @if.notReadOnly = ${!props.readonly}
-                                sorting = Milly.Crudforms:Component.Sorting {
+                                sorting = Milly.CrudUI:Component.Sorting {
                                     object = ${object}
                                 }
-                                edit = Milly.Crudforms:Component.ActionUi.Edit {
+                                edit = Milly.CrudUI:Component.ActionUi.Edit {
                                     object = ${object}
                                 }
-                                delete = Milly.Crudforms:Component.ActionUi.Delete {
+                                delete = Milly.CrudUI:Component.ActionUi.Delete {
                                     object = ${object}
                                 }
                                 @process.wrap = Neos.Fusion:Tag {
@@ -75,7 +75,7 @@ prototype(Milly.Crudforms:Component.IndexTable) < prototype(Neos.Fusion:Componen
             tfoot = Neos.Fusion:Tag {
                 @if.notDisabled = ${!props.disablePagination}
                 tagName = "tfoot"
-                content = Milly.Crudforms:Component.Pagination {
+                content = Milly.CrudUI:Component.Pagination {
                     modelClassName = ${props.modelClassName}
                     currentPage = ${pagination.currentPage}
                     pageSize = ${pagination.pageSize}

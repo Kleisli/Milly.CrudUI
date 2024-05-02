@@ -1,5 +1,5 @@
 
-prototype(Milly.Crudforms:Component.PropertyFilter.Boolean) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.PropertyFilter.Boolean) < prototype(Neos.Fusion:Component) {
     renderer = afx`
         <Neos.Fusion.Form:Select field.name={'filter['+propertyName+']'}>
             <Neos.Fusion.Form:Select.Option option.value='' attributes.selected={Profolio.App.Array.get(filterValues, propertyName) == ''}>

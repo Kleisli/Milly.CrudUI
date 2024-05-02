@@ -1,31 +1,31 @@
-prototype(Milly.Crudforms:Component.IndexTableHeaderRow) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.IndexTableHeaderRow) < prototype(Neos.Fusion:Component) {
 
-    crudFormsView = 'index'
+    CrudUIView = 'index'
     modelClassName = ''
 
     renderer = afx`
         <tr>
             <th>
-                <Milly.Crudforms:Component.ActionUi.OrderBy propertyName='label' modelClassName={props.modelClassName} />
+                <Milly.CrudUI:Component.ActionUi.OrderBy propertyName='label' modelClassName={props.modelClassName} />
 
                 <Neos.Fusion.Form:Form form.data.filter={props.filterValues} form.target.action="index" attributes.class={'filter'} attributes.id={String.md5(props.modelClassName)+'-filter'}/>
-                <Neos.Fusion:Fragment @if.hasFilterType={Milly.CrudForms.getConfigurationByModel(props.modelClassName, 'views.'+props.crudFormsView+'.filter.label.type')}>
+                <Neos.Fusion:Fragment @if.hasFilterType={Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.filter.label.type')}>
                     <Neos.Fusion.Form:Form form.data.filter={props.filterValues} form.target.action="index">
-                        <Milly.Crudforms:Component.PropertyFilter filterValues={props.filterValues} propertyName='label' modelClassName={props.modelClassName} />
+                        <Milly.CrudUI:Component.PropertyFilter filterValues={props.filterValues} propertyName='label' modelClassName={props.modelClassName} />
                     </Neos.Fusion.Form:Form>
                 </Neos.Fusion:Fragment>
             </th>
-            <Neos.Fusion:Loop items={Milly.CrudForms.getConfigurationByModel(props.modelClassName, 'properties', props.crudFormsView)} itemKey="propertyName" itemName="propertyConfig">
+            <Neos.Fusion:Loop items={Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'properties', props.CrudUIView)} itemKey="propertyName" itemName="propertyConfig">
                 <th style="vertical-align: top;">
-                    <Milly.Crudforms:Component.Label.PropertyLabel propertyName={propertyName} propertyConfig={propertyConfig} modelClassName={props.modelClassName}
-                                                                   @if.notHasOrderBy={!Milly.CrudForms.getConfigurationByModel(props.modelClassName, 'views.'+props.crudFormsView+'.orderBy') || !Carbon.Array.hasValue(Milly.CrudForms.getConfigurationByModel(props.modelClassName, 'views.'+props.crudFormsView+'.orderBy'), propertyName)}/>
+                    <Milly.CrudUI:Component.Label.PropertyLabel propertyName={propertyName} propertyConfig={propertyConfig} modelClassName={props.modelClassName}
+                                                                   @if.notHasOrderBy={!Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy') || !Carbon.Array.hasValue(Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy'), propertyName)}/>
 
-                    <Milly.Crudforms:Component.ActionUi.OrderBy propertyName={propertyName} modelClassName={props.modelClassName} />
+                    <Milly.CrudUI:Component.ActionUi.OrderBy propertyName={propertyName} modelClassName={props.modelClassName} />
 
-                    <Neos.Fusion:Fragment @if.hasFilterType={Milly.CrudForms.getConfigurationByModel(props.modelClassName, 'views.'+props.crudFormsView+'.filter.'+propertyName+'.type')}>
+                    <Neos.Fusion:Fragment @if.hasFilterType={Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.filter.'+propertyName+'.type')}>
                         <br/>
                         <Neos.Fusion.Form:Form form.data.filter={props.filterValues} form.target.action="index">
-                            <Milly.Crudforms:Component.PropertyFilter filterValues={props.filterValues} propertyName={propertyName} propertyConfig={propertyConfig} modelClassName={props.modelClassName}/>
+                            <Milly.CrudUI:Component.PropertyFilter filterValues={props.filterValues} propertyName={propertyName} propertyConfig={propertyConfig} modelClassName={props.modelClassName}/>
                         </Neos.Fusion.Form:Form>
                     </Neos.Fusion:Fragment>
                 </th>
@@ -33,7 +33,7 @@ prototype(Milly.Crudforms:Component.IndexTableHeaderRow) < prototype(Neos.Fusion
             <th class="neos-action" style="vertical-align: top;">
                 <Neos.Fusion:Fragment @if={false}>
                     <span class={"neos-button neos-pull-right"+(filterValues?" neos-active":"")} id="toggle-filter">
-                        <Milly.CrudForms:Atom.Icon.Filter />
+                        <Milly.CrudUI:Atom.Icon.Filter />
                     </span>
                 </Neos.Fusion:Fragment>
             </th>

@@ -1,13 +1,13 @@
-prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Template.Edit) < prototype(Neos.Fusion:Component) {
 
     @context {
-        millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudForms.defaultTheme'))}
+        millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudUI.defaultTheme'))}
     }
 
     header = Neos.Fusion:Join {
         title = Neos.Fusion:Tag {
             tagName = 'legend'
-            content = Milly.Crudforms:Component.Label.ObjectLabel {
+            content = Milly.CrudUI:Component.Label.ObjectLabel {
                 object = ${object}
                 showClassLabel = 'one'
             }
@@ -16,47 +16,47 @@ prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
 
     main = Neos.Fusion:DataStructure {
         first = Neos.Fusion:Join {
-            editForm = Milly.Crudforms:Component.EditForm {
+            editForm = Milly.CrudUI:Component.EditForm {
                 object = ${object}
-                properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', 'edit')}
+                properties = ${Milly.CrudUI.getConfigurationByModel(object, 'properties', 'edit')}
             }
         }
         second = Neos.Fusion:Join {
-            relations = Milly.Crudforms:Component.ShowRelations {
+            relations = Milly.CrudUI:Component.ShowRelations {
                 object = ${object}
-                relations = ${Milly.CrudForms.getConfigurationByModel(object, 'relations', 'edit')}
+                relations = ${Milly.CrudUI.getConfigurationByModel(object, 'relations', 'edit')}
             }
         }
     }
 
     footer = Neos.Fusion:Join {
-        updateButton = Milly.Crudforms:Component.ActionUi.UpdateButton
+        updateButton = Milly.CrudUI:Component.ActionUi.UpdateButton
     }
 
     renderer = Neos.Fusion:Tag {
-        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
             path = 'layout.container.class'
         }
         content = Neos.Fusion:Join {
             header = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'layout.container.header.class'
                 }
                 content = ${props.header}
             }
             main = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'layout.container.main.class'
                 }
                 content = Neos.Fusion:Join {
                     first = Neos.Fusion:Tag {
-                        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                             path = 'layout.container.main.content.first.class'
                         }
                         content = ${props.main.first}
                     }
                     second = Neos.Fusion:Tag {
-                        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                             path = 'layout.container.main.content.second.class'
                         }
                         content = ${props.main.second}
@@ -64,7 +64,7 @@ prototype(Milly.Crudforms:Template.Edit) < prototype(Neos.Fusion:Component) {
                 }
             }
             footer = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'layout.container.footer.class'
                 }
                 content = ${props.footer}

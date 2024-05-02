@@ -1,13 +1,13 @@
-prototype(Milly.Crudforms:Template.Show) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Template.Show) < prototype(Neos.Fusion:Component) {
 
     @context {
-        millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudForms.defaultTheme'))}
+        millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudUI.defaultTheme'))}
     }
 
     header = Neos.Fusion:Join {
         title = Neos.Fusion:Tag {
             tagName = 'legend'
-            content = Milly.Crudforms:Component.Label.ObjectLabel {
+            content = Milly.CrudUI:Component.Label.ObjectLabel {
                 object = ${object}
                 showClassLabel = 'one'
             }
@@ -16,56 +16,56 @@ prototype(Milly.Crudforms:Template.Show) < prototype(Neos.Fusion:Component) {
 
     main = Neos.Fusion:DataStructure {
         first = Neos.Fusion:Join {
-            showTable = Milly.Crudforms:Component.ShowProperties {
+            showTable = Milly.CrudUI:Component.ShowProperties {
                 object = ${object}
             }
         }
         second = Neos.Fusion:Join {
-            relations = Milly.Crudforms:Component.ShowRelations {
+            relations = Milly.CrudUI:Component.ShowRelations {
                 object = ${object}
-                relations = ${Milly.CrudForms.getConfigurationByModel(object, 'relations', 'show')}
+                relations = ${Milly.CrudUI.getConfigurationByModel(object, 'relations', 'show')}
             }
         }
     }
 
     footer = Neos.Fusion:Join {
-        editButton = Milly.Crudforms:Component.ActionUi.Edit {
-            @if.notReadonly = ${!Milly.CrudForms.getConfigurationByModel(object, 'ui.readonly')}
+        editButton = Milly.CrudUI:Component.ActionUi.Edit {
+            @if.notReadonly = ${!Milly.CrudUI.getConfigurationByModel(object, 'ui.readonly')}
             object = ${object}
             showLabel = true
         }
 
-        translateButton = Milly.Crudforms:Component.ActionUi.Translate {
-            @if.notReadonly = ${!Milly.CrudForms.getConfigurationByModel(object, 'ui.readonly') && Traduki.Entity.isTranslatable(object)}
+        translateButton = Milly.CrudUI:Component.ActionUi.Translate {
+            @if.notReadonly = ${!Milly.CrudUI.getConfigurationByModel(object, 'ui.readonly') && Traduki.Entity.isTranslatable(object)}
             object = ${object}
             showLabel = true
         }
     }
 
     renderer = Neos.Fusion:Tag {
-        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
             path = 'layout.container.class'
         }
         content = Neos.Fusion:Join {
             header = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'layout.container.header.class'
                 }
                 content = ${props.header}
             }
             main = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'layout.container.main.class'
                 }
                 content = Neos.Fusion:Join {
                     first = Neos.Fusion:Tag {
-                        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                             path = 'layout.container.main.content.first.class'
                         }
                         content = ${props.main.first}
                     }
                     second = Neos.Fusion:Tag {
-                        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                             path = 'layout.container.main.content.second.class'
                         }
                         content = ${props.main.second}
@@ -73,7 +73,7 @@ prototype(Milly.Crudforms:Template.Show) < prototype(Neos.Fusion:Component) {
                 }
             }
             footer = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'layout.container.footer.class'
                 }
                 content = ${props.footer}

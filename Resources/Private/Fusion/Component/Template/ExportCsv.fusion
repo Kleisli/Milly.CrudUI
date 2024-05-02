@@ -1,18 +1,18 @@
-prototype(Milly.Crudforms:Template.ExportCsv) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Template.ExportCsv) < prototype(Neos.Fusion:Component) {
 
     renderer = Neos.Fusion:Join {
-        header = Milly.Crudforms:Component.CsvHeaderRow {
-            modelClassName = ${crudFormsModelClass}
-            properties = ${Milly.CrudForms.getConfigurationByModel(crudFormsModelClass, 'properties', 'export')}
+        header = Milly.CrudUI:Component.CsvHeaderRow {
+            modelClassName = ${CrudUIModelClass}
+            properties = ${Milly.CrudUI.getConfigurationByModel(CrudUIModelClass, 'properties', 'export')}
         }
 
         values = Neos.Fusion:Loop {
             items = ${objects}
             itemName="object"
-            itemRenderer = Milly.Crudforms:Component.PropertyDisplayers {
-                propertyDisplayerContainerType = 'Milly.Crudforms:Molecule.PropertyDisplayerContainer.PlainValue'
+            itemRenderer = Milly.CrudUI:Component.PropertyDisplayers {
+                propertyDisplayerContainerType = 'Milly.CrudUI:Molecule.PropertyDisplayerContainer.PlainValue'
                 object = ${object}
-                crudFormsView = 'export'
+                CrudUIView = 'export'
                 renderer.@glue = ';'
                 renderer.@process.linebreak = ${value + String.chr(10)}
             }

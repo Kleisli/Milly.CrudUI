@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.ActionUi.Edit) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.ActionUi.Edit) < prototype(Neos.Fusion:Component) {
 
     object = null
     @if.condition = ${!isUpdateDisabled}
@@ -8,12 +8,12 @@ prototype(Milly.Crudforms:Component.ActionUi.Edit) < prototype(Neos.Fusion:Compo
         href.package = ${Milly.Mapping.getControllerPackageNameByModel(props.object)}
         href.controller = ${Milly.Mapping.getControllerNameByModel(props.object)}
         href.arguments = ${{object: props.object}}
-        class = Milly.Crudforms:Helper.ThemeRenderer {
+        class = Milly.CrudUI:Helper.ThemeRenderer {
             path = 'atom.actionUi.edit.link.class'
             fallbackPath = 'atom.actionUi.default.link.class'
         }
         content = Neos.Fusion:Join {
-            icon = Milly.CrudForms:Atom.Icon.Edit
+            icon = Milly.CrudUI:Atom.Icon.Edit
             label = "Bearbeiten"
             label.@if.show = ${props.showLabel}
         }

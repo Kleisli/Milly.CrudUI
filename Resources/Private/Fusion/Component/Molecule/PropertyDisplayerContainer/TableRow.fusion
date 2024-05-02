@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Molecule.PropertyDisplayerContainer.TableRow) < prototype(Milly.Crudforms:Moledules.AbstractPropertyDisplayerContainer) {
+prototype(Milly.CrudUI:Molecule.PropertyDisplayerContainer.TableRow) < prototype(Milly.CrudUI:Moledules.AbstractPropertyDisplayerContainer) {
 
     propertyLabel = ''
     propertyDisplayer = ''

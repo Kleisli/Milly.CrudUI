@@ -1,4 +1,4 @@
-# Milly.CrudForms
+# Milly.CrudUI
 ***
 Easily build controllers and views to show and edit Neos.Flow domain models. 
 ***
@@ -48,12 +48,12 @@ If you have no custom requirements, you can use the provided Template prototypes
 
 #### Index.fusion
 ```
-MyVendor.MyPackage.MyModelController.index = Milly.Crudforms:Template.Index
+MyVendor.MyPackage.MyModelController.index = Milly.CrudUI:Template.Index
 ```
 
 #### New.fusion
 ```
-MyVendor.MyPackage.MyModelController.new = Milly.Crudforms:Template.New {
+MyVendor.MyPackage.MyModelController.new = Milly.CrudUI:Template.New {
     # optional presets
     preset.property = "value"
 }
@@ -62,19 +62,19 @@ with the preset parameter you can define properties for the entity to be created
 
 #### Show.fusion
 ```
-MyVendor.MyPackage.MyModelController.show = Milly.Crudforms:Template.Show
+MyVendor.MyPackage.MyModelController.show = Milly.CrudUI:Template.Show
 ```
 
 #### Edit.fusion
 ```
-MyVendor.MyPackage.MyModelController.edit = Milly.Crudforms:Template.Edit
+MyVendor.MyPackage.MyModelController.edit = Milly.CrudUI:Template.Edit
 ```
 
 ## Configuration
 Configuration Settings have to be defined for each model
 ```
 Milly:
-  CrudForms:
+  CrudUI:
     MyVendor:
       MyPackage:
         MyModel:

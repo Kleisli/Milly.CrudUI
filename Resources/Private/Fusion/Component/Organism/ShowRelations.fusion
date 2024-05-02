@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.ShowRelations) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.ShowRelations) < prototype(Neos.Fusion:Component) {
 
     relations = ${[]}
 
@@ -9,14 +9,14 @@ prototype(Milly.Crudforms:Component.ShowRelations) < prototype(Neos.Fusion:Compo
 
         itemRenderer = afx`
             <Neos.Fusion:Fragment @if={Milly.Reflection.isToOneRelation(object, relationName)}>
-                <Milly.Crudforms:Component.ActionUi.Show object={Milly.Object.getProperty(object, relationName)}
+                <Milly.CrudUI:Component.ActionUi.Show object={Milly.Object.getProperty(object, relationName)}
                                                          attributes.class="neos-button" />
             </Neos.Fusion:Fragment>
 
             <Neos.Fusion:Fragment @if={Milly.Reflection.isToManyRelation(props.object, relationName)}>
-                <Milly.Crudforms:Component.IndexTable
+                <Milly.CrudUI:Component.IndexTable
                     modelClassName={Milly.Reflection.getTypeOfRelation(object, relationName)}
-                    crudFormsView="relation"
+                    CrudUIView="relation"
                     objects={Milly.Object.getProperty(object, relationConfig.propertyPath ? relationConfig.propertyPath : relationName)}
                     header={relationConfig.label}
                     disablePagination={!relationConfig.ui.pagination.enable}
@@ -24,7 +24,7 @@ prototype(Milly.Crudforms:Component.ShowRelations) < prototype(Neos.Fusion:Compo
 
                 <p @if.condition={!Milly.Object.getProperty(object, relationName)}>No {relationConfig.label} created yet.</p>
                 <div @if={!relationConfig.ui.readonly} class="neos-pull-right" style="margin-bottom:20px">
-                    <Milly.Crudforms:Component.ActionUi.New
+                    <Milly.CrudUI:Component.ActionUi.New
                         modelClassName={Milly.Reflection.getTypeOfRelation(object, relationName)}
                         parent={object}
                         showLabel={true}/>

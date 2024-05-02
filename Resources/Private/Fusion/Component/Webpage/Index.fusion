@@ -1,5 +1,5 @@
-prototype(Milly.Crudforms:Webpage.Index) < prototype(Milly.CrudForms:Webpage) {
-    body.content = Milly.Crudforms:Template.Index {
+prototype(Milly.CrudUI:Webpage.Index) < prototype(Milly.CrudUI:Webpage) {
+    body.content = Milly.CrudUI:Template.Index {
         objects = ${objects}
         pagination = ${pagination}
     }

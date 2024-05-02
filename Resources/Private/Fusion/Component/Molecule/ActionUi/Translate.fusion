@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.ActionUi.Translate) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.ActionUi.Translate) < prototype(Neos.Fusion:Component) {
 
     object = null
     locale = null
@@ -9,12 +9,12 @@ prototype(Milly.Crudforms:Component.ActionUi.Translate) < prototype(Neos.Fusion:
         href.package = ${Milly.Mapping.getControllerPackageNameByModel(props.object)}
         href.controller = ${Milly.Mapping.getControllerNameByModel(props.object)}
         href.arguments = ${{object: props.object, locale: props.locale}}
-        class = Milly.Crudforms:Helper.ThemeRenderer {
+        class = Milly.CrudUI:Helper.ThemeRenderer {
             path = 'atom.actionUi.edit.link.class'
             fallbackPath = 'atom.actionUi.default.link.class'
         }
         content = Neos.Fusion:Join {
-            icon = Milly.CrudForms:Atom.Icon.Translate
+            icon = Milly.CrudUI:Atom.Icon.Translate
             label = ${props.locale ? props.locale : "Übersetzen"}
             label.@if.show = ${props.showLabel}
         }

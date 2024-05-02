@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.PropertyDisplayer) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.PropertyDisplayer) < prototype(Neos.Fusion:Component) {
 
     @propTypes {
         propertyConfig = ${PropTypes.arrayOf(PropTypes.any)}
@@ -20,19 +20,19 @@ prototype(Milly.Crudforms:Component.PropertyDisplayer) < prototype(Neos.Fusion:C
 
                 @subject = ${propertyConfig.type}
 
-                select = Milly.Crudforms:Component.PropertyDisplayer.Select
-                multiSelect = Milly.Crudforms:Component.PropertyDisplayer.MultiSelect
-                booleanRadio = Milly.Crudforms:Component.PropertyDisplayer.BooleanRadio
+                select = Milly.CrudUI:Component.PropertyDisplayer.Select
+                multiSelect = Milly.CrudUI:Component.PropertyDisplayer.MultiSelect
+                booleanRadio = Milly.CrudUI:Component.PropertyDisplayer.BooleanRadio
                 booleanCheckbox = ${props.propertyValue ? 'Ja' : 'Nein'}
                 dateTime = ${props.propertyValue ? Date.format(props.propertyValue, "d.m.Y H:i") : ''}
                 date = ${props.propertyValue ? Date.format(props.propertyValue, "d.m.Y") : ''}
-                dateInterval = Milly.Crudforms:Component.PropertyDisplayer.DateInterval
-                image = Milly.Crudforms:Component.PropertyDisplayer.Image
-                audio = Milly.Crudforms:Component.PropertyDisplayer.Audio {
+                dateInterval = Milly.CrudUI:Component.PropertyDisplayer.DateInterval
+                image = Milly.CrudUI:Component.PropertyDisplayer.Image
+                audio = Milly.CrudUI:Component.PropertyDisplayer.Audio {
                   resource = ${props.propertyValue}
                 }
-                email = Milly.Crudforms:Component.PropertyDisplayer.Email
-                jsonList = Milly.Crudforms:Component.PropertyDisplayer.JsonList
+                email = Milly.CrudUI:Component.PropertyDisplayer.Email
+                jsonList = Milly.CrudUI:Component.PropertyDisplayer.JsonList
                 textarea = ${String.nl2br(props.propertyValue ? props.propertyValue : '')}
 
                 @default = ${props.propertyValue != null ? props.propertyValue : ''}

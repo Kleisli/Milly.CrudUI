@@ -1,5 +1,5 @@
 <?php
-namespace Milly\CrudForms\Domain\Model;
+namespace Milly\CrudUI\Domain\Model;
 
 trait LabelledModelTrait
 {

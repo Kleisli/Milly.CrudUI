@@ -1,5 +1,5 @@
-prototype(Milly.Crudforms:Webpage.Edit) < prototype(Milly.CrudForms:Webpage) {
-    body.content = Milly.Crudforms:Template.Edit {
+prototype(Milly.CrudUI:Webpage.Edit) < prototype(Milly.CrudUI:Webpage) {
+    body.content = Milly.CrudUI:Template.Edit {
         object = ${object}
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace Milly\CrudForms\Controller;
+namespace Milly\CrudUI\Controller;
 
 use Neos\Flow\Persistence\QueryInterface;
 
@@ -11,7 +11,7 @@ trait ReadAllControllerTrait
         if($orderBy != ''){
             $query->setOrderings([$orderBy => $orderDirection]);
         }
-        $configuration = $this->getCrudFormsConfiguration('index');
+        $configuration = $this->getCrudUIConfiguration('index');
         $conditions = [];
         if(count($filter)>0) {
             foreach ($filter as $property => $value) {
@@ -81,7 +81,7 @@ trait ReadAllControllerTrait
         $this->view->assign('orderBy', $orderBy);
         $this->view->assign('orderDirection', $orderDirection);
         $this->view->assign('objects', $query->execute()->toArray());
-        $this->view->assign('crudFormsModelClass', $this->getModelClass());
+        $this->view->assign('CrudUIModelClass', $this->getModelClass());
 
         $this->view->assign('isCreateDisabled', !method_exists($this, 'newAction'));
         $this->view->assign('isUpdateDisabled', !method_exists($this, 'editAction'));

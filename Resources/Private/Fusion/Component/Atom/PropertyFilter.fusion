@@ -1,23 +1,23 @@
-prototype(Milly.Crudforms:Component.PropertyFilter) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.PropertyFilter) < prototype(Neos.Fusion:Component) {
 
     propertyName = ''
     propertyConfig = Neos.Fusion:DataStructure
     modelClassName = ''
-    crudFormsView = 'index'
+    CrudUIView = 'index'
 
     renderer =  Neos.Fusion:Match {
-        @subject = ${Milly.CrudForms.getConfigurationByModel(props.modelClassName, 'views.'+props.crudFormsView+'.filter.'+props.propertyName+'.type')}
+        @subject = ${Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.filter.'+props.propertyName+'.type')}
 
-        select = Milly.Crudforms:Component.PropertyFilter.Select {
+        select = Milly.CrudUI:Component.PropertyFilter.Select {
             @apply.props = ${props}
         }
-        boolean = Milly.Crudforms:Component.PropertyFilter.Boolean {
+        boolean = Milly.CrudUI:Component.PropertyFilter.Boolean {
             @apply.props = ${props}
         }
-        isSet = Milly.Crudforms:Component.PropertyFilter.IsSet {
+        isSet = Milly.CrudUI:Component.PropertyFilter.IsSet {
             @apply.props = ${props}
         }
-        fulltext = Milly.Crudforms:Component.PropertyFilter.Fulltext {
+        fulltext = Milly.CrudUI:Component.PropertyFilter.Fulltext {
             @apply.props = ${props}
         }
 

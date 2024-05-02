@@ -1,5 +1,5 @@
 <?php
-namespace Milly\CrudForms\Eel\Helper;
+namespace Milly\CrudUI\Eel\Helper;
 
 use Milly\Tools\Service\ReflectionService;
 use Neos\Eel\ProtectedContextAwareInterface;

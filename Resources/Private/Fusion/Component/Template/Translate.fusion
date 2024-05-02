@@ -1,7 +1,7 @@
-prototype(Milly.Crudforms:Template.Translate) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Template.Translate) < prototype(Neos.Fusion:Component) {
 
     @context {
-        millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudForms.defaultTheme'))}
+        millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudUI.defaultTheme'))}
     }
 
     object = ${object}
@@ -9,7 +9,7 @@ prototype(Milly.Crudforms:Template.Translate) < prototype(Neos.Fusion:Component)
     header = Neos.Fusion:Join {
         title = Neos.Fusion:Tag {
             tagName = 'legend'
-            content = Milly.Crudforms:Component.Label.ObjectLabel {
+            content = Milly.CrudUI:Component.Label.ObjectLabel {
                 object = ${object}
                 showClassLabel = 'one'
             }
@@ -19,15 +19,15 @@ prototype(Milly.Crudforms:Template.Translate) < prototype(Neos.Fusion:Component)
     main = Neos.Fusion:DataStructure {
         first = Neos.Fusion:Join {
             availableLOcales = Neos.Fusion:Loop {
-                items = ${Milly.CrudForms.getConfigurationByModel(object, 'views.translate.availableLocales', 'translate')}
-                itemRenderer = Milly.Crudforms:Component.ActionUi.Translate {
+                items = ${Milly.CrudUI.getConfigurationByModel(object, 'views.translate.availableLocales', 'translate')}
+                itemRenderer = Milly.CrudUI:Component.ActionUi.Translate {
                     locale = ${item}
                     object = ${object}
                     showLabel = true
                 }
             }
-            editForm = Milly.Crudforms:Component.EditForm {
-                properties = ${Milly.CrudForms.getConfigurationByModel(object, 'properties', 'translate')}
+            editForm = Milly.CrudUI:Component.EditForm {
+                properties = ${Milly.CrudUI.getConfigurationByModel(object, 'properties', 'translate')}
                 targetAction = "updateTranslation"
                 additionalFormContent.locale = Neos.Fusion.Form:Hidden {
                     field {
@@ -42,7 +42,7 @@ prototype(Milly.Crudforms:Template.Translate) < prototype(Neos.Fusion:Component)
             }
         }
         second = Neos.Fusion:Join {
-            default = Milly.Crudforms:Component.ShowProperties {
+            default = Milly.CrudUI:Component.ShowProperties {
                 object = ${Traduki.Entity.reloadInDefaultLocale(object)}
             }
         }
@@ -50,41 +50,41 @@ prototype(Milly.Crudforms:Template.Translate) < prototype(Neos.Fusion:Component)
 
     footer = Neos.Fusion:Join {
         saveButton = Neos.Fusion.Form:Button {
-            attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+            attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                 path = 'template.edit.saveButton.class'
             }
             attributes.form = "edit"
             content = Neos.Fusion:Join {
-                icon = Milly.CrudForms:Atom.Icon.Save
+                icon = Milly.CrudUI:Atom.Icon.Save
                 text = '&nbsp;Save'
             }
         }
     }
 
     renderer = Neos.Fusion:Tag {
-        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
             path = 'layout.container.class'
         }
         content = Neos.Fusion:Join {
             header = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'layout.container.header.class'
                 }
                 content = ${props.header}
             }
             main = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'layout.container.main.class'
                 }
                 content = Neos.Fusion:Join {
                     first = Neos.Fusion:Tag {
-                        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                             path = 'layout.container.main.content.first.class'
                         }
                         content = ${props.main.first}
                     }
                     second = Neos.Fusion:Tag {
-                        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                             path = 'layout.container.main.content.second.class'
                         }
                         content = ${props.main.second}
@@ -92,7 +92,7 @@ prototype(Milly.Crudforms:Template.Translate) < prototype(Neos.Fusion:Component)
                 }
             }
             footer = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'layout.container.footer.class'
                 }
                 content = ${props.footer}

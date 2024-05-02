@@ -1,14 +1,14 @@
 Milly:
-  CrudForms:
+  CrudUI:
     defaultTheme: 'neos'
 
 Neos:
   Neos:
     fusion:
       autoInclude:
-        Milly.CrudForms: true
+        Milly.CrudUI: true
   Fusion:
     defaultContext:
-      'Milly.CrudForms': Milly\CrudForms\Eel\Helper\CrudFormsHelper
-      'Milly.Object': Milly\CrudForms\Eel\Helper\ObjectHelper
-      'DateInterval': Milly\CrudForms\Eel\Helper\DateIntervalHelper
+      'Milly.CrudUI': Milly\CrudUI\Eel\Helper\CrudUIHelper
+      'Milly.Object': Milly\CrudUI\Eel\Helper\ObjectHelper
+      'DateInterval': Milly\CrudUI\Eel\Helper\DateIntervalHelper

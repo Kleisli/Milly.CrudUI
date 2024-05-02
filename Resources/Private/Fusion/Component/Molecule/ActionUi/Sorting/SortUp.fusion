@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.ActionUi.SortUp) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.ActionUi.SortUp) < prototype(Neos.Fusion:Component) {
 
     object = null
 
@@ -14,11 +14,11 @@ prototype(Milly.Crudforms:Component.ActionUi.SortUp) < prototype(Neos.Fusion:Com
         attributes.style.@if.isLast = ${props.object.isLast}
 
         content = Neos.Fusion.Form:Button {
-            attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+            attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                 path = 'atom.actionUi.sorting.button.class'
                 fallbackPath = 'atom.actionUi.default.button.class'
             }
-            content = Milly.CrudForms:Atom.Icon.Sorting.SortUp
+            content = Milly.CrudUI:Atom.Icon.Sorting.SortUp
         }
     }
 }

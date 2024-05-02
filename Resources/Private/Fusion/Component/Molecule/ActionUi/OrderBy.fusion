@@ -1,8 +1,8 @@
-prototype(Milly.Crudforms:Component.ActionUi.OrderBy) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.ActionUi.OrderBy) < prototype(Neos.Fusion:Component) {
 
     propertyName = ''
     modelClassName = ''
-    crudFormsView = 'index'
+    CrudUIView = 'index'
     orderBy = ${propertyConfig.propertyPath ? propertyConfig.propertyPath : this.propertyName}
 
     renderer = Neos.Fusion:Link.Action {
@@ -11,13 +11,13 @@ prototype(Milly.Crudforms:Component.ActionUi.OrderBy) < prototype(Neos.Fusion:Co
         href.package = ${Milly.Mapping.getControllerPackageNameByModel(props.modelClassName)}
         href.controller = ${Milly.Mapping.getControllerNameByModel(props.modelClassName)}
         href.arguments = ${Array.concat({filter: filterValues}, {orderBy: props.orderBy}, {paginationPageSize: pagination.pageSize}, {orderDirection: (orderBy == props.orderBy && orderDirection=='ASC' ? 'DESC' : 'ASC')})}
-        @if.hasOrderBy = ${Milly.CrudForms.getConfigurationByModel(props.modelClassName, 'views.'+props.crudFormsView+'.orderBy') && Carbon.Array.hasValue(Milly.CrudForms.getConfigurationByModel(props.modelClassName, 'views.'+props.crudFormsView+'.orderBy'), props.propertyName)}
+        @if.hasOrderBy = ${Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy') && Carbon.Array.hasValue(Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy'), props.propertyName)}
 
         content = Neos.Fusion:Join {
             label = Neos.Fusion:Case {
                 property {
                     condition = ${props.propertyName != 'label'}
-                    renderer = Milly.Crudforms:Component.Label.PropertyLabel {
+                    renderer = Milly.CrudUI:Component.Label.PropertyLabel {
                         modelClassName = ${props.modelClassName}
                         propertyName = ${props.propertyName}
                         propertyConfig = ${propertyConfig}
@@ -25,7 +25,7 @@ prototype(Milly.Crudforms:Component.ActionUi.OrderBy) < prototype(Neos.Fusion:Co
                 }
                 default {
                     condition = true
-                    renderer = Milly.Crudforms:Component.Label.ClassLabel {
+                    renderer = Milly.CrudUI:Component.Label.ClassLabel {
                         className = ${props.modelClassName}
                         showClassLabel = 'one'
                     }
@@ -39,8 +39,8 @@ prototype(Milly.Crudforms:Component.ActionUi.OrderBy) < prototype(Neos.Fusion:Co
                     text = '&nbsp;'
                     icon = Neos.Fusion:Match {
                         @subject = ${orderDirection}
-                        @default = Milly.CrudForms:Atom.Icon.Sorting.SortUp
-                        ASC = Milly.CrudForms:Atom.Icon.Sorting.SortDown
+                        @default = Milly.CrudUI:Atom.Icon.Sorting.SortUp
+                        ASC = Milly.CrudUI:Atom.Icon.Sorting.SortDown
                     }
                 }
             }
@@ -48,7 +48,7 @@ prototype(Milly.Crudforms:Component.ActionUi.OrderBy) < prototype(Neos.Fusion:Co
                 @if.isActive = ${orderBy != props.orderBy}
                 value = Neos.Fusion:Join {
                   text = '&nbsp;'
-                  icon = Milly.CrudForms:Atom.Icon.Sorting.Sort
+                  icon = Milly.CrudUI:Atom.Icon.Sorting.Sort
                 }
             }
         }

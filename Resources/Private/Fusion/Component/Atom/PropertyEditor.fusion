@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.PropertyEditor) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.PropertyEditor) < prototype(Neos.Fusion:Component) {
 
     propertyName = ''
     propertyConfig = ${[]}
@@ -7,7 +7,7 @@ prototype(Milly.Crudforms:Component.PropertyEditor) < prototype(Neos.Fusion:Comp
     renderer = Neos.Fusion:Case {
         readonly {
             condition = ${props.propertyConfig.ui.readonly}
-            renderer = Milly.Crudforms:Component.PropertyDisplayer {
+            renderer = Milly.CrudUI:Component.PropertyDisplayer {
                 @apply.props = ${props}
             }
         }
@@ -22,27 +22,27 @@ prototype(Milly.Crudforms:Component.PropertyEditor) < prototype(Neos.Fusion:Comp
                 @subject = ${props.propertyConfig.type}
 
                 textarea = Neos.Fusion.Form:Textarea {
-                    attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                    attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                         path = 'propertyEditor.textarea.class'
                     }
                 }
-                number = Milly.Crudforms:Component.PropertyEditor.Number
-                email = Milly.Crudforms:Component.PropertyEditor.Email
-                select = Milly.Crudforms:Component.PropertyEditor.Select
-                multiSelect = Milly.Crudforms:Component.PropertyEditor.MultiSelect
-                booleanRadio = Milly.Crudforms:Component.PropertyEditor.BooleanRadio
-                booleanCheckbox = Milly.Crudforms:Component.PropertyEditor.BooleanCheckbox
-                dateTime = Milly.Crudforms:Component.PropertyEditor.DateTime
-                date = Milly.Crudforms:Component.PropertyEditor.Date
-                image = Milly.Crudforms:Component.PropertyEditor.Image
-                audio = Milly.Crudforms:Component.PropertyEditor.Audio
-                dateInterval = Milly.Crudforms:Component.PropertyEditor.DateInterval
-                jsonList = Milly.Crudforms:Component.PropertyEditor.JsonList
+                number = Milly.CrudUI:Component.PropertyEditor.Number
+                email = Milly.CrudUI:Component.PropertyEditor.Email
+                select = Milly.CrudUI:Component.PropertyEditor.Select
+                multiSelect = Milly.CrudUI:Component.PropertyEditor.MultiSelect
+                booleanRadio = Milly.CrudUI:Component.PropertyEditor.BooleanRadio
+                booleanCheckbox = Milly.CrudUI:Component.PropertyEditor.BooleanCheckbox
+                dateTime = Milly.CrudUI:Component.PropertyEditor.DateTime
+                date = Milly.CrudUI:Component.PropertyEditor.Date
+                image = Milly.CrudUI:Component.PropertyEditor.Image
+                audio = Milly.CrudUI:Component.PropertyEditor.Audio
+                dateInterval = Milly.CrudUI:Component.PropertyEditor.DateInterval
+                jsonList = Milly.CrudUI:Component.PropertyEditor.JsonList
 
                 @default = Neos.Fusion.Form:Textfield {
                     attributes {
                         disabled = ${props.propertyConfig.readonly ? true : false}
-                        class = Milly.Crudforms:Helper.ThemeRenderer {
+                        class = Milly.CrudUI:Helper.ThemeRenderer {
                             path = 'propertyEditor.textfield.class'
                         }
                     }

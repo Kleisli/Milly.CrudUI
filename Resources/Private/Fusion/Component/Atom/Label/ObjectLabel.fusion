@@ -1,11 +1,11 @@
-prototype(Milly.Crudforms:Component.Label.ObjectLabel) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.Label.ObjectLabel) < prototype(Neos.Fusion:Component) {
 
     object = null
     showClassLabel = false
     label = ${this.object.label ? this.object.label : this.object.title ? this.object.title : this.object.name ? this.object.name : ''}
 
     renderer = afx`
-        <Milly.Crudforms:Component.Label.ClassLabel object={props.object} showClassLabel={props.label == '' ? "one" : props.showClassLabel} />
+        <Milly.CrudUI:Component.Label.ClassLabel object={props.object} showClassLabel={props.label == '' ? "one" : props.showClassLabel} />
         <Neos.Fusion:Fragment @if.showClassLabel={props.showClassLabel}>
             :&nbsp;
         </Neos.Fusion:Fragment>

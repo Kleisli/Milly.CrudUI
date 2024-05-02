@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Template.Index) < prototype(Neos.Fusion:Component) {
 
     @propTypes {
         style = ${PropTypes.oneOf(['narrow', 'wide'])}
@@ -7,7 +7,7 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
     }
 
     @context {
-        millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudForms.defaultTheme'))}
+        millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudUI.defaultTheme'))}
     }
 
     style = 'wide'
@@ -17,8 +17,8 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
             tagName = 'legend'
             attributes.style = "display: flex; justify-content: space-between;"
             content = Neos.Fusion:Join {
-                label = Milly.Crudforms:Component.Label.ClassLabel {
-                    className = ${crudFormsModelClass}
+                label = Milly.CrudUI:Component.Label.ClassLabel {
+                    className = ${CrudUIModelClass}
                     showClassLabel = 'many'
                 }
                 count = ${' (' + objectCount + ')'}
@@ -28,38 +28,38 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
 
     main = Neos.Fusion:Join {
         filterForm = afx`
-            <Neos.Fusion.Form:Form form.target.action="index" attributes.class={'filter'} attributes.id={String.md5(crudFormsModelClass)+'-filter'}/>
+            <Neos.Fusion.Form:Form form.target.action="index" attributes.class={'filter'} attributes.id={String.md5(CrudUIModelClass)+'-filter'}/>
         `
-        indexTable = Milly.Crudforms:Component.IndexTable {
+        indexTable = Milly.CrudUI:Component.IndexTable {
             objects = ${objects}
-            modelClassName = ${crudFormsModelClass}
-            disablePagination = ${Milly.CrudForms.getConfigurationByModel(crudFormsModelClass, 'views.index.options.pagination.disable')}
+            modelClassName = ${CrudUIModelClass}
+            disablePagination = ${Milly.CrudUI.getConfigurationByModel(CrudUIModelClass, 'views.index.options.pagination.disable')}
         }
     }
 
     footer = Neos.Fusion:Join {
-        newButton = Milly.Crudforms:Component.ActionUi.New {
-            @if.notReadonly = ${!Milly.CrudForms.getConfigurationByModel(crudFormsModelClass, 'ui.readonly', 'index')}
+        newButton = Milly.CrudUI:Component.ActionUi.New {
+            @if.notReadonly = ${!Milly.CrudUI.getConfigurationByModel(CrudUIModelClass, 'ui.readonly', 'index')}
             object = ${object}
             showLabel = true
-            modelClassName = ${crudFormsModelClass}
+            modelClassName = ${CrudUIModelClass}
         }
-        export = Milly.Crudforms:Component.ActionUi.ExportCsv
+        export = Milly.CrudUI:Component.ActionUi.ExportCsv
     }
 
     renderer = Neos.Fusion:Tag {
-        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
             path = 'layout.container.class'
         }
         content = Neos.Fusion:Join {
             header = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'layout.container.header.class'
                 }
                 content = ${props.header}
             }
             main = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'layout.container.main.class'
                 }
                 content = Neos.Fusion:Join {
@@ -67,13 +67,13 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
                         attributes.class = Neos.Fusion:Case {
                             narrow {
                                 condition = ${props.style=='narrow'}
-                                renderer = Milly.Crudforms:Helper.ThemeRenderer {
+                                renderer = Milly.CrudUI:Helper.ThemeRenderer {
                                     path = 'template.index.main.content.first.narrowClass'
                                 }
                             }
                             wide {
                                 condition = ${props.style=='wide'}
-                                renderer = Milly.Crudforms:Helper.ThemeRenderer {
+                                renderer = Milly.CrudUI:Helper.ThemeRenderer {
                                     path = 'template.index.main.content.first.wideClass'
                                 }
                             }
@@ -83,7 +83,7 @@ prototype(Milly.Crudforms:Template.Index) < prototype(Neos.Fusion:Component) {
                 }
             }
             footer = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'layout.container.footer.class'
                 }
                 content = ${props.footer}

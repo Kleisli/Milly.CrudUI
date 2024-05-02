@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.PropertyEditors) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.PropertyEditors) < prototype(Neos.Fusion:Component) {
 
     object = null
     properties = ${[]}
@@ -10,7 +10,7 @@ prototype(Milly.Crudforms:Component.PropertyEditors) < prototype(Neos.Fusion:Com
         itemName = "propertyConfig"
 
         itemRenderer = Neos.Fusion:Renderer {
-            type = 'Milly.Crudforms:Moledules.PropertyEditorContainer.PrependLabel'
+            type = 'Milly.CrudUI:Moledules.PropertyEditorContainer.PrependLabel'
             element {
                 field {
                     name = Neos.Fusion:Case {
@@ -27,13 +27,13 @@ prototype(Milly.Crudforms:Component.PropertyEditors) < prototype(Neos.Fusion:Com
                     multiple = ${propertyConfig.type == 'multiSelect'}
                 }
 
-                propertyLabel = Milly.Crudforms:Component.Label.PropertyLabel {
+                propertyLabel = Milly.CrudUI:Component.Label.PropertyLabel {
                     modelClassName = ${Type.className(props.object)}
                     propertyName = ${propertyName}
                     propertyConfig = ${propertyConfig}
                 }
 
-                propertyEditor = Milly.Crudforms:Component.PropertyEditor {
+                propertyEditor = Milly.CrudUI:Component.PropertyEditor {
                     propertyName = ${propertyName}
                     propertyConfig = ${propertyConfig}
                     object = ${props.object}

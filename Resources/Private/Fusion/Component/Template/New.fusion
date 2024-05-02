@@ -1,7 +1,7 @@
-prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Template.New) < prototype(Neos.Fusion:Component) {
 
     @context {
-        millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudForms.defaultTheme'))}
+        millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudUI.defaultTheme'))}
     }
 
     preset = Neos.Fusion:DataStructure
@@ -9,12 +9,12 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
         title = Neos.Fusion:Tag {
             tagName = 'legend'
             content = Neos.Fusion:Join {
-                label = Milly.Crudforms:Component.Label.ClassLabel {
-                    className = ${crudFormsModelClass}
+                label = Milly.CrudUI:Component.Label.ClassLabel {
+                    className = ${CrudUIModelClass}
                     showClassLabel = 'one'
                 }
                 create = ' erstellen&nbsp;'
-                parent = Milly.Crudforms:Component.Label.ObjectLabel {
+                parent = Milly.CrudUI:Component.Label.ObjectLabel {
                     @if.hasParent = ${parent}
                     @process.wrap = ${'für ' + value}
                     object = ${parent}
@@ -29,42 +29,42 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
     }
 
     footer = Neos.Fusion:Join {
-        createButton = Milly.Crudforms:Component.ActionUi.CreateButton
+        createButton = Milly.CrudUI:Component.ActionUi.CreateButton
     }
 
     renderer = Neos.Fusion:Tag {
-        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
             path = 'layout.container.class'
         }
         content = Neos.Fusion:Join {
             header = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'layout.container.header.class'
                 }
                 content = ${props.header}
             }
             main = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'layout.container.main.class'
                 }
                 content = Neos.Fusion:Join {
                     first = Neos.Fusion:Tag {
-                        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                             path = 'layout.container.main.content.first.class'
                         }
                         content = Neos.Fusion:Join {
-                            newForm = Milly.Crudforms:Component.NewForm {
-                                properties = ${Milly.CrudForms.getConfigurationByModel(crudFormsModelClass, 'properties', 'new')}
-                                parent.@if.hasParent = ${Milly.CrudForms.getConfigurationByModel(crudFormsModelClass, 'parent')}
+                            newForm = Milly.CrudUI:Component.NewForm {
+                                properties = ${Milly.CrudUI.getConfigurationByModel(CrudUIModelClass, 'properties', 'new')}
+                                parent.@if.hasParent = ${Milly.CrudUI.getConfigurationByModel(CrudUIModelClass, 'parent')}
                                 parent = ${Type.isObject(parent) ? Milly.Object.identifier(parent) : parent}
-                                parentProperty = ${Milly.CrudForms.getConfigurationByModel(crudFormsModelClass, 'parent')}
+                                parentProperty = ${Milly.CrudUI.getConfigurationByModel(CrudUIModelClass, 'parent')}
 
                                 preset = ${props.preset}
                             }
                         }
                     }
                     second = Neos.Fusion:Tag {
-                        attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                             path = 'layout.container.main.content.second.class'
                         }
                         content = ${props.main.second}
@@ -73,7 +73,7 @@ prototype(Milly.Crudforms:Template.New) < prototype(Neos.Fusion:Component) {
                 }
             }
             footer = Neos.Fusion:Tag {
-                attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'layout.container.footer.class'
                 }
                 content = ${props.footer}

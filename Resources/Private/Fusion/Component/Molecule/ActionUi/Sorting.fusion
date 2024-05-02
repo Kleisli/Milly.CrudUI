@@ -1,13 +1,13 @@
-prototype(Milly.Crudforms:Component.Sorting) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.Sorting) < prototype(Neos.Fusion:Component) {
 
     object = null
     @if.hasSorting = ${this.object != null && this.object.sorting}
 
     renderer = Neos.Fusion:Join {
-        up = Milly.Crudforms:Component.ActionUi.SortUp {
+        up = Milly.CrudUI:Component.ActionUi.SortUp {
             object = ${props.object}
         }
-        down = Milly.Crudforms:Component.ActionUi.SortDown {
+        down = Milly.CrudUI:Component.ActionUi.SortDown {
             object = ${props.object}
         }
     }

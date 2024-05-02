@@ -1,14 +1,14 @@
-prototype(Milly.Crudforms:Component.PropertyDisplayers) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.PropertyDisplayers) < prototype(Neos.Fusion:Component) {
 
     @propTypes {
         propertyDisplayerContainerType = ${PropTypes.getString()}
     }
 
     object = null
-    crudFormsView = ''
+    CrudUIView = ''
 
-    propertyDisplayerContainerType = 'Milly.Crudforms:Molecule.PropertyDisplayerContainer.PrependLabel'
-    properties = ${Milly.CrudForms.getConfigurationByModel(this.object, 'properties', this.crudFormsView)}
+    propertyDisplayerContainerType = 'Milly.CrudUI:Molecule.PropertyDisplayerContainer.PrependLabel'
+    properties = ${Milly.CrudUI.getConfigurationByModel(this.object, 'properties', this.CrudUIView)}
 
 
     renderer = Neos.Fusion:Loop {
@@ -19,13 +19,13 @@ prototype(Milly.Crudforms:Component.PropertyDisplayers) < prototype(Neos.Fusion:
         itemRenderer = Neos.Fusion:Renderer {
             type = ${props.propertyDisplayerContainerType}
             element {
-                propertyLabel = Milly.Crudforms:Component.Label.PropertyLabel {
+                propertyLabel = Milly.CrudUI:Component.Label.PropertyLabel {
                     modelClassName = ${Type.className(props.object)}
                     propertyName = ${propertyName}
                     propertyConfig = ${propertyConfig}
                 }
 
-                propertyDisplayer = Milly.Crudforms:Component.PropertyDisplayer {
+                propertyDisplayer = Milly.CrudUI:Component.PropertyDisplayer {
                     propertyConfig = ${propertyConfig}
                     propertyName = ${propertyName}
                     object = ${props.object}

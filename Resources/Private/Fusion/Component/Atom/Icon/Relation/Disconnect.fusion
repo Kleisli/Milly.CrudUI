@@ -1,4 +1,4 @@
-prototype(Milly.CrudForms:Atom.Icon.Relation.Disconnect) < prototype(Milly.CrudForms:Atom.Icon){
+prototype(Milly.CrudUI:Atom.Icon.Relation.Disconnect) < prototype(Milly.CrudUI:Atom.Icon){
     name = 'fa:minus'
     title = "Disconnect"
 }

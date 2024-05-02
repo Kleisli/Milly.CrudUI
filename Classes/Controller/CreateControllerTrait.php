@@ -1,5 +1,5 @@
 <?php
-namespace Milly\CrudForms\Controller;
+namespace Milly\CrudUI\Controller;
 trait CreateControllerTrait
 {
 
@@ -14,7 +14,7 @@ trait CreateControllerTrait
      */
     protected function initializeNewAction()
     {
-        $config = $this->getCrudFormsConfiguration();
+        $config = $this->getCrudUIConfiguration();
         if(isset($config['parent'])){
             $parentClass = $this->millyReflectionService->getTypeOfProperty($this->getModelClass(), $config['parent']);
             $this->arguments->addNewArgument('parent', $parentClass, false);
@@ -31,7 +31,7 @@ trait CreateControllerTrait
         if(isset($this->arguments['parent'])) {
             $this->view->assign('parent', $this->arguments['parent']->getValue());
         }
-        $this->view->assign('crudFormsModelClass', $this->getModelClass());
+        $this->view->assign('CrudUIModelClass', $this->getModelClass());
 
     }
 

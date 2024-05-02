@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.PropertyFilter.Fulltext) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.PropertyFilter.Fulltext) < prototype(Neos.Fusion:Component) {
 
     propertyName = ''
     filterValues = ${[]}

@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.PropertyEditor.BooleanCheckbox) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.PropertyEditor.BooleanCheckbox) < prototype(Neos.Fusion:Component) {
 
     @apply.props = ${props}
 
@@ -6,7 +6,7 @@ prototype(Milly.Crudforms:Component.PropertyEditor.BooleanCheckbox) < prototype(
         <label class="neos-checkbox" for={field.getName()}>
             <Neos.Fusion.Form:Checkbox field.value="1"
                                        attributes.id={field.getName()}/><span></span>
-            <Milly.Crudforms:Component.Label.PropertyLabel propertyName={props.propertyName} propertyConfig={props.propertyConfig} modelClassName={Type.className(props.object)} />
+            <Milly.CrudUI:Component.Label.PropertyLabel propertyName={props.propertyName} propertyConfig={props.propertyConfig} modelClassName={Type.className(props.object)} />
         </label>
     `
 }

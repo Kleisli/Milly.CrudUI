@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.PropertyDisplayer.Audio) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.PropertyDisplayer.Audio) < prototype(Neos.Fusion:Component) {
 
     @apply.props = ${props}
 

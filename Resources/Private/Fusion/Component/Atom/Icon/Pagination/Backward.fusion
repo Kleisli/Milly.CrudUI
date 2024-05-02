@@ -1,3 +1,3 @@
-prototype(Milly.CrudForms:Atom.Icon.Pagination.Backward) < prototype(Milly.CrudForms:Atom.Icon){
+prototype(Milly.CrudUI:Atom.Icon.Pagination.Backward) < prototype(Milly.CrudUI:Atom.Icon){
     name = 'fa-solid:backward'
 }

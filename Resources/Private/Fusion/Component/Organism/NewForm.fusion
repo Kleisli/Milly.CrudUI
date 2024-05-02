@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.NewForm) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.NewForm) < prototype(Neos.Fusion:Component) {
 
     properties = ${[]}
     preset = Neos.Fusion:DataStructure
@@ -9,7 +9,7 @@ prototype(Milly.Crudforms:Component.NewForm) < prototype(Neos.Fusion:Component) 
         form.target.action = "create"
         attributes.id = "new"
         content = Neos.Fusion:Tag {
-            attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+            attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                 path = 'template.new.form.class'
             }
             content = Neos.Fusion:Join {
@@ -25,7 +25,7 @@ prototype(Milly.Crudforms:Component.NewForm) < prototype(Neos.Fusion:Component) 
                     field.name = ${"object["+ props.parentProperty +"]"}
                     attributes.value = ${props.parent}
                 }
-                editors = Milly.Crudforms:Component.PropertyEditors {
+                editors = Milly.CrudUI:Component.PropertyEditors {
                     properties = ${props.properties}
                 }
             }

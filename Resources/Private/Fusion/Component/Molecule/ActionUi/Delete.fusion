@@ -1,4 +1,4 @@
-prototype(Milly.Crudforms:Component.ActionUi.Delete) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.ActionUi.Delete) < prototype(Neos.Fusion:Component) {
 
     object = null
     @if.condition = ${!isDeleteDisabled}
@@ -11,12 +11,12 @@ prototype(Milly.Crudforms:Component.ActionUi.Delete) < prototype(Neos.Fusion:Com
         attributes.onsubmit = "return confirm('Willst du wirklich löschen?');"
 
         content = Neos.Fusion.Form:Button {
-            attributes.class = Milly.Crudforms:Helper.ThemeRenderer {
+            attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                 path = 'atom.actionUi.delete.button.class'
                 fallbackPath = 'atom.actionUi.default.button.class'
             }
             content = Neos.Fusion:Join {
-                icon = Milly.CrudForms:Atom.Icon.Delete
+                icon = Milly.CrudUI:Atom.Icon.Delete
                 label = "Löschen"
                 label.@if.shwLabel = ${props.showLabel}
             }
