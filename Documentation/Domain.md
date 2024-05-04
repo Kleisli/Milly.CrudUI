@@ -1,10 +1,9 @@
 # Domain Models and Repositories
 ## Sorting
-*Note: this will probably be replaced with ``Gedmo\Sortable``*
 
-If you want a Model to be manually sortable, there are two traits that should be used.
+If you want a Model to be manually sortable, there are two traits that can be used.
 
-*SortableModelTrait*
+### SortableModelTrait
 ```
 use \Milly\Sortable\Domain\Model\SortableModelTrait;
 
@@ -27,7 +26,7 @@ return  $this->category ? $query->equals('category', $this->category) : null;
 }
 ```
 
-*SortingRepositoryTrait*
+### SortingRepositoryTrait
 ```
 use Milly\Sortable\Domain\Repository\SortingRepositoryTrait;
 protected $defaultOrderings = ['sorting' => QueryInterface::ORDER_ASCENDING];

@@ -4,18 +4,18 @@ Easily build controllers and views to show and edit Neos.Flow domain models.
 
 ## Models-Views-Controllers
 ### Domain Models and Repositories
-With Milly.CrudUI you can manage objects of any model, even existing models of third party packages.
+With Milly.CrudUI you can manage object of any model, even existing models of third party packages.
 
 #### Customize
-- [Sorting](Documentation/Domain.md#sorting)
+- [Make the entities sortable](Documentation/Domain.md#sorting)
 
 ### Views
 Milly.CrudUI loads default fusion templates out of the box, but you can create your own, if 
 you want to add custom elements.
 
 #### Customize
-- [Add custom fusion templates](Documentation/Views.md)
-- apply custom styles with theming
+- [Apply custom styles with theming](Documentation/Views.md#theming)
+- [Add custom fusion templates](Documentation/Views.md#custom-templates)
 
 
 ### Controller
@@ -40,11 +40,13 @@ class MyModelController extends ActionController
 
 #### Customize
 - [What to do with a mismatching Model Namespace?](Documentation/Controller.md#mismatching-model-namespace)
-- [Select the crud functionalities to add](Documentation/Controller.md#select-the-features-to-add)
+- [Select the crud functionalities to add](Documentation/Controller.md#select-the-functionalities-to-add)
 
 
 ## Configuration
-Configuration Settings have to be defined for each model
+Configuration Settings have to be defined for each model. To configure `MyModel` add a configuration file 
+`Configuration/Settings.CrudUI,MyModel.yaml`
+
 ```
 Milly:
   CrudUI:
@@ -60,8 +62,7 @@ Milly:
           relations: []
 ```
 ### Labels
-
-- `label` : Singular and plural form of how the entity class should be labelled for the user
+- `label` : Singular and plural form of how the entity class is labelled in the UI
 
 ### Parent
 - `parent` : If you want to manage nested structures, you can set a property, that is a reference the parent of the current model.
@@ -69,40 +70,36 @@ Milly:
 
 
 ### Views-Configuration
+For each view, an array of properties that should be rendered can be defined.
 
 ```
 views:
     index:
         properties: [textProperty, image]
-        showColumnHeaders: false
     show:
         properties: []
     edit:
         properties: []
     relation:
         properties: []
-        showColumnHeaders: false
     export:
         properties: []
 ```
-For each view, an array of properties that should be rendered can be configured.
-The view `relation` specifies what properties of a model are displayed when it is shown as relation in the 
+Configuration of the view `relation` specifies what properties of a model are displayed when it is shown as relation in the 
 `show` view of the `parent` model.
 
-For the `index` and the `relation` view the column headers that display the property 
-labels can be shown or not. The default value is `false`. 
 
 The views configuration are optional. When no views configuration exists for a view, all properties are displayed 
 and the default settings are applied.
 
 #### Customize
-- configure filter options in the `index` view
-- configure the pagination for the `index` view
+- [column headers for  `index` and `relation`](Documentation/Configuration.md#show-column-headers)
+- [pagination for `index`](Documentation/Configuration.md#pagination)
+- [filter options for `index`](Documentation/Configuration.md#filters) 
 
-see [Documentation/Configuration.md](Documentation/Configuration.md#views)
 
 ### Properties-Configuration
-To make Milly.CrudUi aware of a property of your model, it has to be added as a key to the `properties` configuration.
+To make a property displayable or editable with Milly.CrudUI it has to be added as a key to the `properties` configuration.
 
 ```
 properties:
@@ -110,9 +107,10 @@ properties:
     title:
         label: 'Title'
 ```
+- `label` : how the property is labelled in the UI
 
 If there is no property configuration
-- the default `type` `string` will be applied
+- the default `type` `string` is applied
 - the label will be fetched from the xlf file `Model/MyModel.xlf` with the property name as trans-unit id. see [Documentation/MyModel.xlf](Documentation/MyModel.xlf) for an example.
     - if there is no such file or key, the property name will be used as label
 
@@ -148,15 +146,19 @@ The following property types exist. For more details, see [Property Types](Docum
 
 
 #### Customize
-- Map properties (e.g. of connected entities)
-- Add custom property editors and displayers
-
-
-  see [Documentation/Configuration.md](Documentation/Configuration.md#properties)
+- [Map properties (e.g. of connected entities)](Documentation/Configuration.md#map-properties-of-connected-entities)
+- [Add custom property editors and displayers](Documentation/Configuration.md#add-custom-property-types)
 
 ### Relations-Configuration
 Technically, a property can also be a relation (see types `select` or `multiSelect`) and relations 
 are also properties of the class.
+
+```
+relations:
+    oneToManyProperty: []
+    manyToManyProperty:
+        label: 'Many'
+```
 
 The differences in the context of Milly.CrudUI are:
 - when configured in `properties`, the user can only choose from existing objects, while in `relations` the user can create
@@ -164,9 +166,6 @@ new objects of the relation class
 - the list of objects in `relations` can show more than one property of the objects (configured in `views.relation`), 
 as `properties` the objects are displayed as list of their labels
 
-```
-relations: []
-```
 
 ## Why Milly?
 [Milly Koss](https://en.wikipedia.org/wiki/Milly_Koss) was an American pioneering computer programmer. The Association for Women in Computing awarded her an Ada Lovelace Award in 2000.
