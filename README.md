@@ -1,25 +1,28 @@
 # Milly.CrudUI
-***
+
 Easily build controllers and views to show and edit Neos.Flow domain models. 
-***
 
-> We needed to understand 
-> how we might reuse tested code and have the machine help in programming. As we
-> programmed, we examined the process and tried to think of ways to abstract these 
-> steps to incorporate them into higher-level language. This led to the development
-> of interpreters, assemblers, compilers, and generators—programs designed to operate 
-> on or produce other programs, that is, automatic programming. (Milly Koss, [Source](https://en.wikipedia.org/wiki/Automatic_programming))
-> 
-[Milly Koss](https://en.wikipedia.org/wiki/Milly_Koss) was an American pioneering computer programmer. The Association for Women in Computing awarded her an Ada Lovelace Award in 2000.
+## Models-Views-Controllers
+### Domain Models and Repositories
+With Milly.CrudUI you can manage objects of any model, even existing models of third party packages.
 
-## Domain Models and Repositories
-There is no special requirements for Models or Repositories.
-
-### Customization
+#### Customize
 - [Sorting](Documentation/Domain.md#sorting)
 
-## Controller
-a minimal CrudController to be used as Neos backend module looks like that
+### Views
+Milly.CrudUI loads default fusion templates out of the box, but you can create your own, if 
+you want to add custom elements.
+
+#### Customize
+- [Add custom fusion templates](Documentation/Views.md)
+- apply custom styles with theming
+
+
+### Controller
+Milly.CrudUI can be used for Neos backend modules or with regular ActionControllers to provide 
+crud functionality to frontend users.
+
+Neos backend module
 ```
 class MyModelController extends AbstractModuleController
 {
@@ -27,16 +30,17 @@ class MyModelController extends AbstractModuleController
 }
 ```
 
-### Customization
+For Neos frontend or in plain Flow applications
+```
+class MyModelController extends ActionController
+{
+    use CrudControllerTrait;
+}
+```
+
+#### Customize
 - [What to do with a mismatching Model Namespace?](Documentation/Controller.md#mismatching-model-namespace)
-- [Select the crudforms to add](Documentation/Controller.md#select-the-crudforms-to-add)
-
-
-## Views
-Milly.CrudUI loads default fusion templates out of the box. But of course you can add your own. 
-
-### Customization
-- [Add custom fusion templates](Documentation/Views.md)
+- [Select the crud functionalities to add](Documentation/Controller.md#select-the-features-to-add)
 
 
 ## Configuration
@@ -55,13 +59,17 @@ Milly:
           properties: []
           relations: []
 ```
+### Labels
+
 - `label` : Singular and plural form of how the entity class should be labelled for the user
+
+### Parent
 - `parent` : If you want to manage nested structures, you can set a property, that is a reference the parent of the current model.
             The parent model must have a configured `relation` to the child model. 
 
 
 ### Views-Configuration
-The views configuration is optional. When no views configuration exists for a given view, all properties are displayed and the default settings are applied.
+
 ```
 views:
     index:
@@ -77,33 +85,37 @@ views:
     export:
         properties: []
 ```
-For each view, an array of properties to be displayed or edited can be configured.
-The configuration of view `relation` specifies what properties of a model are displayed when shown in the `show`view of the `parent` model.
+For each view, an array of properties that should be rendered can be configured.
+The view `relation` specifies what properties of a model are displayed when it is shown as relation in the 
+`show` view of the `parent` model.
 
-For the `index` and the `relation` view it can be configured whether the column headers that display the property labels should be shown or not. The default value is `false`. 
+For the `index` and the `relation` view the column headers that display the property 
+labels can be shown or not. The default value is `false`. 
 
-#### Customization
+The views configuration are optional. When no views configuration exists for a view, all properties are displayed 
+and the default settings are applied.
+
+#### Customize
 - configure filter options in the `index` view
 - configure the pagination for the `index` view
-- apply different styles with theming
 
 see [Documentation/Configuration.md](Documentation/Configuration.md#views)
 
 ### Properties-Configuration
-To make Milly.CrudUi aware of a property of your model, add it as a key to `properties`.
-If you don't add any property configuration
-- the default `type` `string` will be applied
-- the label will be fetched from the xlf file `Model/MyModel.xlf` with the property name as trans-unit id. see [Documentation/MyModel.xlf](Documentation/MyModel.xlf) for an example.
-    - if there is no such file or key, the property name will be used as label
+To make Milly.CrudUi aware of a property of your model, it has to be added as a key to the `properties` configuration.
+
 ```
 properties:
     textProperty: []
     title:
         label: 'Title'
 ```
-PropertyEditors provide form fields to edit properties and PropertyDisplayers are used to display properties of different types.
-There are several combinations of PropertyEditor and PropertyDisplayer that can be configured by `type`. 
-For some types there are `options` that can or have to be defined.
+
+If there is no property configuration
+- the default `type` `string` will be applied
+- the label will be fetched from the xlf file `Model/MyModel.xlf` with the property name as trans-unit id. see [Documentation/MyModel.xlf](Documentation/MyModel.xlf) for an example.
+    - if there is no such file or key, the property name will be used as label
+
 ```
 properties:
     image:
@@ -114,75 +126,39 @@ properties:
             repository: MyVendor\MyPackage\Domain\Repository\MyEntityRepository
 ```
 
-Property types
-- `string` (default)
-  - Editor: an input field with type text
-  - Displayer: the plain property value
-- `textarea`
-  - Editor: a textarea
-  - Displayer: the thext with newlines converted to html-breaks
-- `number`
-  - Editor: an input field with type number
-  - Displayer: the plain property value 
-- `email`
-  - Editor: an input field with type text
-  - Displayer: a mailto-link with the email address
-- `select` for ManyToOne properties
-  - Editor: a select field, populated with entries fetched from a `dataSource` or a `repository
-  - Displayer: either the label of the object or a link to the `show` view of the object
-  - Options
-    - `link`, optional : `true` or `false`, default is `false`
-    - `dataSource`, either this or `repository` has to be set
-      - the FQN of a [Flow DataSource](https://docs.neos.io/guide/advanced/extending-neos-with-php-flow/custom-data-sources)
-    - `repository`, either this or `dataSource` has to be set
-      - either only the FQN of a class, then `findAll()` is called on the repository to get the select options
-      - a method name can be appended to the repository class `MyVendor\MyPackage\Domain\Repository\MyEntityRepository->findOptionsForObject` - 
-        the currently edited object will be passed as argument to this method and it has to return an `Iterable`
-      - as label of the objects in the select field, the return value of one of the following methods will be used in this priority
-        1. `getLabel()`
-        2. `getTitle()`
-        3. `getName()`
-- `multiSelect` for OneToMany or ManyToMany properties
-  - Editor: a list of the current values with the option to remove them from the relation and a select field to add objects to the relation
-  - Displayer: a list of either the label of the objects or a link to the `show` view of the objects
-  - Options: the same as for `select`
-- `booleanRadio` for boolean properties
-  - Editor: two radio buttons with the labels defined in `options`
-  - Displayer: the label for the current value of the property
-  - Options
-    - `0` : Label if the value is false
-    - `1` : Label if the value is true
-- `booleanCheckbox` for boolean properties
-  - Editor: a input field with type checkbox 
-  - Displayer: either Yes or No
-- `date` for DateTime properties
-  - Editor: input field with type date
-  - Displayer: the date formatted as "d.m.Y"
-- `dateTime` for DateTime properties
-  - Editor: input field with type datetime-local
-  - Displayer: the date formatted as "d.m.Y H:i"
-- `dateInterval` for DateInterval properties
-  - Editor: three input fields with type number to enter years, months and days
-  - Displayer: the dateInterval formatted as string
-- `image` for `\Neos\Flow\ResourceManagement\PersistentResource` properties
-  - Editor: The Displayer with a checkbox to delete the image and an upload field
-  - Displayer: the image, linked to the image file
-- `audio` for `\Neos\Flow\ResourceManagement\PersistentResource` properties
-  - Editor: The Displayer with a checkbox to delete the audio file and an upload field
-  - Displayer: a html audio element to play the audio file
-- `jsonList` for array properties annotated with `@ORM\Column(type="flow_json_array")` 
-  - Editor: a textarea with the JSON string
-  - Displayer: a nested list with keys and values of the JSON string
+PropertyEditors provide form fields to edit properties and PropertyDisplayers are used to display properties values.
+There are several built-in combinations of PropertyEditor and PropertyDisplayer defined by a `type`. 
+For some types there are `options` that can or have to be defined.
 
-see [Documentation/Configuration.md](Documentation/Configuration.md#properties) to
+The following property types exist. For more details, see [Property Types](Documentation/PropertyTypes.md)
+- `string` (default)
+- `textarea`
+- `number`
+- `email`
+- `select` for ManyToOne properties
+- `multiSelect` for OneToMany or ManyToMany properties
+- `booleanRadio` for boolean properties
+- `booleanCheckbox` for boolean properties
+- `date` for DateTime properties
+- `dateTime` for DateTime properties
+- `dateInterval` for DateInterval properties
+- `image` for `\Neos\Flow\ResourceManagement\PersistentResource` properties
+- `audio` for `\Neos\Flow\ResourceManagement\PersistentResource` properties
+- `jsonList` for array properties annotated with `@ORM\Column(type="flow_json_array")`
+
+
+#### Customize
 - Map properties (e.g. of connected entities)
 - Add custom property editors and displayers
 
 
-### Relations-Configuration
-Technically, a property can also be a relation (see types `select` or m`multiSelect`) and relations are also properties of the class.
+  see [Documentation/Configuration.md](Documentation/Configuration.md#properties)
 
-The differences in this context are:
+### Relations-Configuration
+Technically, a property can also be a relation (see types `select` or `multiSelect`) and relations 
+are also properties of the class.
+
+The differences in the context of Milly.CrudUI are:
 - when configured in `properties`, the user can only choose from existing objects, while in `relations` the user can create
 new objects of the relation class
 - the list of objects in `relations` can show more than one property of the objects (configured in `views.relation`), 
@@ -191,6 +167,17 @@ as `properties` the objects are displayed as list of their labels
 ```
 relations: []
 ```
+
+## Why Milly?
+[Milly Koss](https://en.wikipedia.org/wiki/Milly_Koss) was an American pioneering computer programmer. The Association for Women in Computing awarded her an Ada Lovelace Award in 2000.
+> We needed to understand
+> how we might reuse tested code and have the machine help in programming. As we
+> programmed, we examined the process and tried to think of ways to abstract these
+> steps to incorporate them into higher-level language. This led to the development
+> of interpreters, assemblers, compilers, and generators—programs designed to operate
+> on or produce other programs, that is, automatic programming. (Milly Koss, [Source](https://en.wikipedia.org/wiki/Automatic_programming))
+>
+
 
 
 ## Kudos

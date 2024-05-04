@@ -1,5 +1,5 @@
 # Controller
-## Select the crudforms to add
+## Select the features to add
 The ``CrudControllerTrait`` includes all the crud features. 
 If you only want to use some of them, you can add the ``BaseControllerTrait`` plus a selection of
 
