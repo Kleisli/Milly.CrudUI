@@ -2,18 +2,18 @@
 
 Easily build controllers and views to show and edit Neos.Flow domain models. 
 
-## Models-Views-Controllers
-### Domain Models and Repositories
+## Model-View-Controller
+### Domain Model and Repository
 With Milly.CrudUI you can manage object of any model, even existing models of third party packages.
 
-#### Customize
+#### Customize models
 - [Make the entities sortable](Documentation/Domain.md#sorting)
 
 ### Views
 Milly.CrudUI loads default fusion templates out of the box, but you can create your own, if 
 you want to add custom elements.
 
-#### Customize
+#### Customize views
 - [Apply custom styles with theming](Documentation/Views.md#theming)
 - [Add custom fusion templates](Documentation/Views.md#custom-templates)
 
@@ -38,21 +38,23 @@ class MyModelController extends ActionController
 }
 ```
 
-#### Customize
-- [What to do with a mismatching Model Namespace?](Documentation/Controller.md#mismatching-model-namespace)
+#### Customize controllers
+- [Refer to a mismatching Model Namespace](Documentation/Controller.md#mismatching-model-namespace)
 - [Select the crud functionalities to add](Documentation/Controller.md#select-the-functionalities-to-add)
 
 
 ## Configuration
-Configuration Settings have to be defined for each model. To configure `MyModel` add a configuration file 
-`Configuration/Settings.CrudUI,MyModel.yaml`
+Configuration Settings have to be defined for each model. A Model `MyModel` is defined in the configuration file 
+`Configuration/Settings.CrudUI.MyModel.yaml`
 
 ```
 Milly:
   CrudUI:
-    MyVendor:
-      MyPackage:
-        MyModel:
+    <MyVendor>:
+      <MyPackage>:
+        <MyModel>:
+          ui:
+            readonly: true
           label:
             one: 'My model'
             many: 'My models'
@@ -75,7 +77,7 @@ For each view, an array of properties that should be rendered can be defined.
 ```
 views:
     index:
-        properties: [textProperty, image]
+        properties: [<textProperty>, <imageProperty>]
     show:
         properties: []
     edit:
@@ -88,11 +90,10 @@ views:
 Configuration of the view `relation` specifies what properties of a model are displayed when it is shown as relation in the 
 `show` view of the `parent` model.
 
-
 The views configuration are optional. When no views configuration exists for a view, all properties are displayed 
 and the default settings are applied.
 
-#### Customize
+#### Customize views-configuration
 - [column headers for  `index` and `relation`](Documentation/Configuration.md#show-column-headers)
 - [pagination for `index`](Documentation/Configuration.md#pagination)
 - [filter options for `index`](Documentation/Configuration.md#filters) 
@@ -103,22 +104,24 @@ To make a property displayable or editable with Milly.CrudUI it has to be added 
 
 ```
 properties:
-    textProperty: []
-    title:
-        label: 'Title'
+  <textProperty>: []
+  <titleProperty>:
+    label: 'Title'
+    ui:
+      readonly: true
 ```
 - `label` : how the property is labelled in the UI
 
 If there is no property configuration
-- the default `type` `string` is applied
+- the default type `string` is used
 - the label will be fetched from the xlf file `Model/MyModel.xlf` with the property name as trans-unit id. see [Documentation/MyModel.xlf](Documentation/MyModel.xlf) for an example.
     - if there is no such file or key, the property name will be used as label
 
 ```
 properties:
-    image:
+    <imageProperty>:
         type: image
-    entity:
+    <entityProperty>:
         type: select
         options:
             repository: MyVendor\MyPackage\Domain\Repository\MyEntityRepository
@@ -128,7 +131,7 @@ PropertyEditors provide form fields to edit properties and PropertyDisplayers ar
 There are several built-in combinations of PropertyEditor and PropertyDisplayer defined by a `type`. 
 For some types there are `options` that can or have to be defined.
 
-The following property types exist. For more details, see [Property Types](Documentation/PropertyTypes.md)
+The following property types exist. For more details, see the detailed list of [Property Types](Documentation/PropertyTypes.md)
 - `string` (default)
 - `textarea`
 - `number`
@@ -145,7 +148,7 @@ The following property types exist. For more details, see [Property Types](Docum
 - `jsonList` for array properties annotated with `@ORM\Column(type="flow_json_array")`
 
 
-#### Customize
+#### Customize properties-configuration
 - [Map properties (e.g. of connected entities)](Documentation/Configuration.md#map-properties-of-connected-entities)
 - [Add custom property editors and displayers](Documentation/Configuration.md#add-custom-property-types)
 
@@ -155,9 +158,11 @@ are also properties of the class.
 
 ```
 relations:
-    oneToManyProperty: []
-    manyToManyProperty:
-        label: 'Many'
+  oneToManyProperty: []
+  manyToManyProperty:
+    label: 'Many'
+    ui:
+      readonly: true
 ```
 
 The differences in the context of Milly.CrudUI are:

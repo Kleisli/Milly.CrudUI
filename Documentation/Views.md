@@ -15,13 +15,13 @@ Milly:
 ```
 
 ### Apply a theme
-Themes can be applied globally in the Settings Configuration
+Themes can be applied globally for all packages of an installation in the Settings Configuration
 ````
 Milly:
   CrudUI:
     defaultTheme: 'myTheme'
 ````
-they can be applied to all actions/views of a Controller
+they can be applied to actions/views of just one Controller
 ```
 class CollectionController extends ActionController
 {
@@ -29,7 +29,7 @@ class CollectionController extends ActionController
     use CrudControllerTrait;
 }
 ```
-or they can be applied only to one view
+or they can be applied to single views
 ```
 MyVendor.MyPackage.MyModelController.edit = Milly.CrudUI:Template.Edit {
     millyCrudTheme = 'myTheme'
@@ -37,12 +37,30 @@ MyVendor.MyPackage.MyModelController.edit = Milly.CrudUI:Template.Edit {
 ```
 
 ## Custom templates
-Views are implemented in Fusion and expected in the Fusion path ``Vendor.Package.MyModelController.action`` 
-create a fusion file for each action in ``Resources\Private\Views\``.
+Fusion files for custom templates are expected in the directory ``Resources\Private\Views\``.
+### Default package views
+Milly.CrudUI provides default templates for each action, but these default templates can be 
+overwritten per package. A typical use case would be if there is a backend module to administrate
+different Models and you want to add a navigation to switch between the Models.
+
+Add a fusion file for each action, then use and extend the Template components provided by 
+Milly.CrudUI.
+
+e.g. *Edit.fusion*
+```
+Milly.CrudUI.Default.edit = Milly.CrudUI:Template.Edit {
+    header.navigation = MyVendor.MyPackage:NavigationComponent
+    header.navigation.@position = 'start'
+} 
+```
+
+
+### Individual controller views
+Views are expected in the Fusion path ``<Vendor>.<Package>.<MyModelController>.<action>``
 
 For smaller adjustments the provided Template prototypes can be used.
 
-### Index.fusion
+*Index.fusion*
 ```
 MyVendor.MyPackage.MyModelController.index = Milly.CrudUI:Template.Index {
     footer {
@@ -51,7 +69,7 @@ MyVendor.MyPackage.MyModelController.index = Milly.CrudUI:Template.Index {
 }
 ```
 
-### New.fusion
+*New.fusion*
 ```
 MyVendor.MyPackage.MyModelController.new = Milly.CrudUI:Template.New {
     # optional presets
@@ -60,7 +78,7 @@ MyVendor.MyPackage.MyModelController.new = Milly.CrudUI:Template.New {
 ```
 with the preset parameter you can define properties for the entity to be created.
 
-### Show.fusion
+*Show.fusion*
 ```
 MyVendor.MyPackage.MyModelController.show = Milly.CrudUI:Template.Show {
     main {
@@ -69,9 +87,4 @@ MyVendor.MyPackage.MyModelController.show = Milly.CrudUI:Template.Show {
         }
     }
 }
-```
-
-### Edit.fusion
-```
-MyVendor.MyPackage.MyModelController.edit = Milly.CrudUI:Template.Edit 
 ```
