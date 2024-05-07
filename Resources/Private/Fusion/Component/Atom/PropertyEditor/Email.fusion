@@ -5,7 +5,7 @@ prototype(Milly.CrudUI:Component.PropertyEditor.Email) < prototype(Neos.Fusion:C
     renderer = Neos.Fusion.Form:Input {
         attributes {
             type = 'text'
-            disabled = ${props.propertyConfig.ui.readonly || props.propertyConfig.readonly}
+            disabled = ${props.propertyConfig.readonly}
             class = Milly.CrudUI:Helper.ThemeRenderer {
                 path = 'propertyEditor.email.class'
             }

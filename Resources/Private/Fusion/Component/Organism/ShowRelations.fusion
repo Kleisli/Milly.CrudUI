@@ -20,10 +20,10 @@ prototype(Milly.CrudUI:Component.ShowRelations) < prototype(Neos.Fusion:Componen
                     objects={Milly.Object.getProperty(object, relationConfig.propertyPath ? relationConfig.propertyPath : relationName)}
                     header={relationConfig.label}
                     disablePagination={!relationConfig.ui.pagination.enable}
-                    readonly={relationConfig.ui.readonly}/>
+                    readonly={relationConfig.readonly}/>
 
                 <p @if.condition={!Milly.Object.getProperty(object, relationName)}>No {relationConfig.label} created yet.</p>
-                <div @if={!relationConfig.ui.readonly} class="neos-pull-right" style="margin-bottom:20px">
+                <div @if={!relationConfig.readonly} class="neos-pull-right" style="margin-bottom:20px">
                     <Milly.CrudUI:Component.ActionUi.New
                         modelClassName={Milly.Reflection.getTypeOfRelation(object, relationName)}
                         parent={object}

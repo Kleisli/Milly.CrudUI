@@ -30,13 +30,13 @@ prototype(Milly.CrudUI:Template.Show) < prototype(Neos.Fusion:Component) {
 
     footer = Neos.Fusion:Join {
         editButton = Milly.CrudUI:Component.ActionUi.Edit {
-            @if.notReadonly = ${!Milly.CrudUI.getConfigurationByModel(object, 'ui.readonly')}
+            @if.notReadonly = ${!Milly.CrudUI.getConfigurationByModel(object, 'readonly')}
             object = ${object}
             showLabel = true
         }
 
         translateButton = Milly.CrudUI:Component.ActionUi.Translate {
-            @if.notReadonly = ${!Milly.CrudUI.getConfigurationByModel(object, 'ui.readonly') && Traduki.Entity.isTranslatable(object)}
+            @if.notReadonly = ${!Milly.CrudUI.getConfigurationByModel(object, 'readonly') && Traduki.Entity.isTranslatable(object)}
             object = ${object}
             showLabel = true
         }

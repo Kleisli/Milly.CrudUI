@@ -6,7 +6,7 @@ prototype(Milly.CrudUI:Component.PropertyEditor) < prototype(Neos.Fusion:Compone
 
     renderer = Neos.Fusion:Case {
         readonly {
-            condition = ${props.propertyConfig.ui.readonly}
+            condition = ${props.propertyConfig.readonly}
             renderer = Milly.CrudUI:Component.PropertyDisplayer {
                 @apply.props = ${props}
             }

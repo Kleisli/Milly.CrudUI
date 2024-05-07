@@ -8,7 +8,7 @@ prototype(Milly.CrudUI:Component.PropertyEditor.Number) < prototype(Neos.Fusion:
             type="number"
             name = ${field.getName()}
             value = ${field.getCurrentValue() != null ? field.getCurrentValue() : ''}
-            disabled = ${props.propertyConfig.ui.readonly || props.propertyConfig.readonly}
+            disabled = ${props.propertyConfig.readonly}
             class = Milly.CrudUI:Helper.ThemeRenderer {
                 path = 'propertyEditor.number.class'
             }

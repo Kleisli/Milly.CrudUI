@@ -41,6 +41,6 @@ prototype(Milly.CrudUI:Component.PropertyEditors) < prototype(Neos.Fusion:Compon
             }
 
         }
-        itemRenderer.@if.notReadonly = ${!propertyConfig.ui.readonly}
+        itemRenderer.@if.notReadonly = ${!propertyConfig.readonly}
     }
 }
