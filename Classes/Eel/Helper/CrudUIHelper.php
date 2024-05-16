@@ -9,6 +9,7 @@ use Neos\Flow\Configuration\ConfigurationManager;
 use Neos\Flow\Error\Exception;
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
+use Neos\Utility\ObjectAccess;
 
 class CrudUIHelper implements ProtectedContextAwareInterface
 {
@@ -74,14 +75,14 @@ class CrudUIHelper implements ProtectedContextAwareInterface
             foreach ($items as $item){
                 $value = $this->persistenceManager->getIdentifierByObject($item);
                 $label = $value;
-                if(method_exists($item, 'getLabel')){
-                    $label = $item->getLabel();
+                if( ObjectAccess::isPropertyGettable($item, 'label')){
+                    $label = ObjectAccess::getProperty($item, 'label');
                 }else{
-                    if(method_exists($item, 'getTitle')){
-                        $label = $item->getTitle();
+                    if(ObjectAccess::isPropertyGettable($item, 'title')){
+                        $label = ObjectAccess::getProperty($item, 'title');
                     }else{
-                        if(method_exists($item, 'getName')){
-                            $label = $item->getName();
+                        if(ObjectAccess::isPropertyGettable($item, 'name')){
+                            $label = ObjectAccess::getProperty($item, 'name');
                         }
                     }
                 }
