@@ -32,8 +32,9 @@ class ConfigurationService
 
         $configuration = $this->configurationManager->getConfiguration(
             ConfigurationManager::CONFIGURATION_TYPE_SETTINGS,
-            implode('.', ['Milly.CrudUI', str_replace("Domain.Model.", "", str_replace("\\", ".", $className))])
+            'Milly.CrudUI.entities' . '.' . $className
         );
+
 
         if(isset($configuration['views'][$view]['properties'])){
             $viewProperties = [];

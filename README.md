@@ -50,18 +50,16 @@ Configuration Settings have to be defined for each model. A Model `MyModel` is d
 ```
 Milly:
   CrudUI:
-    <MyVendor>:
-      <MyPackage>:
-        <MyModel>:
-          ui:
-            readonly: true
-          label:
-            one: 'My model'
-            many: 'My models'
-          parent: 'parentProperty'
-          views: []
-          properties: []
-          relations: []
+    entities:
+      <MyVendor\MyPackage\Domain\Model\MyModel>:
+        readonly: true
+        label:
+          one: 'My model'
+          many: 'My models'
+        parent: 'parentProperty'
+        views: []
+        properties: []
+        relations: []
 ```
 ### Labels
 - `label` : Singular and plural form of how the entity class is labelled in the UI
@@ -107,8 +105,7 @@ properties:
   <textProperty>: []
   <titleProperty>:
     label: 'Title'
-    ui:
-      readonly: true
+    readonly: true
 ```
 - `label` : how the property is labelled in the UI
 
@@ -161,8 +158,7 @@ relations:
   oneToManyProperty: []
   manyToManyProperty:
     label: 'Many'
-    ui:
-      readonly: true
+    readonly: true
 ```
 
 The differences in the context of Milly.CrudUI are:
