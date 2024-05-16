@@ -12,10 +12,10 @@ prototype(Milly.CrudUI:Component.PropertyEditor.MultiSelect) < prototype(Neos.Fu
                             {Milly.CrudUI.getFieldOptionsObjectLabel(propertyConfig.options, item)}
                         </th>
                         <td style="width:10rem; padding: 7px 14px;">
-                            <label class="neos-checkbox" for={propertyName+Object.identifier(item)} style="margin: 0">
+                            <label class="neos-checkbox" for={propertyName+Milly.Object.identifier(item)} style="margin: 0">
                                 <Neos.Fusion.Form:Checkbox field.name={"removeElements["+propertyName+"][]"}
-                                                           field.value={Object.identifier(item)}
-                                                           attributes.id={propertyName+Object.identifier(item)}/><span></span>
+                                                           field.value={Milly.Object.identifier(item)}
+                                                           attributes.id={propertyName+Milly.Object.identifier(item)}/><span></span>
                               <Milly.CrudUI:Atom.Icon.Relation.Disconnect /> Disconnect
                             </label>
                         </td>
@@ -28,7 +28,7 @@ prototype(Milly.CrudUI:Component.PropertyEditor.MultiSelect) < prototype(Neos.Fu
                     <Neos.Fusion.Form:Select.Option></Neos.Fusion.Form:Select.Option>
                     <Neos.Fusion:Loop items={Milly.CrudUI.getFieldOptions(props.propertyConfig.options, props.object)}>
                         <Neos.Fusion.Form:Select.Option option.value={itemKey}>
-                            {item}
+                          {item}
                         </Neos.Fusion.Form:Select.Option>
                     </Neos.Fusion:Loop>
                 </Neos.Fusion.Form:Select>

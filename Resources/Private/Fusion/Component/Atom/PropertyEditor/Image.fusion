@@ -3,12 +3,14 @@ prototype(Milly.CrudUI:Component.PropertyEditor.Image) < prototype(Neos.Fusion:C
     @apply.props = ${props}
 
     renderer = afx`
+
+        <Neos.Fusion.Form:Upload />
         <Neos.Fusion:Fragment @if.isSet={props.object != null && Milly.Object.getProperty(props.object, props.propertyName)}>
+            <br/>
             <Milly.CrudUI:Component.PropertyDisplayer.Image propertyValue={Milly.Object.getProperty(props.object, props.propertyName)} /><br/>
             <label for={"remove"+field.getName()}>
                 <input type="checkbox" name={field.getName()} value="" id={"remove"+field.getName()}/> Remove
             </label>
         </Neos.Fusion:Fragment>
-        <Neos.Fusion.Form:Upload />
     `
 }
