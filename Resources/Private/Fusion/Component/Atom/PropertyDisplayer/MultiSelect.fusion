@@ -22,7 +22,7 @@ prototype(Milly.CrudUI:Component.PropertyDisplayer.MultiSelect) < prototype(Neos
         default {
             condition = ${true}
             renderer = Neos.Fusion:Loop {
-                items = ${Milly.Object.getProperty(props.object, props.propertyName)}
+                items = ${props.propertyValue}
                 itemRenderer = ${Milly.CrudUI.getFieldOptionsObjectLabel(props.propertyConfig.options, item)}
                 @glue = ','
             }

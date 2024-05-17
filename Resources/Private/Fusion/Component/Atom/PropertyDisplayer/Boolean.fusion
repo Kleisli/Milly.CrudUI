@@ -1,0 +1,6 @@
+prototype(Milly.CrudUI:Component.PropertyDisplayer.Boolean) < prototype(Neos.Fusion:Component) {
+
+    @apply.props = ${props}
+    renderer = ${props.propertyValue ? 'Ja' : 'Nein'}
+
+}

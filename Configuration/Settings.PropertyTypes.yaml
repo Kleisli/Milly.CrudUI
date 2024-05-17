@@ -1,0 +1,48 @@
+Milly:
+  CrudUI:
+    propertyTypes:
+      default:
+        displayer: Milly.CrudUI:Component.PropertyDisplayer.PlainValue
+        editor: Milly.CrudUI:Component.PropertyEditor.Textfield
+      string:
+        displayer: Milly.CrudUI:Component.PropertyDisplayer.PlainValue
+        editor: Milly.CrudUI:Component.PropertyEditor.Textfield
+      textarea:
+        displayer: Milly.CrudUI:Component.PropertyDisplayer.MultilineText
+        editor: Milly.CrudUI:Component.PropertyEditor.Textarea
+      number:
+        displayer: Milly.CrudUI:Component.PropertyDisplayer.PlainValue
+        editor: Milly.CrudUI:Component.PropertyEditor.Number
+      email:
+        displayer: Milly.CrudUI:Component.PropertyDisplayer.Email
+        editor: Milly.CrudUI:Component.PropertyEditor.Email
+      select:
+        displayer: Milly.CrudUI:Component.PropertyDisplayer.Select
+        editor: Milly.CrudUI:Component.PropertyEditor.Select
+      multiSelect:
+        displayer: Milly.CrudUI:Component.PropertyDisplayer.MultiSelect
+        editor: Milly.CrudUI:Component.PropertyEditor.MultiSelect
+      booleanRadio:
+        displayer: Milly.CrudUI:Component.PropertyDisplayer.BooleanRadio
+        editor: Milly.CrudUI:Component.PropertyEditor.BooleanRadio
+      booleanCheckbox:
+        displayer: Milly.CrudUI:Component.PropertyDisplayer.Boolean
+        editor: Milly.CrudUI:Component.PropertyEditor.BooleanCheckbox
+      dateTime:
+        displayer: Milly.CrudUI:Component.PropertyDisplayer.DateTime
+        editor: Milly.CrudUI:Component.PropertyEditor.DateTime
+      date:
+        displayer: Milly.CrudUI:Component.PropertyDisplayer.Date
+        editor: Milly.CrudUI:Component.PropertyEditor.Date
+      image:
+        displayer: Milly.CrudUI:Component.PropertyDisplayer.Image
+        editor: Milly.CrudUI:Component.PropertyEditor.Image
+      audio:
+        displayer: Milly.CrudUI:Component.PropertyDisplayer.Audio
+        editor: Milly.CrudUI:Component.PropertyEditor.Audio
+      dateInterval:
+        displayer: Milly.CrudUI:Component.PropertyDisplayer.DateInterval
+        editor: Milly.CrudUI:Component.PropertyEditor.DateInterval
+      jsonList:
+        displayer: Milly.CrudUI:Component.PropertyDisplayer.JsonList
+        editor: Milly.CrudUI:Component.PropertyEditor.JsonList

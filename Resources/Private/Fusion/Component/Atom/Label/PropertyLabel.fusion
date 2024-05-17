@@ -10,8 +10,8 @@ prototype(Milly.CrudUI:Component.Label.PropertyLabel) < prototype(Neos.Fusion:Co
             renderer = ${props.propertyConfig.label}
         }
         readFromXliff {
-            condition = ${I18n.translate(Milly.Mapping.getXliffIdPrefixByModel(props.modelClassName)+props.propertyName)}
-            renderer = ${I18n.translate(Milly.Mapping.getXliffIdPrefixByModel(props.modelClassName)+props.propertyName)}
+            condition = ${I18n.translate(Milly.Mapping.getXliffIdPrefixByModel(props.modelClassName) + props.propertyName)}
+            renderer = ${I18n.translate(Milly.Mapping.getXliffIdPrefixByModel(props.modelClassName) + props.propertyName)}
         }
         default {
             condition = true

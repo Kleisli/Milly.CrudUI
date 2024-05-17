@@ -3,9 +3,9 @@ prototype(Milly.CrudUI:Component.PropertyDisplayer.Select) < prototype(Neos.Fusi
     @apply.props = ${props}
 
     renderer = afx`
-        <Milly.CrudUI:Component.ActionUi.Show @if={request.format == 'html' && props.propertyConfig.options.link} object={Milly.Object.getProperty(props.object, props.propertyName)} showClassLabel={false}/>
+        <Milly.CrudUI:Component.ActionUi.Show @if={request.format == 'html' && props.propertyConfig.options.link} object={props.propertyValue} showClassLabel={false}/>
         <Neos.Fusion:Fragment @if={request.format != 'html' || !props.propertyConfig.options.link}>
-            {Milly.CrudUI.getFieldOptionsObjectLabel(props.propertyConfig.options, Milly.Object.getProperty(props.object, props.propertyName))}
+            {Milly.CrudUI.getFieldOptionsObjectLabel(props.propertyConfig.options, props.propertyValue)}
         </Neos.Fusion:Fragment>
     `
 

@@ -16,38 +16,15 @@ prototype(Milly.CrudUI:Component.PropertyEditor) < prototype(Neos.Fusion:Compone
             type = ${props.propertyConfig.ui.editor}
             element.@apply.props = ${props}
         }
+        propertyType {
+            condition = ${propertyConfig.type}
+            type = ${Configuration.setting('Milly.CrudUI.propertyTypes.' + propertyConfig.type + '.editor')}
+            element.@apply.props = ${props}
+        }
         default {
             condition = true
-            renderer = Neos.Fusion:Match {
-                @subject = ${props.propertyConfig.type}
-
-                textarea = Neos.Fusion.Form:Textarea {
-                    attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
-                        path = 'propertyEditor.textarea.class'
-                    }
-                }
-                number = Milly.CrudUI:Component.PropertyEditor.Number
-                email = Milly.CrudUI:Component.PropertyEditor.Email
-                select = Milly.CrudUI:Component.PropertyEditor.Select
-                multiSelect = Milly.CrudUI:Component.PropertyEditor.MultiSelect
-                booleanRadio = Milly.CrudUI:Component.PropertyEditor.BooleanRadio
-                booleanCheckbox = Milly.CrudUI:Component.PropertyEditor.BooleanCheckbox
-                dateTime = Milly.CrudUI:Component.PropertyEditor.DateTime
-                date = Milly.CrudUI:Component.PropertyEditor.Date
-                image = Milly.CrudUI:Component.PropertyEditor.Image
-                audio = Milly.CrudUI:Component.PropertyEditor.Audio
-                dateInterval = Milly.CrudUI:Component.PropertyEditor.DateInterval
-                jsonList = Milly.CrudUI:Component.PropertyEditor.JsonList
-
-                @default = Neos.Fusion.Form:Textfield {
-                    attributes {
-                        disabled = ${props.propertyConfig.readonly ? true : false}
-                        class = Milly.CrudUI:Helper.ThemeRenderer {
-                            path = 'propertyEditor.textfield.class'
-                        }
-                    }
-                }
-            }
+            type = ${Configuration.setting('Milly.CrudUI.propertyTypes.default.editor')}
+            element.@apply.props = ${props}
         }
     }
 }

@@ -2,14 +2,12 @@ prototype(Milly.CrudUI:Component.PropertyDisplayer.JsonList) < prototype(Neos.Fu
 
     @apply.props = ${props}
 
-    array = ${Milly.Object.getProperty(this.object, this.propertyName)}
-
     renderer = Neos.Fusion:Case {
         html {
             condition = ${request.format == 'html'}
             renderer = afx`
                 <ul>
-                    <Neos.Fusion:Loop items={props.array}>
+                    <Neos.Fusion:Loop items={props.propertyValue}>
                         <Neos.Fusion:Fragment @if={!Type.isArray(item)}>
                             <li>{itemKey}: {item}</li>
                         </Neos.Fusion:Fragment>

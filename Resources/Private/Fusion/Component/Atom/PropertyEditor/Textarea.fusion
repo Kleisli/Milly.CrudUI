@@ -1,0 +1,10 @@
+prototype(Milly.CrudUI:Component.PropertyEditor.Textarea) < prototype(Neos.Fusion:Component) {
+
+    @apply.props = ${props}
+
+    renderer = Neos.Fusion.Form:Textarea {
+      attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
+        path = 'propertyEditor.textarea.class'
+      }
+    }
+}

@@ -6,15 +6,15 @@ prototype(Milly.CrudUI:Component.PropertyDisplayer.Email) < prototype(Neos.Fusio
         html {
             condition = ${request.format == 'html'}
             renderer = afx`
-                <a href={"mailto:"+Milly.Object.getProperty(props.object, props.propertyName)}>
-                    {Milly.Object.getProperty(props.object, props.propertyName)}
+                <a href={"mailto:"+props.propertyValue}>
+                    {props.propertyValue}
                 </a>
             `
         }
 
         default {
             condition = ${true}
-            renderer = ${Milly.Object.getProperty(props.object, props.propertyName)}
+            renderer = ${props.propertyValue}
         }
     }
 }

@@ -1,0 +1,13 @@
+prototype(Milly.CrudUI:Component.PropertyEditor.Textfield) < prototype(Neos.Fusion:Component) {
+
+    @apply.props = ${props}
+
+    renderer = Neos.Fusion.Form:Textfield {
+      attributes {
+        disabled = ${props.propertyConfig.readonly ? true : false}
+        class = Milly.CrudUI:Helper.ThemeRenderer {
+          path = 'propertyEditor.textfield.class'
+        }
+      }
+    }
+}

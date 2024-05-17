@@ -1,0 +1,6 @@
+prototype(Milly.CrudUI:Component.PropertyDisplayer.DateTime) < prototype(Neos.Fusion:Component) {
+
+    @apply.props = ${props}
+    renderer = ${props.propertyValue ? Date.format(props.propertyValue, "d.m.Y H:i") : ''}
+
+}
