@@ -1,9 +1,12 @@
 <?php
 namespace Milly\CrudUI\Service;
 
+use Doctrine\ORM\ORMException;
 use Milly\Tools\Service\ReflectionService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\Doctrine\PersistenceManager;
+use Neos\Utility\Exception\InvalidTypeException;
+use Neos\Utility\Exception\PropertyNotAccessibleException;
 use Neos\Utility\ObjectAccess;
 
 /**
@@ -18,6 +21,30 @@ class ObjectService
     protected PersistenceManager $persistenceManager;
 
 
+    /**
+     * @throws PropertyNotAccessibleException
+     */
+    public function getLabel(object $object): ?string
+    {
+        if (ObjectAccess::isPropertyGettable($object, 'label')) {
+            return ObjectAccess::getProperty($object, 'label');
+        } else {
+            if (ObjectAccess::isPropertyGettable($object, 'title')) {
+                return ObjectAccess::getProperty($object, 'title');
+            } else {
+                if (ObjectAccess::isPropertyGettable($object, 'name')) {
+                    return ObjectAccess::getProperty($object, 'name');
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @throws PropertyNotAccessibleException
+     * @throws ORMException
+     * @throws InvalidTypeException
+     */
     public function updateCollectionElements(object &$object, array $addElements = [], array $removeElements = []){
         foreach ($addElements as $propertyName => $elementIdentifiers){
             if(is_array($elementIdentifiers)) {

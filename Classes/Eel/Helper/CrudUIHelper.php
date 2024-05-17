@@ -3,6 +3,7 @@ namespace Milly\CrudUI\Eel\Helper;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Milly\CrudUI\Service\ConfigurationService;
+use Milly\CrudUI\Service\ObjectService;
 use Neos\Eel\ProtectedContextAwareInterface;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Configuration\ConfigurationManager;
@@ -27,6 +28,9 @@ class CrudUIHelper implements ProtectedContextAwareInterface
 
     #[Flow\Inject]
     protected ConfigurationManager $configurationManager;
+
+    #[Flow\Inject]
+    protected ObjectService $objectService;
 
     /**
      * @param object|string $model
@@ -74,18 +78,7 @@ class CrudUIHelper implements ProtectedContextAwareInterface
 
             foreach ($items as $item){
                 $value = $this->persistenceManager->getIdentifierByObject($item);
-                $label = $value;
-                if( ObjectAccess::isPropertyGettable($item, 'label')){
-                    $label = ObjectAccess::getProperty($item, 'label');
-                }else{
-                    if(ObjectAccess::isPropertyGettable($item, 'title')){
-                        $label = ObjectAccess::getProperty($item, 'title');
-                    }else{
-                        if(ObjectAccess::isPropertyGettable($item, 'name')){
-                            $label = ObjectAccess::getProperty($item, 'name');
-                        }
-                    }
-                }
+                $label = $this->objectService->getLabel($item) ?? $value;
                 $options[$value] = $label;
             }
 
@@ -108,10 +101,8 @@ class CrudUIHelper implements ProtectedContextAwareInterface
             return null;
         }
 
-        if(is_object($objectValue)){
-            if(method_exists($objectValue, 'getLabel')){
-                return $objectValue->getLabel();
-            }
+        if(is_object($objectValue) && $this->objectService->getLabel($objectValue)){
+            return $this->objectService->getLabel($objectValue);
         }
 
         $options = $this->getFieldOptions($optionsConfig);
