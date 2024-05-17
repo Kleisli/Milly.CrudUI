@@ -44,13 +44,6 @@ class ObjectHelper implements ProtectedContextAwareInterface
     }
 
     /**
-     * @return mixed
-     */
-    public function getFromArray(array $array, string $key) {
-        return $array[$key];
-    }
-
-    /**
      * All methods are considered safe
      *
      * @param string $methodName

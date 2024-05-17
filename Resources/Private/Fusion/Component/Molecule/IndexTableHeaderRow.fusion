@@ -18,7 +18,7 @@ prototype(Milly.CrudUI:Component.IndexTableHeaderRow) < prototype(Neos.Fusion:Co
             <Neos.Fusion:Loop items={Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'properties', props.CrudUIView)} itemKey="propertyName" itemName="propertyConfig">
                 <th style="vertical-align: top;">
                     <Milly.CrudUI:Component.Label.PropertyLabel propertyName={propertyName} propertyConfig={propertyConfig} modelClassName={props.modelClassName}
-                                                                   @if.notHasOrderBy={!Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy') || !Carbon.Array.hasValue(Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy'), propertyName)}/>
+                                                                   @if.notHasOrderBy={!Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy') || !Milly.Array.hasValue(Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy'), propertyName)}/>
 
                     <Milly.CrudUI:Component.ActionUi.OrderBy propertyName={propertyName} modelClassName={props.modelClassName} />
 

@@ -95,6 +95,7 @@ and the default settings are applied.
 - [column headers for  `index` and `relation`](Documentation/Configuration.md#show-column-headers)
 - [pagination for `index`](Documentation/Configuration.md#pagination)
 - [filter options for `index`](Documentation/Configuration.md#filters) 
+- [orderBy options for `index`](Documentation/Configuration.md#orderBy)
 
 
 ### Properties-Configuration

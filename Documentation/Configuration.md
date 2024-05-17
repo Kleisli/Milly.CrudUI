@@ -74,6 +74,14 @@ filter:
 ```
 The isSet filter can be used for boolean properties.
 
+### order by
+```
+views:
+  index:
+    orderBy: [property1, property2]
+```
+For the user to be able to order all entities by properties, they have to be added to the `orderBy` array.
+
 ## Properties-Configuration
 ### Map properties of connected entities
 ```
@@ -82,7 +90,7 @@ properties:
     propertyPath: 'name.firstName'
 ```
 With Milly.CrudUI properties of referenced entities can also be displayed and edited as if they were properties of 
-the current entity. e.g. the first or last name in a name property of a user. 
+the current entity. e.g. the firstName or lastName in a name property of a user. 
 
 ### Add custom property editors and displayers
 ```

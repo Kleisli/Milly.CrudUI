@@ -11,7 +11,7 @@ prototype(Milly.CrudUI:Component.ActionUi.OrderBy) < prototype(Neos.Fusion:Compo
         href.package = ${Milly.Mapping.getControllerPackageNameByModel(props.modelClassName)}
         href.controller = ${Milly.Mapping.getControllerNameByModel(props.modelClassName)}
         href.arguments = ${Array.concat({filter: filterValues}, {orderBy: props.orderBy}, {paginationPageSize: pagination.pageSize}, {orderDirection: (orderBy == props.orderBy && orderDirection=='ASC' ? 'DESC' : 'ASC')})}
-        @if.hasOrderBy = ${Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy') && Carbon.Array.hasValue(Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy'), props.propertyName)}
+        @if.hasOrderBy = ${Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy') && Milly.Array.hasValue(Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy'), props.propertyName)}
 
         content = Neos.Fusion:Join {
             label = Neos.Fusion:Case {

@@ -11,4 +11,5 @@ Neos:
     defaultContext:
       'Milly.CrudUI': Milly\CrudUI\Eel\Helper\CrudUIHelper
       'Milly.Object': Milly\CrudUI\Eel\Helper\ObjectHelper
+      'Milly.Array': Milly\CrudUI\Eel\Helper\ArrayHelper
       'DateInterval': Milly\CrudUI\Eel\Helper\DateIntervalHelper
