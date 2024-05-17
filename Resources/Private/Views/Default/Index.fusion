@@ -1,1 +1,5 @@
-Milly.CrudUI.Default.index = Milly.CrudUI:Template.Index
+Milly.CrudUI.Default.index = Neos.Fusion:Match {
+    @subject = ${request.format}
+    html = Milly.CrudUI:Template.Index
+    csv = Milly.CrudUI:Template.ExportCsv
+}

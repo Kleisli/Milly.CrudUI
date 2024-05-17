@@ -1,10 +1,13 @@
 # Milly.CrudUI
 
-Easily build controllers and views to show and edit Neos.Flow domain models. 
+Build administration UIs for Neos.Flow entities
+
+![](/home/till/dev/projects/milly.crudUI.showcase/Packages/Application/Milly.CrudUI/Documentation/Images/cyber_skank.png)
+Example Neos backend UI from [Milly.CrudUI.Showcase](https://github.com/Kleisli/Milly.CrudUI.Showcase)
 
 ## Model-View-Controller
 ### Domain Model and Repository
-With Milly.CrudUI you can manage object of any model, even existing models of third party packages.
+With Milly.CrudUI you can manage any flow entity.
 
 #### Customize models
 - [Make the entities sortable](Documentation/Domain.md#sorting)
@@ -12,6 +15,15 @@ With Milly.CrudUI you can manage object of any model, even existing models of th
 ### Views
 Milly.CrudUI loads default fusion templates out of the box, but you can create your own, if 
 you want to add custom elements.
+
+![](/home/till/dev/projects/milly.crudUI.showcase/Packages/Application/Milly.CrudUI/Documentation/Images/index.png)
+Example index view from [Milly.CrudUI.Showcase](https://github.com/Kleisli/Milly.CrudUI.Showcase)
+
+![](/home/till/dev/projects/milly.crudUI.showcase/Packages/Application/Milly.CrudUI/Documentation/Images/edit.png)
+Example edit view with Tracks as relation from [Milly.CrudUI.Showcase](https://github.com/Kleisli/Milly.CrudUI.Showcase)
+
+![](/home/till/dev/projects/milly.crudUI.showcase/Packages/Application/Milly.CrudUI/Documentation/Images/new.png)
+Example creation view from [Milly.CrudUI.Showcase](https://github.com/Kleisli/Milly.CrudUI.Showcase)
 
 #### Customize views
 - [Apply custom styles with theming](Documentation/Views.md#theming)
@@ -112,7 +124,7 @@ properties:
 
 If there is no property configuration
 - the default type `string` is used
-- the label will be fetched from the xlf file `Model/MyModel.xlf` with the property name as trans-unit id. see [Documentation/MyModel.xlf](Documentation/MyModel.xlf) for an example.
+- the label will be fetched from the xlf file `Model/MyModel.xlf` with the property name as trans-unit id. see [MyModel.xlf](Documentation/Examples/MyModel.xlf) for an example.
     - if there is no such file or key, the property name will be used as label
 
 ```
