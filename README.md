@@ -2,7 +2,7 @@
 
 Build administration UIs for Neos.Flow entities
 
-![](/home/till/dev/projects/milly.crudUI.showcase/Packages/Application/Milly.CrudUI/Documentation/Images/cyber_skank.png)
+![](Documentation/Images/cyber_skank.png)
 Example Neos backend UI from [Milly.CrudUI.Showcase](https://github.com/Kleisli/Milly.CrudUI.Showcase)
 
 ## Model-View-Controller
@@ -16,13 +16,13 @@ With Milly.CrudUI you can manage any flow entity.
 Milly.CrudUI loads default fusion templates out of the box, but you can create your own, if 
 you want to add custom elements.
 
-![](/home/till/dev/projects/milly.crudUI.showcase/Packages/Application/Milly.CrudUI/Documentation/Images/index.png)
+![](Documentation/Images/index.png)
 Example index view from [Milly.CrudUI.Showcase](https://github.com/Kleisli/Milly.CrudUI.Showcase)
 
-![](/home/till/dev/projects/milly.crudUI.showcase/Packages/Application/Milly.CrudUI/Documentation/Images/edit.png)
+![](Documentation/Images/edit.png)
 Example edit view with Tracks as relation from [Milly.CrudUI.Showcase](https://github.com/Kleisli/Milly.CrudUI.Showcase)
 
-![](/home/till/dev/projects/milly.crudUI.showcase/Packages/Application/Milly.CrudUI/Documentation/Images/new.png)
+![](Documentation/Images/new.png)
 Example creation view from [Milly.CrudUI.Showcase](https://github.com/Kleisli/Milly.CrudUI.Showcase)
 
 #### Customize views
