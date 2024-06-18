@@ -47,7 +47,7 @@ trait BaseControllerTrait
 
     public function initializeView(ViewInterface $view): void
     {
-        $view->setOption('fusionPathPatterns', ['resource://@package/Private/Views', 'resource://Milly.CrudUI/Private/Views']);
+        $view->setOption('fusionPathPatterns', ['resource://Milly.CrudUI/Private/Views', 'resource://@package/Private/Views']);
         if($view instanceof FallbackFusionView) {
             $view->setOption('fallbackFusionPath', 'Milly/CrudUI/Default/' . $view->getControllerActionName());
         }
