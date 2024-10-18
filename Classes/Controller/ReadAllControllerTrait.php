@@ -37,7 +37,11 @@ trait ReadAllControllerTrait
                         case 'select':
                         default:
                             if($value == '-'){
-                                $conditions[] = $query->equals($property, null);
+                                if($this->millyReflectionService->isToManyRelation(self::ENTITY_CLASSNAME, $property)){
+                                    $conditions[] = $query->isEmpty($property);
+                                } else {
+                                    $conditions[] = $query->equals($property, null);
+                                }
                             } else {
                                 if ($this->millyReflectionService->isToManyRelation(self::ENTITY_CLASSNAME, $property)) {
                                     $conditions[] = $query->contains($property, $value);
