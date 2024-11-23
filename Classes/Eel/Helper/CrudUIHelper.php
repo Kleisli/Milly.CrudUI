@@ -112,6 +112,21 @@ class CrudUIHelper implements ProtectedContextAwareInterface
         return $options[$objectValue] ?? null;
     }
 
+    /**
+     * @param array $optionsConfig
+     * @param mixed $item
+     * @return ?string
+     */
+    public function getFieldOptionsObjectValue(array $optionsConfig, mixed $item): ?string
+    {
+        if(is_object($item)){
+            return $this->persistenceManager->getIdentifierByObject($item);
+        } else {
+            return $item != null ? strval($item) : null;
+        }
+
+    }
+
     public function renderCssClassFromSet(string $classPath, string $theme): string
     {
         return $this->configurationManager->getConfiguration(

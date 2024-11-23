@@ -49,15 +49,21 @@ class ObjectService
         foreach ($addElements as $propertyName => $elementIdentifiers){
             if(is_array($elementIdentifiers)) {
                 $type = $this->millyReflectionService->getTypeOfRelation($object::class, $propertyName);
-                foreach ($elementIdentifiers as $elementIdentifier) {
-                    if ($elementIdentifier != '') {
-                        $element = $this->persistenceManager->getObjectByIdentifier($elementIdentifier, $type);
+                foreach ($elementIdentifiers as $element) {
+                    if ($element != '') {
+                        if(class_exists($type)) {
+                            $element = $this->persistenceManager->getObjectByIdentifier($element, $type);
+                        }
                         $addMethod = 'add' . ucfirst($propertyName);
                         if (is_callable([$object, $addMethod])) {
                             $object->$addMethod([$element]);
                         } else {
                             $collection = ObjectAccess::getProperty($object, $propertyName);
-                            $collection->add($element);
+                            if(is_array($collection)) {
+                                $collection[] = $element;
+                            } else {
+                                $collection->add($element);
+                            }
                             ObjectAccess::setProperty($object, $propertyName, $collection);
                         }
                     }
@@ -67,15 +73,22 @@ class ObjectService
         foreach ($removeElements as $propertyName => $elementIdentifiers){
             if(is_array($elementIdentifiers)) {
                 $type = $this->millyReflectionService->getTypeOfRelation($object::class, $propertyName);
-                foreach ($elementIdentifiers as $elementIdentifier) {
-                    if ($elementIdentifier != '') {
-                        $element = $this->persistenceManager->getObjectByIdentifier($elementIdentifier, $type);
+                foreach ($elementIdentifiers as $element) {
+                    if ($element != '') {
+                        if(class_exists($type)) {
+                            $element = $this->persistenceManager->getObjectByIdentifier($element, $type);
+                        }
                         $removeMethod = 'remove' . ucfirst($propertyName);
                         if (is_callable([$object, $removeMethod])) {
                             $object->$removeMethod([$element]);
                         } else {
                             $collection = ObjectAccess::getProperty($object, $propertyName);
-                            $collection->removeElement($element);
+                            if(is_array($collection)) {
+                                $index = array_search($element, $collection);
+                                unset($collection[$index]);
+                            } else {
+                                $collection->removeElement($element);
+                            }
                             ObjectAccess::setProperty($object, $propertyName, $collection);
                         }
                     }
