@@ -75,7 +75,7 @@ trait ReadAllControllerTrait
         ];
 
         if($this->request->getFormat() != 'html'){
-            header('Content-Disposition: filename="'.$configuration['label']['many'].'_'.date("Y-m-d_H-i").'"');
+            header('Content-Disposition: filename="'.$configuration['label']['many'].'_'.date("Y-m-d_H-i").'.'.$this->request->getFormat().'"');
         }
 
         $this->view->assign('filterValues', $filter);
