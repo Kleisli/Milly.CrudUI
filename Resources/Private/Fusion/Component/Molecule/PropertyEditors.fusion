@@ -10,7 +10,7 @@ prototype(Milly.CrudUI:Component.PropertyEditors) < prototype(Neos.Fusion:Compon
         itemName = "propertyConfig"
 
         itemRenderer = Neos.Fusion:Renderer {
-            type = 'Milly.CrudUI:Moledules.PropertyEditorContainer.PrependLabel'
+            type = 'Milly.CrudUI:Molecules.PropertyEditorContainer.PrependLabel'
             element {
                 field {
                     name = Neos.Fusion:Case {

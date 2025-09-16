@@ -1,4 +1,4 @@
-prototype(Milly.CrudUI:Molecule.PropertyDisplayerContainer.PrependLabel) < prototype(Milly.CrudUI:Moledules.AbstractPropertyDisplayerContainer) {
+prototype(Milly.CrudUI:Molecule.PropertyDisplayerContainer.PrependLabel) < prototype(Milly.CrudUI:Molecules.AbstractPropertyDisplayerContainer) {
 
     renderer = afx`
         <div>

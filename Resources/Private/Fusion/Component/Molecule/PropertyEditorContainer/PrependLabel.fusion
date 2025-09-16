@@ -1,4 +1,4 @@
-prototype(Milly.CrudUI:Moledules.PropertyEditorContainer.PrependLabel) < prototype(Milly.CrudUI:Moledules.AbstractPropertyEditorContainer) {
+prototype(Milly.CrudUI:Molecules.PropertyEditorContainer.PrependLabel) < prototype(Milly.CrudUI:Molecules.AbstractPropertyEditorContainer) {
 
     renderer = Neos.Fusion.Form:Neos.BackendModule.FieldContainer {
         label = ${props.propertyLabel}

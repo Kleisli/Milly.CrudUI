@@ -1,4 +1,4 @@
-prototype(Milly.CrudUI:Moledules.AbstractPropertyDisplayerContainer)  < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Molecules.AbstractPropertyDisplayerContainer)  < prototype(Neos.Fusion:Component) {
 
     propertyLabel = ''
     propertyDisplayer = ''

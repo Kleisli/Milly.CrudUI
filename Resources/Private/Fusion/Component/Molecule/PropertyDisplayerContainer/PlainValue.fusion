@@ -1,4 +1,4 @@
-prototype(Milly.CrudUI:Molecule.PropertyDisplayerContainer.PlainValue) < prototype(Milly.CrudUI:Moledules.AbstractPropertyDisplayerContainer) {
+prototype(Milly.CrudUI:Molecule.PropertyDisplayerContainer.PlainValue) < prototype(Milly.CrudUI:Molecules.AbstractPropertyDisplayerContainer) {
 
     renderer = ${props.propertyDisplayer}
 }
