@@ -145,13 +145,17 @@ trait BaseControllerTrait
      * @return void
      * @throws \Neos\Flow\Mvc\Exception\StopActionException
      */
-    public function showObject($object){
+    public function showObject($object, bool $showInline = false, ?string $showInlineLayout = null){
         $controllerClass = $this->classMappingService->getControllerClassByModel($object);
         $this->redirect(
             'show',
             $this->classMappingService->getControllerNameByModel($object),
             $this->classMappingService->getPackageName($controllerClass),
-            ['object' => $object]
+            [
+                'object' => $object,
+                'showInline' => $showInline,
+                'showInlineLayout' => $showInlineLayout
+            ]
         );
     }
 

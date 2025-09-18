@@ -1,0 +1,50 @@
+prototype(Milly.CrudUI:Template.EditInline) < prototype(Neos.Fusion:Component) {
+
+    @context {
+        millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudUI.defaultTheme'))}
+    }
+
+    renderer = Milly.CrudUI:Component.EditForm {
+        targetAction = 'update'
+        object = ${object}
+        properties = ${Milly.CrudUI.getConfigurationByModel(object, 'properties', 'edit')}
+        propertyEditorContainerType = 'Milly.CrudUI:Molecule.PropertyEditorContainer.TableCell'
+        propertyDisplayerContainerType = 'Milly.CrudUI:Molecule.PropertyDisplayerContainer.TableCell'
+
+        renderer {
+            attributes {
+                hx-post = Neos.Fusion:ActionUri {
+                    action = "update"
+                    package = ${Milly.Mapping.getControllerPackageNameByModel(props.object)}
+                    controller = ${Milly.Mapping.getControllerNameByModel(props.object)}
+                    arguments = Neos.Fusion:DataStructure {
+                        object = ${props.object}
+                        showInline = true
+                        showInlineLayout = ${editInlineLayout}
+                        __csrfToken = ${Security.csrfToken()}
+                    }
+                }
+                hx-target = ${'#edit_' + Milly.Object.identifier(props.object)}
+                hx-swap = 'outerHTML'
+                class = 'tr'
+            }
+            content.actions = Neos.Fusion:Tag {
+                attributes.class = "td neos-action"
+                content = Neos.Fusion:Tag {
+                    attributes.class = "neos-pull-right"
+                    content = Milly.CrudUI:Component.ActionUi.UpdateInlineButton {
+                        object = ${props.object}
+                    }
+                }
+
+            }
+        }
+
+        @process.wrap = Neos.Fusion:Augmenter {
+            content = Neos.Fusion:Match {
+                @subject = ${editInlineLayout}
+                @default = ${value}
+            }
+        }
+    }
+}

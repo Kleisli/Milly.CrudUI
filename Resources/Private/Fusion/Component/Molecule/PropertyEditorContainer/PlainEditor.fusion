@@ -1,0 +1,4 @@
+prototype(Milly.CrudUI:Molecule.PropertyEditorContainer.PlainEditor) < prototype(Milly.CrudUI:Molecules.AbstractPropertyEditorContainer) {
+
+    renderer = ${props.propertyEditor}
+}

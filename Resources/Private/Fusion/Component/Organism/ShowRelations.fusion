@@ -1,6 +1,7 @@
 prototype(Milly.CrudUI:Component.ShowRelations) < prototype(Neos.Fusion:Component) {
 
     relations = ${[]}
+    object = null
 
     renderer = Neos.Fusion:Loop {
         items = ${props.relations}
@@ -8,25 +9,28 @@ prototype(Milly.CrudUI:Component.ShowRelations) < prototype(Neos.Fusion:Componen
         itemName = "relationConfig"
 
         itemRenderer = afx`
-            <Neos.Fusion:Fragment @if={Milly.Reflection.isToOneRelation(object, relationName)}>
-                <Milly.CrudUI:Component.ActionUi.Show object={Milly.Object.getProperty(object, relationName)}
+            <Neos.Fusion:Fragment @if={Milly.Reflection.isToOneRelation(props.object, relationName)}>
+                <Milly.CrudUI:Component.ActionUi.Show object={Milly.Object.getProperty(props.object, relationName)}
                                                          attributes.class="neos-button" />
             </Neos.Fusion:Fragment>
 
             <Neos.Fusion:Fragment @if={Milly.Reflection.isToManyRelation(props.object, relationName)}>
                 <Milly.CrudUI:Component.IndexTable
-                    modelClassName={Milly.Reflection.getTypeOfRelation(object, relationName)}
+                    modelClassName={Milly.Reflection.getTypeOfRelation(props.object, relationName)}
                     CrudUIView="relation"
-                    objects={Milly.Object.getProperty(object, relationConfig.propertyPath ? relationConfig.propertyPath : relationName)}
+                    objects={Milly.Object.getProperty(props.object, relationConfig.propertyPath ? relationConfig.propertyPath : relationName)}
                     header={relationConfig.label}
                     disablePagination={!relationConfig.ui.pagination.enable}
-                    readonly={relationConfig.readonly}/>
+                    readonly={relationConfig.readonly}
+                    hideActions={relationConfig.hideActions}
+                    enableInlineEditing={relationConfig.enableInlineEditing}
+                />
 
-                <p @if.condition={!Milly.Object.getProperty(object, relationName)}>No {relationConfig.label} created yet.</p>
-                <div @if={!relationConfig.readonly} class="neos-pull-right" style="margin-bottom:20px">
+                <p @if.condition={!Milly.Object.getProperty(props.object, relationName)}>No {relationConfig.label} created yet.</p>
+                <div @if={!relationConfig.readonly && !relationConfig.hideActions.new} class="neos-pull-right" style="margin-bottom:20px">
                     <Milly.CrudUI:Component.ActionUi.New
-                        modelClassName={Milly.Reflection.getTypeOfRelation(object, relationName)}
-                        parent={object}
+                        modelClassName={Milly.Reflection.getTypeOfRelation(props.object, relationName)}
+                        parent={props.object}
                         showLabel={true}/>
                 </div>
             </Neos.Fusion:Fragment>

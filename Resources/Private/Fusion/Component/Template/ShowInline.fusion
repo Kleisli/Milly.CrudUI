@@ -1,0 +1,21 @@
+prototype(Milly.CrudUI:Template.ShowInline) < prototype(Neos.Fusion:Component) {
+
+    @context {
+        millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudUI.defaultTheme'))}
+    }
+
+    renderer = Neos.Fusion:Match {
+        @subject = ${showInlineLayout}
+        @default = Milly.CrudUI:Component.ShowProperties {
+            object = ${object}
+            enableHtmxEdit = true
+        }
+        tableRow = Milly.CrudUI:Component.IndexTableRow {
+            object = ${object}
+            CrudUIView = 'relation'
+            enableInlineEditing = true
+            readonly = ${Milly.CrudUI.getConfigurationByModel(object, 'readonly')}
+            hideActions = ${Milly.CrudUI.getConfigurationByModel(object, 'hideActions')}
+        }
+    }
+}

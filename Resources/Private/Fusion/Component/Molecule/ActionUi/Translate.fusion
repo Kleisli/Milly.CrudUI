@@ -2,7 +2,6 @@ prototype(Milly.CrudUI:Component.ActionUi.Translate) < prototype(Neos.Fusion:Com
 
     object = null
     locale = null
-    @if.condition = ${!isUpdateDisabled}
 
     renderer = Neos.Fusion:Link.Action {
         href.action = "translate"

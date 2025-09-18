@@ -87,9 +87,9 @@ trait ReadAllControllerTrait
         $this->view->assign('objects', $query->execute()->toArray());
         $this->view->assign('CrudUIModelClass', $this->getModelClass());
 
-        $this->view->assign('isCreateDisabled', !method_exists($this, 'newAction'));
-        $this->view->assign('isUpdateDisabled', !method_exists($this, 'editAction'));
-        $this->view->assign('isDeleteDisabled', !method_exists($this, 'deleteAction'));
+        $this->view->assign('hasCreateActions', method_exists($this, 'newAction') && method_exists($this, 'createAction'));
+        $this->view->assign('hasUpdateActions', method_exists($this, 'editAction') && method_exists($this, 'updateAction'));
+        $this->view->assign('hasDeleteAction', !method_exists($this, 'deleteAction'));
     }
 
 }

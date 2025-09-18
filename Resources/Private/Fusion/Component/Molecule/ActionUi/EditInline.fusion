@@ -1,0 +1,33 @@
+prototype(Milly.CrudUI:Component.ActionUi.EditInline) < prototype(Neos.Fusion:Component) {
+
+    object = null
+    editInlineLayout = null
+
+    renderer = Neos.Fusion:Tag {
+        tagName = 'button'
+        attributes {
+            hx-get = Neos.Fusion:ActionUri {
+                action = "edit"
+                package = ${Milly.Mapping.getControllerPackageNameByModel(props.object)}
+                controller = ${Milly.Mapping.getControllerNameByModel(props.object)}
+                arguments = Neos.Fusion:DataStructure {
+                    object = ${props.object}
+                    editInline = true
+                    editInlineLayout = ${props.editInlineLayout}
+                }
+            }
+            hx-target = ${'#show_' + Milly.Object.identifier(props.object)}
+            hx-swap = 'outerHTML'
+            class = Milly.CrudUI:Helper.ThemeRenderer {
+                path = 'atom.actionUi.edit.button.class'
+                fallbackPath = 'atom.actionUi.default.button.class'
+            }
+        }
+
+        content = Neos.Fusion:Join {
+            icon = Milly.CrudUI:Atom.Icon.Edit
+            label = "Bearbeiten"
+            label.@if.show = ${props.showLabel}
+        }
+    }
+}

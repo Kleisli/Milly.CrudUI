@@ -3,44 +3,69 @@ prototype(Milly.CrudUI:Component.PropertyEditors) < prototype(Neos.Fusion:Compon
     object = null
     properties = ${[]}
     translation = ''
+    propertyEditorContainerType = 'Milly.CrudUI:Molecules.PropertyEditorContainer.PrependLabel'
+    propertyDisplayerContainerType = 'Milly.CrudUI:Molecule.PropertyDisplayerContainer.PrependLabel'
 
     renderer = Neos.Fusion:Loop {
         items = ${props.properties}
         itemKey = "propertyName"
         itemName = "propertyConfig"
 
-        itemRenderer = Neos.Fusion:Renderer {
-            type = 'Milly.CrudUI:Molecules.PropertyEditorContainer.PrependLabel'
-            element {
-                field {
-                    name = Neos.Fusion:Case {
-                        custom {
-                            condition = ${propertyConfig.fieldName}
-                            renderer = ${propertyConfig.fieldName}
+        itemRenderer = Neos.Fusion:Case {
+            displayer {
+                condition = ${propertyConfig.readonly}
+                renderer = Neos.Fusion:Renderer {
+                    type = ${props.propertyDisplayerContainerType}
+                    element {
+                        propertyLabel = Milly.CrudUI:Component.Label.PropertyLabel {
+                            modelClassName = ${Type.className(props.object)}
+                            propertyName = ${propertyName}
+                            propertyConfig = ${propertyConfig}
                         }
-                        default {
-                            condition = true
-                            renderer = ${'object[' + (propertyConfig.propertyPath ? String.replace(propertyConfig.propertyPath, '.', '][') : propertyName) + ']'}
+
+                        propertyDisplayer = Milly.CrudUI:Component.PropertyDisplayer {
+                            propertyConfig = ${propertyConfig}
+                            propertyName = ${propertyName}
+                            object = ${props.object}
                         }
                     }
-                    value = ${Milly.Object.getProperty(props.object, propertyConfig.propertyPath ? propertyConfig.propertyPath : propertyConfig._propertyName)}
-                    multiple = ${propertyConfig.type == 'multiSelect'}
-                }
-
-                propertyLabel = Milly.CrudUI:Component.Label.PropertyLabel {
-                    modelClassName = ${props.object ? Type.className(props.object) : CrudUIModelClass}
-                    propertyName = ${propertyName}
-                    propertyConfig = ${propertyConfig}
-                }
-
-                propertyEditor = Milly.CrudUI:Component.PropertyEditor {
-                    propertyName = ${propertyName}
-                    propertyConfig = ${propertyConfig}
-                    object = ${props.object}
                 }
             }
+            editor {
+                condition = ${!propertyConfig.readonly}
+                renderer = Neos.Fusion:Renderer {
+                    type = ${props.propertyEditorContainerType}
+                    element {
+                        field {
+                            name = Neos.Fusion:Case {
+                                custom {
+                                    condition = ${propertyConfig.fieldName}
+                                    renderer = ${propertyConfig.fieldName}
+                                }
+                                default {
+                                    condition = true
+                                    renderer = ${'object[' + (propertyConfig.propertyPath ? String.replace(propertyConfig.propertyPath, '.', '][') : propertyName) + ']'}
+                                }
+                            }
+                            value = ${Milly.Object.getProperty(props.object, propertyConfig.propertyPath ? propertyConfig.propertyPath : propertyConfig._propertyName)}
+                            multiple = ${propertyConfig.type == 'multiSelect'}
+                        }
 
+                        propertyLabel = Milly.CrudUI:Component.Label.PropertyLabel {
+                            modelClassName = ${props.object ? Type.className(props.object) : CrudUIModelClass}
+                            propertyName = ${propertyName}
+                            propertyConfig = ${propertyConfig}
+                        }
+
+                        propertyEditor = Milly.CrudUI:Component.PropertyEditor {
+                            propertyName = ${propertyName}
+                            propertyConfig = ${propertyConfig}
+                            object = ${props.object}
+                        }
+                    }
+
+                }
+            }
         }
-        itemRenderer.@if.notReadonly = ${!propertyConfig.readonly}
     }
 }

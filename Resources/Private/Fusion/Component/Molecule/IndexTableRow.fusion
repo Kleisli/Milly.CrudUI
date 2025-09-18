@@ -1,0 +1,61 @@
+prototype(Milly.CrudUI:Component.IndexTableRow) < prototype(Neos.Fusion:Component) {
+
+    CrudUIView = 'index'
+    object = null
+    enableInlineEditing = false
+    readonly = false
+    hideActions = Neos.Fusion:DataStructure {
+        edit =  false
+        delete = false
+        show = false
+    }
+
+    renderer = Neos.Fusion:Tag {
+        #tagName = 'tr'
+        attributes.class = 'tr'
+        attributes.id = ${'show_' + Milly.Object.identifier(props.object)}
+        content = Neos.Fusion:Join {
+            actionUiShow = Milly.CrudUI:Component.ActionUi.Show {
+                @if.condition = ${!props.hideActions.show}
+                object = ${props.object}
+                showClassLabel = false
+                @process.wrap = ${'<div class="td">' + value + '</div>'}
+            }
+            indexTableCells = Milly.CrudUI:Component.PropertyDisplayers {
+                propertyDisplayerContainerType = 'Milly.CrudUI:Molecule.PropertyDisplayerContainer.TableCell'
+                object = ${props.object}
+                CrudUIView = ${props.CrudUIView}
+            }
+            actionUiActions = Neos.Fusion:Join {
+                @if.notReadOnly = ${!props.readonly}
+                sorting = Milly.CrudUI:Component.Sorting {
+                    object = ${props.object}
+                }
+                edit = Neos.Fusion:Match {
+                    @if.condition = ${!props.hideActions.edit}
+                    @subject = ${props.enableInlineEditing ? 'editInline' : 'edit'}
+                    editInline = Milly.CrudUI:Component.ActionUi.EditInline {
+                        object = ${props.object}
+                        editInlineLayout = 'tableRow'
+                    }
+                    edit = Milly.CrudUI:Component.ActionUi.Edit {
+                        object = ${props.object}
+                    }
+                }
+                delete = Milly.CrudUI:Component.ActionUi.Delete {
+                    @if.condition = ${!props.hideActions.delete}
+                    object = ${props.object}
+                }
+                @process.wrap = Neos.Fusion:Tag {
+                    #tagName = 'td'
+                    attributes.class = "td neos-action"
+                    content = Neos.Fusion:Tag {
+                        attributes.class = "neos-pull-right"
+                        content = ${value}
+                    }
+                }
+            }
+        }
+    }
+
+}

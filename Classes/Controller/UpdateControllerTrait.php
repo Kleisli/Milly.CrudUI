@@ -8,8 +8,10 @@ trait UpdateControllerTrait
         $this->registerObjectArgument();
     }
 
-    public function editAction()
+    public function editAction(bool $editInline = false, ?string $editInlineLayout = null)
     {
+        $this->view->assign('editInline', $editInline);
+        $this->view->assign('editInlineLayout', $editInlineLayout);
         $this->view->assign('object', $this->arguments['object']->getValue());
     }
 
@@ -18,7 +20,7 @@ trait UpdateControllerTrait
         $this->registerObjectArgument();
     }
 
-    public function updateAction(array $addElements = [], array $removeElements = [])
+    public function updateAction(array $addElements = [], array $removeElements = [], bool $showInline = false, ?string $showInlineLayout = null)
     {
         $object = $this->arguments['object']->getValue();
         $this->objectService->updateCollectionElements($object, $addElements, $removeElements);
@@ -28,7 +30,6 @@ trait UpdateControllerTrait
             $this->afterUpdateAction($object);
         }
 
-        $this->showObject($object);
-
+        $this->showObject($object, $showInline, $showInlineLayout);
     }
 }

@@ -2,10 +2,11 @@ prototype(Milly.CrudUI:Component.IndexTableHeaderRow) < prototype(Neos.Fusion:Co
 
     CrudUIView = 'index'
     modelClassName = ''
+    showColumnForLabel = true
 
     renderer = afx`
-        <tr>
-            <th>
+        <div class="tr">
+            <div class="th" @if={props.showColumnForLabel}>
                 <Milly.CrudUI:Component.ActionUi.OrderBy propertyName='label' modelClassName={props.modelClassName} />
 
                 <Neos.Fusion.Form:Form form.data.filter={props.filterValues} form.target.action="index" attributes.class={'filter'} attributes.id={String.md5(props.modelClassName)+'-filter'}/>
@@ -14,9 +15,9 @@ prototype(Milly.CrudUI:Component.IndexTableHeaderRow) < prototype(Neos.Fusion:Co
                         <Milly.CrudUI:Component.PropertyFilter filterValues={props.filterValues} propertyName='label' modelClassName={props.modelClassName} />
                     </Neos.Fusion.Form:Form>
                 </Neos.Fusion:Fragment>
-            </th>
+            </div>
             <Neos.Fusion:Loop items={Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'properties', props.CrudUIView)} itemKey="propertyName" itemName="propertyConfig">
-                <th style="vertical-align: top;">
+                <div class="th" style="vertical-align: top;">
                     <Milly.CrudUI:Component.Label.PropertyLabel propertyName={propertyName} propertyConfig={propertyConfig} modelClassName={props.modelClassName}
                                                                    @if.notHasOrderBy={!Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy') || !Milly.Array.hasValue(Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy'), propertyName)}/>
 
@@ -28,16 +29,16 @@ prototype(Milly.CrudUI:Component.IndexTableHeaderRow) < prototype(Neos.Fusion:Co
                             <Milly.CrudUI:Component.PropertyFilter filterValues={props.filterValues} propertyName={propertyName} propertyConfig={propertyConfig} modelClassName={props.modelClassName}/>
                         </Neos.Fusion.Form:Form>
                     </Neos.Fusion:Fragment>
-                </th>
+                </div>
             </Neos.Fusion:Loop>
-            <th class="neos-action" style="vertical-align: top;">
+            <div class="th neos-action" style="vertical-align: top;">
                 <Neos.Fusion:Fragment @if={false}>
                     <span class={"neos-button neos-pull-right"+(filterValues?" neos-active":"")} id="toggle-filter">
                         <Milly.CrudUI:Atom.Icon.Filter />
                     </span>
                 </Neos.Fusion:Fragment>
-            </th>
-        </tr>
+            </div>
+        </div>
     `
 
 }

@@ -1,3 +1,15 @@
+.table {
+  display: table;
+}
+
+.tr {
+  display: table-row;
+}
+
+.th, .td {
+  display: table-cell;
+}
+
 .neos-row-fluid {
   display: flex;
 }
@@ -13,12 +25,12 @@
   border-spacing: 0;
 }
 
-.neos .neos-table th {
+.neos-table th, .neos-table .th  {
   font-weight: bold;
 }
 
-.neos-table th,
-.neos-table td {
+.neos-table th, .neos-table .th,
+.neos-table td, .neos-table .td {
   padding: 8px;
   text-align: left;
   vertical-align: top;
@@ -52,7 +64,7 @@
 
 /** backend.css **/
 
-.neos-table td form {
+.neos-table td form, .neos-table .td form {
     display: inline;
 }
 
@@ -65,7 +77,7 @@
     list-style: initial;
 }
 
-.neos-table.show th {
+.neos-table.show th, .neos-table.show .th {
     width: 33%;
 }
 
@@ -111,3 +123,6 @@ svg {
   display: inline-block !important;
 }
 
+.neos-pull-right {
+  float: right;
+}

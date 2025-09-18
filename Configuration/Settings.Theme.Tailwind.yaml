@@ -23,7 +23,7 @@ Milly:
               link:
                 class: "text-white leading-none bg-orange-600 hover:bg-orange-700 font-medium px-4 py-3 me-2 inline-block h-10"
               button:
-                class: "text-white leading-none bg-orange-600 hover:bg-orange-700 font-medium px-4 py-3 me-2 inline-block h-10"
+                class: "text-white leading-none bg-orange-600 hover:bg-orange-700 font-medium px-4 py-3 me-2 inline-block h-10 cursor-pointer"
             new:
               link:
                 class: ~

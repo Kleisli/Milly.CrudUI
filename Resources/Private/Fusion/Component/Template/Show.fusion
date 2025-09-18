@@ -30,6 +30,7 @@ prototype(Milly.CrudUI:Template.Show) < prototype(Neos.Fusion:Component) {
 
     footer = Neos.Fusion:Join {
         editButton = Milly.CrudUI:Component.ActionUi.Edit {
+            @if.condition = ${hasUpdateActions}
             @if.notReadonly = ${!Milly.CrudUI.getConfigurationByModel(object, 'readonly')}
             object = ${object}
             showLabel = true

@@ -1,7 +1,6 @@
 prototype(Milly.CrudUI:Component.ActionUi.Delete) < prototype(Neos.Fusion:Component) {
 
     object = null
-    @if.condition = ${!isDeleteDisabled}
 
     renderer = Neos.Fusion.Form:Form {
         form.target.action = "delete"

@@ -1,0 +1,8 @@
+prototype(Milly.CrudUI:Molecule.PropertyEditorContainer.TableCell) < prototype(Milly.CrudUI:Molecules.AbstractPropertyEditorContainer) {
+
+    renderer = afx`
+        <div class="td">
+            {props.propertyEditor}
+        </div>
+    `
+}

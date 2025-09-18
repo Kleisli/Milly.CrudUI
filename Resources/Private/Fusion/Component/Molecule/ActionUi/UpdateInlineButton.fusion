@@ -1,14 +1,13 @@
-prototype(Milly.CrudUI:Component.ActionUi.UpdateButton) < prototype(Neos.Fusion:Component) {
+prototype(Milly.CrudUI:Component.ActionUi.UpdateInlineButton) < prototype(Neos.Fusion:Component) {
 
     renderer = Neos.Fusion.Form:Button {
         attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
             path = 'atom.actionUi.update.button.class'
             fallbackPath = 'atom.actionUi.default.button.class'
         }
-        attributes.form =  ${"edit_" + Milly.Object.identifier(object)}
+        attributes.form = ${"edit_" + Milly.Object.identifier(object)}
         content = Neos.Fusion:Join {
             icon = Milly.CrudUI:Atom.Icon.Save
-            text = '&nbsp;Save'
         }
     }
 }

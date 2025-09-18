@@ -4,77 +4,58 @@ prototype(Milly.CrudUI:Component.IndexTable) < prototype(Neos.Fusion:Component) 
     CrudUIView = 'index'
     filterValues = ${[]}
     readonly = false
+    hideActions = Neos.Fusion:DataStructure {
+        new =  false
+        delete = false
+        show = false
+    }
     disablePagination = true
     modelClassName = ''
+    enableInlineEditing = false
 
     renderer = Neos.Fusion:Tag {
-        tagName = "table"
+        #tagName = "table"
+        attributes.style = 'display: table;'
         attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
             path = 'template.index.table.class'
         }
         content = Neos.Fusion:Join {
             thead = Neos.Fusion:Tag {
-                tagName = "thead"
+                #tagName = "thead"
+                attributes.style = 'display: table-header-group;'
                 content = Neos.Fusion:Join {
                     headerText = afx`
-                        <tr @if={props.header}>
-                          <th colspan="100%">
+                        <div @if={props.header}>
                             {props.header}
-                          </th>
-                        </tr>
+                        </div>
                     `
                     indexTableHeaderRow = Milly.CrudUI:Component.IndexTableHeaderRow {
+                        @if.showColumnHeaders = ${Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.showColumnHeaders')}
                         modelClassName = ${props.modelClassName}
                         CrudUIView = ${props.CrudUIView}
-                        @if.showColumnHeaders = ${Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.showColumnHeaders')}
+                        showColumnForLabel = ${!props.hideActions.show}
                     }
                 }
             }
             tbody = Neos.Fusion:Tag {
-                tagName = "tbody"
+                #tagName = "tbody"
+                attributes.style = 'display: table-row-group;'
                 content = Neos.Fusion:Loop {
                     items = ${props.objects}
                     itemName = "object"
-                    itemRenderer = Neos.Fusion:Tag {
-                        tagName = 'tr'
-                        content = Neos.Fusion:Join {
-                            actionUiShow = Milly.CrudUI:Component.ActionUi.Show {
-                                object = ${object}
-                                showClassLabel = false
-                                @process.wrap = ${'<td>' + value + '</td>'}
-                            }
-                            indexTableCells = Milly.CrudUI:Component.PropertyDisplayers {
-                                propertyDisplayerContainerType = 'Milly.CrudUI:Molecule.PropertyDisplayerContainer.TableCell'
-                                object = ${object}
-                                CrudUIView = ${props.CrudUIView}
-                            }
-                            actionUiActions = Neos.Fusion:Join {
-                                @if.notReadOnly = ${!props.readonly}
-                                sorting = Milly.CrudUI:Component.Sorting {
-                                    object = ${object}
-                                }
-                                edit = Milly.CrudUI:Component.ActionUi.Edit {
-                                    object = ${object}
-                                }
-                                delete = Milly.CrudUI:Component.ActionUi.Delete {
-                                    object = ${object}
-                                }
-                                @process.wrap = Neos.Fusion:Tag {
-                                    tagName = 'td'
-                                    attributes.class = "neos-action"
-                                    content = Neos.Fusion:Tag {
-                                        attributes.class = "neos-pull-right"
-                                        content = ${value}
-                                    }
-                                }
-                            }
-                        }
+                    itemRenderer = Milly.CrudUI:Component.IndexTableRow {
+                        object = ${object}
+                        CrudUIView = ${props.CrudUIView}
+                        readonly = ${props.readonly}
+                        hideActions = ${props.hideActions}
+                        enableInlineEditing = ${props.enableInlineEditing}
                     }
                 }
             }
             tfoot = Neos.Fusion:Tag {
                 @if.notDisabled = ${!props.disablePagination}
-                tagName = "tfoot"
+                #tagName = "tfoot"
+                attributes.style = 'display: table-footer-group;'
                 content = Milly.CrudUI:Component.Pagination {
                     modelClassName = ${props.modelClassName}
                     currentPage = ${pagination.currentPage}

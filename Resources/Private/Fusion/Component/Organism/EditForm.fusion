@@ -4,25 +4,24 @@ prototype(Milly.CrudUI:Component.EditForm) < prototype(Neos.Fusion:Component) {
     additionalFormContent = Neos.Fusion:DataStructure
     properties = ${[]}
     object = null
+    propertyEditorContainerType = 'Milly.CrudUI:Molecules.PropertyEditorContainer.PrependLabel'
+    propertyDisplayerContainerType = 'Milly.CrudUI:Molecule.PropertyDisplayerContainer.PrependLabel'
 
     renderer = Neos.Fusion.Form:Form {
         form.target.action = ${props.targetAction}
         form.data.object = ${props.object}
         attributes.name = "object"
-        attributes.id = "edit"
-        content = Neos.Fusion:Tag {
-            attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
-                path = 'template.edit.form.class'
+        attributes.id = ${'edit_' + Milly.Object.identifier(props.object)}
+        content = Neos.Fusion:Join {
+            additionalFormContent = Neos.Fusion:Loop {
+                items = ${props.additionalFormContent}
+                itemRenderer = ${item}
             }
-            content = Neos.Fusion:Join {
-                additionalFormContent = Neos.Fusion:Loop {
-                    items = ${props.additionalFormContent}
-                    itemRenderer = ${item}
-                }
-                editors = Milly.CrudUI:Component.PropertyEditors {
-                    object = ${props.object}
-                    properties = ${props.properties}
-                }
+            editors = Milly.CrudUI:Component.PropertyEditors {
+                object = ${props.object}
+                properties = ${props.properties}
+                propertyEditorContainerType = ${props.propertyEditorContainerType}
+                propertyDisplayerContainerType = ${props.propertyDisplayerContainerType}
             }
         }
     }

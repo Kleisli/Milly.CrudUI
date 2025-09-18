@@ -1,1 +1,12 @@
-Milly.CrudUI.Default.edit = Milly.CrudUI:Template.Edit
+Milly.CrudUI.Default.edit = Neos.Fusion:Case {
+
+    inline {
+        condition = ${editInline}
+        renderer = Milly.CrudUI:Template.EditInline
+    }
+
+    default {
+        condition = true
+        renderer = Milly.CrudUI:Template.Edit
+    }
+}

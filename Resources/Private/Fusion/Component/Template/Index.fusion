@@ -39,7 +39,7 @@ prototype(Milly.CrudUI:Template.Index) < prototype(Neos.Fusion:Component) {
 
     footer = Neos.Fusion:Join {
         newButton = Milly.CrudUI:Component.ActionUi.New {
-            @if.notReadonly = ${!Milly.CrudUI.getConfigurationByModel(CrudUIModelClass, 'readonly', 'index')}
+            @if.condition = ${hasCreateActions && !Milly.CrudUI.getConfigurationByModel(CrudUIModelClass, 'readonly')}
             object = ${object}
             showLabel = true
             modelClassName = ${CrudUIModelClass}

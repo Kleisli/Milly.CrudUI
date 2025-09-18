@@ -1,16 +1,26 @@
 prototype(Milly.CrudUI:Component.ShowProperties) < prototype(Neos.Fusion:Component) {
 
     object = null
+    enableInlineEditing = false
 
     renderer = Neos.Fusion:Tag {
-        tagName = "table"
-        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
-            path = 'template.show.table.class'
-        }
-        content = Milly.CrudUI:Component.PropertyDisplayers {
-            propertyDisplayerContainerType = 'Milly.CrudUI:Molecule.PropertyDisplayerContainer.TableRow'
-            object = ${props.object}
-            CrudUIView = 'show'
+        attributes.id = ${'show_' + Milly.Object.identifier(props.object)}
+        content = Neos.Fusion:Join {
+            editButton = Milly.CrudUI:Component.ActionUi.EditInline {
+                object = ${props.object}
+                @if.enableInlineEditing = ${props.enableInlineEditing}
+            }
+            table = Neos.Fusion:Tag {
+                tagName = "table"
+                attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
+                    path = 'template.show.table.class'
+                }
+                content = Milly.CrudUI:Component.PropertyDisplayers {
+                    propertyDisplayerContainerType = 'Milly.CrudUI:Molecule.PropertyDisplayerContainer.TableRow'
+                    object = ${props.object}
+                    CrudUIView = 'show'
+                }
+            }
         }
     }
 }

@@ -1,1 +1,12 @@
-Milly.CrudUI.Default.show = Milly.CrudUI:Template.Show
+Milly.CrudUI.Default.show = Neos.Fusion:Case {
+
+    inline {
+        condition = ${showInline}
+        renderer = Milly.CrudUI:Template.ShowInline
+    }
+
+    default {
+        condition = true
+        renderer = Milly.CrudUI:Template.Show
+    }
+}
