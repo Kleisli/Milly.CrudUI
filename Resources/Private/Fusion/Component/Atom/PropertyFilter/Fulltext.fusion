@@ -6,7 +6,7 @@ prototype(Milly.CrudUI:Component.PropertyFilter.Fulltext) < prototype(Neos.Fusio
 
     renderer = Neos.Fusion.Form:Textfield {
         field.name = ${'filter['+props.propertyName+']'}
-        field.value = ${Profolio.App.Array.get(filterValues, props.propertyName)}
+        field.value = ${Milly.Array.get(filterValues, props.propertyName)}
         attributes.placeholder = "Suche..."
     }
 }

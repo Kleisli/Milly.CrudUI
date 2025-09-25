@@ -3,6 +3,7 @@ prototype(Milly.CrudUI:Component.IndexTableHeaderRow) < prototype(Neos.Fusion:Co
     CrudUIView = 'index'
     modelClassName = ''
     showColumnForLabel = true
+    filterValues = ${filterValues}
 
     renderer = afx`
         <div class="tr">

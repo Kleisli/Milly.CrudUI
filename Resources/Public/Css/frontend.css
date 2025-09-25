@@ -1,15 +1,3 @@
-.table {
-  display: table;
-}
-
-.tr {
-  display: table-row;
-}
-
-.th, .td {
-  display: table-cell;
-}
-
 .neos-row-fluid {
   display: flex;
 }
@@ -125,4 +113,16 @@ svg {
 
 .neos-pull-right {
   float: right;
+}
+
+.table {
+  display: table;
+}
+
+.tr, .neos-table td form.tr {
+  display: table-row;
+}
+
+.th, .td {
+  display: table-cell;
 }

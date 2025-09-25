@@ -8,7 +8,7 @@ prototype(Milly.CrudUI:Template.ShowInline) < prototype(Neos.Fusion:Component) {
         @subject = ${showInlineLayout}
         @default = Milly.CrudUI:Component.ShowProperties {
             object = ${object}
-            enableHtmxEdit = true
+            enableInlineEditing = true
         }
         tableRow = Milly.CrudUI:Component.IndexTableRow {
             object = ${object}

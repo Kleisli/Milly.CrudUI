@@ -9,11 +9,13 @@ use Neos\Utility\ObjectAccess;
 
 class ArrayHelper implements ProtectedContextAwareInterface
 {
+    static public function get(array $array, string $key): mixed
+    {
+        return $array[$key] ?? null;
+    }
 
-    /**
-     * @return mixed
-     */
-    public function hasValue(array $array, mixed $value) {
+    public function hasValue(array $array, mixed $value): mixed
+    {
         return in_array($value, $array);
     }
 

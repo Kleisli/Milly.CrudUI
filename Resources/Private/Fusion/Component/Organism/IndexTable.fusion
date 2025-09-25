@@ -2,7 +2,6 @@ prototype(Milly.CrudUI:Component.IndexTable) < prototype(Neos.Fusion:Component) 
 
     header = ''
     CrudUIView = 'index'
-    filterValues = ${[]}
     readonly = false
     hideActions = Neos.Fusion:DataStructure {
         new =  false
