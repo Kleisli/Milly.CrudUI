@@ -15,8 +15,11 @@ prototype(Milly.CrudUI:Component.IndexTable) < prototype(Neos.Fusion:Component) 
     renderer = Neos.Fusion:Tag {
         #tagName = "table"
         attributes.style = 'display: table;'
-        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
-            path = 'template.index.table.class'
+        attributes.class = Neos.Fusion:Join {
+            type = 'crudUI-listing '
+            theme = Milly.CrudUI:Helper.ThemeRenderer {
+                path = 'template.index.table.class'
+            }
         }
         content = Neos.Fusion:Join {
             thead = Neos.Fusion:Tag {
@@ -33,6 +36,7 @@ prototype(Milly.CrudUI:Component.IndexTable) < prototype(Neos.Fusion:Component) 
                         modelClassName = ${props.modelClassName}
                         CrudUIView = ${props.CrudUIView}
                         showColumnForLabel = ${!props.hideActions.show}
+                        enableInlineEditing = ${props.enableInlineEditing}
                     }
                 }
             }

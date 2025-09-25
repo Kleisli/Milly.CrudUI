@@ -4,42 +4,104 @@ prototype(Milly.CrudUI:Component.IndexTableHeaderRow) < prototype(Neos.Fusion:Co
     modelClassName = ''
     showColumnForLabel = true
     filterValues = ${filterValues}
+    enableInlineEditing = false
 
-    renderer = afx`
-        <div class="tr">
-            <div class="th" @if={props.showColumnForLabel}>
-                <Milly.CrudUI:Component.ActionUi.OrderBy propertyName='label' modelClassName={props.modelClassName} />
-
-                <Neos.Fusion.Form:Form form.data.filter={props.filterValues} form.target.action="index" attributes.class={'filter'} attributes.id={String.md5(props.modelClassName)+'-filter'}/>
-                <Neos.Fusion:Fragment @if.hasFilterType={Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.filter.label.type')}>
-                    <Neos.Fusion.Form:Form form.data.filter={props.filterValues} form.target.action="index">
-                        <Milly.CrudUI:Component.PropertyFilter filterValues={props.filterValues} propertyName='label' modelClassName={props.modelClassName} />
-                    </Neos.Fusion.Form:Form>
-                </Neos.Fusion:Fragment>
-            </div>
-            <Neos.Fusion:Loop items={Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'properties', props.CrudUIView)} itemKey="propertyName" itemName="propertyConfig">
-                <div class="th" style="vertical-align: top;">
-                    <Milly.CrudUI:Component.Label.PropertyLabel propertyName={propertyName} propertyConfig={propertyConfig} modelClassName={props.modelClassName}
-                                                                   @if.notHasOrderBy={!Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy') || !Milly.Array.hasValue(Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy'), propertyName)}/>
-
-                    <Milly.CrudUI:Component.ActionUi.OrderBy propertyName={propertyName} modelClassName={props.modelClassName} />
-
-                    <Neos.Fusion:Fragment @if.hasFilterType={Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.filter.'+propertyName+'.type')}>
-                        <br/>
-                        <Neos.Fusion.Form:Form form.data.filter={props.filterValues} form.target.action="index">
-                            <Milly.CrudUI:Component.PropertyFilter filterValues={props.filterValues} propertyName={propertyName} propertyConfig={propertyConfig} modelClassName={props.modelClassName}/>
-                        </Neos.Fusion.Form:Form>
-                    </Neos.Fusion:Fragment>
-                </div>
-            </Neos.Fusion:Loop>
-            <div class="th neos-action" style="vertical-align: top;">
-                <Neos.Fusion:Fragment @if={false}>
-                    <span class={"neos-button neos-pull-right"+(filterValues?" neos-active":"")} id="toggle-filter">
-                        <Milly.CrudUI:Atom.Icon.Filter />
-                    </span>
-                </Neos.Fusion:Fragment>
-            </div>
-        </div>
-    `
-
+    renderer = Neos.Fusion:Tag {
+        attributes.class = 'tr'
+        content = Neos.Fusion:Join {
+            columnForLabel = Neos.Fusion:Tag {
+                @if.showColumnForLabel = ${props.showColumnForLabel}
+                attributes.class = 'th'
+                content = Neos.Fusion:Join {
+                    orderBy = Milly.CrudUI:Component.ActionUi.OrderBy {
+                        propertyName = 'label'
+                        modelClassName = ${props.modelClassName}
+                    }
+                    form = Neos.Fusion.Form:Form {
+                        form.data.filter = ${props.filterValues}
+                        form.target.action = 'index'
+                        attributes.class = 'filter'
+                        attributes.id = ${String.md5(props.modelClassName)+'-filter'}
+                    }
+                    labelFilter = Neos.Fusion.Form:Form {
+                        @if.hasLabelFilter = ${Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.filter.label.type')}
+                        form.data.filter = ${props.filterValues}
+                        form.target.action = "index"
+                        content = Milly.CrudUI:Component.PropertyFilter {
+                            filterValues = ${props.filterValues}
+                            propertyName = 'label'
+                            modelClassName = ${props.modelClassName}
+                        }
+                    }
+                }
+            }
+            propertyHeaders = Neos.Fusion:Loop {
+                items = ${Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'properties', props.CrudUIView)}
+                itemKey = "propertyName"
+                itemName = "propertyConfig"
+                itemRenderer = Neos.Fusion:Tag {
+                    attributes {
+                        class = "th"
+                        style = "vertical-align: top;"
+                    }
+                    content = Neos.Fusion:Join {
+                        label = Milly.CrudUI:Component.Label.PropertyLabel {
+                            @if.notHasOrderBy = ${!Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy')
+                            || !Milly.Array.hasValue(Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.orderBy'), propertyName)}
+                            propertyName = ${propertyName}
+                            propertyConfig = ${propertyConfig}
+                            modelClassName = ${props.modelClassName}
+                        }
+                        orderBy = Milly.CrudUI:Component.ActionUi.OrderBy {
+                            propertyName = ${propertyName}
+                            modelClassName = ${props.modelClassName}
+                        }
+                        propertyFilter = Neos.Fusion.Form:Form {
+                            @if.hasFilter = ${Milly.CrudUI.getConfigurationByModel(props.modelClassName, 'views.'+props.CrudUIView+'.filter.'+propertyName+'.type')}
+                            form.data.filter = ${props.filterValues}
+                            form.target.action = "index"
+                            content = Milly.CrudUI:Component.PropertyFilter {
+                                filterValues = ${props.filterValues}
+                                propertyName = ${propertyName}
+                                propertyConfig = ${propertyConfig}
+                                modelClassName = ${props.modelClassName}
+                            }
+                            @process.break = ${'<br/>' + value}
+                        }
+                    }
+                }
+            }
+            actionColumn = Neos.Fusion:Tag {
+                attributes {
+                    class="th neos-action"
+                    style="vertical-align: top;"
+                }
+                content = Neos.Fusion:Tag {
+                    attributes {
+                        class="neos-pull-right"
+                    }
+                    content = Neos.Fusion:Join {
+                        editAllInline = Neos.Fusion:Tag {
+                            @if.enableInlineEditing = ${props.enableInlineEditing}
+                            tagName = "button"
+                            attributes {
+                                class = Milly.CrudUI:Helper.ThemeRenderer {
+                                    path = 'atom.actionUi.default.button.class'
+                                }
+                                onClick = "this.closest('.crudUI-listing').querySelectorAll('button.crudUI-editInline, button.crudUI-updateInline').forEach((button) => button.click()); this.querySelectorAll('svg').forEach((svg) => svg.style.display = (svg.style.display == 'none' ? 'inline-block' : 'none'));"
+                            }
+                            content = Neos.Fusion:Join {
+                                label = "Alle &nbsp;"
+                                edit = Milly.CrudUI:Atom.Icon.Edit
+                                save = Neos.Fusion:Augmenter {
+                                    style = "display: none;"
+                                    content = Milly.CrudUI:Atom.Icon.Save
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

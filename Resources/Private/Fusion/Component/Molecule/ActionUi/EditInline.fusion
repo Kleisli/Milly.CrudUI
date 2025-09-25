@@ -18,9 +18,12 @@ prototype(Milly.CrudUI:Component.ActionUi.EditInline) < prototype(Neos.Fusion:Co
             }
             hx-target = ${'#show_' + Milly.Object.identifier(props.object)}
             hx-swap = 'outerHTML'
-            class = Milly.CrudUI:Helper.ThemeRenderer {
-                path = 'atom.actionUi.edit.button.class'
-                fallbackPath = 'atom.actionUi.default.button.class'
+            class = Neos.Fusion:Join {
+                type = 'crudUI-editInline '
+                theme = Milly.CrudUI:Helper.ThemeRenderer {
+                    path = 'atom.actionUi.edit.button.class'
+                    fallbackPath = 'atom.actionUi.default.button.class'
+                }
             }
         }
 

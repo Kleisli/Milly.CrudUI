@@ -107,8 +107,8 @@ legend.h2 {
     /*margin-top: -3px;*/
 }
 
-svg {
-  display: inline-block !important;
+button svg, a svg {
+  display: inline-block;
 }
 
 .neos-pull-right {

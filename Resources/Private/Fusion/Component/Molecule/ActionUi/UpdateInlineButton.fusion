@@ -1,9 +1,12 @@
 prototype(Milly.CrudUI:Component.ActionUi.UpdateInlineButton) < prototype(Neos.Fusion:Component) {
 
     renderer = Neos.Fusion.Form:Button {
-        attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
-            path = 'atom.actionUi.update.button.class'
-            fallbackPath = 'atom.actionUi.default.button.class'
+        attributes.class = Neos.Fusion:Join {
+            type = 'crudUI-updateInline '
+            theme = Milly.CrudUI:Helper.ThemeRenderer {
+                path = 'atom.actionUi.update.button.class'
+                fallbackPath = 'atom.actionUi.default.button.class'
+            }
         }
         attributes.form = ${"edit_" + Milly.Object.identifier(object)}
         content = Neos.Fusion:Join {
