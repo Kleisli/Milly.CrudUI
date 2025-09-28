@@ -11,7 +11,6 @@ prototype(Milly.CrudUI:Component.IndexTableRow) < prototype(Neos.Fusion:Componen
     }
 
     renderer = Neos.Fusion:Tag {
-        #tagName = 'tr'
         attributes.class = 'tr'
         attributes.id = ${'show_' + Milly.Object.identifier(props.object)}
         content = Neos.Fusion:Join {
@@ -47,7 +46,6 @@ prototype(Milly.CrudUI:Component.IndexTableRow) < prototype(Neos.Fusion:Componen
                     object = ${props.object}
                 }
                 @process.wrap = Neos.Fusion:Tag {
-                    #tagName = 'td'
                     attributes.class = "td neos-action"
                     content = Neos.Fusion:Tag {
                         attributes.class = "neos-pull-right"

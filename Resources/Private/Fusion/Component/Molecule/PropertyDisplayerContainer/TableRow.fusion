@@ -4,11 +4,11 @@ prototype(Milly.CrudUI:Molecule.PropertyDisplayerContainer.TableRow) < prototype
     propertyDisplayer = ''
 
     renderer = afx`
-        <tr>
-            <th>{props.propertyLabel}</th>
-            <td>
+        <div class="tr">
+            <div class="th">{props.propertyLabel}</div>
+            <div class="td">
                 {props.propertyDisplayer}
-            </td>
-        </tr>
+            </div>
+        </div>
     `
 }

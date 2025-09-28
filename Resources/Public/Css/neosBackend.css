@@ -1,5 +1,26 @@
-.neos-table td form {
+.table {
+    display: table;
+}
+
+.tr {
+    display: table-row;
+}
+
+.th, .td {
+    display: table-cell;
+    line-height: 40px;
+}
+
+.neos-table td form, .neos-table .td form {
     display: inline;
+}
+
+.neos .title {
+    padding: 0 16px;
+    line-height: 40px;
+    font-weight: bold;
+    clear: both;
+    border-bottom: 1px solid #ddd;
 }
 
 .neos-table ul {
@@ -11,8 +32,41 @@
     list-style: initial;
 }
 
-.neos-table.show th {
+.neos-table.show th, .neos-table.show .th {
     width: 33%;
+}
+
+.neos-table .td {
+    background-color: #323232;
+}
+
+.neos-table th, .neos-table .th,
+.neos-table td, .neos-table .td {
+    padding: 0 16px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.neos-table th, .neos-table .th  {
+    font-weight: bold;
+    border-top: 1px solid #ddd;
+    vertical-align: bottom;
+}
+
+.neos-table td, .neos-table .td  {
+    border-top: 1px solid #222;
+}
+
+.neos .neos-action .neos-button.neos-button-primary, .neos .neos-action .neos-button.neos-button-danger {
+    background-color: #323232;
+}
+
+.neos .neos-action .neos-button-primary:hover {
+    background-color: #00b5ff;
+}
+
+.neos .neos-action .neos-button-danger:hover {
+    background-color: #ff460d;
 }
 
 .neos.neos-module .neos-footer {

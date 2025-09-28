@@ -11,7 +11,12 @@ prototype(Milly.CrudUI:Component.ShowProperties) < prototype(Neos.Fusion:Compone
                 @if.enableInlineEditing = ${props.enableInlineEditing}
             }
             table = Neos.Fusion:Tag {
-                tagName = "table"
+                attributes.class = Neos.Fusion:Join {
+                    type = 'table '
+                    theme = Milly.CrudUI:Helper.ThemeRenderer {
+                        path = 'template.show.table.class'
+                    }
+                }
                 attributes.class = Milly.CrudUI:Helper.ThemeRenderer {
                     path = 'template.show.table.class'
                 }

@@ -13,7 +13,7 @@ prototype(Milly.CrudUI:Component.PropertyEditors) < prototype(Neos.Fusion:Compon
 
         itemRenderer = Neos.Fusion:Case {
             displayer {
-                condition = ${propertyConfig.readonly}
+                condition = ${propertyConfig.readonly && Milly.CrudUI.getConfigurationByModel(object, 'views.edit.options.showReadonlyProperties')}
                 renderer = Neos.Fusion:Renderer {
                     type = ${props.propertyDisplayerContainerType}
                     element {
