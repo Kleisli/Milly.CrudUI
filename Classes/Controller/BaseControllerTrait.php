@@ -12,6 +12,7 @@ use Neos\Flow\Mvc\ActionResponse;
 use Neos\Flow\Mvc\View\ViewInterface;
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 use Neos\Flow\Persistence\RepositoryInterface;
+use Neos\Utility\Exception\PropertyNotAccessibleException;
 use Neos\Utility\ObjectAccess;
 use Neos\Flow\Annotations as Flow;
 
@@ -39,7 +40,7 @@ trait BaseControllerTrait
     #[Flow\Inject]
     protected ObjectService $objectService;
 
-    protected function initializeController(ActionRequest $request, ActionResponse $response)
+    protected function initializeController(ActionRequest $request, ActionResponse $response): void
     {
         $this->defaultViewObjectName = FallbackFusionView::class;
         parent::initializeController($request, $response);
@@ -65,7 +66,7 @@ trait BaseControllerTrait
      * @throws \Neos\Flow\Validation\Exception\InvalidValidationOptionsException
      * @throws \Neos\Flow\Validation\Exception\NoSuchValidatorException
      */
-    protected function registerObjectArgument()
+    protected function registerObjectArgument(): void
     {
         $modelClass = $this->getModelClass();
         $this->arguments->addNewArgument('object', $this->getModelClass());
@@ -74,8 +75,7 @@ trait BaseControllerTrait
     }
 
     /**
-     * @return array
-     * @throws \Neos\Flow\Exception
+     * @throws Exception
      */
     protected function getCrudUIConfiguration(string $view = ''): array
     {
@@ -83,8 +83,7 @@ trait BaseControllerTrait
     }
 
     /**
-     * @return RepositoryInterface
-     * @throws \Neos\Flow\Exception
+     * @throws Exception
      */
     protected function getRepository(): RepositoryInterface
     {
@@ -96,8 +95,7 @@ trait BaseControllerTrait
     }
 
     /**
-     * @return string
-     * @throws \Neos\Flow\Exception
+     * @throws Exception
      */
     protected function getModelClass(): string
     {
@@ -109,11 +107,11 @@ trait BaseControllerTrait
     }
 
     /**
-     * @param $object
-     * @return void
      * @throws \Neos\Flow\Mvc\Exception\StopActionException
+     * @throws Exception
      */
-    public function redirectAfterAction($object){
+    public function redirectAfterAction($object): void
+    {
 
         $config = $this->getCrudUIConfiguration();
         if(isset($config['parent'])){
@@ -124,11 +122,12 @@ trait BaseControllerTrait
     }
 
     /**
-     * @param $object
-     * @return void
      * @throws \Neos\Flow\Mvc\Exception\StopActionException
+     * @throws Exception
+     * @throws PropertyNotAccessibleException
      */
-    public function redirectToParent($object){
+    public function redirectToParent($object): void
+    {
         $config = $this->getCrudUIConfiguration();
         $parentClass = $this->millyReflectionService->getTypeOfProperty($this->getModelClass(), $config['parent']);
         $controllerClass = $this->classMappingService->getControllerClassByModel($parentClass);
@@ -141,11 +140,11 @@ trait BaseControllerTrait
     }
 
     /**
-     * @param $object
-     * @return void
      * @throws \Neos\Flow\Mvc\Exception\StopActionException
+     * @throws Exception
      */
-    public function showObject($object){
+    public function showObject($object): void
+    {
         $controllerClass = $this->classMappingService->getControllerClassByModel($object);
         $this->redirect(
             'show',
