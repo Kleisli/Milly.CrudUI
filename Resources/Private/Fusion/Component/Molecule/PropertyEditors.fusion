@@ -5,6 +5,9 @@ prototype(Milly.CrudUI:Component.PropertyEditors) < prototype(Neos.Fusion:Compon
     translation = ''
     propertyEditorContainerType = 'Milly.CrudUI:Molecules.PropertyEditorContainer.PrependLabel'
     propertyDisplayerContainerType = 'Milly.CrudUI:Molecule.PropertyDisplayerContainer.PrependLabel'
+    @private {
+        modelClassName = ${props.object ? Type.className(props.object) : CrudUIModelClass}
+    }
 
     renderer = Neos.Fusion:Loop {
         items = ${props.properties}
@@ -13,12 +16,12 @@ prototype(Milly.CrudUI:Component.PropertyEditors) < prototype(Neos.Fusion:Compon
 
         itemRenderer = Neos.Fusion:Case {
             displayer {
-                condition = ${propertyConfig.readonly && Milly.CrudUI.getConfigurationByModel(object, 'views.edit.options.showReadonlyProperties')}
+                condition = ${propertyConfig.readonly && Milly.CrudUI.getConfigurationByModel(private.modelClassName, 'views.edit.options.showReadonlyProperties')}
                 renderer = Neos.Fusion:Renderer {
                     type = ${props.propertyDisplayerContainerType}
                     element {
                         propertyLabel = Milly.CrudUI:Component.Label.PropertyLabel {
-                            modelClassName = ${Type.className(props.object)}
+                            modelClassName = ${private.modelClassName}
                             propertyName = ${propertyName}
                             propertyConfig = ${propertyConfig}
                         }
@@ -52,7 +55,7 @@ prototype(Milly.CrudUI:Component.PropertyEditors) < prototype(Neos.Fusion:Compon
                         }
 
                         propertyLabel = Milly.CrudUI:Component.Label.PropertyLabel {
-                            modelClassName = ${props.object ? Type.className(props.object) : CrudUIModelClass}
+                            modelClassName = ${private.modelClassName}
                             propertyName = ${propertyName}
                             propertyConfig = ${propertyConfig}
                         }
