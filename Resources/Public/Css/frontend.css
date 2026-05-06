@@ -119,7 +119,7 @@ button svg, a svg {
   display: table;
 }
 
-.tr, .neos-table td form.tr {
+.tr, .neos-table td form.tr, .neos-table .td form.tr {
   display: table-row;
 }
 
