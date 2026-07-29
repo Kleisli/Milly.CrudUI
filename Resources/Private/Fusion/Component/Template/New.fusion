@@ -4,7 +4,7 @@ prototype(Milly.CrudUI:Template.New) < prototype(Neos.Fusion:Component) {
         millyCrudTheme = ${this.millyCrudTheme ? this.millyCrudTheme : (millyCrudTheme ? millyCrudTheme : Configuration.setting('Milly.CrudUI.defaultTheme'))}
     }
 
-    preset = Neos.Fusion:DataStructure
+    preset = ${Type.isArray(preset) ? preset : []}
     header = Neos.Fusion:Join {
         title = Neos.Fusion:Tag {
             tagName = 'legend'

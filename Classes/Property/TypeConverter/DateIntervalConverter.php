@@ -37,7 +37,7 @@ class DateIntervalConverter extends AbstractTypeConverter
      */
     protected $priority = 100;
 
-    public function convertFrom($source, $targetType, array $convertedChildProperties = [], PropertyMappingConfigurationInterface $configuration = null)
+    public function convertFrom($source, $targetType, array $convertedChildProperties = [], ?PropertyMappingConfigurationInterface $configuration = null)
     {
         if (is_string($source)) {
             return new \DateInterval($source);

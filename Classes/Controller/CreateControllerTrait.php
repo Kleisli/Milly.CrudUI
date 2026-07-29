@@ -12,7 +12,7 @@ trait CreateControllerTrait
      * @throws \Neos\Flow\Security\Exception\InvalidHashException
      * @throws \Neos\Flow\Validation\Exception\NoSuchValidatorException
      */
-    protected function initializeNewAction()
+    protected function initializeNewAction(): void
     {
         $config = $this->getCrudUIConfiguration();
         if(isset($config['parent'])){
@@ -23,34 +23,27 @@ trait CreateControllerTrait
         }
     }
 
-    /**
-     * @return void
-     */
-    public function newAction()
+    public function newAction(array $preset = []): void
     {
         if(isset($this->arguments['parent'])) {
             $this->view->assign('parent', $this->arguments['parent']->getValue());
         }
+        $this->view->assign('preset', $preset);
         $this->view->assign('CrudUIModelClass', $this->getModelClass());
-
     }
 
-    protected function initializeCreateAction()
+    protected function initializeCreateAction(): void
     {
         $this->registerObjectArgument();
     }
 
-    public function createAction()
+    public function createAction(): void
     {
         $object = $this->arguments['object']->getValue();
-
         $this->getRepository()->add($object);
-
         if (method_exists($this, 'afterCreateAction')) {
             $this->afterCreateAction($object);
         }
-
         $this->redirectAfterAction($object);
-
     }
 }

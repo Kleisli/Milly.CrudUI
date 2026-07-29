@@ -1,10 +1,16 @@
 <?php
 namespace Milly\CrudUI\Controller;
 
+use Neos\Flow\Exception;
+use Neos\Flow\Persistence\Exception\InvalidQueryException;
 use Neos\Flow\Persistence\QueryInterface;
 
 trait ReadAllControllerTrait
 {
+    /**
+     * @throws Exception
+     * @throws InvalidQueryException
+     */
     public function indexAction(array $filter = [], ?int $paginationPageSize = null, int $paginationCurrentPage = 0, string $orderBy = '', string $orderDirection = QueryInterface::ORDER_ASCENDING) : void
     {
         $query = $this->getRepository()->createQuery();
