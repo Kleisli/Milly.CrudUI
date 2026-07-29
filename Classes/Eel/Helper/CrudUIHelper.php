@@ -57,6 +57,12 @@ class CrudUIHelper implements ProtectedContextAwareInterface
     public function getFieldOptions(array $optionsConfig, object $object = null): array
     {
         $options = [];
+        if(isset($optionsConfig['values'])){
+            foreach ($optionsConfig['values'] as $value => $label){
+                $options[$value] = $label;
+            }
+            return $options;
+        }
         if(isset($optionsConfig['dataSource'])){
             $dataSource = $this->objectManager->get($optionsConfig['dataSource']);
             $data = $dataSource->getData();
