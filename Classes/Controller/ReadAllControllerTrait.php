@@ -81,7 +81,11 @@ trait ReadAllControllerTrait
         ];
 
         if($this->request->getFormat() != 'html'){
-            header('Content-Disposition: filename="'.$configuration['label']['many'].'_'.date("Y-m-d_H-i").'.'.$this->request->getFormat().'"');
+            if($this->request->getFormat() === 'csv') {
+                $this->response->setHttpHeader('Content-Type', 'text/csv');
+            }
+            $filename = $configuration['label']['many'].'_'.date("Y-m-d_H-i").'.'.$this->request->getFormat();
+            $this->response->setHttpHeader('Content-Disposition', 'filename="'.$filename.'"');
         }
 
         $this->view->assign('filterValues', $filter);
