@@ -26,9 +26,31 @@ trait ReadOneControllerTrait
         $this->registerObjectArgument();
     }
 
-    public function showAction(bool $showInline = false, ?string $showInlineLayout = null): void
+    public function showAction(): void
     {
-        $this->view->assign('showInline', $showInline);
+        $this->view->assign('object', $this->arguments['object']->getValue());
+
+        $this->view->assign('hasCreateActions', method_exists($this, 'newAction') && method_exists($this, 'createAction'));
+        $this->view->assign('hasUpdateActions', method_exists($this, 'editAction') && method_exists($this, 'updateAction'));
+        $this->view->assign('hasDeleteAction', !method_exists($this, 'deleteAction'));
+    }
+
+    /**
+     * @throws InvalidValidationConfigurationException
+     * @throws InvalidValidationOptionsException
+     * @throws Exception
+     * @throws NoSuchArgumentException
+     * @throws InvalidArgumentForHashGenerationException
+     * @throws InvalidHashException
+     * @throws NoSuchValidatorException
+     */
+    protected function initializeShowInlineAction(): void
+    {
+        $this->registerObjectArgument();
+    }
+
+    public function showInlineAction(?string $showInlineLayout = null): void
+    {
         $this->view->assign('showInlineLayout', $showInlineLayout);
         $this->view->assign('object', $this->arguments['object']->getValue());
 

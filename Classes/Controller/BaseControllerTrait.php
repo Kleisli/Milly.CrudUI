@@ -23,9 +23,9 @@ trait BaseControllerTrait
     //protected string $theme = 'tailwind';
 
     /**
-     * @Flow\Inject
      * @var ObjectManagerInterface
      */
+    #[Flow\Inject]
     protected $objectManager;
 
     #[Flow\Inject]
@@ -69,7 +69,7 @@ trait BaseControllerTrait
     protected function registerObjectArgument(): void
     {
         $modelClass = $this->getModelClass();
-        $this->arguments->addNewArgument('object', $this->getModelClass());
+        $this->arguments->addNewArgument('object', $modelClass);
         $this->arguments['object']->setValidator($this->validatorResolver->getBaseValidatorConjunction($modelClass, array('Default', 'Controller')));
         $this->mvcPropertyMappingConfigurationService->initializePropertyMappingConfigurationFromRequest($this->request, $this->arguments);
     }
@@ -143,16 +143,30 @@ trait BaseControllerTrait
      * @throws \Neos\Flow\Mvc\Exception\StopActionException
      * @throws Exception
      */
-    public function showObject($object, bool $showInline = false, ?string $showInlineLayout = null): void
+    public function showObject($object): void
     {
         $controllerClass = $this->classMappingService->getControllerClassByModel($object);
         $this->redirect(
             'show',
             $this->classMappingService->getControllerNameByModel($object),
             $this->classMappingService->getPackageName($controllerClass),
+            ['object' => $object]
+        );
+    }
+
+    /**
+     * @throws \Neos\Flow\Mvc\Exception\StopActionException
+     * @throws Exception
+     */
+    public function showObjectInline($object, ?string $showInlineLayout = null): void
+    {
+        $controllerClass = $this->classMappingService->getControllerClassByModel($object);
+        $this->redirect(
+            'showInline',
+            $this->classMappingService->getControllerNameByModel($object),
+            $this->classMappingService->getPackageName($controllerClass),
             [
                 'object' => $object,
-                'showInline' => $showInline,
                 'showInlineLayout' => $showInlineLayout
             ]
         );

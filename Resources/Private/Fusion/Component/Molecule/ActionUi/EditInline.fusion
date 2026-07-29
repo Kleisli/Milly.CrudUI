@@ -7,12 +7,11 @@ prototype(Milly.CrudUI:Component.ActionUi.EditInline) < prototype(Neos.Fusion:Co
         tagName = 'button'
         attributes {
             hx-get = Neos.Fusion:ActionUri {
-                action = "edit"
+                action = "editInline"
                 package = ${Milly.Mapping.getControllerPackageNameByModel(props.object)}
                 controller = ${Milly.Mapping.getControllerNameByModel(props.object)}
                 arguments = Neos.Fusion:DataStructure {
                     object = ${props.object}
-                    editInline = true
                     editInlineLayout = ${props.editInlineLayout}
                 }
             }
