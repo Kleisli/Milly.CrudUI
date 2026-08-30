@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Milly\CrudUI\Controller;
 
 use Neos\Flow\Exception;
@@ -39,6 +39,7 @@ trait DeleteControllerTrait
             $this->afterDeleteAction($object);
         }
 
+        // @phpstan-ignore function.alreadyNarrowedType
         if (method_exists($this, 'redirectAfterAction')) {
             $this->redirectAfterAction($object);
         }else{

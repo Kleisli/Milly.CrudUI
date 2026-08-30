@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Milly\CrudUI\Controller;
 
 use Neos\Flow\Exception;
@@ -53,7 +53,6 @@ trait SortingControllerTrait
     }
 
     /**
-     * @return void
      * @throws Exception
      */
     public function sortDownAction(): void

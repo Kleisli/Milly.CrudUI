@@ -1,19 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 namespace Milly\CrudUI\Eel\Helper;
 
-use Milly\Tools\Service\ReflectionService;
 use Neos\Eel\ProtectedContextAwareInterface;
-use Neos\Flow\Annotations as Flow;
-use Neos\Flow\Persistence\PersistenceManagerInterface;
-use Neos\Utility\ObjectAccess;
 
 class ArrayHelper implements ProtectedContextAwareInterface
 {
-
     /**
-     * @return mixed
+     * @param array<mixed> $array
      */
-    public function hasValue(array $array, mixed $value) {
+    public function hasValue(array $array, mixed $value): bool {
         return in_array($value, $array);
     }
 
@@ -23,7 +18,7 @@ class ArrayHelper implements ProtectedContextAwareInterface
      * @param string $methodName
      * @return boolean
      */
-    public function allowsCallOfMethod($methodName)
+    public function allowsCallOfMethod($methodName): bool
     {
         return true;
     }

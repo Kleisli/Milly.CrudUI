@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Milly\CrudUI\Controller;
 
 use Milly\CrudUI\Service\ConfigurationService;
@@ -6,15 +6,16 @@ use Milly\CrudUI\Service\ObjectService;
 use Milly\CrudUI\View\FallbackFusionView;
 use Milly\Tools\Service\ClassMappingService;
 use Milly\Tools\Service\ReflectionService;
+use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Exception;
 use Neos\Flow\Mvc\ActionRequest;
 use Neos\Flow\Mvc\ActionResponse;
+use Neos\Flow\Mvc\View\AbstractView;
 use Neos\Flow\Mvc\View\ViewInterface;
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 use Neos\Flow\Persistence\RepositoryInterface;
 use Neos\Utility\Exception\PropertyNotAccessibleException;
 use Neos\Utility\ObjectAccess;
-use Neos\Flow\Annotations as Flow;
 
 trait BaseControllerTrait
 {
@@ -48,16 +49,17 @@ trait BaseControllerTrait
 
     public function initializeView(ViewInterface $view): void
     {
-        $view->setOption('fusionPathPatterns', ['resource://Milly.CrudUI/Private/Views', 'resource://@package/Private/Views']);
-        if($view instanceof FallbackFusionView) {
-            $view->setOption('fallbackFusionPath', 'Milly/CrudUI/Default/' . $view->getControllerActionName());
+        if($view instanceof AbstractView) {
+            $view->setOption('fusionPathPatterns', ['resource://Milly.CrudUI/Private/Views', 'resource://@package/Private/Views']);
+            if ($view instanceof FallbackFusionView) {
+                $view->setOption('fallbackFusionPath', 'Milly/CrudUI/Default/' . $view->getControllerActionName());
+            }
         }
         $view->assign('millyCrudTheme', $this->theme ?? null);
         parent::initializeView($view);
     }
 
     /**
-     * @return void
      * @throws \Neos\Flow\Exception
      * @throws \Neos\Flow\Mvc\Exception\NoSuchArgumentException
      * @throws \Neos\Flow\Security\Exception\InvalidArgumentForHashGenerationException
@@ -77,7 +79,7 @@ trait BaseControllerTrait
     /**
      * @throws Exception
      */
-    protected function getCrudUIConfiguration(string $view = ''): array
+    protected function getCrudUIConfiguration(string $view = ''): mixed
     {
         return $this->configurationService->getCrudUIConfiguration($this->getModelClass(), null, $view);
     }
@@ -110,7 +112,7 @@ trait BaseControllerTrait
      * @throws \Neos\Flow\Mvc\Exception\StopActionException
      * @throws Exception
      */
-    public function redirectAfterAction($object): void
+    public function redirectAfterAction(object $object): void
     {
 
         $config = $this->getCrudUIConfiguration();
@@ -126,7 +128,7 @@ trait BaseControllerTrait
      * @throws Exception
      * @throws PropertyNotAccessibleException
      */
-    public function redirectToParent($object): void
+    public function redirectToParent(object $object): void
     {
         $config = $this->getCrudUIConfiguration();
         $parentClass = $this->millyReflectionService->getTypeOfProperty($this->getModelClass(), $config['parent']);
@@ -143,7 +145,7 @@ trait BaseControllerTrait
      * @throws \Neos\Flow\Mvc\Exception\StopActionException
      * @throws Exception
      */
-    public function showObject($object): void
+    public function showObject(object $object): void
     {
         $controllerClass = $this->classMappingService->getControllerClassByModel($object);
         $this->redirect(

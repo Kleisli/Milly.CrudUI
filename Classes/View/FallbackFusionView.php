@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Milly\CrudUI\View;
 
@@ -9,7 +9,7 @@ class FallbackFusionView extends FusionView
     /**
      * This contains the supported options, their default values, descriptions and types.
      *
-     * @var array
+     * @var array<string, array<mixed>>
      */
     protected $supportedOptions = [
         'fusionPathPatterns' => [['resource://@package/Private/Views', 'resource://Milly.CrudUI/Private/Views'], 'Fusion files that will be loaded if directories are given the Root.fusion is used.', 'array'],
@@ -17,15 +17,13 @@ class FallbackFusionView extends FusionView
         'fallbackFusionPath' => [null, 'If the option fusionPath and the derived fusion path both cant be rendered, the fallback fusion path will be rendered.', 'string'],
         'packageKey' => [null, 'The package key where the Fusion should be loaded from. If not given, is automatically derived from the current request.', 'string'],
         'debugMode' => [false, 'Flag to enable debug mode of the Fusion runtime explicitly (overriding the global setting).', 'boolean'],
-        'enableContentCache' => [false, 'Flag to enable content caching inside Fusion (overriding the global setting).', 'boolean']
+        'enableContentCache' => [false, 'Flag to enable content caching inside Fusion (overriding the global setting).', 'boolean'],
     ];
 
     /**
      * Determines the Fusion path depending on the current controller and action
-     *
-     * @return string
      */
-    protected function getFusionPathForCurrentRequest()
+    protected function getFusionPathForCurrentRequest(): string
     {
         $this->fusionPath = parent::getFusionPathForCurrentRequest();
         $fallbackFusionPath = $this->getOption('fallbackFusionPath');

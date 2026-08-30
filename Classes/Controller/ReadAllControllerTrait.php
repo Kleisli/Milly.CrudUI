@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Milly\CrudUI\Controller;
 
 use Neos\Flow\Exception;
@@ -8,6 +8,7 @@ use Neos\Flow\Persistence\QueryInterface;
 trait ReadAllControllerTrait
 {
     /**
+     * @param array<string, string> $filter
      * @throws Exception
      * @throws InvalidQueryException
      */
@@ -43,13 +44,13 @@ trait ReadAllControllerTrait
                         case 'select':
                         default:
                             if($value == '-'){
-                                if($this->millyReflectionService->isToManyRelation(self::ENTITY_CLASSNAME, $property)){
+                                if($this->millyReflectionService->isToManyRelation($this->getModelClass(), $property)){
                                     $conditions[] = $query->isEmpty($property);
                                 } else {
                                     $conditions[] = $query->equals($property, null);
                                 }
                             } else {
-                                if ($this->millyReflectionService->isToManyRelation(self::ENTITY_CLASSNAME, $property)) {
+                                if ($this->millyReflectionService->isToManyRelation($this->getModelClass(), $property)) {
                                     $conditions[] = $query->contains($property, $value);
                                 } else {
                                     $conditions[] = $query->equals($property, $value);
@@ -77,7 +78,7 @@ trait ReadAllControllerTrait
         $pagination = [
             'currentPage' => $paginationCurrentPage,
             'pageSize' => $paginationPageSize,
-            'lastPage' => ($paginationPageSize == 0) ? $paginationCurrentPage : intval(floor($objectCount / $paginationPageSize))
+            'lastPage' => ($paginationPageSize == 0) ? $paginationCurrentPage : intval(floor($objectCount / $paginationPageSize)),
         ];
 
         if($this->request->getFormat() != 'html'){
@@ -93,9 +94,9 @@ trait ReadAllControllerTrait
         $this->view->assign('objects', $query->execute()->toArray());
         $this->view->assign('CrudUIModelClass', $this->getModelClass());
 
-        $this->view->assign('isCreateDisabled', !method_exists($this, 'newAction'));
-        $this->view->assign('isUpdateDisabled', !method_exists($this, 'editAction'));
-        $this->view->assign('isDeleteDisabled', !method_exists($this, 'deleteAction'));
+        $this->view->assign('isCreateDisabled', !method_exists($this, 'newAction')); // @phpstan-ignore function.alreadyNarrowedType
+        $this->view->assign('isUpdateDisabled', !method_exists($this, 'editAction')); // @phpstan-ignore function.alreadyNarrowedType
+        $this->view->assign('isDeleteDisabled', !method_exists($this, 'deleteAction')); // @phpstan-ignore function.alreadyNarrowedType
     }
 
 }

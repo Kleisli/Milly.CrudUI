@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Milly\CrudUI\Property\TypeConverter;
 
 /*
@@ -12,11 +12,8 @@ namespace Milly\CrudUI\Property\TypeConverter;
  */
 
 use Neos\Flow\Annotations as Flow;
-use Neos\Flow\Property\Exception\InvalidPropertyMappingConfigurationException;
-use Neos\Flow\Property\Exception\TypeConverterException;
 use Neos\Flow\Property\PropertyMappingConfigurationInterface;
 use Neos\Flow\Property\TypeConverter\AbstractTypeConverter;
-use Neos\Flow\Validation\Error;
 
 
 class DateIntervalConverter extends AbstractTypeConverter
@@ -37,7 +34,11 @@ class DateIntervalConverter extends AbstractTypeConverter
      */
     protected $priority = 100;
 
-    public function convertFrom($source, $targetType, array $convertedChildProperties = [], ?PropertyMappingConfigurationInterface $configuration = null)
+    /**
+     * @param array<mixed> $convertedChildProperties
+     * @throws \DateMalformedIntervalStringException
+     */
+    public function convertFrom($source, $targetType, array $convertedChildProperties = [], ?PropertyMappingConfigurationInterface $configuration = null): ?\DateInterval
     {
         if (is_string($source)) {
             return new \DateInterval($source);
@@ -51,6 +52,6 @@ class DateIntervalConverter extends AbstractTypeConverter
             }
             return new \DateInterval($specString);
         }
-
+        return null;
     }
 }

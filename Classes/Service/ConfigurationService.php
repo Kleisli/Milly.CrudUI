@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Milly\CrudUI\Service;
 
 use Milly\Tools\Service\ClassMappingService;
@@ -20,13 +20,10 @@ class ConfigurationService
 
     /**
      * @param object|string $model An object (class instance) or a string (class name) of a domain model
-     * @param string|null $path
-     * @param string|null $view
-     * @return mixed
      * @throws \Neos\Flow\Exception
      */
-    public function getCrudUIConfiguration(object|string $model, string $path = null, string $view = null){
-
+    public function getCrudUIConfiguration(object|string $model, ?string $path = null, ?string $view = null): mixed
+    {
         $modelClassName = is_object($model) ? $model::class : $model;
         $className = $this->classMappingService->cleanClassName($modelClassName);
 
@@ -34,7 +31,6 @@ class ConfigurationService
             ConfigurationManager::CONFIGURATION_TYPE_SETTINGS,
             'Milly.CrudUI.entities' . '.' . $className
         );
-
 
         if(isset($configuration['views'][$view]['properties'])){
             $viewProperties = [];

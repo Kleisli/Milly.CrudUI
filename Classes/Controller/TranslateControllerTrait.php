@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Milly\CrudUI\Controller;
 
 use Gedmo\Translatable\TranslatableListener;
@@ -16,7 +16,7 @@ trait TranslateControllerTrait
 {
 
     #[Flow\InjectConfiguration(path: "defaultLocale", package: "Sandstorm.GedmoTranslatableConnector")]
-    protected $defaultLocale;
+    protected string $defaultLocale;
 
     #[Flow\Inject]
     protected TranslatableListener $translatableListener;

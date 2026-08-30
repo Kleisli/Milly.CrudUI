@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Milly\CrudUI\Service;
 
 use Doctrine\ORM\ORMException;
@@ -41,11 +41,13 @@ class ObjectService
     }
 
     /**
+     * @param array<string, array<string>> $addElements propertyNames as keys and an array of identifiers as value
+     * @param array<string, array<string>> $removeElements propertyNames as keys and an array of identifiers as value
      * @throws PropertyNotAccessibleException
      * @throws ORMException
      * @throws InvalidTypeException
      */
-    public function updateCollectionElements(object &$object, array $addElements = [], array $removeElements = []){
+    public function updateCollectionElements(object &$object, array $addElements = [], array $removeElements = []): void {
         foreach ($addElements as $propertyName => $elementIdentifiers){
             if(is_array($elementIdentifiers)) {
                 $type = $this->millyReflectionService->getTypeOfRelation($object::class, $propertyName);

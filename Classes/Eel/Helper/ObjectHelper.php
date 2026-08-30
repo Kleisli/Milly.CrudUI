@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Milly\CrudUI\Eel\Helper;
 
 use Milly\CrudUI\Service\ObjectService;
@@ -19,26 +19,20 @@ class ObjectHelper implements ProtectedContextAwareInterface
     #[Flow\Inject]
     protected ObjectService $objectService;
 
-    /**
-     * @param object $object
-     * @return string
-     */
-    public function identifier($object)
+    public function identifier(?object $object): ?string
     {
         return $object ? $this->persistenceManager->getIdentifierByObject($object) : null;
     }
 
-    public function getLabel(object $object){
+    public function getLabel(object $object): string
+    {
         return $this->objectService->getLabel($object);
     }
 
     /**
-     * @param object|null $object $object
-     * @param string $property
-     * @return mixed|null
      * @throws \Neos\Utility\Exception\PropertyNotAccessibleException
      */
-    public function getProperty(?object $object, string $property)
+    public function getProperty(?object $object, string $property): mixed
     {
         if($object == null){
             return null;
@@ -52,7 +46,7 @@ class ObjectHelper implements ProtectedContextAwareInterface
      * @param string $methodName
      * @return boolean
      */
-    public function allowsCallOfMethod($methodName)
+    public function allowsCallOfMethod($methodName): bool
     {
         return true;
     }

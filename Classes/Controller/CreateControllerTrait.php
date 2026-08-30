@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Milly\CrudUI\Controller;
 trait CreateControllerTrait
 {
@@ -23,6 +23,10 @@ trait CreateControllerTrait
         }
     }
 
+    /**
+     * @param array<string, mixed> $preset
+     * @throws \Neos\Flow\Exception
+     */
     public function newAction(array $preset = []): void
     {
         if(isset($this->arguments['parent'])) {

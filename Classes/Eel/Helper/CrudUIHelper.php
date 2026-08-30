@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Milly\CrudUI\Eel\Helper;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,7 +10,8 @@ use Neos\Flow\Configuration\ConfigurationManager;
 use Neos\Flow\Error\Exception;
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
-use Neos\Utility\ObjectAccess;
+use Neos\Flow\Persistence\Repository;
+use Neos\Neos\Service\DataSource\AbstractDataSource;
 
 class CrudUIHelper implements ProtectedContextAwareInterface
 {
@@ -33,14 +34,10 @@ class CrudUIHelper implements ProtectedContextAwareInterface
     protected ObjectService $objectService;
 
     /**
-     * @param object|string $model
-     * @param string|null $path
-     * @param string|null $view
-     * @return mixed
      * @throws Exception
      * @throws \Neos\Flow\Exception
      */
-    public function getConfigurationByModel(object|string $model, string $path = null, string $view = null): mixed
+    public function getConfigurationByModel(object|string $model, ?string $path = null, ?string $view = null): mixed
     {
         $configuration = $this->configurationService->getCrudUIConfiguration($model, $path, $view);
         if($path == null && $configuration == null){
@@ -50,14 +47,15 @@ class CrudUIHelper implements ProtectedContextAwareInterface
     }
 
     /**
-     * @param array $optionsConfig
-     * @return array
+     * @param array<string, mixed> $optionsConfig
+     * @return array<string, string>
      * @throws \Neos\Flow\Exception
      */
-    public function getFieldOptions(array $optionsConfig, object $object = null): array
+    public function getFieldOptions(array $optionsConfig, ?object $object = null): array
     {
         $options = [];
         if(isset($optionsConfig['dataSource'])){
+            /** @var AbstractDataSource $dataSource */
             $dataSource = $this->objectManager->get($optionsConfig['dataSource']);
             $data = $dataSource->getData();
 
@@ -72,6 +70,7 @@ class CrudUIHelper implements ProtectedContextAwareInterface
                 $repository = $this->objectManager->get($repository);
                 $items = $repository->$method($object);
             }else{
+                /** @var Repository $repository */
                 $repository = $this->objectManager->get($optionsConfig['repository']);
                 $items = $repository->findAll();
             }
@@ -85,14 +84,12 @@ class CrudUIHelper implements ProtectedContextAwareInterface
             return $options;
         }
 
-        return $optionsConfig;
+        return $options;
 
     }
 
     /**
-     * @param array $optionsConfig
-     * @param mixed $objectValue
-     * @return ?string
+     * @param array<string, mixed> $optionsConfig
      * @throws \Neos\Flow\Exception
      */
     public function getFieldOptionsObjectLabel(array $optionsConfig, mixed $objectValue): ?string
@@ -113,9 +110,7 @@ class CrudUIHelper implements ProtectedContextAwareInterface
     }
 
     /**
-     * @param array $optionsConfig
-     * @param mixed $item
-     * @return ?string
+     * @param array<string, mixed> $optionsConfig
      */
     public function getFieldOptionsObjectValue(array $optionsConfig, mixed $item): ?string
     {
@@ -140,7 +135,7 @@ class CrudUIHelper implements ProtectedContextAwareInterface
      * @param string $methodName
      * @return boolean
      */
-    public function allowsCallOfMethod($methodName)
+    public function allowsCallOfMethod($methodName): bool
     {
         return true;
     }

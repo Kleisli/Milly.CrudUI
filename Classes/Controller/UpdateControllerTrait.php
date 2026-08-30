@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Milly\CrudUI\Controller;
 use Neos\Flow\Exception;
 use Neos\Flow\Mvc\Exception\NoSuchArgumentException;
@@ -44,7 +44,17 @@ trait UpdateControllerTrait
         $this->registerObjectArgument();
     }
 
-    public function updateAction(array $addElements = [], array $removeElements = [])
+
+    /**
+     * @param array<string, array<string>> $addElements propertyNames as keys and an array of identifiers as value
+     * @param array<string, array<string>> $removeElements propertyNames as keys and an array of identifiers as value
+     * @throws Exception
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Neos\Flow\Mvc\Exception\StopActionException
+     * @throws \Neos\Utility\Exception\InvalidTypeException
+     * @throws \Neos\Utility\Exception\PropertyNotAccessibleException
+     */
+    public function updateAction(array $addElements = [], array $removeElements = []): void
     {
         $object = $this->arguments['object']->getValue();
         $this->objectService->updateCollectionElements($object, $addElements, $removeElements);

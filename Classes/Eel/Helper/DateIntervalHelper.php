@@ -1,16 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 namespace Milly\CrudUI\Eel\Helper;
 
-use Milly\Tools\Service\ReflectionService;
 use Neos\Eel\ProtectedContextAwareInterface;
-use Neos\Flow\Annotations as Flow;
-use Neos\Flow\Persistence\PersistenceManagerInterface;
-use Neos\Utility\ObjectAccess;
 
 class DateIntervalHelper implements ProtectedContextAwareInterface
 {
 
-    public function format(\DateInterval $dateInterval, string $format)
+    public function format(\DateInterval $dateInterval, string $format): string
     {
         return $dateInterval->format($format);
     }
@@ -21,7 +17,7 @@ class DateIntervalHelper implements ProtectedContextAwareInterface
      * @param string $methodName
      * @return boolean
      */
-    public function allowsCallOfMethod($methodName)
+    public function allowsCallOfMethod($methodName): bool
     {
         return true;
     }
