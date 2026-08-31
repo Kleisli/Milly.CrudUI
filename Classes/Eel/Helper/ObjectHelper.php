@@ -24,7 +24,7 @@ class ObjectHelper implements ProtectedContextAwareInterface
         return $object ? $this->persistenceManager->getIdentifierByObject($object) : null;
     }
 
-    public function getLabel(object $object): string
+    public function getLabel(object $object): ?string
     {
         return $this->objectService->getLabel($object);
     }
