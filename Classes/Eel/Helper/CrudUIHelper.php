@@ -84,7 +84,7 @@ class CrudUIHelper implements ProtectedContextAwareInterface
             return $options;
         }
 
-        return $options;
+        return $optionsConfig;
 
     }
 
