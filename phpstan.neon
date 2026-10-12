@@ -3,4 +3,5 @@ parameters:
     treatPhpDocTypesAsCertain: false
     paths:
       - Classes
-    ignoreErrors: []
+    ignoreErrors:
+      - identifier: trait.unused
